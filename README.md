@@ -205,15 +205,15 @@ TS-GraphRAG/
 
 | Equation | Description | Location |
 |----------|-------------|----------|
-| Eq. 4 | ML partition estimate = inner-product retrieval | §2.1 |
-| Eq. 5 | Pressure-weighted modularity (Leiden) | §2.1 |
-| Eq. 6 | Partition-aware sensor placement (min-max sensitivity) | §2.1 |
-| Eq. 7–8 | Dual-modality scenario encoding (semantic + fingerprint) | §2.2 |
-| Eq. 10–11 | SKG edge construction (topological + similarity) | §2.2 |
-| Eq. 12–16 | Six retrieval channel scoring functions | §2.3 |
-| Eq. 17–18 | Min-max normalization & adaptive weight fusion | §2.3 |
-| Eq. 19 | Topological score propagation on PAG | §2.3 |
-| Eq. 20–22 | Confidence-gated LLM arbitration & consistency checks | §2.4 |
+| Eq. 4 | ML partition estimate = inner-product retrieval | §3.1 |
+| Eq. 5 | Pressure-weighted modularity (Leiden) | §3.1 |
+| Eq. 6 | Partition-aware sensor placement (min-max sensitivity) | §3.1 |
+| Eq. 7–8 | Dual-modality scenario encoding (semantic + fingerprint) | §3.2 |
+| Eq. 10–11 | SKG edge construction (topological + similarity) | §3.2 |
+| Eq. 12–16 | Six retrieval channel scoring functions | §3.3 |
+| Eq. 17–18 | Min-max normalization & adaptive weight fusion | §3.3 |
+| Eq. 19 | Topological score propagation on PAG | §3.3 |
+| Eq. 20–22 | Confidence-gated LLM arbitration & consistency checks | §3.4 |
 
 ---
 
