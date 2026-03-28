@@ -113,6 +113,7 @@ Removing graph-structured channels (Ch 6–7) degrades Top-1 accuracy from 88.0%
 - Python 3.11+
 - EPANET 2.2 (bundled via WNTR)
 - CUDA 12.8
+- ollama
 
 ### 2. Installation
 
