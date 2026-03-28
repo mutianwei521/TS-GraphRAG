@@ -1,4 +1,5 @@
 # Beyond Text Retrieval: Graph RAG as a Training-Free Predictor for Real-Time Leak Localization in Water Distribution Networks
+Tianwei Mu, Guangzhou Institute of Industrial Intelligence
 
 [[Paper]](https://github.com/mutianwei521/TS-GraphRAG) [[Project Page]](https://github.com/mutianwei521/TS-GraphRAG)
 
@@ -109,9 +110,9 @@ Removing graph-structured channels (Ch 6–7) degrades Top-1 accuracy from 88.0%
 
 ### 1. Prerequisites
 
-- Python 3.9+
+- Python 3.11+
 - EPANET 2.2 (bundled via WNTR)
-- CUDA not required (CPU inference in < 0.1s)
+- CUDA 12.8
 
 ### 2. Installation
 
@@ -218,12 +219,7 @@ TS-GraphRAG/
 ## 🏷️ Citation
 
 ```bibtex
-@article{mu2026tsgraphrag,
-  title={Beyond Text Retrieval: Graph {RAG} as a Training-Free Predictor for Real-Time Leak Localization in Water Distribution Networks},
-  author={Mu, Tianwei and others},
-  journal={Under Review},
-  year={2026}
-}
+Waiting for publication
 ```
 
 ---
