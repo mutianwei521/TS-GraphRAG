@@ -1,0 +1,34 @@
+# TS-GraphRAG Dependencies
+# ========================
+
+# Core Scientific Computing
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+
+# Hydraulic Simulation
+wntr>=1.0.0               # Water Network Tool for Resilience (EPANET wrapper)
+
+# Graph Algorithms
+networkx>=3.0
+leidenalg>=0.10.0         # Leiden community detection
+python-igraph>=0.11.0     # Required by leidenalg
+
+# Embedding & Vector Store
+sentence-transformers>=2.2.0   # Sentence-BERT (all-MiniLM-L6-v2)
+lancedb>=0.4.0                 # Vector database for semantic retrieval
+torch>=2.0.0                   # PyTorch (CPU sufficient)
+
+# LLM Integration (optional, for confidence-gated arbitration)
+langchain-ollama>=0.1.0
+langchain-core>=0.2.0
+
+# Visualization
+matplotlib>=3.7.0
+
+# Configuration
+pyyaml>=6.0
+
+# Utilities
+scikit-learn>=1.3.0
+tqdm>=4.65.0

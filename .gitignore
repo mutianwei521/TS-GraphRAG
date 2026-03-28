@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+temp.*
+tmp_*
+*.bin
+
+# Knowledge base (generated, large files)
+knowledge_base/
+knowledge_base_haining/
+
+# Results (generated)
+results/
+partition_results_leiden/
+partition_plots_leiden/
+sensor_results/
+
+# EPANET temporary files
+*.rpt
+
+# Jupyter
+.ipynb_checkpoints/
