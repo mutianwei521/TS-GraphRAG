@@ -1,6 +1,6 @@
 """
-使用 CDlib 中的 Leiden 算法进行网络分区。
-Leiden 是 Louvain 的改进版本，保证了连通社区，收敛更稳定。
+Network partitioning using Leiden algorithm.
+Leiden is an improved version of Louvain, guaranteeing connected communities and stable convergence.
 """
 import numpy as np
 import networkx as nx
@@ -9,17 +9,17 @@ from cdlib import algorithms
 
 def normalize_edge_weights(G):
     """
-    将边权重归一化到 [0, 1] 范围。
+    Normalize edge weights to [0, 1] range.
 
-    参数:
-        G: 带有边权重的 NetworkX 图
+    Args:
+        G: NetworkX graph with edge weights
 
-    返回:
-        G_normalized: 具有归一化边权重的新图
+    Returns:
+        G_normalized: New graph with normalized edge weights
     """
     G_normalized = G.copy()
 
-    # 获取所有边权重
+    # Get all edge weights
     weights = [data.get('weight', 1.0) for u, v, data in G.edges(data=True)]
 
     if len(weights) == 0:
@@ -28,12 +28,12 @@ def normalize_edge_weights(G):
     min_weight = min(weights)
     max_weight = max(weights)
 
-    # 将权重归一化到 [0, 1] 范围
+    # Normalize weights to [0, 1] range
     if max_weight > min_weight:
         for u, v, data in G_normalized.edges(data=True):
             original_weight = data.get('weight', 1.0)
             normalized_weight = (original_weight - min_weight) / (max_weight - min_weight)
-            # 避免零权重（可能会导致某些算法出现问题）
+            # Avoid zero weights (may cause issues with some algorithms)
             G_normalized[u][v]['weight'] = max(normalized_weight, 0.001)
 
     return G_normalized
@@ -41,17 +41,17 @@ def normalize_edge_weights(G):
 
 def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
     """
-    多次运行不同分辨率的 Leiden 算法，以获得各种分区大小。
+    Run Leiden algorithm multiple times with different resolutions to get various partition sizes.
 
-    使用 leidenalg 库直接调用（通过 igraph），支持 resolution_parameter。
+    Uses leidenalg library directly (via igraph) which supports resolution_parameter.
 
-    参数:
-        G: NetworkX 图
-        resolution_range: 分辨率参数的范围元组 (min, max)
-        num_iterations: 要尝试的不同分辨率值的数量
+    Args:
+        G: NetworkX graph
+        resolution_range: Tuple of (min, max) for resolution parameter
+        num_iterations: Number of different resolution values to try
 
-    返回:
-        all_partitions: (num_communities, partition, resolution) 元组的列表
+    Returns:
+        all_partitions: List of (num_communities, node_to_community, resolution) tuples
     """
     import igraph as ig
     import leidenalg
@@ -59,12 +59,12 @@ def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
     if resolution_range is None:
         resolution_range = (0.1, 5.0)
 
-    # 在分区之前归一化边权重
+    # Normalize edge weights before partitioning
     G_normalized = normalize_edge_weights(G)
     print(f"  Edge weights normalized to [0, 1] range")
 
-    # 将 NetworkX 图转换为 igraph 图
-    # 保留节点名称映射
+    # Convert NetworkX graph to igraph graph
+    # Preserve node name mapping
     node_list = list(G_normalized.nodes())
     node_to_idx = {node: idx for idx, node in enumerate(node_list)}
 
@@ -88,7 +88,7 @@ def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
 
     for res in resolutions:
         try:
-            # 使用 leidenalg 直接运行 Leiden 算法
+            # Run Leiden directly using leidenalg
             partition = leidenalg.find_partition(
                 ig_graph,
                 leidenalg.RBConfigurationVertexPartition,
@@ -97,7 +97,7 @@ def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
             )
             num_communities = len(partition)
 
-            # 存储带有节点分配的分区结果（使用原始节点名称）
+            # Store partition result with node assignments (using original node names)
             node_to_community = {}
             for comm_id, community in enumerate(partition):
                 for node_idx in community:
@@ -114,17 +114,17 @@ def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
 
 def extract_unique_partitions(all_partitions):
     """
-    提取唯一的分区编号，为每个分区计数仅保留最后一次出现（迭代中最优的）。
+    Extract unique partition counts, keeping only the last occurrence (optimal in iterations) for each partition count.
 
-    参数:
-        all_partitions: (num_communities, node_to_community, resolution) 元组的列表
+    Args:
+        all_partitions: List of (num_communities, node_to_community, resolution) tuples
 
-    返回:
-        unique_partitions: 字典 {num_communities: node_to_community}
+    Returns:
+        unique_partitions: Dictionary {num_communities: node_to_community}
     """
     unique_partitions = {}
 
-    # 遍历所有分区，后出现的分区会覆盖先出现的分区
+    # Iterate through all partitions, later ones will override earlier ones
     for num_comm, node_to_comm, res in all_partitions:
         unique_partitions[num_comm] = {
             'node_to_community': node_to_comm,
@@ -139,15 +139,15 @@ def extract_unique_partitions(all_partitions):
 
 def merge_communities_by_connectivity(G, node_to_community, target_num):
     """
-    通过合并连接最紧密的社区对，使社区数量达到目标值。
+    Merge the most tightly connected community pairs until reaching the target number.
 
-    参数:
-        G: NetworkX 图
-        node_to_community: 映射节点名称到社区 ID 的字典
-        target_num: 目标社区数量
+    Args:
+        G: NetworkX graph
+        node_to_community: Dictionary mapping node names to community IDs
+        target_num: Target number of communities
 
-    返回:
-        new_node_to_community: 包含合并后社区分配的字典
+    Returns:
+        new_node_to_community: Dictionary containing merged community assignments
     """
     current_communities = max(node_to_community.values()) + 1
 
@@ -158,7 +158,7 @@ def merge_communities_by_connectivity(G, node_to_community, target_num):
     node_to_comm = node_to_community.copy()
 
     while current_communities > target_num:
-        # 计算社区之间的连接性
+        # Calculate connectivity between communities
         comm_connectivity = {}
         for u, v, data in G.edges(data=True):
             comm_u = node_to_comm.get(u)
@@ -171,16 +171,16 @@ def merge_communities_by_connectivity(G, node_to_community, target_num):
         if not comm_connectivity:
             break
 
-        # 找到连接最紧密的一对社区
+        # Find the most tightly connected pair of communities
         best_pair = max(comm_connectivity, key=comm_connectivity.get)
         comm_to_merge, comm_to_keep = best_pair
 
-        # 合并：将 comm_to_merge 中的所有节点重新分配给 comm_to_keep
+        # Merge: reassign all nodes from comm_to_merge to comm_to_keep
         for node in node_to_comm:
             if node_to_comm[node] == comm_to_merge:
                 node_to_comm[node] = comm_to_keep
 
-        # 重新编号社区以使编号连续
+        # Renumber communities to be contiguous
         unique_comms = sorted(set(node_to_comm.values()))
         comm_mapping = {old: new for new, old in enumerate(unique_comms)}
         node_to_comm = {node: comm_mapping[comm] for node, comm in node_to_comm.items()}
@@ -192,15 +192,15 @@ def merge_communities_by_connectivity(G, node_to_community, target_num):
 
 def generate_merged_partitions(G, base_partition, target_range=(2, 15)):
     """
-    通过从基础分区开始合并，生成具有较少社区的分区。
+    Generate partitions with fewer communities by merging from a base partition.
 
-    参数:
-        G: NetworkX 图
-        base_partition: 字典 {node: community_id} - 合并的基础分区
-        target_range: 目标社区数量的元组 (min, max)
+    Args:
+        G: NetworkX graph
+        base_partition: Dict {node: community_id} - base partition for merging
+        target_range: Tuple (min, max) for target community counts
 
-    返回:
-        merged_partitions: 字典 {num_communities: {'node_to_community': dict, 'resolution': 'merged'}}
+    Returns:
+        merged_partitions: Dict {num_communities: {'node_to_community': dict, 'resolution': 'merged'}}
     """
     merged_partitions = {}
 
@@ -219,17 +219,17 @@ def generate_merged_partitions(G, base_partition, target_range=(2, 15)):
 
 def extract_partitions_with_merge(G, all_partitions, merge_range=(2, 15), target_k=None):
     """
-    从 Leiden 结果中提取唯一分区，并为较小的社区计数生成合并分区。
-    如果指定了 target_k，还需确保其存在。
+    Extract unique partitions from Leiden results and generate merged partitions for smaller community counts.
+    Ensures target_k exists if specified.
 
-    参数:
-        G: NetworkX 图
-        all_partitions: (num_communities, node_to_community, resolution) 元组的列表
-        merge_range: 合并分区目标范围的元组 (min, max)
-        target_k: 所需的特定分区计数
+    Args:
+        G: NetworkX graph
+        all_partitions: List of (num_communities, node_to_community, resolution) tuples
+        merge_range: Tuple (min, max) for merge target range
+        target_k: Specific partition count required
 
-    返回:
-        unique_partitions: Leiden 分区和合并分区的合集字典
+    Returns:
+        unique_partitions: Combined dictionary of Leiden and merged partitions
     """
     # Step 1: Extract unique Leiden partitions
     unique_partitions = extract_unique_partitions(all_partitions)
@@ -238,17 +238,17 @@ def extract_partitions_with_merge(G, all_partitions, merge_range=(2, 15), target
     print(f"  Leiden partition counts: {partition_counts}")
     print(f"  Leiden range: {min(partition_counts, default=0)} to {max(partition_counts, default=0)} communities")
 
-    # 用于查找合并到目标计数所需的有效基础分区的辅助函数
+    # Helper to find valid base partition needed to merge down to target count
     def find_best_base(target):
-        # 我们需要一个计数大于目标的分区
+        # We need a partition with count greater than target
         candidates = [k for k in partition_counts if k > target]
         if not candidates:
             return None
-        # 选择大于目标值的最小计数（即最接近的上方邻居）
+        # Select the smallest count greater than target (i.e., closest upper neighbor)
         best_k = min(candidates)
         return unique_partitions[best_k]['node_to_community']
 
-    # 第 2 步：为较小的社区计数生成合并分区（默认范围）
+    # Step 2: Generate merged partitions for smaller community counts (default range)
     print(f"\n  Generating merged partitions for {merge_range[0]}-{merge_range[1]} communities...")
 
     targets_to_gen = set(range(merge_range[0], merge_range[1] + 1))
@@ -259,7 +259,7 @@ def extract_partitions_with_merge(G, all_partitions, merge_range=(2, 15), target
 
     for t_k in sorted(list(targets_to_gen)):
         if t_k in unique_partitions:
-            continue  # Leiden 结果中已存在
+            continue  # Already exists in Leiden results
 
         base_partition = find_best_base(t_k)
         if base_partition:
@@ -274,7 +274,7 @@ def extract_partitions_with_merge(G, all_partitions, merge_range=(2, 15), target
     merged_counts = sorted(merged_partitions.keys())
     print(f"  Merged partition counts: {merged_counts}")
 
-    # 第 3 步：合并
+    # Step 3: Merge back into main dict
     for num_comm, data in merged_partitions.items():
         unique_partitions[num_comm] = data
 

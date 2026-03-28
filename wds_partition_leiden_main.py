@@ -140,7 +140,7 @@ def main():
     print(f"  Plots saved in: {plot_dir}/")
 
 
-# 训练
+# Training
 # python wds_partition_leiden_main.py
 if __name__ == '__main__':
     main()
