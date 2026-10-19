@@ -1,0 +1,30 @@
+{
+  "query_results": {
+    "actual": "outputs/partition_full/query_level_results.csv.gz",
+    "archive": "data/frozen/partition_sensor/query_level_results.csv.gz",
+    "rows": 44460,
+    "columns": 23,
+    "cells_compared": 1022580,
+    "numeric_cells_compared": 755820,
+    "mismatched_cells": 0,
+    "maximum_absolute_numeric_difference": 0.0,
+    "absolute_tolerance": 1e-08,
+    "relative_tolerance": 0,
+    "actual_sha256": "92335d6abd7a7d70dd15b138014bfb078713d5000e63c8b4ed1ab8741be4d78f",
+    "archive_sha256": "d7a322fd3d097ebd28bfdd0c8477358bd5638da1c56cbc62238195da19854554"
+  },
+  "summary": {
+    "actual": "outputs/partition_full/summary_tidy.csv",
+    "archive": "data/frozen/partition_sensor/summary_tidy.csv",
+    "rows": 342,
+    "columns": 14,
+    "cells_compared": 4788,
+    "numeric_cells_compared": 3762,
+    "mismatched_cells": 0,
+    "maximum_absolute_numeric_difference": 0.0,
+    "absolute_tolerance": 1e-08,
+    "relative_tolerance": 0,
+    "actual_sha256": "a56f5a96bcd9ed5046b0994111bd4167e14be61b10ed505199aeed5640b7597e",
+    "archive_sha256": "a56f5a96bcd9ed5046b0994111bd4167e14be61b10ed505199aeed5640b7597e"
+  }
+}

@@ -4,7 +4,6 @@ Leiden is an improved version of Louvain, guaranteeing connected communities and
 """
 import numpy as np
 import networkx as nx
-from cdlib import algorithms
 
 
 def normalize_edge_weights(G):
@@ -39,7 +38,7 @@ def normalize_edge_weights(G):
     return G_normalized
 
 
-def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
+def run_leiden_partitioning(G, resolution_range=None, num_iterations=50, seed=41):
     """
     Run Leiden algorithm multiple times with different resolutions to get various partition sizes.
 
@@ -93,7 +92,8 @@ def run_leiden_partitioning(G, resolution_range=None, num_iterations=50):
                 ig_graph,
                 leidenalg.RBConfigurationVertexPartition,
                 weights=weights,
-                resolution_parameter=res
+                resolution_parameter=res,
+                seed=seed
             )
             num_communities = len(partition)
 

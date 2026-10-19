@@ -1,0 +1,16 @@
+{
+  "pairs_compared": 24300,
+  "mismatches": {
+    "fusion_strict": 0,
+    "projection": 0
+  },
+  "saved_methods": [
+    "cosine",
+    "fusion_open_topology",
+    "fusion_strict",
+    "projection"
+  ],
+  "elapsed_seconds": 156.0359628200531,
+  "dev_queries": 1350,
+  "test_queries": 1350
+}

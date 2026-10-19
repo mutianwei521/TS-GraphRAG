@@ -1,0 +1,17 @@
+{
+  "weights_channels": {
+    "prior": 0,
+    "centroid": 0,
+    "rank": 0,
+    "fingerprint": 0,
+    "semantic": 0,
+    "community": 0,
+    "projection": 1,
+    "cosine_sq_max": 0
+  },
+  "beta": 0.0,
+  "selection": "max mean dev top-1 over H0-H8 among 400 random Dirichlet draws + default + projection",
+  "dev_mean_top1_selected": 0.7409053497942387,
+  "dev_mean_top1_default": 0.5462551440329217,
+  "dev_mean_top1_projection_only": 0.7409053497942387
+}

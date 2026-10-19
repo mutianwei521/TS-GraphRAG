@@ -1,0 +1,308 @@
+"""Historical S11_Haining_S12_roster computational source; original input locations are listed in dependencies.json."""
+import os, sys, json, copy, pickle, random, warnings, tempfile, uuid, time
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import wntr
+from wds_verify import G, projection_residual
+
+_P = os.path.join(tempfile.mkdtemp(prefix='epanet_'), 'ep_' + uuid.uuid4().hex[:8])
+
+ROSTER = {'Haining': 'dataset/haining.inp', 'EXA6': 'dataset/EXA6.inp',
+          'EXA5': 'dataset/EXA5.inp', 'EXA4': 'dataset/EXA4.inp',
+          'EXA7': 'dataset/Exa7.inp', 'Dagang': 'realInpData/dagang.inp'}
+STATE_FRAC = {'night_low': 0.5833, 'day_normal': 0.8333, 'peak': 1.0}
+MU_GRID = [1.2, 1.15, 1.1, 1.05, 1.0, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.6, 0.5]
+A_MAGS = [2.0, 5.0, 10.0, 20.0, 35.0, 50.0]
+B_MAG = 10.0
+Q_MAGS = [5.0, 20.0, 50.0]
+N_A_NODES, N_B_NODES, N_QUERY = 30, 180, 40
+Q_REF, SENSOR_FRAC, K_TARGET = 20.0, 0.08, 15
+NOISE, SEED = 0.02, 41
+PROTOCOLS = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
+
+
+def real_junctions(wn):
+    dummies = set()
+    for v in wn.valve_name_list:
+        lk = wn.get_link(v)
+        for n in (lk.start_node_name, lk.end_node_name):
+            if n.endswith('-A') or n.endswith('-B'):
+                dummies.add(n)
+    return [j for j in wn.junction_name_list if j not in dummies]
+
+
+def scaled(wn0, juncs, mult):
+    wn = copy.deepcopy(wn0)
+    for j in juncs:
+        for d in wn.get_node(j).demand_timeseries_list:
+            d.base_value *= mult
+    return wn
+
+
+def feasible_peak(wn0, juncs):
+    """Largest multiplier <= 1.2 the model can serve with no negative pressure anywhere."""
+    for mu in MU_GRID:
+        P = wntr.sim.EpanetSimulator(scaled(wn0, juncs, mu)).run_sim(
+            file_prefix=_P).node['pressure'][juncs].values
+        if np.isfinite(P).all() and P.min() >= 0.0:
+            return mu, float(P.min()), len(MU_GRID)
+    raise RuntimeError('no feasible demand multiplier down to x0.5')
+
+
+def greedy_sensors(S, budget, seed=0):
+    rng = np.random.default_rng(seed)
+    chosen = [int(rng.integers(S.shape[1]))]
+    for _ in range(budget - 1):
+        best, bj = np.inf, None
+        for j in rng.choice(S.shape[1], size=min(50, S.shape[1]), replace=False):
+            if int(j) in chosen:
+                continue
+            Fs = S[:, chosen + [int(j)]]
+            nr = np.linalg.norm(Fs, axis=1)
+            ok = nr > 1e-12
+            if ok.sum() < 2:
+                continue
+            U = Fs[ok] / nr[ok, None]
+            Gm = U @ U.T
+            np.fill_diagonal(Gm, 0.0)
+            if float(Gm.max(axis=1).mean()) < best:
+                best, bj = float(Gm.max(axis=1).mean()), int(j)
+        if bj is None:
+            break
+        chosen.append(bj)
+    return chosen
+
+
+def build_partitions(name, wn):
+    pdir = f'partition_results_{name.lower()}'
+    pkl = os.path.join(pdir, 'partitions.pkl')
+    if os.path.exists(pkl):
+        print(f'  loaded cached partitions from {pkl}')
+        return pickle.load(open(pkl, 'rb'))
+    from partition_utils.hydraulic import run_hydraulic_simulation, calculate_average_pressure
+    from partition_utils.similarity import create_network_graph
+    from partition_utils.partitioning_leiden import (run_leiden_partitioning,
+                                                     extract_partitions_with_merge)
+    os.makedirs(pdir, exist_ok=True)
+    res = run_hydraulic_simulation(wn)
+    avg = calculate_average_pressure(res, wn)
+    Gg, _ = create_network_graph(wn, avg)
+    allp = run_leiden_partitioning(Gg, (0.001, 3.0), 300)
+    parts = extract_partitions_with_merge(Gg, allp, merge_range=(2, 15))
+    parts = {k: v for k, v in parts.items() if 2 <= k <= 40}
+    pickle.dump(parts, open(pkl, 'wb'))
+    print(f'  built {len(parts)} partition solutions -> {pkl}')
+    return parts
+
+
+def main(name):
+    inp = ROSTER[name]
+    cache_f = f'expH_{name.lower()}_cache.npz'
+    out_f = f'expH_{name.lower()}_results.json'
+    print('=' * 110)
+    print(f'H-R — factorial holdout matrix on {name}  ({inp})')
+    print('=' * 110)
+    t0 = time.time()
+
+    wn0 = wntr.network.WaterNetworkModel(inp)
+    juncs_all = real_junctions(wn0)
+    tot_pipe = sum(wn0.get_link(p).length for p in wn0.pipe_name_list)
+    print(f'  {len(wn0.junction_name_list)} junction records, {len(juncs_all)} real junctions, '
+          f'{len(wn0.pipe_name_list)} pipes, {tot_pipe/1000:.1f} km')
+
+    mu, pmin, _ = feasible_peak(wn0, juncs_all)
+    nsim = MU_GRID.index(mu) + 1
+    mults = {k: round(v * mu, 4) for k, v in STATE_FRAC.items()}
+    print(f'  feasible peak multiplier mu* = {mu:g} (min pressure {pmin:.2f} m); '
+          f'demand states {mults}')
+    if mu < 1.2:
+        print(f'  NOTE: this model cannot serve the manuscript x1.2 peak. States are scaled to '
+              f'its own feasible peak; the sweep span is still {max(mults.values())/min(mults.values()):.2f}x.')
+
+    parts = build_partitions(name, copy.deepcopy(wn0))
+    K = min(parts, key=lambda k: (abs(k - K_TARGET), k))
+    n2c_all = {n: int(c) for n, c in parts[K]['node_to_community'].items()}
+    print(f'  using K = {K} partitions (target {K_TARGET})')
+
+    models, base = {}, {}
+    for per, m_ in mults.items():
+        wn = scaled(wn0, juncs_all, m_)
+        models[per] = wn
+        P = wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(
+            file_prefix=_P).node['pressure'][juncs_all]
+        G.pressure_sane(P.values, f'{name} {per} baseline')
+        base[per] = P.mean(axis=0)
+        nsim += 1
+    print(f'  3 baselines ({time.time()-t0:.0f}s)', flush=True)
+
+    QMAX = max(A_MAGS + Q_MAGS + [B_MAG])
+    scr = f'expH_{name.lower()}_screen.npy'
+    if os.path.exists(scr):
+        Z = np.load(scr)
+        print(f'  loaded admissibility screen from {scr}')
+    else:
+        bpn = base['day_normal']
+        rows = np.zeros((3, len(juncs_all)))
+        full = np.zeros((len(juncs_all), len(juncs_all)))
+        for i, nd in enumerate(juncs_all):
+            w = copy.deepcopy(models['day_normal'])
+            w.get_node(nd).add_demand(QMAX / 1000.0, '881')
+            lp = wntr.sim.EpanetSimulator(w).run_sim(
+                file_prefix=_P).node['pressure'].mean(axis=0)
+            nsim += 1
+            d = np.array([float(lp[j] - bpn[j]) for j in juncs_all])
+            full[i] = d
+            rows[0, i] = np.abs(d).max()
+            rows[1, i] = float(lp[nd])
+            if (i + 1) % 200 == 0:
+                print(f'    screen {i+1}/{len(juncs_all)} ({time.time()-t0:.0f}s)', flush=True)
+        Z = np.vstack([rows, full])
+        np.save(scr, Z)
+    resp_max, p_at_leak = Z[0], Z[1]
+    Sfull = Z[3:]
+    drop = (p_at_leak < 0.0) | (resp_max > 5.0 * QMAX)
+    print(f'  admissibility screen at {QMAX:g} L/s: {int(drop.sum())} of {len(juncs_all)} '
+          f'junctions excluded ({int((p_at_leak < 0).sum())} negative pressure, '
+          f'{int((resp_max > 5*QMAX).sum())} above 5 m per L/s)')
+    juncs_ok = [j for j, k in zip(juncs_all, drop) if not k]
+    S = Sfull[np.ix_(~drop, ~drop)]
+    G.finite(S, f'{name} sensitivity')
+    G.response_sane(S, QMAX, f'{name} response (admissible)')
+
+    live = np.linalg.norm(S, axis=1) > 1e-9
+    juncs = [j for j, k in zip(juncs_ok, live) if k]
+    Sl = S[np.ix_(live, live)]
+    budget = max(10, int(round(SENSOR_FRAC * len(juncs))))
+    cols = greedy_sensors(Sl, budget, SEED)
+    sensors = [juncs[c] for c in cols]
+    m = len(sensors)
+    n2c = {j: n2c_all[j] for j in juncs if j in n2c_all}
+    juncs = [j for j in juncs if j in n2c]
+    xy = {j: np.array(wn0.get_node(j).coordinates) for j in juncs}
+    print(f'  {len(juncs)} admissible junctions with a partition label, '
+          f'{m} sensors ({SENSOR_FRAC:.0%})', flush=True)
+
+    cache = {}
+    if os.path.exists(cache_f):
+        z = np.load(cache_f, allow_pickle=True)
+        cache = {tuple(k.split('|')): z[k] for k in z.files}
+        print(f'  loaded {len(cache)} cached fingerprints')
+
+    def fp(node, q, per):
+        key = (node, f'{q:g}', per)
+        if key in cache:
+            return cache[key]
+        nonlocal nsim
+        w = copy.deepcopy(models[per])
+        w.get_node(node).add_demand(q / 1000.0, '881')
+        lp = wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+        nsim += 1
+        v = np.array([float(lp[s] - base[per][s]) for s in sensors])
+        G.response_sane(v, q, f'{name} leak {node} @ {q:g} L/s / {per}')
+        cache[key] = v
+        return v
+
+    rng = random.Random(SEED)
+    pool = [j for j in juncs if j not in set(sensors)]
+    A_nodes = sorted(rng.sample(pool, N_A_NODES))
+    rest = [j for j in pool if j not in set(A_nodes)]
+    B_nodes = sorted(set(A_nodes) | set(rng.sample(rest, N_B_NODES - N_A_NODES)))
+    G1 = sorted(rng.sample(A_nodes, N_QUERY // 2))
+    outside = [j for j in pool if j not in set(B_nodes)]
+    G2 = sorted(rng.sample(outside, N_QUERY // 2))
+
+    print(f'  building corpora A={N_A_NODES}x{len(A_MAGS)}x3 and B={N_B_NODES}x1x3', flush=True)
+    A = [(n, q, t, fp(n, q, t)) for n in A_nodes for q in A_MAGS for t in mults]
+    B = [(n, B_MAG, t, fp(n, B_MAG, t)) for n in B_nodes for t in mults]
+    Q = {'G1 query node IS in the corpus':
+         [(n, q, t) for n in G1 for q in Q_MAGS for t in mults],
+         'G2 query node is in NEITHER corpus':
+         [(n, q, t) for n in G2 for q in Q_MAGS for t in mults]}
+    for qs in Q.values():
+        for n, q, t in qs:
+            fp(n, q, t)
+    np.savez_compressed(cache_f, **{'|'.join(k): v for k, v in cache.items()})
+    print(f'  corpora + queries ready ({time.time()-t0:.0f}s, {nsim} sims)', flush=True)
+
+    def keep(atom, n_, q_, t_, proto):
+        an, aq, at, _ = atom
+        sn, sq, st = an == n_, aq == q_, at == t_
+        return {'H0': True, 'H1': not (sn and sq and st), 'H2': not sn, 'H3': not sq,
+                'H4': not st, 'H5': not (sn or sq), 'H6': not (sn or st),
+                'H7': not (sq or st), 'H8': not (sn or sq or st),
+                'H9': n2c[an] != n2c[n_]}[proto]
+
+    res = {}
+    for gname, qset in Q.items():
+        for label, corpus in ((f'A ({N_A_NODES} nodes x {len(A_MAGS)} magnitudes)', A),
+                              (f'B ({N_B_NODES} nodes x 1 magnitude)', B)):
+            rows = {}
+            for proto in PROTOCOLS:
+                np.random.seed(SEED)
+                hit, dist, empty, hv, dv = 0, [], 0, [], []
+                for (n_, q_, t_) in qset:
+                    sub = [a for a in corpus if keep(a, n_, q_, t_, proto)]
+                    if not sub:
+                        empty += 1
+                        hv.append(None)
+                        dv.append(None)
+                        continue
+                    y = fp(n_, q_, t_) + np.random.normal(0, NOISE, m)
+                    D = np.array([a[3] for a in sub])
+                    w = sub[int(np.argmin(projection_residual(y, D)))]
+                    h = int(n2c[w[0]] == n2c[n_])
+                    d = float(np.linalg.norm(xy[w[0]] - xy[n_]))
+                    hit += h
+                    dist.append(d)
+                    hv.append(h)
+                    dv.append(d)
+                n_used = len(qset) - empty
+                rows[proto] = dict(top1=hit / n_used if n_used else float('nan'),
+                                   med_m=float(np.median(dist)) if dist else float('nan'),
+                                   hits=hv, dists=dv, n=n_used, empty=empty,
+                                   atoms_left=len([a for a in corpus
+                                                   if keep(a, *qset[0], proto)]))
+                if n_used:
+                    G.prob(rows[proto]['top1'], f'{gname}/{label}/{proto}')
+            res[f'{gname} | {label}'] = rows
+
+    names = {'H0': 'closed world (as submitted)', 'H1': 'leave-one-scenario-out',
+             'H2': 'unseen NODE', 'H3': 'unseen MAGNITUDE', 'H4': 'unseen DEMAND STATE',
+             'H5': 'unseen node x magnitude', 'H6': 'unseen node x state',
+             'H7': 'unseen magnitude x state', 'H8': 'unseen node x magnitude x state',
+             'H9': 'leave-one-partition-out'}
+    keys = list(res)
+    for gname in Q:
+        a = res[[k for k in keys if k.startswith(gname) and '| A' in k][0]]
+        b = res[[k for k in keys if k.startswith(gname) and '| B' in k][0]]
+        print()
+        print('=' * 110)
+        print(f'{gname}   ({len(Q[gname])} queries)')
+        print('=' * 110)
+        print(f'{"":<4}{"protocol":<34} | {"A Top-1":>9}{"A med m":>9}{"A atoms":>9} | '
+              f'{"B Top-1":>9}{"B med m":>9}{"B atoms":>9}')
+        print('-' * 110)
+        for p in PROTOCOLS:
+            note = '' if p != 'H9' else '  <- true partition deleted'
+            print(f'{p:<4}{names[p]:<34} | {100*a[p]["top1"]:>8.1f}%{a[p]["med_m"]:>8.0f}m'
+                  f'{a[p]["atoms_left"]:>9} | {100*b[p]["top1"]:>8.1f}%{b[p]["med_m"]:>8.0f}m'
+                  f'{b[p]["atoms_left"]:>9}{note}')
+        for tag, p in (('H2 unseen node', 'H2'), ('H3 unseen magnitude', 'H3'),
+                       ('H4 unseen state', 'H4'), ('H8 strictest', 'H8')):
+            print(f'  H0 -> {tag:<22} A {100*(a["H0"]["top1"]-a[p]["top1"]):+.1f} pp   '
+                  f'B {100*(b["H0"]["top1"]-b[p]["top1"]):+.1f} pp')
+
+    json.dump(dict(results=res, protocols=names, network=name, inp=inp, K=K,
+                   mu_star=mu, demand_states=mults, sensors=sensors,
+                   n_junctions=len(juncs), n_excluded=int(drop.sum()),
+                   total_pipe_m=tot_pipe, A_nodes=A_nodes, B_nodes=B_nodes, G1=G1, G2=G2,
+                   A_mags=A_MAGS, B_mag=B_MAG, q_mags=Q_MAGS, noise=NOISE, seed=SEED,
+                   n_simulations=nsim), open(out_f, 'w'), indent=1)
+    print(f'\ntotal simulations {nsim} | {time.time()-t0:.0f}s | saved -> {out_f}')
+
+
+if __name__ == '__main__':
+    main(sys.argv[1] if len(sys.argv) > 1 else 'Haining')

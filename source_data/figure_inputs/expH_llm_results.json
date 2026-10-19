@@ -1,0 +1,92 @@
+{
+ "protocol": "H2",
+ "base_top1": 0.7666666666666667,
+ "n_all": 540,
+ "n_errors_total": 126,
+ "recoverable_total": 57,
+ "sampled_errors": 120,
+ "sampled_controls": 60,
+ "ceiling_in_sample": 55,
+ "models": {
+  "deepseek-v4-pro:cloud": {
+   "recovered": 11,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 19,
+   "n_controls": 60,
+   "malformed": 0,
+   "recovery_rate": 0.09166666666666666,
+   "breakage_rate": 0.31666666666666665,
+   "net_pp": -22.138888888888893
+  },
+  "deepseek-v4-flash:cloud": {
+   "recovered": 2,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 1,
+   "n_controls": 60,
+   "malformed": 0,
+   "recovery_rate": 0.016666666666666666,
+   "breakage_rate": 0.016666666666666666,
+   "net_pp": -0.8888888888888891
+  },
+  "qwen3.5:397b-cloud": {
+   "recovered": 6,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 7,
+   "n_controls": 60,
+   "malformed": 3,
+   "recovery_rate": 0.05,
+   "breakage_rate": 0.11666666666666667,
+   "net_pp": -7.777777777777778
+  },
+  "glm-5.2:cloud": {
+   "recovered": 18,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 32,
+   "n_controls": 60,
+   "malformed": 1,
+   "recovery_rate": 0.15,
+   "breakage_rate": 0.5333333333333333,
+   "net_pp": -37.38888888888889
+  },
+  "gpt-oss:120b-cloud": {
+   "recovered": 18,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 29,
+   "n_controls": 60,
+   "malformed": 0,
+   "recovery_rate": 0.15,
+   "breakage_rate": 0.48333333333333334,
+   "net_pp": -33.55555555555556
+  },
+  "gpt-oss:20b-cloud": {
+   "recovered": 15,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 23,
+   "n_controls": 60,
+   "malformed": 1,
+   "recovery_rate": 0.125,
+   "breakage_rate": 0.38333333333333336,
+   "net_pp": -26.472222222222225
+  },
+  "gemma4:31b-cloud": {
+   "recovered": 5,
+   "n_errors": 120,
+   "ceiling": 55,
+   "broken": 3,
+   "n_controls": 60,
+   "malformed": 0,
+   "recovery_rate": 0.041666666666666664,
+   "breakage_rate": 0.05,
+   "net_pp": -2.861111111111112
+  }
+ },
+ "noise": 0.02,
+ "seed": 41,
+ "note": "partition summaries stripped of their own representative leak node ids"
+}

@@ -1,0 +1,977 @@
+{
+  "protocol": "Frozen nominal EXA7 library; fixed unseen query locations",
+  "seeds": [
+    27101,
+    27102,
+    27103,
+    27104,
+    27105
+  ],
+  "scenarios": [
+    {
+      "name": "nominal",
+      "family": "control",
+      "value": 0.0
+    },
+    {
+      "name": "roughness_0.05",
+      "family": "roughness",
+      "value": 0.05
+    },
+    {
+      "name": "roughness_0.1",
+      "family": "roughness",
+      "value": 0.1
+    },
+    {
+      "name": "roughness_0.2",
+      "family": "roughness",
+      "value": 0.2
+    },
+    {
+      "name": "reservoir_head_0.5",
+      "family": "reservoir_head",
+      "value": 0.5
+    },
+    {
+      "name": "reservoir_head_1",
+      "family": "reservoir_head",
+      "value": 1.0
+    },
+    {
+      "name": "reservoir_head_2",
+      "family": "reservoir_head",
+      "value": 2.0
+    },
+    {
+      "name": "pump_speed_0.01",
+      "family": "pump_speed",
+      "value": 0.01
+    },
+    {
+      "name": "pump_speed_0.03",
+      "family": "pump_speed",
+      "value": 0.03
+    },
+    {
+      "name": "pump_speed_0.05",
+      "family": "pump_speed",
+      "value": 0.05
+    },
+    {
+      "name": "spatial_demand_0.05",
+      "family": "spatial_demand",
+      "value": 0.05
+    },
+    {
+      "name": "spatial_demand_0.1",
+      "family": "spatial_demand",
+      "value": 0.1
+    },
+    {
+      "name": "spatial_demand_0.2",
+      "family": "spatial_demand",
+      "value": 0.2
+    },
+    {
+      "name": "spatiotemporal_demand_0.05",
+      "family": "spatiotemporal_demand",
+      "value": 0.05
+    },
+    {
+      "name": "spatiotemporal_demand_0.1",
+      "family": "spatiotemporal_demand",
+      "value": 0.1
+    },
+    {
+      "name": "spatiotemporal_demand_0.2",
+      "family": "spatiotemporal_demand",
+      "value": 0.2
+    },
+    {
+      "name": "phase_hours_1",
+      "family": "phase_hours",
+      "value": 1.0
+    },
+    {
+      "name": "phase_hours_3",
+      "family": "phase_hours",
+      "value": 3.0
+    },
+    {
+      "name": "phase_hours_6",
+      "family": "phase_hours",
+      "value": 6.0
+    },
+    {
+      "name": "uniform_demand_0.7",
+      "family": "uniform_demand",
+      "value": 0.7
+    },
+    {
+      "name": "uniform_demand_0.85",
+      "family": "uniform_demand",
+      "value": 0.85
+    },
+    {
+      "name": "uniform_demand_1.1",
+      "family": "uniform_demand",
+      "value": 1.1
+    },
+    {
+      "name": "uniform_demand_1.2",
+      "family": "uniform_demand",
+      "value": 1.2
+    },
+    {
+      "name": "uniform_demand_1.3",
+      "family": "uniform_demand",
+      "value": 1.3
+    },
+    {
+      "name": "joint_mild",
+      "family": "joint",
+      "value": 0.5
+    },
+    {
+      "name": "joint_moderate",
+      "family": "joint",
+      "value": 1.0
+    }
+  ],
+  "queries": [
+    {
+      "query_id": "n328_q5",
+      "node": "328",
+      "partition": 0,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n328_q20",
+      "node": "328",
+      "partition": 0,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n314_q5",
+      "node": "314",
+      "partition": 0,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n314_q20",
+      "node": "314",
+      "partition": 0,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n228_q5",
+      "node": "228",
+      "partition": 1,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n228_q20",
+      "node": "228",
+      "partition": 1,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n214_q5",
+      "node": "214",
+      "partition": 1,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n214_q20",
+      "node": "214",
+      "partition": 1,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n147_q5",
+      "node": "147",
+      "partition": 2,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n147_q20",
+      "node": "147",
+      "partition": 2,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n183_q5",
+      "node": "183",
+      "partition": 2,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n183_q20",
+      "node": "183",
+      "partition": 2,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n386_q5",
+      "node": "386",
+      "partition": 3,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n386_q20",
+      "node": "386",
+      "partition": 3,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n385_q5",
+      "node": "385",
+      "partition": 3,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n385_q20",
+      "node": "385",
+      "partition": 3,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n118_q5",
+      "node": "118",
+      "partition": 4,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n118_q20",
+      "node": "118",
+      "partition": 4,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n43_q5",
+      "node": "43",
+      "partition": 4,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n43_q20",
+      "node": "43",
+      "partition": 4,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n301_q5",
+      "node": "301",
+      "partition": 5,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n301_q20",
+      "node": "301",
+      "partition": 5,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n238_q5",
+      "node": "238",
+      "partition": 5,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n238_q20",
+      "node": "238",
+      "partition": 5,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n290_q5",
+      "node": "290",
+      "partition": 6,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n290_q20",
+      "node": "290",
+      "partition": 6,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n66_q5",
+      "node": "66",
+      "partition": 6,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n66_q20",
+      "node": "66",
+      "partition": 6,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n173_q5",
+      "node": "173",
+      "partition": 7,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n173_q20",
+      "node": "173",
+      "partition": 7,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n172_q5",
+      "node": "172",
+      "partition": 7,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n172_q20",
+      "node": "172",
+      "partition": 7,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n375_q5",
+      "node": "375",
+      "partition": 8,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n375_q20",
+      "node": "375",
+      "partition": 8,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n351_q5",
+      "node": "351",
+      "partition": 8,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n351_q20",
+      "node": "351",
+      "partition": 8,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n282_q5",
+      "node": "282",
+      "partition": 9,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n282_q20",
+      "node": "282",
+      "partition": 9,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n283_q5",
+      "node": "283",
+      "partition": 9,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n283_q20",
+      "node": "283",
+      "partition": 9,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n222_q5",
+      "node": "222",
+      "partition": 10,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n222_q20",
+      "node": "222",
+      "partition": 10,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n58_q5",
+      "node": "58",
+      "partition": 10,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n58_q20",
+      "node": "58",
+      "partition": 10,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n349_q5",
+      "node": "349",
+      "partition": 11,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n349_q20",
+      "node": "349",
+      "partition": 11,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n348_q5",
+      "node": "348",
+      "partition": 11,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n348_q20",
+      "node": "348",
+      "partition": 11,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n93_q5",
+      "node": "93",
+      "partition": 12,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n93_q20",
+      "node": "93",
+      "partition": 12,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n161_q5",
+      "node": "161",
+      "partition": 12,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n161_q20",
+      "node": "161",
+      "partition": 12,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n370_q5",
+      "node": "370",
+      "partition": 13,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n370_q20",
+      "node": "370",
+      "partition": 13,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n373_q5",
+      "node": "373",
+      "partition": 13,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n373_q20",
+      "node": "373",
+      "partition": 13,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n83_q5",
+      "node": "83",
+      "partition": 14,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n83_q20",
+      "node": "83",
+      "partition": 14,
+      "rate_Lps": 20.0
+    },
+    {
+      "query_id": "n78_q5",
+      "node": "78",
+      "partition": 14,
+      "rate_Lps": 5.0
+    },
+    {
+      "query_id": "n78_q20",
+      "node": "78",
+      "partition": 14,
+      "rate_Lps": 20.0
+    }
+  ],
+  "sensors": [
+    "34",
+    "35",
+    "36",
+    "38",
+    "41",
+    "45",
+    "49",
+    "51",
+    "56",
+    "59",
+    "62",
+    "64",
+    "80",
+    "86",
+    "87",
+    "89",
+    "92",
+    "95",
+    "115",
+    "169",
+    "212",
+    "254",
+    "284",
+    "297",
+    "318",
+    "332",
+    "336",
+    "343",
+    "365",
+    "404"
+  ],
+  "corpus_reference_Lps": 20.0,
+  "corpus_periods": [
+    [
+      "night_low",
+      0.7
+    ],
+    [
+      "day_normal",
+      1.0
+    ],
+    [
+      "evening_peak",
+      1.2
+    ]
+  ],
+  "corpus_nodes": [
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "67",
+    "68",
+    "69",
+    "70",
+    "71",
+    "72",
+    "73",
+    "74",
+    "75",
+    "76",
+    "77",
+    "79",
+    "80",
+    "81",
+    "82",
+    "84",
+    "85",
+    "86",
+    "87",
+    "88",
+    "89",
+    "90",
+    "91",
+    "92",
+    "94",
+    "95",
+    "96",
+    "97",
+    "98",
+    "99",
+    "100",
+    "101",
+    "102",
+    "103",
+    "104",
+    "105",
+    "106",
+    "107",
+    "108",
+    "109",
+    "110",
+    "111",
+    "112",
+    "113",
+    "114",
+    "115",
+    "116",
+    "117",
+    "119",
+    "120",
+    "121",
+    "122",
+    "123",
+    "124",
+    "125",
+    "126",
+    "127",
+    "128",
+    "129",
+    "130",
+    "131",
+    "132",
+    "133",
+    "134",
+    "135",
+    "136",
+    "137",
+    "138",
+    "139",
+    "140",
+    "141",
+    "142",
+    "143",
+    "144",
+    "145",
+    "146",
+    "148",
+    "149",
+    "150",
+    "151",
+    "152",
+    "153",
+    "154",
+    "155",
+    "156",
+    "157",
+    "158",
+    "159",
+    "160",
+    "162",
+    "163",
+    "164",
+    "165",
+    "166",
+    "167",
+    "168",
+    "169",
+    "170",
+    "171",
+    "174",
+    "175",
+    "176",
+    "177",
+    "178",
+    "179",
+    "180",
+    "181",
+    "182",
+    "184",
+    "185",
+    "186",
+    "187",
+    "188",
+    "189",
+    "190",
+    "191",
+    "192",
+    "193",
+    "194",
+    "195",
+    "196",
+    "197",
+    "198",
+    "199",
+    "200",
+    "201",
+    "202",
+    "203",
+    "204",
+    "205",
+    "206",
+    "207",
+    "208",
+    "209",
+    "210",
+    "211",
+    "212",
+    "213",
+    "215",
+    "216",
+    "217",
+    "218",
+    "219",
+    "220",
+    "221",
+    "223",
+    "224",
+    "225",
+    "226",
+    "227",
+    "229",
+    "230",
+    "231",
+    "232",
+    "233",
+    "234",
+    "235",
+    "236",
+    "237",
+    "239",
+    "240",
+    "241",
+    "242",
+    "243",
+    "244",
+    "245",
+    "246",
+    "247",
+    "248",
+    "249",
+    "250",
+    "251",
+    "252",
+    "253",
+    "254",
+    "255",
+    "256",
+    "257",
+    "258",
+    "259",
+    "260",
+    "261",
+    "262",
+    "263",
+    "264",
+    "265",
+    "266",
+    "267",
+    "268",
+    "269",
+    "270",
+    "271",
+    "272",
+    "273",
+    "274",
+    "275",
+    "276",
+    "277",
+    "278",
+    "279",
+    "280",
+    "281",
+    "284",
+    "285",
+    "286",
+    "287",
+    "288",
+    "289",
+    "291",
+    "292",
+    "293",
+    "294",
+    "295",
+    "296",
+    "297",
+    "298",
+    "299",
+    "300",
+    "302",
+    "303",
+    "304",
+    "305",
+    "306",
+    "307",
+    "308",
+    "309",
+    "310",
+    "311",
+    "312",
+    "313",
+    "315",
+    "316",
+    "317",
+    "318",
+    "319",
+    "320",
+    "321",
+    "322",
+    "323",
+    "324",
+    "325",
+    "326",
+    "327",
+    "329",
+    "330",
+    "331",
+    "332",
+    "333",
+    "334",
+    "335",
+    "336",
+    "337",
+    "338",
+    "339",
+    "340",
+    "341",
+    "342",
+    "343",
+    "344",
+    "345",
+    "346",
+    "347",
+    "350",
+    "352",
+    "353",
+    "354",
+    "355",
+    "356",
+    "357",
+    "358",
+    "359",
+    "360",
+    "361",
+    "362",
+    "363",
+    "364",
+    "365",
+    "366",
+    "367",
+    "368",
+    "369",
+    "371",
+    "372",
+    "374",
+    "376",
+    "377",
+    "378",
+    "379",
+    "380",
+    "381",
+    "382",
+    "383",
+    "384",
+    "387",
+    "388",
+    "389",
+    "390",
+    "391",
+    "392",
+    "393",
+    "394",
+    "395",
+    "396",
+    "397",
+    "398",
+    "399",
+    "400",
+    "401",
+    "402",
+    "403",
+    "404",
+    "405",
+    "406",
+    "408-A",
+    "408-B",
+    "409-A",
+    "409-B",
+    "410-A",
+    "410-B"
+  ],
+  "excluded_query_nodes": [
+    "43",
+    "58",
+    "66",
+    "78",
+    "83",
+    "93",
+    "118",
+    "147",
+    "161",
+    "172",
+    "173",
+    "183",
+    "214",
+    "222",
+    "228",
+    "238",
+    "282",
+    "283",
+    "290",
+    "301",
+    "314",
+    "328",
+    "348",
+    "349",
+    "351",
+    "370",
+    "373",
+    "375",
+    "385",
+    "386"
+  ],
+  "noise_sd_m": 0.02,
+  "duration_s": 86400,
+  "reporting_times": "0, 3600, ..., 86400 (25 snapshots)",
+  "feature": "mean of 25 report-time sensor pressures; leak-minus-baseline plus paired Gaussian noise",
+  "leak_model": "additional demand at 5 or 20 L/s multiplied by unchanged original pattern 881",
+  "admissibility": "finite 25x381 pressures, EPANET error_code None/0, no WARNING in report; every junction pressure >=0 and <=200 m at every report time",
+  "corpus_admissibility": "discard nominal template if pressure check fails, before reading query outcomes; record every discard",
+  "query_failure_policy": "keep every planned query; inadmissible/failed cases score zero in all-query accuracy; admissible-only rate reported separately",
+  "baseline_modes": {
+    "matched": "leak and no-leak pressures under exactly the same perturbed model and demand schedule (ideal contemporaneous baseline)",
+    "stale_nominal": "perturbed leak pressure minus nominal day-normal no-leak pressure (operating-state/baseline drift)"
+  },
+  "library_policies": {
+    "nominal_day": "only day-normal templates (misclassified day condition for true low/peak demand)",
+    "all_nominal_periods": "union of the three nominal periods, no true-period information",
+    "known_nearest_period": "nearest of 0.7/1.0/1.2 to the true uniform multiplier; privileged metadata control"
+  },
+  "methods": [
+    "projection",
+    "cosine_1NN",
+    "euclidean_1NN"
+  ],
+  "roughness": "independent pipewise lognormal C multiplier, specified coefficient of variation and expectation one",
+  "reservoir_head": "all reservoir heads changed by +/- listed metres; independent seeded sign",
+  "pump_speed": "all 3 existing pump base speeds changed by same +/- fractional amount; independent seeded sign",
+  "spatial_demand": "positive lognormal nodal demand factors from RBF-correlated Gaussian field; target lognormal CV; demand-weighted normalization preserves total nominal demand",
+  "spatiotemporal_demand": "same spatial kernel plus temporal AR(1), rho=0.8, hourly; per-hour demand-weighted normalization preserves nominal total demand",
+  "spatial_length": "0.25 of maximum coordinate span; Euclidean distance in native network coordinate units",
+  "phase_hours": "all nodal demand patterns cyclically shifted by +/- listed hours using first 24 hours, repeat first value at hour 24; leak pattern remains unchanged",
+  "joint": "roughness CV 0.10, reservoir +/-1 m, pumps +/-3%, spatiotemporal demand CV 0.10, phase +/-3 h; mild multiplies all amplitudes by 0.5 (phase rounded to 2 h)",
+  "inferential_unit": "5 complete independent perturbation/noise realizations; fixed 60-query set; noise paired across scenarios, methods and baseline modes",
+  "limitations": [
+    "one EXA7 network and fixed query split",
+    "prescribed-demand leakage",
+    "no valves or PRVs present; no valve/PRV/topology perturbation",
+    "synthetic perturbation magnitudes are stress-test settings, not calibrated operational uncertainty distributions",
+    "24-hour averages do not establish event-time localization or SCADA temporal noise realism",
+    "frozen projection/cosine/Euclidean retrieval only, not optional LLM/fusion engine"
+  ],
+  "primary_library_policy": "nominal_day",
+  "primary_method": "projection"
+}

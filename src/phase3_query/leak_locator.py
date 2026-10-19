@@ -616,7 +616,7 @@ class LeakLocator:
         return scores
 
     def localize_leak(self, sensor_observations, demand_period=None,
-                       top_k=TOP_K, verbose=True, use_llm=False):
+                       top_k=TOP_K, verbose=True, use_llm=False, propagation_beta=0.15):
         """
         Main entry: localize leak with GraphRAG multi-signal fusion.
 
@@ -724,7 +724,7 @@ class LeakLocator:
         # ---- Channel 7: Topological Propagation (GraphRAG) ----
         # Propagate scores along partition adjacency graph
         final_scores = self.graph_topological_propagation(
-            pre_prop_scores, beta=0.15
+            pre_prop_scores, beta=propagation_beta
         )
 
         # Sort by final score

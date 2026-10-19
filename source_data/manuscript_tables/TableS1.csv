@@ -1,0 +1,7 @@
+Channel,Description,δ < 0.1 m,0.1 ≤ δ < 1.0 m,δ ≥ 1.0 m
+c = 1,Sensor–partition response,0.15,0.20,0.25
+c = 2,Centroid matching,0.25,0.20,0.12
+c = 3,Ordinal-rank retrieval,0.20,0.15,0.08
+c = 4,Individual-fingerprint retrieval,0.12,0.18,0.30
+c = 5,Scenario-semantic retrieval,0.10,0.10,0.10
+c = 6,Community-semantic retrieval,0.18,0.17,0.15

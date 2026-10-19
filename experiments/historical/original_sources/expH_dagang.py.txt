@@ -1,0 +1,342 @@
+"""Historical S11_CityD computational source; original input locations are listed in dependencies.json."""
+import os, sys, json, copy, pickle, random, warnings, tempfile, uuid, time
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import wntr
+from wds_verify import G, projection_residual
+
+_P = os.path.join(tempfile.mkdtemp(prefix='epanet_'), 'ep_' + uuid.uuid4().hex[:8])
+INP = 'realInpData/dagang.inp'
+PART_DIR, K_TARGET = 'partition_results_dagang', 15
+PERIOD_MULT = {'night_low': 0.7, 'day_normal': 1.0, 'evening_peak': 1.2}
+A_MAGS = [2.0, 5.0, 10.0, 20.0, 35.0, 50.0]
+B_MAG = 10.0
+Q_MAGS = [5.0, 20.0, 50.0]
+N_A_NODES, N_B_NODES, N_QUERY = 30, 180, 40
+Q_REF, SENSOR_FRAC = 20.0, 0.08
+NOISE, SEED = 0.02, 41
+CACHE, OUT = 'expH_dagang_cache.npz', 'expH_dagang_results.json'
+PROTOCOLS = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
+
+
+def real_junctions(wn):
+    """Valve dummies are not leak sites and not sensor sites. Dagang has 158."""
+    dummies = set()
+    for v in wn.valve_name_list:
+        lk = wn.get_link(v)
+        for n in (lk.start_node_name, lk.end_node_name):
+            if n.endswith('-A') or n.endswith('-B'):
+                dummies.add(n)
+    return [j for j in wn.junction_name_list if j not in dummies]
+
+
+def greedy_sensors(S, budget, seed=0):
+    """B4's placement rule, verbatim: minimise mean worst-case mutual coherence."""
+    rng = np.random.default_rng(seed)
+    chosen = [int(rng.integers(S.shape[1]))]
+    for _ in range(budget - 1):
+        best, bj = np.inf, None
+        for j in rng.choice(S.shape[1], size=min(50, S.shape[1]), replace=False):
+            if int(j) in chosen:
+                continue
+            Fs = S[:, chosen + [int(j)]]
+            nr = np.linalg.norm(Fs, axis=1)
+            ok = nr > 1e-12
+            if ok.sum() < 2:
+                continue
+            U = Fs[ok] / nr[ok, None]
+            Gm = U @ U.T
+            np.fill_diagonal(Gm, 0.0)
+            if float(Gm.max(axis=1).mean()) < best:
+                best, bj = float(Gm.max(axis=1).mean()), int(j)
+        if bj is None:
+            break
+        chosen.append(bj)
+    return chosen
+
+
+def build_partitions(wn):
+    """Run the project's own Leiden partitioner on Dagang and cache the result."""
+    pkl = os.path.join(PART_DIR, 'partitions.pkl')
+    if os.path.exists(pkl):
+        parts = pickle.load(open(pkl, 'rb'))
+        print(f'  loaded cached partitions ({sorted(parts)[:3]}...{sorted(parts)[-3:]})')
+        return parts
+    from partition_utils.hydraulic import run_hydraulic_simulation, calculate_average_pressure
+    from partition_utils.similarity import create_network_graph
+    from partition_utils.partitioning_leiden import run_leiden_partitioning, extract_partitions_with_merge
+    os.makedirs(PART_DIR, exist_ok=True)
+    res = run_hydraulic_simulation(wn)
+    avg = calculate_average_pressure(res, wn)
+    Gg, _pos = create_network_graph(wn, avg)
+    allp = run_leiden_partitioning(Gg, (0.001, 3.0), 300)
+    parts = extract_partitions_with_merge(Gg, allp, merge_range=(2, 15))
+    parts = {k: v for k, v in parts.items() if 2 <= k <= 40}
+    pickle.dump(parts, open(pkl, 'wb'))
+    json.dump({str(k): {'num_communities': k, 'resolution': v['resolution']}
+               for k, v in parts.items()},
+              open(os.path.join(PART_DIR, 'partition_summary.json'), 'w'), indent=1)
+    print(f'  built {len(parts)} partition solutions -> {pkl}')
+    return parts
+
+
+def main():
+    print('=' * 108)
+    print('H-D — factorial holdout matrix on City D (Dagang)')
+    print('=' * 108)
+    t0 = time.time()
+
+    wn0 = wntr.network.WaterNetworkModel(INP)
+    juncs_all = real_junctions(wn0)
+    print(f'  {INP}: {len(wn0.junction_name_list)} junction records, '
+          f'{len(juncs_all)} real junctions after removing '
+          f'{len(wn0.junction_name_list) - len(juncs_all)} valve dummies')
+
+    parts = build_partitions(copy.deepcopy(wn0))
+    K = min(parts, key=lambda k: (abs(k - K_TARGET), k))
+    n2c_all = {n: int(c) for n, c in parts[K]['node_to_community'].items()}
+    print(f'  using K = {K} partitions (target {K_TARGET})')
+
+    # baselines per demand period
+    models, base = {}, {}
+    nsim = 0
+    for per, mult in PERIOD_MULT.items():
+        wn = copy.deepcopy(wn0)
+        for j in juncs_all:
+            for d in wn.get_node(j).demand_timeseries_list:
+                d.base_value *= mult
+        models[per] = wn
+        P = wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(
+            file_prefix=_P).node['pressure'][juncs_all]
+        G.pressure_sane(P.values, f'Dagang {per} baseline')
+        base[per] = P.mean(axis=0)
+        nsim += 1
+    print(f'  3 baselines ({time.time()-t0:.0f}s)', flush=True)
+
+    # sensitivity matrix at the reference magnitude -> sensor placement
+    smat = 'expH_dagang_sens.npy'
+    if os.path.exists(smat):
+        S = np.load(smat)
+        print(f'  loaded sensitivity matrix {S.shape} from {smat}')
+    else:
+        bp = base['day_normal']
+        S = np.zeros((len(juncs_all), len(juncs_all)))
+        for i, nd in enumerate(juncs_all):
+            w = copy.deepcopy(models['day_normal'])
+            w.get_node(nd).add_demand(Q_REF / 1000.0, '881')
+            lp = wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+            nsim += 1
+            S[i] = np.array([float(lp[j] - bp[j]) for j in juncs_all])
+            if (i + 1) % 100 == 0:
+                print(f'    sensitivity {i+1}/{len(juncs_all)} ({time.time()-t0:.0f}s)', flush=True)
+        np.save(smat, S)
+    G.finite(S, 'Dagang sensitivity matrix')
+
+    # ---- hydraulic admissibility screen -------------------------------------------------
+    # `G.response_sane` fires on Dagang: three junctions answer a 20 L/s leak with a head drop
+    # of 109-560 m. Unlike ky5 this is NOT a defective model -- their baseline pressures are a
+    # normal 36-37 m. They are dead ends fed by a single 40-50 mm pipe with ~zero demand, and
+    # pulling tens of L/s through such a pipe is not a leak, it is a main break that empties the
+    # branch. A leak scenario is only admissible if the leak node keeps a non-negative pressure
+    # at the LARGEST magnitude the study uses; screening at Q_REF is not enough, because
+    # Hazen-Williams head loss grows as Q^1.852 and a node that is merely strained at 20 L/s is
+    # infeasible at 50. The screen is applied once, reported, and the guard is then run on the
+    # retained set so it remains a real check rather than a bypass.
+    QMAX = max(A_MAGS + Q_MAGS + [B_MAG])
+    smax = 'expH_dagang_sens_qmax.npy'
+    if os.path.exists(smax):
+        Smax = np.load(smax)
+    else:
+        bpn = base['day_normal']
+        Smax = np.zeros(len(juncs_all))
+        pmax = np.zeros(len(juncs_all))
+        for i, nd in enumerate(juncs_all):
+            w = copy.deepcopy(models['day_normal'])
+            w.get_node(nd).add_demand(QMAX / 1000.0, '881')
+            lp = wntr.sim.EpanetSimulator(w).run_sim(
+                file_prefix=_P).node['pressure'].mean(axis=0)
+            nsim += 1
+            d = np.array([float(lp[j] - bpn[j]) for j in juncs_all])
+            Smax[i] = np.abs(d).max()
+            pmax[i] = float(lp[nd])
+            if (i + 1) % 100 == 0:
+                print(f'    admissibility {i+1}/{len(juncs_all)} '
+                      f'({time.time()-t0:.0f}s)', flush=True)
+        Smax = np.vstack([Smax, pmax])
+        np.save(smax, Smax)
+    resp_max, p_at_leak = Smax[0], Smax[1]
+    neg = p_at_leak < 0.0
+    huge = resp_max > 5.0 * QMAX
+    drop = neg | huge
+    print(f'  admissibility screen at {QMAX:g} L/s: {int(drop.sum())} of {len(juncs_all)} '
+          f'junctions excluded ({int(neg.sum())} go to negative pressure, '
+          f'{int(huge.sum())} exceed 5 m per L/s)')
+    for i in np.where(drop)[0]:
+        print(f'    excluded {juncs_all[i]:>8}  p_at_leak={p_at_leak[i]:9.1f} m  '
+              f'max|dp|={resp_max[i]:8.1f} m')
+    keep_idx = ~drop
+    juncs_ok = [j for j, k in zip(juncs_all, keep_idx) if k]
+    S = S[np.ix_(keep_idx, keep_idx)]
+    G.response_sane(S, Q_REF, 'Dagang leak response (admissible junctions)')
+
+    live = np.linalg.norm(S, axis=1) > 1e-9
+    juncs = [j for j, k in zip(juncs_ok, live) if k]
+    Sl = S[np.ix_(live, live)]
+    print(f'  {len(juncs)} admissible junctions with a non-zero response '
+          f'({int((~live).sum())} dead)', flush=True)
+
+    budget = max(10, int(round(SENSOR_FRAC * len(juncs))))
+    cols = greedy_sensors(Sl, budget, SEED)
+    sensors = [juncs[c] for c in cols]
+    m = len(sensors)
+    print(f'  {m} sensors placed by greedy coherence minimisation ({SENSOR_FRAC:.0%})')
+
+    n2c = {j: n2c_all[j] for j in juncs if j in n2c_all}
+    juncs = [j for j in juncs if j in n2c]
+    xy = {j: np.array(wn0.get_node(j).coordinates) for j in juncs}
+    print(f'  {len(juncs)} junctions carry a partition label; '
+          f'{len(set(n2c.values()))} distinct partitions in play')
+
+    cache = {}
+    if os.path.exists(CACHE):
+        z = np.load(CACHE, allow_pickle=True)
+        cache = {tuple(k.split('|')): z[k] for k in z.files}
+        print(f'  loaded {len(cache)} cached fingerprints from {CACHE}')
+
+    def fp(node, q, per):
+        key = (node, f'{q:g}', per)
+        if key in cache:
+            return cache[key]
+        nonlocal nsim
+        w = copy.deepcopy(models[per])
+        w.get_node(node).add_demand(q / 1000.0, '881')
+        lp = wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+        nsim += 1
+        v = np.array([float(lp[s] - base[per][s]) for s in sensors])
+        G.response_sane(v, q, f'Dagang leak {node} @ {q:g} L/s / {per}')
+        cache[key] = v
+        return v
+
+    rng = random.Random(SEED)
+    pool = [j for j in juncs if j not in set(sensors)]
+    A_nodes = sorted(rng.sample(pool, N_A_NODES))
+    rest = [j for j in pool if j not in set(A_nodes)]
+    B_nodes = sorted(set(A_nodes) | set(rng.sample(rest, N_B_NODES - N_A_NODES)))
+    G1 = sorted(rng.sample(A_nodes, N_QUERY // 2))
+    outside = [j for j in pool if j not in set(B_nodes)]
+    G2 = sorted(rng.sample(outside, N_QUERY // 2))
+
+    print(f'  building corpora: A = {N_A_NODES}x{len(A_MAGS)}x3 = {N_A_NODES*len(A_MAGS)*3}, '
+          f'B = {N_B_NODES}x1x3 = {N_B_NODES*3} simulations', flush=True)
+    A = [(n, q, t, fp(n, q, t)) for n in A_nodes for q in A_MAGS for t in PERIOD_MULT]
+    B = [(n, B_MAG, t, fp(n, B_MAG, t)) for n in B_nodes for t in PERIOD_MULT]
+    print(f'  A={len(A)} atoms, B={len(B)} atoms ({time.time()-t0:.0f}s, {nsim} sims)', flush=True)
+    Q = {'G1 query node IS in the corpus':
+         [(n, q, t) for n in G1 for q in Q_MAGS for t in PERIOD_MULT],
+         'G2 query node is in NEITHER corpus':
+         [(n, q, t) for n in G2 for q in Q_MAGS for t in PERIOD_MULT]}
+    for qs in Q.values():
+        for n, q, t in qs:
+            fp(n, q, t)
+    np.savez_compressed(CACHE, **{'|'.join(k): v for k, v in cache.items()})
+    print(f'  queries ready ({time.time()-t0:.0f}s, {nsim} sims total)', flush=True)
+
+    def keep(atom, n_, q_, t_, proto):
+        an, aq, at, _ = atom
+        same_n, same_q, same_t = an == n_, aq == q_, at == t_
+        if proto == 'H0':
+            return True
+        if proto == 'H1':
+            return not (same_n and same_q and same_t)
+        if proto == 'H2':
+            return not same_n
+        if proto == 'H3':
+            return not same_q
+        if proto == 'H4':
+            return not same_t
+        if proto == 'H5':
+            return not (same_n or same_q)
+        if proto == 'H6':
+            return not (same_n or same_t)
+        if proto == 'H7':
+            return not (same_q or same_t)
+        if proto == 'H8':
+            return not (same_n or same_q or same_t)
+        if proto == 'H9':
+            return n2c[an] != n2c[n_]
+        raise ValueError(proto)
+
+    res = {}
+    for gname, qset in Q.items():
+        for label, corpus in (('A (30 nodes x 6 magnitudes)', A),
+                              ('B (180 nodes x 1 magnitude)', B)):
+            rows = {}
+            for proto in PROTOCOLS:
+                np.random.seed(SEED)
+                hit, dist, empty = 0, [], 0
+                hv, dv = [], []
+                for (n_, q_, t_) in qset:
+                    sub = [a for a in corpus if keep(a, n_, q_, t_, proto)]
+                    if not sub:
+                        empty += 1
+                        hv.append(None)
+                        dv.append(None)
+                        continue
+                    y = fp(n_, q_, t_) + np.random.normal(0, NOISE, m)
+                    D = np.array([a[3] for a in sub])
+                    r = projection_residual(y, D)
+                    w = sub[int(np.argmin(r))]
+                    h = int(n2c[w[0]] == n2c[n_])
+                    d = float(np.linalg.norm(xy[w[0]] - xy[n_]))
+                    hit += h
+                    dist.append(d)
+                    hv.append(h)
+                    dv.append(d)
+                n_used = len(qset) - empty
+                rows[proto] = dict(top1=hit / n_used if n_used else float('nan'),
+                                   med_m=float(np.median(dist)) if dist else float('nan'),
+                                   hits=hv, dists=dv, n=n_used, empty=empty,
+                                   atoms_left=len([a for a in corpus
+                                                   if keep(a, *qset[0], proto)]))
+                if n_used:
+                    G.prob(rows[proto]['top1'], f'{gname}/{label}/{proto} Top-1')
+            res[f'{gname} | {label}'] = rows
+
+    names = {'H0': 'closed world (as submitted)', 'H1': 'leave-one-scenario-out',
+             'H2': 'unseen NODE', 'H3': 'unseen MAGNITUDE', 'H4': 'unseen DEMAND STATE',
+             'H5': 'unseen node x magnitude', 'H6': 'unseen node x state',
+             'H7': 'unseen magnitude x state', 'H8': 'unseen node x magnitude x state',
+             'H9': 'leave-one-partition-out'}
+    for gname in Q:
+        a = res[f'{gname} | A (30 nodes x 6 magnitudes)']
+        b = res[f'{gname} | B (180 nodes x 1 magnitude)']
+        print()
+        print('=' * 108)
+        print(f'{gname}   ({len(Q[gname])} queries: {N_QUERY//2} nodes x 5/20/50 L/s x 3 periods)')
+        print('=' * 108)
+        print(f'{"":<4}{"protocol":<34} | {"A Top-1":>9}{"A med m":>9}{"A atoms":>9} | '
+              f'{"B Top-1":>9}{"B med m":>9}{"B atoms":>9}')
+        print('-' * 108)
+        for p in PROTOCOLS:
+            note = '' if p != 'H9' else '  <- true partition deleted'
+            print(f'{p:<4}{names[p]:<34} | {100*a[p]["top1"]:>8.1f}%{a[p]["med_m"]:>8.0f}m'
+                  f'{a[p]["atoms_left"]:>9} | {100*b[p]["top1"]:>8.1f}%{b[p]["med_m"]:>8.0f}m'
+                  f'{b[p]["atoms_left"]:>9}{note}')
+        for tag, p in (('H8 strictest', 'H8'), ('H2 unseen node', 'H2'),
+                       ('H3 unseen magnitude', 'H3'), ('H4 unseen state', 'H4')):
+            print(f'  H0 -> {tag:<22} A {100*(a["H0"]["top1"]-a[p]["top1"]):+.1f} pp   '
+                  f'B {100*(b["H0"]["top1"]-b[p]["top1"]):+.1f} pp')
+
+    json.dump(dict(results=res, protocols=names, network='Dagang (City D)',
+                   inp=INP, K=K, sensors=sensors, n_junctions=len(juncs),
+                   A_nodes=A_nodes, B_nodes=B_nodes, G1=G1, G2=G2,
+                   A_mags=A_MAGS, B_mag=B_MAG, q_mags=Q_MAGS,
+                   noise=NOISE, seed=SEED, n_simulations=nsim), open(OUT, 'w'), indent=1)
+    print(f'\ntotal simulations {nsim} | {time.time()-t0:.0f}s | saved -> {OUT}')
+
+
+if __name__ == '__main__':
+    main()

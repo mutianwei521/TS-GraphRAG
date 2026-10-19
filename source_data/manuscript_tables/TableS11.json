@@ -1,0 +1,100 @@
+{
+  "id": "TableS11",
+  "source": "0829/supplementary.docx",
+  "table_index": 20,
+  "preceding_paragraph": "Table S11 | Deletion protocols on City D and Haining with the projection residual (single draw, seed 41; one noise realization; component s.d. 0.02 m). Each cell gives Top-1 partition accuracy (%) and, in parentheses, the median Euclidean distance between the retrieved template junction and the true junction in the coordinate units of the network file. Design A is 30 locations × 6 magnitudes (2, 5, 10, 20, 35 and 50 L s⁻¹) × 3 demand states; design B is 180 locations × 1 magnitude (10 L s⁻¹) × 3 demand states; both contain 540 templates. G1 queries are at 20 locations represented in both corpora and G2 queries at 20 locations represented in neither; each group contains 180 queries (3 magnitudes × 3 states per location). For G2, H0, H1 and H2 coincide because the queried location was never present. Demand states are 0.7, 1.0 and 1.2 for City D and 0.583, 0.833 and 1.0 for Haining (fractions of each model's feasible peak multiplier). Partitions (K = 15), sensors (8% of admissible junctions) and corpora were rebuilt for each network by the same pipeline. Absolute values are not comparable across networks, and no uncertainty estimate is available for these single-draw values.",
+  "rows": [
+    [
+      "Network",
+      "Query group",
+      "Design",
+      "H0",
+      "H2",
+      "H3",
+      "H4",
+      "H8"
+    ],
+    [
+      "City D",
+      "G1 (represented)",
+      "A",
+      "63.3 (478)",
+      "47.8 (1347)",
+      "63.3 (527)",
+      "63.9 (337)",
+      "47.8 (1341)"
+    ],
+    [
+      "City D",
+      "G1 (represented)",
+      "B",
+      "57.2 (802)",
+      "56.7 (944)",
+      "57.2 (802)",
+      "57.2 (802)",
+      "56.7 (959)"
+    ],
+    [
+      "City D",
+      "G2 (absent)",
+      "A",
+      "45.6 (1193)",
+      "45.6 (1193)",
+      "44.4 (1228)",
+      "45.6 (1193)",
+      "44.4 (1228)"
+    ],
+    [
+      "City D",
+      "G2 (absent)",
+      "B",
+      "53.3 (605)",
+      "53.3 (605)",
+      "53.3 (605)",
+      "53.3 (615)",
+      "53.3 (615)"
+    ],
+    [
+      "Haining",
+      "G1 (represented)",
+      "A",
+      "86.1 (0)",
+      "61.7 (1820)",
+      "86.1 (0)",
+      "85.6 (0)",
+      "62.8 (1817)"
+    ],
+    [
+      "Haining",
+      "G1 (represented)",
+      "B",
+      "81.1 (952)",
+      "80.6 (1125)",
+      "81.1 (952)",
+      "81.1 (875)",
+      "80.6 (1117)"
+    ],
+    [
+      "Haining",
+      "G2 (absent)",
+      "A",
+      "44.4 (2179)",
+      "44.4 (2179)",
+      "42.2 (2219)",
+      "41.1 (2179)",
+      "41.7 (2185)"
+    ],
+    [
+      "Haining",
+      "G2 (absent)",
+      "B",
+      "59.4 (1168)",
+      "59.4 (1168)",
+      "59.4 (1168)",
+      "57.8 (1236)",
+      "57.8 (1236)"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

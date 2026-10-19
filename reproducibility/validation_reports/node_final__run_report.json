@@ -1,0 +1,199 @@
+{
+  "profile": "full",
+  "study": "node_selection",
+  "started_utc": "2026-10-19T08:16:42.911530+00:00",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:12:15) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "status": "passed",
+  "steps": [
+    {
+      "name": "node_selection",
+      "command": [
+        "<core-environment>/python",
+        "-m",
+        "experiments.node_selection.run",
+        "--stage",
+        "all",
+        "--output-dir",
+        "outputs/node_final/node_selection"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 86.22521830000005,
+      "log": "node_selection.log",
+      "outputs": [
+        {
+          "path": "node_selection.log",
+          "sha256": "b14ac1e5f1dae4fd999f1da9fa44a942ab240913c7fa576059d12101737a1a38"
+        }
+      ]
+    }
+  ],
+  "input_integrity": {
+    "checked": 295,
+    "status": "passed"
+  },
+  "asset_manifest_sha256": "05493318b5e3cfb77cdb0e63ab01b2b9479b4ca592d06ef6db350ab87167e9d6",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "wntr": "1.4.0",
+    "networkx": "3.6.1",
+    "leidenalg": "0.11.0",
+    "igraph": "1.0.0",
+    "matplotlib": "3.10.8",
+    "PyYAML": "6.0.3",
+    "openpyxl": "3.1.5",
+    "pypdf": "6.12.2",
+    "torch": null,
+    "torch-geometric": null,
+    "sentence-transformers": null
+  },
+  "implementation_sha256": {
+    "src/configuration.py": "11a2b967f5c5bfffad2ed7ce80d61796035ba3c4b2d315e5b0080a28038cfce7",
+    "src/__init__.py": "2c2010eb3ee751840e407066fa372218b18813645aa980d89d186c412f1cd615",
+    "src/evaluation/metrics.py": "8388d2f213be3da54d01f4b31b6b631605c8049a01b306456cc6e6e0b2ed896f",
+    "src/evaluation/protocols.py": "209c113d2eeccbdcfbf43b385a93daa09e7973389ef9560601f06127ec02c210",
+    "src/evaluation/runner.py": "75e0a8ceb1689966f6794b5e53bede12fcb9acaa4da980b976508ef323e6f537",
+    "src/evaluation/__init__.py": "a8b6cbd9bf008b6c3b9deb4c82ae4261288d2ca6b47265ffe2aca8294c856904",
+    "src/phase1_partition/hydraulic.py": "3113492ba1a2a8d3a9a3d1065310fb14a242906a67a1584b41841084b4ae1a78",
+    "src/phase1_partition/partitioning_leiden.py": "0ab2453aacaecd2ce26c45e94c3b17d422ebce86e7c0b6f51f60f227fa349c52",
+    "src/phase1_partition/similarity.py": "11925d1e78f5af35b2071ae0e79a260c47a0ccddd5204eebbb5b6b5edcdee0b5",
+    "src/phase1_partition/visualization.py": "e20293ed6e94222b4d1a7dcb16c8393b8e77181b59199a2264fda31a8ad5675a",
+    "src/phase1_partition/__init__.py": "ecccdc45e5b4c1850224d6458588326c4be2b0aa89dc0e171e197d4ec82d8c81",
+    "src/phase2_knowledge_base/batch_simulation.py": "91cf9fd5cb48d8d3f1097605b5c2ebef88fa2f53b35caa3e1c10b67dd2ae02c8",
+    "src/phase2_knowledge_base/graph_rag.py": "2603d91c9744148e8536add5170155f72e2f3a70f114da1ee8f2a95414efab8b",
+    "src/phase2_knowledge_base/scenario_summary_generator.py": "30b4f6d8eb0b9193e3fcb434b466ef99fc8870f8d95f5d773447e03a63bc480c",
+    "src/phase2_knowledge_base/semantic_mapping.py": "9d0d3bb53e5ce0831dafc8dcc5773934dc8f832969af2da279420c3ee85f1084",
+    "src/phase2_knowledge_base/sensor_fingerprint.py": "aa96ab8692c604260ce292a0f62dc575e30563932a49504ddc0790ea977334d6",
+    "src/phase2_knowledge_base/vector_store.py": "85597fecc3926915303529fa0520da116c0da2620ec39a987f103f751d3bec82",
+    "src/phase2_knowledge_base/__init__.py": "c61471597c0cd4e1ad35795b246e5bf8ab9adb61897f77473808c4a9f161254f",
+    "src/phase3_query/eval_comprehensive.py": "bb821b37003243bc34942b2bb5c9890eec5307ea393cc0182713d35240df348c",
+    "src/phase3_query/leak_locator.py": "c3fd9d9b92a0465e95b6b2d9190f6d5ab92f6c7a0f132bfcd51cb534636b8d3a",
+    "src/phase3_query/numerical_retrieval.py": "17da79200bb0d74ce69e403db1663d4787a5744166b4a849ff2d2e1c61ced9f9",
+    "src/phase3_query/validate.py": "9e854464e95d9df52c4636de49828fbb8f207e7221da2a830a4355ba9f0e9339",
+    "src/phase3_query/__init__.py": "57a7d1588c0a4cf2cccef2f146e56234620ea466f461c63ea7722f299377c8f9",
+    "scripts/build_source_data.py": "9660853544448288cc53ca7d7ddb43065a96d650abbea59582834cf60e03b617",
+    "scripts/reproduce.py": "68718c37471f074ae99a16f6b1c623a86f3a93f5cfa6d781ffb090f33e7714f9",
+    "scripts/verify_outputs.py": "8a97117917b6cf5799b952578f2436d230bed5b61dd3d2908f559182148706e3",
+    "scripts/figures/allocation_data.py": "d86ace74c6d920f63b2816711ac187aba595fbf19eb74729646413392772b9c8",
+    "scripts/figures/compose_fig2.py": "114d44a8fde1872c808f92eedf06060449d2eda4b16fe6530d02acd296efd2e2",
+    "scripts/figures/fig_style.py": "21d095a8a868179bf9d5395830da288a75f8e5f3bf940190d760018d76cb19cc",
+    "scripts/figures/make_fig1_infographic.py": "4e3ae19e33b835365296beea8251fc86aaf0cdb3b6e5ad131e9abf5033449d23",
+    "scripts/figures/make_fig3_maps.py": "ebe7e5cb836c920b1993f6db02cc91c07f37fcd1235dd1162d3200b124de646c",
+    "scripts/figures/make_fig4_holdout.py": "eb528258e6c0e8723b2355415edc2d03d836d4b09b1382d4dfdb49c0bc3888b9",
+    "scripts/figures/make_fig5_allocation.py": "c41f5ed422b88b5b621e48cb5bfb1d5596cc56dfd1e519e0e3911fb77e43c9cd",
+    "scripts/figures/make_fig6_components.py": "94d7edf279e6c4bfb69063b60a179160b6ddc145393165fb416c95fb0c056a47",
+    "scripts/figures/make_fig7_robustness.py": "78f47971fa41d512c28bb7456f64796e019c1a044735eff6d85935cdf6a22e86",
+    "scripts/figures/make_figS1_drawlevel.py": "b3d8a9bdcb6b4571d7866576b8da8052e830e06b7d38724d2cc02e2337eeeb93",
+    "scripts/figures/make_figS2_confusion.py": "4f0750697d1f740392786516a53aef509150be35b8fdc7e4a6b43f1cf056053c",
+    "scripts/figures/make_figS3.py": "dd3e86429434976138d12a5187c702dbad39a44eece4c0ac9b341819749e55f5",
+    "scripts/figures/make_figS4_S5.py": "557bfdb9c8dff34a83773295cbd6146a4f94f04215be0f1a425b745a352d4efa",
+    "scripts/figures/make_figS6_current.py": "f73c081fc8a63d82259797df11b616a24f0ba1e8acce6f7a5a63481370232bdd",
+    "scripts/figures/make_figS6_standalone.py": "ec87d537930c0ae91619aaa10b8d384198949c2fd6bafd11b5369a5e206ad8a0",
+    "scripts/figures/nature_style.py": "a6ff6636e22d76d404d1a1d5b87eba57318d67ab93829705b30033be7a996d4c",
+    "scripts/figures/pastel_style.py": "29d7e3d68d96d242ac67be16f125ea581b43862d64b6f4348b56a0dced4c03d4",
+    "scripts/figures/replay.py": "69de39ed0e4740335622f0137fbff7393b5226d5f998cfb49c0a445cd5cba016",
+    "scripts/figures/_paths.py": "0b845cad59396a06faa21e18f80cfb02e24f5ab7fbd8f4b5c4649d5b59518030",
+    "experiments/reference_corpus.py": "4e55c45cd44b6c4fc24a0f3e7853f2606272400176e4d747e1ba367189339219",
+    "experiments/__init__.py": "f7e56b09063b5717e538edff7497f7b7bf62a13e52ef362d20735c6887e3f0ca",
+    "experiments/allocation/build_tensor.py": "edbf2f6dfa4cd11b804013d8ab37cc83e7740f88445de7fa204e5eeda5ff20cc",
+    "experiments/allocation/run.py": "d99c5fc05277102de15ff147a29756fd50c0de6430c891589f7228156804dad8",
+    "experiments/allocation/__init__.py": "0ae47d321bf1395255e8413c8edf1b20fff150eb60a8bd611d3782c86b494714",
+    "experiments/historical/physics.py": "edea909bffaeb8856fba29131941fae446ba65f6349b12c48eca782658c60b5c",
+    "experiments/historical/run.py": "671d4bb87743b76a428ce0bd4f0f449f88cd9bf1f360eb411b09d8a90ac72520",
+    "experiments/historical/__init__.py": "cdf682ffcaa48aa34dcaadf386ba32232e1446e5cbb2c28e950107524cba900c",
+    "experiments/hydraulic_robustness/audit.py": "650e07b3f12a7395ab2f910729064421923d3dcbfa301899cf4240d1573bd4b9",
+    "experiments/hydraulic_robustness/model.py": "f6e49950bd75fb2fa2939ced96703e00fc5f65f689209a10d7f12474f8d3670f",
+    "experiments/hydraulic_robustness/replay.py": "03c05f6f591763af59d5e628f416e5d6dea64f19dcde6e08733368f8e0ecb5bd",
+    "experiments/hydraulic_robustness/run.py": "593bcb5b8a1ccfda1431df4fd232c03aab05c70feb6b3de155af43d7387df1cc",
+    "experiments/hydraulic_robustness/__init__.py": "6fae45a2f1ad9bde3eaa621013545aa79b6b44947baf2509234620e203cef26a",
+    "experiments/node_selection/run.py": "db6c07d757c6f35e78ef532ee1a595e5d250dc17c5483c03f961890903b0282a",
+    "experiments/node_selection/__init__.py": "ce06c3505be51ec23dec9a30db234e87fb8e79232054f20492d31d5c4f9c9cbd",
+    "experiments/partition_sensor/audit.py": "d665ef244aac30ff5d91fc56690e675a82b56c84352a5cf332c9500b23ee5355",
+    "experiments/partition_sensor/model.py": "cacfe65368377693484e78c63deabc512ed840bbb09104288799ab15c70a50b1",
+    "experiments/partition_sensor/run.py": "bbbcd443999a8c133c9828e650fa9e7eb218ac5bdb907146a85d550dc73d7901",
+    "experiments/partition_sensor/validity.py": "887e7f3a3b40364f89f0d655e5f7ffc104d1520d53961f2ee7a72696d946c1d0",
+    "experiments/partition_sensor/__init__.py": "9d46f25b7b586bfedb80ff8e5a8c346e3fa4d40362359a469723e7c1c2bb68f0",
+    "experiments/repeated_benchmarks/architecture.py": "ff728196a3f377dcabe7d23fc890adb251a1f6e65eccbd9231cebd4ff1714286",
+    "experiments/repeated_benchmarks/classical.py": "9eda6953ed154a4f0164e8a0431a8779c45bd38112f34efd13ec8bbf313ffeb0",
+    "experiments/repeated_benchmarks/gnn.py": "fb4304e82bdea8975aceef0d6e00b50c4e19a8e58f768d071ea299e849ba0f80",
+    "experiments/repeated_benchmarks/primitives.py": "2f8877612c2056135b6a3194834a9e2d24c3196f600cc630fdf392ff77e9bda1",
+    "experiments/repeated_benchmarks/run.py": "916a7ade829fbfb77bcf0c0e20df0f1a4bec04585bdcd72281c9ec8d3f38deaa",
+    "experiments/repeated_benchmarks/__init__.py": "a790fc353588a011e83839d15a0c42e51b5840df751db993b556e61288e1fc70",
+    "experiments/strict_engine/engine.py": "fcfbcbd1c2443ec6b5533e0ddb6ae9ebd7416a40d424a58817dd479d90fbc965",
+    "experiments/strict_engine/run.py": "6be7cf58fd69f07211dbd3dd71a7f5112fff51271bf8e063c8ba0a65431c5149",
+    "experiments/strict_engine/verify.py": "da06bf7b2dc9ebcfc4a8e9b91ac33d4f5178cecca37df1b1be378c7cb8b288a9",
+    "experiments/strict_engine/__init__.py": "27a1e24db700d68fbc0f8745fb5854fd2ba5dde53671b36d3f92c73825ce63b0",
+    "build_knowledge_base.py": "16b8a99cca8fcefa3d678f46086758e4962235c2056cfba5c246796ed5f5e826",
+    "main.py": "7584288e6251aa84805193508853f736921e5b6d5a5c5c99f843c75e7c174e8e",
+    "wds_partition_leiden_main.py": "69e0bdf27477516bc17516970ff623083ebc0d78a876b950f4b33ab56ba7216c",
+    "wds_sensor_main.py": "3242abedbe27e46391120f9e847e330d921078a6266e67f83185929d6c8a341c"
+  },
+  "environment_sha256": {
+    "requirements-core.in.txt": "2755c4e36ca3df4086b9f008a160d2c1c13013dbb5862fb3cb3a43589de4fcda",
+    "requirements-core.lock.txt": "b52337755c38e9bf83dd62d46884657b99081b486e3bf5a0aac0a3c24513eb01",
+    "requirements-dev.txt": "bf4dc0555928a3facf67b3370001388d4b65e69a071c339f8b201310bde4486a",
+    "requirements-gnn.lock.txt": "ab3efc1fdfe0e3ee48354d346306e87d9f20940b8fd42b95c08e3ea4530b3ed7",
+    "requirements-legacy.lock.txt": "2b0cca86dbf732f9003ec8c03eacfc28b8968a780aa868a487bb7313d902e4f1",
+    "requirements-semantic.lock.txt": "5abb2f1d2b75e8c11e689c8a34fa5e0f16f79830a552775c9f8ec46a8f86c2e2",
+    "requirements.txt": "93f599638b2a6130a115ab1cee3a7b034dd02a9eeffa8b54b590adf4c5ad049c"
+  },
+  "git_head": "74804a97083f2abff019e12120b8d7b7f9747ce7",
+  "elapsed_seconds": 86.33830119999948,
+  "result_files": [
+    {
+      "path": "node_selection.log",
+      "sha256": "b14ac1e5f1dae4fd999f1da9fa44a942ab240913c7fa576059d12101737a1a38"
+    },
+    {
+      "path": "node_selection/dev_masked_top50.json",
+      "sha256": "b34c0376d10da25c9c3d710612d066befb68ca3db1e8f72cea746c47655fb8a8"
+    },
+    {
+      "path": "node_selection/dev_search_all.json",
+      "sha256": "5c2c3621fb3db85809f97ee2eee16fb6719cb02eed826b9bd64666218bc986f0"
+    },
+    {
+      "path": "node_selection/features.npz",
+      "sha256": "b277acf8dc7936e1d96ee9ad403b0fbdab91c86157a086b2607f3373bdfea0d2"
+    },
+    {
+      "path": "node_selection/frozen_config.json",
+      "sha256": "f3b4fc59a53b21fe1121e0ba5f7d3c13ad8e1cf4b21b3b4551fd5e20e887fcf9"
+    },
+    {
+      "path": "node_selection/frozen_masked_config.json",
+      "sha256": "eb06578ea6cb6005cf4412cfde12cd93fe47de429bf651425d37f432d8110de6"
+    },
+    {
+      "path": "node_selection/masked_scores.npz",
+      "sha256": "cc03b8e49709e39aa799523e7d334afde589141d120223b709b74ed9d730d535"
+    },
+    {
+      "path": "node_selection/run_completion.json",
+      "sha256": "69ef9ab972695a8e42d009fe34694044e9a3e82bedb3632737a9480733758820"
+    },
+    {
+      "path": "node_selection/source_manifest.json",
+      "sha256": "307ecfbab13124b7c826735eceab8d4f40255c879d30f326e9eeee73292b5db7"
+    },
+    {
+      "path": "node_selection/split.json",
+      "sha256": "c4ab4df7818decb1404b92a9ed78de23bd6eac94e4fe4bdbd8afc3bb8f052712"
+    },
+    {
+      "path": "node_selection/stage1_reproduction.json",
+      "sha256": "aa8492dccb94fe5810e4691cc5d411575deab9ce88a5588c8ae4a79b8016f182"
+    },
+    {
+      "path": "node_selection/test_masked_results.json",
+      "sha256": "f0db876b29fc96cd2b127bd877472daf81500d7be4c8d3675e64a93e52f35b49"
+    },
+    {
+      "path": "node_selection/test_results.json",
+      "sha256": "f6346c7f45bf8c4f2d5c5d00813b4e5358c93a22c65ea43bf3da6f5ce6f23e9e"
+    }
+  ]
+}

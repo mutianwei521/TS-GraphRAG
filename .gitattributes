@@ -1,5 +1,5 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+* text=auto eol=lf
 
 # Explicitly declare text files
 *.py text
@@ -16,3 +16,13 @@
 *.jpg binary
 *.pdf binary
 *.pkl binary
+*.npz binary
+*.npy binary
+*.gz binary
+*.xlsx binary
+
+# Frozen scientific assets retain their recorded byte hashes on every platform.
+data/reference/** -text -whitespace
+data/frozen/** -text -whitespace
+source_data/** -text -whitespace
+reproducibility/** -text -whitespace

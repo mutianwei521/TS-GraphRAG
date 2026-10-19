@@ -1,0 +1,205 @@
+{
+  "scope": "Plotting replay from frozen observations; no simulation or hosted request is implied.",
+  "commands": [
+    "python scripts/figures/replay.py all",
+    "python scripts/figures/replay.py S6-standalone"
+  ],
+  "current_figures": {
+    "numbered_main": 7,
+    "supplementary": 6,
+    "municipal_map": "Reviewed SVG/PDF copied; optional full map regeneration was not run without separately obtained municipal inputs."
+  },
+  "png_comparison_to_approved": {
+    "Fig1_conceptual": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig1_conceptual.png",
+      "pixel_exact": false,
+      "mean_absolute_channel_difference": 0.033294764921584556,
+      "fraction_changed_pixels": 0.0003189026232854691
+    },
+    "Fig4_holdout_evaluation": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig4_holdout_evaluation.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "Fig5_corpus_allocation": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig5_corpus_allocation.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "Fig6_components_holdout": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig6_components_holdout.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "Fig7_robustness_networks": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig7_robustness_networks.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "FigS1_draw_level": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Supplementary/FigS1_draw_level.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "FigS2_confusion": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Supplementary/FigS2_confusion.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "FigS3_hydraulic_mismatch": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Supplementary/FigS3_hydraulic_mismatch.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "FigS4_partition_controls": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Supplementary/FigS4_partition_controls.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "FigS5_sensor_controls": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Supplementary/FigS5_sensor_controls.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "FigS6_engine_sensitivity": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Supplementary/FigS6_engine_sensitivity.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    },
+    "Fig2_methodology": {
+      "shape_matches": true,
+      "reference": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig2_methodology.png",
+      "pixel_exact": true,
+      "mean_absolute_channel_difference": 0.0,
+      "fraction_changed_pixels": 0.0
+    }
+  },
+  "fig1_difference_scope": "Only the strict-H8 annotation raster region differs (0.0319% of pixels); vector text and numeric values agree, and all other pixels match.",
+  "standalone_figS6": {
+    "version": "20261017_not_integrated",
+    "all680_seed_records_retained": true,
+    "all34_settings_displayed": true,
+    "paired_difference_before_aggregation": true,
+    "visual_inspection": "Seven-panel output inspected; all uncertainty intervals within declared limits; no visible label clipping."
+  },
+  "static_source_preflight": {
+    "compose_fig2.py": {
+      "PASS": 13,
+      "WARN": 1,
+      "FAIL": 0
+    },
+    "make_fig1_infographic.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_fig3_maps.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_fig4_holdout.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_fig5_allocation.py": {
+      "PASS": 13,
+      "WARN": 1,
+      "FAIL": 0
+    },
+    "make_fig6_components.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_fig7_robustness.py": {
+      "PASS": 13,
+      "WARN": 1,
+      "FAIL": 0
+    },
+    "make_figS1_drawlevel.py": {
+      "PASS": 13,
+      "WARN": 1,
+      "FAIL": 0
+    },
+    "make_figS2_confusion.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_figS3.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_figS4_S5.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_figS6_current.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    },
+    "make_figS6_standalone.py": {
+      "PASS": 12,
+      "WARN": 2,
+      "FAIL": 0
+    }
+  },
+  "preflight_warning_review": "No failures. PNG-without-TIFF warnings reflect the approved PDF/SVG/600dpi PNG contract. Width warnings are static-parser false positives on the concatenated imported MM=1/25.4 helpers; executed canvas checks confirm180mm forFig1 and183mm for all other rendered figures. Fig1 DEMO-DATA warning refers to its explicitly illustrative seed3 scaled stored-template query (not an experimental observation), labeled as such in source and caption.",
+  "environment": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.6",
+    "scipy": "1.16.3",
+    "openpyxl": "3.1.5",
+    "Pillow": "12.0.0",
+    "pypdf": "6.12.2"
+  },
+  "plotting_source_sha256": {
+    "_paths.py": "0b845cad59396a06faa21e18f80cfb02e24f5ab7fbd8f4b5c4649d5b59518030",
+    "allocation_data.py": "d86ace74c6d920f63b2816711ac187aba595fbf19eb74729646413392772b9c8",
+    "compose_fig2.py": "114d44a8fde1872c808f92eedf06060449d2eda4b16fe6530d02acd296efd2e2",
+    "fig_style.py": "21d095a8a868179bf9d5395830da288a75f8e5f3bf940190d760018d76cb19cc",
+    "make_fig1_infographic.py": "4e3ae19e33b835365296beea8251fc86aaf0cdb3b6e5ad131e9abf5033449d23",
+    "make_fig3_maps.py": "ebe7e5cb836c920b1993f6db02cc91c07f37fcd1235dd1162d3200b124de646c",
+    "make_fig4_holdout.py": "eb528258e6c0e8723b2355415edc2d03d836d4b09b1382d4dfdb49c0bc3888b9",
+    "make_fig5_allocation.py": "c41f5ed422b88b5b621e48cb5bfb1d5596cc56dfd1e519e0e3911fb77e43c9cd",
+    "make_fig6_components.py": "94d7edf279e6c4bfb69063b60a179160b6ddc145393165fb416c95fb0c056a47",
+    "make_fig7_robustness.py": "78f47971fa41d512c28bb7456f64796e019c1a044735eff6d85935cdf6a22e86",
+    "make_figS1_drawlevel.py": "b3d8a9bdcb6b4571d7866576b8da8052e830e06b7d38724d2cc02e2337eeeb93",
+    "make_figS2_confusion.py": "4f0750697d1f740392786516a53aef509150be35b8fdc7e4a6b43f1cf056053c",
+    "make_figS3.py": "dd3e86429434976138d12a5187c702dbad39a44eece4c0ac9b341819749e55f5",
+    "make_figS4_S5.py": "557bfdb9c8dff34a83773295cbd6146a4f94f04215be0f1a425b745a352d4efa",
+    "make_figS6_current.py": "f73c081fc8a63d82259797df11b616a24f0ba1e8acce6f7a5a63481370232bdd",
+    "make_figS6_standalone.py": "ec87d537930c0ae91619aaa10b8d384198949c2fd6bafd11b5369a5e206ad8a0",
+    "nature_style.py": "a6ff6636e22d76d404d1a1d5b87eba57318d67ab93829705b30033be7a996d4c",
+    "pastel_style.py": "29d7e3d68d96d242ac67be16f125ea581b43862d64b6f4348b56a0dced4c03d4",
+    "replay.py": "69de39ed0e4740335622f0137fbff7393b5226d5f998cfb49c0a445cd5cba016"
+  }
+}

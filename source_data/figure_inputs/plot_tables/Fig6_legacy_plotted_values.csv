@@ -1,0 +1,119 @@
+panel,protocol,method,value,unit,best_in_protocol
+a,H0,projection,88.33333333333333,Top-1 percent,False
+a,H0,cosine 1-NN,88.88888888888889,Top-1 percent,False
+a,H0,WLS/NNLS,41.66666666666667,Top-1 percent,False
+a,H0,Mahalanobis,76.85185185185185,Top-1 percent,False
+a,H0,Bayes-marginal,91.2962962962963,Top-1 percent,True
+a,H0,KDE,63.51851851851852,Top-1 percent,False
+a,H0,graph-reg 1-NN,88.70370370370371,Top-1 percent,False
+a,H0,label-prop,62.22222222222222,Top-1 percent,False
+a,H1,projection,87.77777777777777,Top-1 percent,False
+a,H1,cosine 1-NN,88.33333333333333,Top-1 percent,False
+a,H1,WLS/NNLS,42.22222222222222,Top-1 percent,False
+a,H1,Mahalanobis,75.92592592592592,Top-1 percent,False
+a,H1,Bayes-marginal,90.0,Top-1 percent,True
+a,H1,KDE,61.85185185185185,Top-1 percent,False
+a,H1,graph-reg 1-NN,87.5925925925926,Top-1 percent,False
+a,H1,label-prop,32.407407407407405,Top-1 percent,False
+a,H2,projection,76.66666666666667,Top-1 percent,True
+a,H2,cosine 1-NN,76.66666666666667,Top-1 percent,True
+a,H2,WLS/NNLS,37.03703703703704,Top-1 percent,False
+a,H2,Mahalanobis,70.74074074074073,Top-1 percent,False
+a,H2,Bayes-marginal,73.70370370370371,Top-1 percent,False
+a,H2,KDE,59.62962962962963,Top-1 percent,False
+a,H2,graph-reg 1-NN,75.37037037037037,Top-1 percent,False
+a,H2,label-prop,7.777777777777778,Top-1 percent,False
+a,H3,projection,86.66666666666667,Top-1 percent,False
+a,H3,cosine 1-NN,87.4074074074074,Top-1 percent,False
+a,H3,WLS/NNLS,42.96296296296296,Top-1 percent,False
+a,H3,Mahalanobis,76.29629629629629,Top-1 percent,False
+a,H3,Bayes-marginal,90.0,Top-1 percent,True
+a,H3,KDE,62.59259259259259,Top-1 percent,False
+a,H3,graph-reg 1-NN,87.22222222222223,Top-1 percent,False
+a,H3,label-prop,61.29629629629629,Top-1 percent,False
+a,H4,projection,74.81481481481481,Top-1 percent,False
+a,H4,cosine 1-NN,75.55555555555556,Top-1 percent,False
+a,H4,WLS/NNLS,38.7037037037037,Top-1 percent,False
+a,H4,Mahalanobis,70.37037037037037,Top-1 percent,False
+a,H4,Bayes-marginal,78.14814814814814,Top-1 percent,True
+a,H4,KDE,57.407407407407405,Top-1 percent,False
+a,H4,graph-reg 1-NN,74.07407407407408,Top-1 percent,False
+a,H4,label-prop,55.74074074074075,Top-1 percent,False
+a,H5,projection,75.0,Top-1 percent,True
+a,H5,cosine 1-NN,75.0,Top-1 percent,True
+a,H5,WLS/NNLS,37.77777777777778,Top-1 percent,False
+a,H5,Mahalanobis,70.55555555555556,Top-1 percent,False
+a,H5,Bayes-marginal,72.5925925925926,Top-1 percent,False
+a,H5,KDE,59.81481481481481,Top-1 percent,False
+a,H5,graph-reg 1-NN,73.88888888888889,Top-1 percent,False
+a,H5,label-prop,7.777777777777778,Top-1 percent,False
+a,H6,projection,61.66666666666667,Top-1 percent,False
+a,H6,cosine 1-NN,61.66666666666667,Top-1 percent,False
+a,H6,WLS/NNLS,35.37037037037037,Top-1 percent,False
+a,H6,Mahalanobis,66.11111111111111,Top-1 percent,True
+a,H6,Bayes-marginal,59.074074074074076,Top-1 percent,False
+a,H6,KDE,55.55555555555556,Top-1 percent,False
+a,H6,graph-reg 1-NN,60.18518518518518,Top-1 percent,False
+a,H6,label-prop,7.962962962962964,Top-1 percent,False
+a,H7,projection,74.44444444444444,Top-1 percent,False
+a,H7,cosine 1-NN,75.37037037037037,Top-1 percent,False
+a,H7,WLS/NNLS,39.25925925925926,Top-1 percent,False
+a,H7,Mahalanobis,70.92592592592592,Top-1 percent,False
+a,H7,Bayes-marginal,77.5925925925926,Top-1 percent,True
+a,H7,KDE,57.592592592592595,Top-1 percent,False
+a,H7,graph-reg 1-NN,74.44444444444444,Top-1 percent,False
+a,H7,label-prop,55.55555555555556,Top-1 percent,False
+a,H8,projection,61.29629629629629,Top-1 percent,False
+a,H8,cosine 1-NN,61.29629629629629,Top-1 percent,False
+a,H8,WLS/NNLS,34.81481481481482,Top-1 percent,False
+a,H8,Mahalanobis,66.48148148148148,Top-1 percent,True
+a,H8,Bayes-marginal,58.333333333333336,Top-1 percent,False
+a,H8,KDE,55.55555555555556,Top-1 percent,False
+a,H8,graph-reg 1-NN,59.44444444444444,Top-1 percent,False
+a,H8,label-prop,7.962962962962964,Top-1 percent,False
+b,H0,engine,86.48148148148148,Top-1 percent,
+b,H0,projection,88.33333333333333,Top-1 percent,
+b,H0,cosine,88.33333333333333,Top-1 percent,
+b,H1,engine,72.4074074074074,Top-1 percent,
+b,H1,projection,87.77777777777777,Top-1 percent,
+b,H1,cosine,87.77777777777777,Top-1 percent,
+b,H2,engine,69.62962962962963,Top-1 percent,
+b,H2,projection,76.66666666666667,Top-1 percent,
+b,H2,cosine,76.66666666666667,Top-1 percent,
+b,H3,engine,53.333333333333336,Top-1 percent,
+b,H3,projection,86.66666666666667,Top-1 percent,
+b,H3,cosine,86.66666666666667,Top-1 percent,
+b,H4,engine,56.481481481481474,Top-1 percent,
+b,H4,projection,74.81481481481481,Top-1 percent,
+b,H4,cosine,74.81481481481481,Top-1 percent,
+b,H5,engine,38.148148148148145,Top-1 percent,
+b,H5,projection,75.0,Top-1 percent,
+b,H5,cosine,75.0,Top-1 percent,
+b,H6,engine,42.96296296296296,Top-1 percent,
+b,H6,projection,61.66666666666667,Top-1 percent,
+b,H6,cosine,61.66666666666667,Top-1 percent,
+b,H7,engine,55.74074074074075,Top-1 percent,
+b,H7,projection,74.44444444444444,Top-1 percent,
+b,H7,cosine,74.44444444444444,Top-1 percent,
+b,H8,engine,42.592592592592595,Top-1 percent,
+b,H8,projection,61.29629629629629,Top-1 percent,
+b,H8,cosine,61.29629629629629,Top-1 percent,
+c,H0,graph variant minus cosine 1-NN,-0.20000000000000284,percentage points,
+c,H2,graph variant minus cosine 1-NN,-1.2999999999999972,percentage points,
+c,H4,graph variant minus cosine 1-NN,-1.5,percentage points,
+c,H6,graph variant minus cosine 1-NN,-1.5,percentage points,
+c,H8,graph variant minus cosine 1-NN,-1.8999999999999986,percentage points,
+d,H2,deepseek-v4-flash:cloud,2.0,corrected count,
+d,H2,deepseek-v4-flash:cloud,1.0,broken count,
+d,H2,gemma4:31b-cloud,5.0,corrected count,
+d,H2,gemma4:31b-cloud,3.0,broken count,
+d,H2,qwen3.5:397b-cloud,6.0,corrected count,
+d,H2,qwen3.5:397b-cloud,7.0,broken count,
+d,H2,deepseek-v4-pro:cloud,11.0,corrected count,
+d,H2,deepseek-v4-pro:cloud,19.0,broken count,
+d,H2,gpt-oss:20b-cloud,15.0,corrected count,
+d,H2,gpt-oss:20b-cloud,23.0,broken count,
+d,H2,gpt-oss:120b-cloud,18.0,corrected count,
+d,H2,gpt-oss:120b-cloud,29.0,broken count,
+d,H2,glm-5.2:cloud,18.0,corrected count,
+d,H2,glm-5.2:cloud,32.0,broken count,

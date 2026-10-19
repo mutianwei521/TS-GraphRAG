@@ -1,236 +1,109 @@
-# Beyond Text Retrieval: Graph RAG as a Training-Free Predictor for Real-Time Leak Localization in Water Distribution Networks
-Tianwei Mu, Guangzhou Institute of Industrial Intelligence
+# TS-GraphRAG
 
-[[Paper]](https://github.com/mutianwei521/TS-GraphRAG) [[Project Page]](https://github.com/mutianwei521/TS-GraphRAG)
+**Hydraulic scenario retrieval for leak localization in water distribution networks.**
 
-We introduce **Topology-Stratified Graph RAG (TS-GraphRAG)**, a framework that transforms Retrieval-Augmented Generation from a text retrieval architecture into a **non-parametric predictive algorithm** for real-time leak localization in water distribution networks — without training data, gradient descent, or online simulation.
+TS-GraphRAG connects hydraulic structure with sensor-space retrieval. Offline simulations form a structured library of pressure responses; online observations are matched directly to that library to rank candidate leak regions. Its projection-residual inference profiles scenario amplitude without gradient-based model training or a new hydraulic simulation for each observation.
 
-<p align="center">
-  <img src="figure/Fig_methodology_4panel.png" width="95%">
-</p>
+The release connects the complete numerical workflow: **EXA7 model → frozen physical design → hydraulic fingerprints → retained-corpus evaluation → query-level predictions → paper tables and figures**.
 
-**Fig. 1 | End-to-end architecture of the TS-GraphRAG framework.** **(a)** Hydraulic partitioning via pressure-weighted Leiden community detection and partition-aware sensor placement. **(b)** Multi-modal scenario encoding with numerical fingerprints, centroid templates, and semantic representations, plus hierarchical community summaries. **(c)** 3D Scenario Knowledge Graph assembly with topological, hydraulic, and semantic edge layers. **(d)** Real-time 7-channel adaptive fusion with confidence-gated LLM arbitration.
+- **Physics-grounded representation:** 15 hydraulic partitions, 30 ordered sensors and 540 reference scenarios covering six leak rates and three demand states.
+- **Direct numerical inference:** an explicit projection-residual rule, with cosine retrieval, physical-dictionary estimators and full fusion available in the comparison suite.
+- **Traceable experiments:** fixed query identities, node splits, noise streams, development-selected configurations, retained-pool provenance and expected outputs.
+- **Executable paper assets:** a 36-sheet Source Data workbook, figure sources and a panel-by-panel experiment map.
 
----
+## Quick start
 
-## 🌟 News
-
-- **[2026.03]** Code and pre-built knowledge base are officially released!
-
----
-
-## 💡 Abstract
-
-Retrieval-augmented generation (RAG) is widely regarded as a text retrieval architecture. Here we show that RAG, when grounded in the physics of an engineered network and structured as a knowledge graph, functions as a **real-time predictive algorithm** rivalling dedicated machine-learning models — without training data, gradient descent, or online simulation. TS-GraphRAG reformulates leak localization as graph-structured retrieval: a **Scenario Knowledge Graph** encodes pre-simulated hydraulic responses as multi-modal nodes connected by topological adjacency and hydraulic similarity edges, while a **seven-channel adaptive fusion engine** performs inference through sensor-space pattern matching, rank-order correlation, semantic retrieval, community search, and topological score propagation. Evaluated on 540 leak scenarios spanning 2–50 L/s, TS-GraphRAG achieves **88.0% Top-1 accuracy**, **94.1% Top-3 accuracy**, and a mean reciprocal rank of **0.915** in sub-second inference — including 87.8% accuracy for small leaks (5 L/s) where conventional methods fail.
-
----
-
-## 🚀 Architecture Overview
-
-TS-GraphRAG operates in three phases:
-
-### Phase 1 — Hydraulic Partitioning & Sensor Placement
-
-The water distribution network is decomposed into *K* hydraulically coherent partitions via **pressure-weighted Leiden community detection** (Eq. 5). Sensors are placed using a **partition-aware greedy algorithm** that maximizes minimum pressure sensitivity (Eq. 6), ensuring every node is observable.
-
-### Phase 2 — Graph-Structured Knowledge Base Construction
-
-Each simulated leak scenario is encoded in **three complementary modalities**:
-- **Numerical fingerprint** $\mathbf{f}_\xi \in \mathbb{R}^m$ — sensor-differential pressure vector
-- **Centroid fingerprint** $\boldsymbol{\mu}_{k,t}$ — partition-level template
-- **Semantic embedding** — Sentence-BERT encoded natural-language summary
-
-These are assembled into a **Scenario Knowledge Graph** ($\mathcal{G}_{\mathrm{SKG}}$) with:
-- **Topological edges** linking scenarios in adjacent partitions (Eq. 10)
-- **Similarity edges** linking within-partition scenarios with cosine > 0.85 (Eq. 11)
-- **Hierarchical community summaries** at global, community, and scenario levels
-
-### Phase 3 — Adaptive Multi-Channel Fusion & Inference
-
-A **7-channel retrieval engine** computes parallel similarity scores:
-
-| Channel | Method | Equation |
-|---------|--------|----------|
-| Ch 1 | Sensor-partition prior | Eq. 12 |
-| Ch 2 | Centroid template matching | Eq. 13 |
-| Ch 3 | Spearman rank-order correlation | Eq. 14 |
-| Ch 4 | Period-matched fingerprint retrieval | Eq. 15 |
-| Ch 5 | Semantic vector retrieval (Sentence-BERT) | — |
-| Ch 6 | Hierarchical community retrieval | Eq. 16 |
-| Ch 7 | Topological score propagation (PAG) | Eq. 19 |
-
-Channel weights are **deterministic** and signal-strength-dependent (Table 1). A **confidence-gated LLM arbitration** module triggers structured consistency checks only for low-confidence predictions (~3% of cases).
-
----
-
-## 📈 Main Results
-
-TS-GraphRAG was evaluated on the **EXA7** benchmark network (383 junctions, 453 pipes) and validated on a **920-node municipal network** (City Haining).
-
-<p align="center">
-  <img src="figure/Fig1_Tables1to4_Summary.png" width="90%">
-</p>
-
-### 1. Superior Localization Accuracy (Zero Training Data)
-
-| Method | Top-1 (%) | Top-3 (%) | MRR | Training Required |
-|--------|-----------|-----------|-----|-------------------|
-| **TS-GraphRAG** | **88.0** | **94.1** | **0.915** | ❌ None |
-| Flat RAG (no graph) | 54.1 | 73.7 | 0.639 | ❌ None |
-| GCN (5-fold CV) | 79.3 | 90.0 | 0.845 | ✅ Supervised |
-| GNN-Leak | 75.6 | 87.8 | 0.816 | ✅ Supervised |
-| Random Forest | 63.0 | 82.4 | 0.726 | ✅ Supervised |
-
-### 2. Robust Performance Across Leak Severities
-
-<p align="center">
-  <img src="figure/Fig_severity_comparison.png" width="80%">
-</p>
-
-| Leak Category | Rate (L/s) | TS-GraphRAG Top-1 | Best Baseline |
-|---------------|-----------|-------------------|---------------|
-| Micro | 2 | 83.3% | 56.7% |
-| Small | 5 | 87.8% | 63.3% |
-| Medium | 10 | 85.6% | 73.3% |
-| Moderate | 20 | 88.9% | 82.2% |
-| Large | 35 | 88.9% | 86.7% |
-| Severe | 50 | 93.3% | 90.0% |
-
-### 3. Channel Ablation — Graph Structure Contributes +33.9pp
-
-<p align="center">
-  <img src="figure/Fig3_channel_analysis.png" width="85%">
-</p>
-
-Removing graph-structured channels (Ch 6–7) degrades Top-1 accuracy from 88.0% → 54.1%, demonstrating that physical topology is essential, not optional.
-
----
-
-## 🛠️ Getting Started
-
-### 1. Prerequisites
-
-- Python 3.11+
-- EPANET 2.2 (bundled via WNTR)
-- CUDA 12.8
-- ollama
-
-### 2. Installation
+The validated environment uses **Python 3.11.15**, WNTR 1.4.0 / EPANET 2.2 and NumPy 2.3.5. The core installation runs numerical inference, frozen-embedding evaluation, hydraulic simulations and figure generation on the CPU.
 
 ```bash
 git clone https://github.com/mutianwei521/TS-GraphRAG.git
 cd TS-GraphRAG
-pip install -r requirements.txt
+python -m venv .venv
 ```
 
-### 3. Data Preparation
-
-The default benchmark network (`data/Exa7.inp`) is included. For custom networks, place your EPANET `.inp` file in `data/` and update `config.yaml`.
-
-### 4. Phase 1 — Partitioning & Sensor Placement
+Activate `.venv` using `.venv\Scripts\Activate.ps1` on Windows or `source .venv/bin/activate` on Linux/macOS, then install the fixed environment:
 
 ```bash
-# Leiden partitioning (generates K=15 optimal partition)
-python wds_partition_leiden_main.py
-
-# Sensor placement optimization
-python wds_sensor_main.py --partition-k 15
+python -m pip install -r requirements-core.lock.txt
+python main.py --mode inference --observations data/example_observation.csv
+python scripts/reproduce.py --profile smoke --output-dir outputs/smoke
+python scripts/verify_outputs.py --run-dir outputs/smoke
 ```
 
-### 5. Phase 2 — Build Knowledge Base (Offline)
+The example contains pressure changes in metres, in the released sensor order. Inference returns the complete partition ranking and scenario matches. Each reproduction run records its effective inputs, execution commands, outputs and elapsed time.
+
+## Reproduce the study
+
+| Workflow | Starting inputs | Command |
+|---|---|---|
+| Input and execution checks | Included EXA7 model, fingerprint library and frozen feature assets | `python scripts/reproduce.py --profile smoke --output-dir outputs/smoke` |
+| Numerical/semantic holdout | Fingerprints, fixed document vectors, retained-community and query embeddings | `python scripts/reproduce.py --profile replay --study strict_holdout --output-dir outputs/holdout` |
+| Frozen estimator test | Saved strict-evaluation features and development-selected configurations | `python scripts/reproduce.py --profile replay --study node_selection --output-dir outputs/selection` |
+| Raw hydraulic reconstruction | EXA7 model, frozen scenario IDs, sensor order and partition map | `python scripts/reproduce.py --profile full --study exa7 --output-dir outputs/exa7` |
+| All source-data and figure workflows | Included experiment records and approved design assets | `python scripts/reproduce.py --profile replay --study all --output-dir outputs/paper_replay` |
+
+`smoke` exercises a small, fixed suite. `replay` executes each study from its documented frozen inputs and recomputes its predictions or statistics. `full` rebuilds the selected study from its declared construction inputs: hydraulic models, training dictionaries, development-search inputs or the fixed semantic checkpoint. [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) lists the individual commands and output contracts.
+
+Rebuild the source workbook and draw individual figures:
 
 ```bash
-# Full pipeline: simulation → summaries → embeddings → SKG
-python build_knowledge_base.py --partition-k 15 --inp data/Exa7.inp
-
-# Or step-by-step:
-python build_knowledge_base.py --step 2.1   # Semantic mapping
-python build_knowledge_base.py --step 2.2   # Batch hydraulic simulation
-python build_knowledge_base.py --step 2.3   # LLM scenario summaries
-python build_knowledge_base.py --step 2.4   # Vector store & embeddings
+python scripts/build_source_data.py --output outputs/source_data
+python scripts/figures/replay.py all --output outputs/figures
+python scripts/figures/replay.py S6-standalone --output outputs/figures_s6
 ```
 
-### 6. Phase 3 — Real-Time Inference
+The [figure/table map](reproducibility/figure_table_map.csv) connects every panel, supplementary table and component comparison to its source data and execution path. Current manuscript/SI artwork and the standalone 17 October Fig. S6 have separate entries and matching captions.
 
-```bash
-# Single observation inference
-python main.py --mode inference --kb-dir knowledge_base --observations data/test_obs.csv
+## Evaluation design
 
-# Enable LLM arbitration for low-confidence cases
-python main.py --mode inference --kb-dir knowledge_base --observations data/test_obs.csv --use-llm
+Each protocol specifies the admissible reference scenarios. Numerical groups, centroids, semantic retrieval matrices, community summaries and candidate graphs are built from those retained records. Fixed physical topology supplies network structure.
 
-# Full evaluation (540 scenarios)
-python main.py --mode evaluate --kb-dir knowledge_base
-```
+| Protocol | Reference-library operation |
+|---|---|
+| H0 | Retain the complete reference library: noisy closed-world retrieval |
+| H1 | Remove the query's exact node–rate–period scenario |
+| H2 | Remove every scenario at the query leak node |
+| H3 | Remove every scenario at the query leak rate |
+| H4 | Remove every scenario in the query demand period |
+| H5 / H6 / H7 | Remove the unions of node+rate / node+period / rate+period matches |
+| H8 | Remove the union of node, rate and period matches |
+| H9 | Remove every scenario in the true partition: candidate-support integrity control |
 
----
+H2, H5, H6 and H8 evaluate node-excluded retrieval. H9 checks the represented-label support contract. The full protocol definitions, zero-response rules and repeat units are in [EVALUATION.md](docs/EVALUATION.md).
 
-## 📂 Project Structure
+## Reference results
 
-```
-TS-GraphRAG/
-├── data/                              # WDN topological files (*.inp)
-│   └── Exa7.inp                       # EXA7 benchmark network
-├── figure/                            # Paper figures
-├── src/                               # Core source code
-│   ├── phase1_partition/              # Leiden partitioning & utilities
-│   │   ├── partitioning_leiden.py     # Leiden algorithm wrapper
-│   │   ├── hydraulic.py              # EPANET hydraulic simulation
-│   │   ├── similarity.py            # Pressure-weighted graph construction
-│   │   └── visualization.py         # Partition visualization
-│   ├── phase2_knowledge_base/         # Knowledge base construction
-│   │   ├── batch_simulation.py       # Multi-scenario leak simulation
-│   │   ├── graph_rag.py              # SKG & PAG construction
-│   │   ├── scenario_summary_generator.py  # LLM summary generation
-│   │   ├── semantic_mapping.py       # Static semantic mapping
-│   │   ├── sensor_fingerprint.py     # Fingerprint extraction
-│   │   └── vector_store.py           # LanceDB vector embedding & storage
-│   └── phase3_query/                  # Inference engine
-│       ├── leak_locator.py           # 7-channel fusion + LLM arbitration
-│       ├── eval_comprehensive.py     # Full evaluation pipeline
-│       └── validate.py              # Validation utilities
-├── wds_partition_leiden_main.py        # Phase 1 entry script
-├── wds_sensor_main.py                 # Sensor placement entry script
-├── build_knowledge_base.py            # Phase 2 entry script
-├── main.py                            # Main executable (all modes)
-├── config.yaml                        # Hyperparameters & configuration
-├── requirements.txt                   # Python dependencies
-├── LICENSE                            # MIT License
-└── README.md                          # This file
-```
+The strict comparison uses **five measurement-noise streams, each applied to the same 540 scenarios**; sensor noise has standard deviation 0.02 m. The projection-residual results are:
 
----
+| Protocol | Top-1 (%) | Top-3 (%) | MRR |
+|---|---:|---:|---:|
+| H0: full reference library | 88.00 | 94.41 | 0.9183 |
+| H2: leak node excluded | 76.56 | 87.52 | 0.8297 |
+| H4: demand period excluded | 73.15 | 93.48 | 0.8354 |
+| H8: node, rate and period exclusion | 59.67 | 85.11 | 0.7307 |
 
-## 🔑 Key Equations
+The separate estimator-selection study uses **15 development nodes and 15 disjoint test nodes**, with one node per partition in each split. Each split contains 270 scenarios evaluated under five noise streams, yielding 1,350 observations. Development selection freezes projection-residual inference with weight 1 and propagation strength 0. Table S17 supplies all H0–H8 test results and paired comparisons with cosine retrieval and full fusion. Its H2 test Top-1 accuracy is **81.11%**.
 
-| Equation | Description | Location |
-|----------|-------------|----------|
-| Eq. 4 | ML partition estimate = inner-product retrieval | §3.1 |
-| Eq. 5 | Pressure-weighted modularity (Leiden) | §3.1 |
-| Eq. 6 | Partition-aware sensor placement (min-max sensitivity) | §3.1 |
-| Eq. 7–8 | Dual-modality scenario encoding (semantic + fingerprint) | §3.2 |
-| Eq. 10–11 | SKG edge construction (topological + similarity) | §3.2 |
-| Eq. 12–16 | Six retrieval channel scoring functions | §3.3 |
-| Eq. 17–18 | Min-max normalization & adaptive weight fusion | §3.3 |
-| Eq. 19 | Topological score propagation on PAG | §3.3 |
-| Eq. 20–22 | Confidence-gated LLM arbitration & consistency checks | §3.4 |
+The earlier five-run classifier benchmark, strict fusion study, allocation draws and estimator-selection study retain their own query sets and random-number streams. Their configurations and source values are released together.
 
----
+## Study entry points
 
-## 🏷️ Citation
+| Study | Module | Paper assets |
+|---|---|---|
+| Repeated classical/GNN comparison | `experiments.repeated_benchmarks` | Fig. 4, Fig. S2, Table S2 |
+| Fixed-budget scenario allocation | `experiments.allocation` | Fig. 5, Fig. S1, Table S3 |
+| Retained-corpus fusion and attribution | `experiments.strict_engine` | Fig. 6b, Table S4, Note 1.9 |
+| Physical-dictionary comparisons | `experiments.historical` | Fig. 6a/c, Tables S5–S6 |
+| Emitter, degradation and simultaneous leaks | `experiments.historical.exa7` | Tables S8–S10 and resolution analysis |
+| Hydraulic/demand perturbations | `experiments.hydraulic_robustness` | Fig. S3, Table S13 |
+| Partition and sensor controls | `experiments.partition_sensor` | Figs. S4–S5, Tables S14–S15 |
+| Frozen 34-setting sensitivity grid | `experiments.strict_engine` | Fig. S6, Table S16 |
+| Development selection and frozen test | `experiments.node_selection` | Note 1.13, Table S17 |
 
-```bibtex
-Waiting for publication
-```
+Additional historical query outcomes, LLM statistics and network comparisons have indexed sources in [LEGACY_RESULTS.md](docs/LEGACY_RESULTS.md). Model downloads and GNN training use the separately pinned semantic/GNN environments. [DATA_ACCESS.md](docs/DATA_ACCESS.md) identifies the distributed inputs and municipal-model access paths.
 
----
+## Release and citation
 
-## 📝 License
+Use the fixed [resubmission release](https://github.com/mutianwei521/TS-GraphRAG/releases/tag/v1.0.0-resubmission) when reproducing the revised paper. The release includes checksums, source data and execution records. Machine-readable software citation is provided in [CITATION.cff](CITATION.cff).
 
-This project is released under the [MIT License](LICENSE). See the LICENSE file for details.
-
----
-
-## 👏 Acknowledgement
-
-We extend our gratitude to the developers of [WNTR](https://github.com/USEPA/WNTR), [LanceDB](https://github.com/lancedb/lancedb), [Sentence-Transformers](https://github.com/UKPLab/sentence-transformers), and the [Leiden algorithm](https://github.com/vtraag/leidenalg) implementations that enabled this research. We also thank the [Microsoft GraphRAG](https://github.com/microsoft/graphrag) project for inspiring the graph-structured retrieval paradigm.
+Code is distributed under the [MIT License](LICENSE). Model and data provenance are recorded with their corresponding assets.

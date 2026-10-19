@@ -1,0 +1,87 @@
+{
+  "id": "TableS3c",
+  "source": "0829/supplementary.docx",
+  "table_index": 11,
+  "preceding_paragraph": "c, All ten exploratory pairwise comparisons of G2/H0 Top-1. Contrasts are first minus second. Positive, negative and tied draws refer to the sign of the within-draw difference. Reported effects are medians of all 15 paired differences, including ties; the exact two-sided sign test uses only non-tied draws. Both the unadjusted P value and the Holm-adjusted P value over all ten comparisons are shown.",
+  "rows": [
+    [
+      "Contrast (first − second)",
+      "Median paired difference (pp)",
+      "Positive / negative / tied draws",
+      "Exact P",
+      "Holm-adjusted P"
+    ],
+    [
+      "A′ − A",
+      "+0.0",
+      "7 / 4 / 4",
+      "0.548828",
+      "0.847900"
+    ],
+    [
+      "C60 − A",
+      "+10.0",
+      "13 / 2 / 0",
+      "0.007385",
+      "0.051697"
+    ],
+    [
+      "C90 − A",
+      "+12.2",
+      "15 / 0 / 0",
+      "0.000061",
+      "0.000610"
+    ],
+    [
+      "B − A",
+      "+8.9",
+      "13 / 2 / 0",
+      "0.007385",
+      "0.051697"
+    ],
+    [
+      "C60 − A′",
+      "+10.0",
+      "13 / 2 / 0",
+      "0.007385",
+      "0.051697"
+    ],
+    [
+      "C90 − A′",
+      "+13.3",
+      "14 / 1 / 0",
+      "0.000977",
+      "0.008789"
+    ],
+    [
+      "B − A′",
+      "+8.9",
+      "12 / 2 / 1",
+      "0.012939",
+      "0.051697"
+    ],
+    [
+      "C90 − C60",
+      "+2.2",
+      "12 / 1 / 2",
+      "0.003418",
+      "0.027344"
+    ],
+    [
+      "B − C60",
+      "-1.1",
+      "5 / 9 / 1",
+      "0.423950",
+      "0.847900"
+    ],
+    [
+      "B − C90",
+      "-3.9",
+      "2 / 13 / 0",
+      "0.007385",
+      "0.051697"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "sheet_count": 36,
+  "native_cell_parity": true,
+  "blank_and_note_rows_retained": true,
+  "table_s17_recomputed_from_test_json": true,
+  "canonical_workbook_sha256": "cbff510f2bf19abce1b65c8b75694ee14db8fb30606a0d8205fd02d3ef913a52",
+  "workbook_sha256": "cd84d0909653d9c0ea447efcf0e61f742e0afaf52f21ab380e82d1256b31dfac",
+  "selection_input_sha256": {
+    "test_results.json": "d69cc84c418309473b13bd0b18bf1da2df239ccf828160f51213c23a50cb8e93",
+    "test_masked_results.json": "f0db876b29fc96cd2b127bd877472daf81500d7be4c8d3675e64a93e52f35b49"
+  }
+}

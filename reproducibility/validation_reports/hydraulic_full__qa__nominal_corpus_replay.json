@@ -1,0 +1,13 @@
+{
+  "n_templates": 1053,
+  "n_baselines": 3,
+  "n_simulations": 1056,
+  "all_pressure_arrays_identical": true,
+  "mismatches": [],
+  "candidate_counts": {
+    "night_low": 351,
+    "day_normal": 350,
+    "evening_peak": 340
+  },
+  "elapsed_s": 448.1944314000002
+}

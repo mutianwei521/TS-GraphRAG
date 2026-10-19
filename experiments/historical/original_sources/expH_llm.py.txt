@@ -1,0 +1,170 @@
+"""Historical S7 computational source; original input locations are listed in dependencies.json."""
+import os, sys, io, re, json, time, random, warnings, contextlib
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from wds_verify import G, projection_residual
+
+MODELS = ["deepseek-v4-pro:cloud", "deepseek-v4-flash:cloud", "qwen3.5:397b-cloud",
+          "glm-5.2:cloud", "gpt-oss:120b-cloud", "gpt-oss:20b-cloud", "gemma4:31b-cloud"]
+PROTOCOL, NOISE, SEED = 'H2', 0.02, 41
+N_ERR, N_CTL = 120, 60
+OUT = 'expH_llm_results.json'
+
+SYS = ("You are an expert hydraulic engineer specializing in water distribution system leak "
+       "localization. You are given candidate leak zones identified by a physics-based "
+       "fingerprint matcher, together with their hydraulic profiles. Re-rank the candidates "
+       "using hydraulic reasoning and output ONLY a valid JSON object. No text outside the JSON.")
+
+
+def strip_nodes(text):
+    """Remove the sentence that names the partition's own representative leak nodes."""
+    return re.sub(r'Representative leak nodes in this community:[^.]*\.\s*', '', text)
+
+
+def build_prompt(obs, sensors, period, cands, summaries):
+    top = sorted(zip(sensors, obs), key=lambda x: x[1])[:8]
+    tbl = '\n'.join(f'  sensor {s}: {v:+.3f} m' for s, v in top)
+    blocks = []
+    for i, p in enumerate(cands, 1):
+        c = summaries.get(str(p), {})
+        blocks.append(f'{i}. Partition {p}: {strip_nodes(c.get("summary", ""))}')
+    return (f'Demand period: {period}. Sensor noise sigma = 0.02 m.\n'
+            f'Largest observed pressure drops:\n{tbl}\n\n'
+            f'Candidate zones from the fingerprint matcher (best first):\n'
+            + '\n'.join(blocks) +
+            '\n\nReturn ONLY this JSON schema:\n'
+            '{"ranked_partitions": [<int>, <int>, <int>], '
+            '"reason": "<one concise sentence>"}')
+
+
+def parse(text, cands):
+    m = re.search(r'\{.*\}', text, re.S)
+    if not m:
+        return None
+    try:
+        j = json.loads(m.group(0))
+        r = [int(x) for x in j.get('ranked_partitions', [])]
+        return r[0] if r and r[0] in cands else None
+    except Exception:
+        return None
+
+
+def main(n_err=N_ERR, n_ctl=N_CTL):
+    import ollama
+    from phase3_query.leak_locator import LeakLocator
+    print('=' * 108)
+    print(f'H-L — LLM refinement of the projection residual under protocol {PROTOCOL} '
+          f'(leave-one-node-out)')
+    print('=' * 108)
+    t0 = time.time()
+
+    with contextlib.redirect_stdout(io.StringIO()):
+        loc = LeakLocator('knowledge_base', 'sensor_results')
+    ALL = list(loc.fingerprints)
+    sensors = list(loc.fp_sensor_nodes)
+    F = np.array([f['sensor_fingerprint'] for f in ALL], float)
+    part = np.array([f['leak_partition'] for f in ALL])
+    G.finite(F, 'KB fingerprints')
+    summaries = json.load(open('knowledge_base/community_summaries.json'))['level_1_communities']
+
+    errors, controls = [], []
+    for qi, q in enumerate(ALL):
+        np.random.seed(SEED + qi)
+        y = np.array(q['sensor_fingerprint'], float) + np.random.normal(0, NOISE, F.shape[1])
+        keep = np.flatnonzero([f['leak_node'] != q['leak_node'] for f in ALL])
+        order = keep[np.argsort(projection_residual(y, F[keep]))]
+        seen, rk = set(), []
+        for i in order:
+            p = int(part[i])
+            if p not in seen:
+                seen.add(p)
+                rk.append(p)
+            if len(rk) == 3:
+                break
+        rec = dict(sid=q['scenario_id'], truth=int(q['leak_partition']), top3=rk,
+                   period=q['demand_period'], obs=[float(v) for v in y])
+        (controls if rk[0] == q['leak_partition'] else errors).append(rec)
+
+    base_acc = len(controls) / len(ALL)
+    print(f'  projection residual under {PROTOCOL}: {100*base_acc:.1f}% Top-1 '
+          f'({len(controls)} correct, {len(errors)} incorrect of {len(ALL)})')
+    recoverable = sum(1 for e in errors if e['truth'] in e['top3'])
+    print(f'  of the {len(errors)} errors, {recoverable} ({100*recoverable/max(len(errors),1):.1f}%) '
+          f'have the true zone inside the top-3 the model is shown -- this is the hard ceiling '
+          f'on any re-ranking layer', flush=True)
+
+    rng = random.Random(SEED)
+    err_s = rng.sample(errors, min(n_err, len(errors)))
+    ctl_s = rng.sample(controls, min(n_ctl, len(controls)))
+    ceiling = sum(1 for e in err_s if e['truth'] in e['top3'])
+    print(f'  sampled {len(err_s)} errors (ceiling {ceiling}) and {len(ctl_s)} controls; '
+          f'{len(MODELS)} models -> {len(MODELS)*(len(err_s)+len(ctl_s))} calls', flush=True)
+
+    res = {}
+    for mi, model in enumerate(MODELS):
+        rec = brk = bad = 0
+        t1 = time.time()
+        for tag, sample in (('err', err_s), ('ctl', ctl_s)):
+            for r in sample:
+                pr = build_prompt(r['obs'], sensors, r['period'], r['top3'], summaries)
+                try:
+                    out = ollama.chat(model=model, think=False, options={'temperature': 0},
+                                      messages=[{'role': 'system', 'content': SYS},
+                                                {'role': 'user', 'content': pr}])
+                    pick = parse(out['message']['content'], r['top3'])
+                except Exception:
+                    pick = None
+                if pick is None:
+                    bad += 1
+                    pick = r['top3'][0]
+                if tag == 'err' and pick == r['truth']:
+                    rec += 1
+                if tag == 'ctl' and pick != r['truth']:
+                    brk += 1
+        n_e, n_c = len(err_s), len(ctl_s)
+        rr, br = rec / n_e, brk / n_c
+        net = 100 * (rr * (1 - base_acc) - br * base_acc)
+        res[model] = dict(recovered=rec, n_errors=n_e, ceiling=ceiling,
+                          broken=brk, n_controls=n_c, malformed=bad,
+                          recovery_rate=rr, breakage_rate=br, net_pp=net)
+        G.prob(rr, f'{model} recovery'); G.prob(br, f'{model} breakage')
+        print(f'  [{mi+1}/{len(MODELS)}] {model:26} recovered {rec:3d}/{n_e} '
+              f'broke {brk:3d}/{n_c}  net {net:+.2f} pp  '
+              f'({bad} malformed, {time.time()-t1:.0f}s)', flush=True)
+
+    print()
+    print('=' * 108)
+    print(f'NET EFFECT of LLM re-ranking on the projection residual under {PROTOCOL}')
+    print('=' * 108)
+    print(f'  estimator alone: {100*base_acc:.1f}% Top-1     '
+          f'oracle ceiling if every recoverable error were fixed: '
+          f'{100*(base_acc + (ceiling/len(err_s))*(1-base_acc)):.1f}%')
+    print(f'{"model":<28}{"recovered":>12}{"broken":>10}{"net (pp)":>12}{"corrected Top-1":>18}')
+    print('-' * 108)
+    for m, r in sorted(res.items(), key=lambda kv: -kv[1]['net_pp']):
+        print(f'{m:<28}{r["recovered"]:>7}/{r["n_errors"]:<4}{r["broken"]:>5}/{r["n_controls"]:<4}'
+              f'{r["net_pp"]:>+12.2f}{100*base_acc + r["net_pp"]:>17.1f}%')
+    best = max(res.values(), key=lambda r: r['net_pp'])
+    print()
+    if best['net_pp'] <= 0:
+        print('  No model improves the estimator on net. The LLM layer should be reported as an')
+        print('  explanation interface, not a performance component.')
+    else:
+        print(f'  Best net gain {best["net_pp"]:+.2f} pp. Report it against the ceiling and with')
+        print('  the breakage rate, not as an oracle number on errors alone.')
+
+    json.dump(dict(protocol=PROTOCOL, base_top1=base_acc, n_all=len(ALL),
+                   n_errors_total=len(errors), recoverable_total=recoverable,
+                   sampled_errors=len(err_s), sampled_controls=len(ctl_s),
+                   ceiling_in_sample=ceiling, models=res, noise=NOISE, seed=SEED,
+                   note='partition summaries stripped of their own representative leak node ids'),
+              open(OUT, 'w'), indent=1)
+    print(f'\n{time.time()-t0:.0f}s | saved -> {OUT}')
+
+
+if __name__ == '__main__':
+    a = sys.argv[1:]
+    main(int(a[0]) if a else N_ERR, int(a[1]) if len(a) > 1 else N_CTL)

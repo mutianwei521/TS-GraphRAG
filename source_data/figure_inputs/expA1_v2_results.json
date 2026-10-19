@@ -1,0 +1,153 @@
+{
+ "n_classes": 74,
+ "cos_threshold": 0.999,
+ "results": {
+  "balanced_k1": {
+   "regime": "balanced",
+   "k": 1,
+   "n": 60,
+   "oracle_class_recall": 0.7666666666666667,
+   "oracle_partition_recall": 0.6,
+   "est_class_recall": 0.7666666666666667,
+   "khat_mean": 2.066666666666667,
+   "khat_exact": 0.4666666666666667,
+   "spurious_per_scen": 1.3,
+   "q_rel_err_median": 0.08232461035038338,
+   "dist_median": 179.9818373220358,
+   "baseline_class_recall": 0.7666666666666667
+  },
+  "balanced_k2": {
+   "regime": "balanced",
+   "k": 2,
+   "n": 60,
+   "oracle_class_recall": 0.125,
+   "oracle_partition_recall": 0.38333333333333336,
+   "est_class_recall": 0.13333333333333333,
+   "khat_mean": 3.3,
+   "khat_exact": 0.21666666666666667,
+   "spurious_per_scen": 3.033333333333333,
+   "q_rel_err_median": 0.21117097327349077,
+   "dist_median": 434.3545429233907,
+   "baseline_class_recall": 0.23333333333333334
+  },
+  "balanced_k3": {
+   "regime": "balanced",
+   "k": 3,
+   "n": 60,
+   "oracle_class_recall": 0.06111111111111111,
+   "oracle_partition_recall": 0.3333333333333333,
+   "est_class_recall": 0.06666666666666667,
+   "khat_mean": 3.45,
+   "khat_exact": 0.16666666666666666,
+   "spurious_per_scen": 3.25,
+   "q_rel_err_median": 1.7992139928771365,
+   "dist_median": 627.3272510786937,
+   "baseline_class_recall": 0.19444444444444445
+  },
+  "balanced_k5": {
+   "regime": "balanced",
+   "k": 5,
+   "n": 60,
+   "oracle_class_recall": 0.06333333333333334,
+   "oracle_partition_recall": 0.4266666666666667,
+   "est_class_recall": 0.06,
+   "khat_mean": 3.15,
+   "khat_exact": 0.13333333333333333,
+   "spurious_per_scen": 2.85,
+   "q_rel_err_median": 5.355077896653105,
+   "dist_median": 735.3427864644581,
+   "baseline_class_recall": 0.25666666666666665
+  },
+  "skewed_k1": {
+   "regime": "skewed",
+   "k": 1,
+   "n": 60,
+   "oracle_class_recall": 0.5333333333333333,
+   "oracle_partition_recall": 0.65,
+   "est_class_recall": 0.5333333333333333,
+   "khat_mean": 1.6,
+   "khat_exact": 0.5833333333333334,
+   "spurious_per_scen": 1.0666666666666667,
+   "q_rel_err_median": 0.11132477495154051,
+   "dist_median": 195.52207007390984,
+   "baseline_class_recall": 0.5333333333333333
+  },
+  "skewed_k2": {
+   "regime": "skewed",
+   "k": 2,
+   "n": 60,
+   "oracle_class_recall": 0.19166666666666668,
+   "oracle_partition_recall": 0.375,
+   "est_class_recall": 0.19166666666666668,
+   "khat_mean": 2.683333333333333,
+   "khat_exact": 0.35,
+   "spurious_per_scen": 2.3,
+   "q_rel_err_median": 0.2510642564727592,
+   "dist_median": 436.60672498439925,
+   "baseline_class_recall": 0.2916666666666667
+  },
+  "skewed_k3": {
+   "regime": "skewed",
+   "k": 3,
+   "n": 60,
+   "oracle_class_recall": 0.08333333333333333,
+   "oracle_partition_recall": 0.3611111111111111,
+   "est_class_recall": 0.08333333333333333,
+   "khat_mean": 2.6333333333333333,
+   "khat_exact": 0.2,
+   "spurious_per_scen": 2.3833333333333333,
+   "q_rel_err_median": 0.46801980225978673,
+   "dist_median": 701.7829752564353,
+   "baseline_class_recall": 0.25
+  },
+  "skewed_k5": {
+   "regime": "skewed",
+   "k": 5,
+   "n": 60,
+   "oracle_class_recall": 0.056666666666666664,
+   "oracle_partition_recall": 0.48333333333333334,
+   "est_class_recall": 0.05333333333333334,
+   "khat_mean": 3.35,
+   "khat_exact": 0.13333333333333333,
+   "spurious_per_scen": 3.0833333333333335,
+   "q_rel_err_median": 2.9345177023442313,
+   "dist_median": 691.2013230007863,
+   "baseline_class_recall": 0.2633333333333333
+  }
+ },
+ "stopping_sensitivity": {
+  "0.02": {
+   "khat": 6.5,
+   "recall": 0.12222222222222222,
+   "spurious": 6.133333333333334
+  },
+  "0.05": {
+   "khat": 3.316666666666667,
+   "recall": 0.10555555555555556,
+   "spurious": 3.0
+  },
+  "0.1": {
+   "khat": 2.0833333333333335,
+   "recall": 0.09444444444444444,
+   "spurious": 1.8
+  },
+  "0.2": {
+   "khat": 1.6,
+   "recall": 0.09444444444444444,
+   "spurious": 1.3166666666666667
+  }
+ },
+ "n_simulations": 721,
+ "config": {
+  "ks": [
+   1,
+   2,
+   3,
+   5
+  ],
+  "n_scen": 60,
+  "noise": 0.02,
+  "seed": 11,
+  "k_max": 8
+ }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "TableS8b",
+  "source": "0829/supplementary.docx",
+  "table_index": 17,
+  "preceding_paragraph": "b, Retrieval of emitter-generated leaks against prescribed-demand and emitter corpora (60 queries).",
+  "rows": [
+    [
+      "Ground-truth leak model",
+      "Corpus",
+      "Partition Top-1 (%)",
+      "Exact-junction rate (%)",
+      "Median distance (coordinate units)"
+    ],
+    [
+      "Emitter α = 0.5",
+      "Prescribed demand (Cd)",
+      "85.0",
+      "30.0",
+      "108"
+    ],
+    [
+      "Emitter α = 0.5",
+      "Emitter α = 0.5 (Ce)",
+      "86.7",
+      "38.3",
+      "71"
+    ],
+    [
+      "Emitter α = 1.0",
+      "Prescribed demand (Cd)",
+      "86.7",
+      "28.3",
+      "138"
+    ],
+    [
+      "Emitter α = 1.0",
+      "Emitter α = 0.5 (Ce)",
+      "86.7",
+      "38.3",
+      "88"
+    ],
+    [
+      "Emitter α = 1.5",
+      "Prescribed demand (Cd)",
+      "86.7",
+      "30.0",
+      "131"
+    ],
+    [
+      "Emitter α = 1.5",
+      "Emitter α = 0.5 (Ce)",
+      "85.0",
+      "36.7",
+      "74"
+    ],
+    [
+      "Prescribed demand (control)",
+      "Prescribed demand (Cd)",
+      "86.7",
+      "–",
+      "–"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

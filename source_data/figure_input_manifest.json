@@ -1,0 +1,277 @@
+{
+  "scope": "Frozen plotted observations and approved schematic assets. Plotting replay does not rerun experiments.",
+  "files": [
+    {
+      "file": "source_data/figure_inputs/dataset/Exa7.inp",
+      "source": "dataset/Exa7.inp",
+      "sha256": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+      "bytes": 51941
+    },
+    {
+      "file": "source_data/figure_inputs/partition_results_leiden/partition_summary.json",
+      "source": "partition_results_leiden/partition_summary.json",
+      "sha256": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+      "bytes": 200081
+    },
+    {
+      "file": "source_data/figure_inputs/knowledge_base/sensor_fingerprints.json",
+      "source": "knowledge_base/sensor_fingerprints.json",
+      "sha256": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+      "bytes": 570611
+    },
+    {
+      "file": "source_data/figure_inputs/knowledge_base/partition_adjacency.json",
+      "source": "knowledge_base/partition_adjacency.json",
+      "sha256": "ef0a8c84d270fa5b47c34a47754f0cb25a660cec3e54e1aa4a852b2462713034",
+      "bytes": 3622
+    },
+    {
+      "file": "source_data/figure_inputs/expH_engine_results.json",
+      "source": "expH_engine_results.json",
+      "sha256": "d0763a466258b03d4cc4804bff251e9ae4257e850b148bf001c52ca5c219c617",
+      "bytes": 870070
+    },
+    {
+      "file": "source_data/figure_inputs/expH_physics_baselines_results.json",
+      "source": "expH_physics_baselines_results.json",
+      "sha256": "e5b5c416368465267e3084104ec0edfc6757dcd5b394d8b8b376b167fffccd2b",
+      "bytes": 351374
+    },
+    {
+      "file": "source_data/figure_inputs/expH_llm_results.json",
+      "source": "expH_llm_results.json",
+      "sha256": "630db5abe920d6904046c34c7419519f93bdfe5343d5b1d40aa3fadfab8a20aa",
+      "bytes": 2159
+    },
+    {
+      "file": "source_data/figure_inputs/exp3_results.json",
+      "source": "exp3_results.json",
+      "sha256": "e613ed3ecc00f1b514aa6a551eb3ecd7e901ca00ecb9205e8980e67b4d3d6fd1",
+      "bytes": 5388
+    },
+    {
+      "file": "source_data/figure_inputs/expA2_results.json",
+      "source": "expA2_results.json",
+      "sha256": "223c94c75953d8170f6e700009bc05a48eaa44fa07981196b732019568e3adac",
+      "bytes": 4432
+    },
+    {
+      "file": "source_data/figure_inputs/expA1b_results.json",
+      "source": "expA1b_results.json",
+      "sha256": "eba1d0a880cbcdb796b03d3b0ec9bb0192edf7e46a96d2eb90f202dd48eeee6f",
+      "bytes": 1059
+    },
+    {
+      "file": "source_data/figure_inputs/expA1_v2_results.json",
+      "source": "expA1_v2_results.json",
+      "sha256": "b2c9459e869da932abba4f1f2ab4a49c588b9786e6f31691dd8655313e53ff40",
+      "bytes": 4186
+    },
+    {
+      "file": "source_data/figure_inputs/0829/SI_new_tables/TableS11.txt",
+      "source": "0829/SI_new_tables/TableS11.txt",
+      "sha256": "b0a27387acd8132a668eaeda7abd6ea06555e44cf392f26de7c381120e995036",
+      "bytes": 11872
+    },
+    {
+      "file": "source_data/figure_inputs/0829/figure_redesign_20260912/qa/Fig7_data_checks.json",
+      "source": "0829/figure_redesign_20260912/qa/Fig7_data_checks.json",
+      "sha256": "1ef4b8a842b4a8c4046e78dbf9263e817caf59155e44af6c3d4cc6bfedccf73c",
+      "bytes": 1299
+    },
+    {
+      "file": "source_data/figure_inputs/results/E4_mean_std_20260909/all_run_accuracies.csv",
+      "source": "results/E4_mean_std_20260909/all_run_accuracies.csv",
+      "sha256": "edf48fb01b33f449f4e358bdb3da345c0e1018f8d93483f8b9a819904a944774",
+      "bytes": 37681
+    },
+    {
+      "file": "source_data/figure_inputs/results/E4_mean_std_20260909/Table_S3a_matched90.tsv",
+      "source": "results/E4_mean_std_20260909/Table_S3a_matched90.tsv",
+      "sha256": "e9b93233198a708d4b88ad03bebe018ea9f60a646c880d48d65732ac8c48f6fa",
+      "bytes": 849
+    },
+    {
+      "file": "source_data/figure_inputs/results/E4_mean_std_20260909/Table_S3b_all540.tsv",
+      "source": "results/E4_mean_std_20260909/Table_S3b_all540.tsv",
+      "sha256": "fa0ea476c4c17acbb21361611a0a716295886a1db4ed2ad9063393e7f4d308bb",
+      "bytes": 1130
+    },
+    {
+      "file": "source_data/figure_inputs/results/E4_mean_std_20260909/classical_all540_predictions.csv",
+      "source": "results/E4_mean_std_20260909/classical_all540_predictions.csv",
+      "source_sha256": "bdb070eb6a280431ebbd5c73118920da885a32971f5d4c4c6451b2a41cbda63e",
+      "sha256": "a66570165df716ccfa7b31aee14dc34da5a72d3c1e1ac939e367caabb84cb2cd",
+      "filter": "method == 'projection' and protocol in ['H0', 'H2', 'H8']; all 8100 plotted predictions retained",
+      "rows": 8100
+    },
+    {
+      "file": "source_data/figure_inputs/results/E5_design_curve_20260909/e5_h0_draws.csv",
+      "source": "results/E5_design_curve_20260909/e5_h0_draws.csv",
+      "sha256": "21d8d4aa0f3b2a8bda11e76c519441cdd2de8847cf3be47bf8329f3b4750a99d",
+      "bytes": 13442
+    },
+    {
+      "file": "source_data/figure_inputs/results/E5_design_curve_20260909/e5_h0_summary.csv",
+      "source": "results/E5_design_curve_20260909/e5_h0_summary.csv",
+      "sha256": "0885ed8a1e7f4a16c6524822053e6b93a434a70cb4d4ab2c6b572d65b02b8ca1",
+      "bytes": 4191
+    },
+    {
+      "file": "source_data/figure_inputs/results/E5_design_curve_20260909/e5_g2_top1_pairwise.csv",
+      "source": "results/E5_design_curve_20260909/e5_g2_top1_pairwise.csv",
+      "sha256": "762d174727b6a40ab013edf88d8f1b5fae00f0deaf9b15467995523f3a67d2e1",
+      "bytes": 2160
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/Fig4_all_plotted_cells_and_runs.csv",
+      "source": "0829/figure_pastel_statistics_20260912/source_data/Fig4_all_plotted_cells_and_runs.csv",
+      "sha256": "562cfb8845955393a01e13260d6d6a3a54af695957ba0a1c7be5f8b0151bb725",
+      "bytes": 37961
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/Fig5b_paired_differences.csv",
+      "source": "0829/figure_pastel_statistics_20260912/source_data/Fig5b_paired_differences.csv",
+      "sha256": "ea743b1ee239e8421d6850d6de5ddc3031b3fb8e4d1b83567c1e2a3bba678347",
+      "bytes": 604
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/TableS6_paired_tests.csv",
+      "source": "0829/figure_pastel_statistics_20260912/source_data/TableS6_paired_tests.csv",
+      "sha256": "56bdecec4f529a6a85d14c70057459fc7c5242a7706907f1c4377178e29f3698",
+      "bytes": 859
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/holdout_summary.csv",
+      "source": "results/reviewer_closure_20261010/strict_engine/holdout_summary.csv",
+      "sha256": "d1b752076948f1224e2c8c08d349b2f854732b0af6358e2119ca1e155f4fb843",
+      "bytes": 3875
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/sensitivity_by_seed.csv",
+      "source": "results/reviewer_closure_20261010/strict_engine/sensitivity_by_seed.csv",
+      "sha256": "e456990c9566f6ed2a4068a5e2c525bd9d9b27a743a641f94c67cd84e9228e7f",
+      "bytes": 56938
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/sensitivity_summary.csv",
+      "source": "results/reviewer_closure_20261010/strict_engine/sensitivity_summary.csv",
+      "sha256": "f8fa108ee7443256724a5dddf96178bbdea186cff275b426adca1f7814969934",
+      "bytes": 19001
+    },
+    {
+      "file": "source_data/figure_inputs/plot_tables/Fig6_legacy_plotted_values.csv",
+      "source": "results/reviewer_closure_20261010/strict_engine/figure_revision/source_data/Fig6_legacy_plotted_values.csv",
+      "sha256": "1d84c9ecff0ad0a449ee64eaedb3fae4f43e38cbd500569e3b2e4f2e2e09cfde",
+      "bytes": 6198
+    },
+    {
+      "file": "source_data/figure_inputs/partition_sensor/run_level_summary.csv",
+      "source": "results/reviewer_closure_20261010/partition_sensor/run_level_summary.csv",
+      "sha256": "0eb471db1046723cb7466789f498a867cfa2787ae864cddf3d7db33d92338ba2",
+      "bytes": 66190
+    },
+    {
+      "file": "source_data/figure_inputs/partition_sensor/partition_structure_summary.csv",
+      "source": "results/reviewer_closure_20261010/partition_sensor/partition_structure_summary.csv",
+      "sha256": "1ef7038aa4181a4e425fd36b925acd98e329e4f978ba8974cfaab471283d55d6",
+      "bytes": 11792
+    },
+    {
+      "file": "source_data/figure_inputs/partition_sensor/partition_stability.csv",
+      "source": "results/reviewer_closure_20261010/partition_sensor/partition_stability.csv",
+      "sha256": "6c8e52b7e77b058712f268e939ad96995cce3fa204d7094a4794844b440497a8",
+      "bytes": 8543
+    },
+    {
+      "file": "source_data/figure_inputs/hydraulic_robustness/summary.csv",
+      "source": "results/reviewer_closure_20261010/hydraulic_robustness/summary.csv",
+      "sha256": "35e525773eacf9ed46ead97f675e91d3cc72ad298b7a9db833f9a641428efd79",
+      "bytes": 189143
+    },
+    {
+      "file": "source_data/figure_inputs/hydraulic_robustness/seed_summary.csv",
+      "source": "results/reviewer_closure_20261010/hydraulic_robustness/seed_summary.csv",
+      "sha256": "78d44e29c2f73801831ab1b533104b2b22044e3c50f3d0b84e43921301282bb5",
+      "bytes": 503215
+    },
+    {
+      "file": "source_data/figure_inputs/hydraulic_robustness/design.json",
+      "source": "results/reviewer_closure_20261010/hydraulic_robustness/design.json",
+      "sha256": "56f15cf9c435f71543db1a06804a609a8ca21e7a9140808724d607220b3de3a2",
+      "bytes": 18207
+    },
+    {
+      "file": "source_data/figure_inputs/strict_engine/cross_audit_hydraulic_final.json",
+      "source": "results/reviewer_closure_20261010/strict_engine/cross_audit_hydraulic_final.json",
+      "sha256": "3b925e610c3568ad684d24c2383a43c0a77fff79c77a6b3ff91213a3c2b8658a",
+      "bytes": 53963
+    },
+    {
+      "file": "source_data/figure_inputs/sensitivity_standalone/strict_engine_sensitivity_by_seed.csv",
+      "source": "0829/reviewer_closure_20261010/source_data/strict_engine_sensitivity_by_seed.csv",
+      "sha256": "e456990c9566f6ed2a4068a5e2c525bd9d9b27a743a641f94c67cd84e9228e7f",
+      "bytes": 56938
+    },
+    {
+      "file": "source_data/figure_inputs/sensitivity_standalone/strict_engine_sensitivity_summary.csv",
+      "source": "0829/reviewer_closure_20261010/source_data/strict_engine_sensitivity_summary.csv",
+      "sha256": "f8fa108ee7443256724a5dddf96178bbdea186cff275b426adca1f7814969934",
+      "bytes": 19001
+    },
+    {
+      "file": "source_data/figure_inputs/fig2/assets/centrifugal_pump.png",
+      "source": "0829/figure2_colorful_graphic_20261004/assets/centrifugal_pump.png",
+      "sha256": "95dacebfafabfcc2b86935ca69471a08859186ae1a22415e5bd01470e12d2827",
+      "bytes": 719887
+    },
+    {
+      "file": "source_data/figure_inputs/fig2/assets/document.png",
+      "source": "0829/figure2_colorful_graphic_20261004/assets/document.png",
+      "sha256": "f41dc9f368e94d6a688cf5070c8a49263ed7b910eb8552340c167588eb253ba4",
+      "bytes": 367067
+    },
+    {
+      "file": "source_data/figure_inputs/fig2/assets/knowledge_layers.png",
+      "source": "0829/figure2_colorful_graphic_20261004/assets/knowledge_layers.png",
+      "sha256": "893e4aa5322bdd80b524fbc25ee2c941982eb97b292a1f17216d08102c520708",
+      "bytes": 550741
+    },
+    {
+      "file": "source_data/figure_inputs/fig2/assets/pressure_sensor.png",
+      "source": "0829/figure2_colorful_graphic_20261004/assets/pressure_sensor.png",
+      "sha256": "be9a3a4d93faec66c976e03c9a46ea1031ade355a658232fca5e47d621d49418",
+      "bytes": 363714
+    },
+    {
+      "file": "source_data/figure_inputs/fig2/assets/water_tank.png",
+      "source": "0829/figure2_colorful_graphic_20261004/assets/water_tank.png",
+      "sha256": "f042d3ab451a300b0e3caa4a79e874634118054ac3f584ddea223b9ec704ce31",
+      "bytes": 345532
+    },
+    {
+      "file": "source_data/figure_inputs/fig2/source_data/sensor_fingerprints.json",
+      "source": "0829/figure2_colorful_graphic_20261004/source_data/sensor_fingerprints.json",
+      "sha256": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+      "bytes": 570611
+    },
+    {
+      "file": "source_data/artwork/Fig3_partition_maps.svg",
+      "source": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig3_partition_maps.svg",
+      "sha256": "2df38b2016f75c36d2040af54ddfb30555f03196a21f875a3777f8a8f2e3f8c9",
+      "bytes": 994380
+    },
+    {
+      "file": "source_data/artwork/Fig3_partition_maps.pdf",
+      "source": "0829/reviewer_closure_20261010/Final_Figures/Main/Fig3_partition_maps.pdf",
+      "sha256": "9659e02e9788d9575ae7a500d0b5d4064764934487dc3e39435da62346476c65",
+      "bytes": 148832
+    },
+    {
+      "file": "source_data/figure_inputs/fig3_sensor_assignments.json",
+      "source": "Published Fig. 3 sensor assignments from historical network results",
+      "sha256": "1e6c93e121cc192e3dc1e54c1e7dfc663cae18b795199eb877d8b3c29c8c3876",
+      "bytes": 1278
+    }
+  ]
+}

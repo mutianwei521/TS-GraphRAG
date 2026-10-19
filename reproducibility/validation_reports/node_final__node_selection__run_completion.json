@@ -1,0 +1,28 @@
+{
+  "finished": true,
+  "stage": "all",
+  "selection_mode": "development-only selection and/or artifact rebuild",
+  "draws": 400,
+  "H0": "Complete-corpus baseline; no node exclusion.",
+  "protocols": [
+    "H0",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H7",
+    "H8"
+  ],
+  "fixed_search_seed": 20261011,
+  "test_used_for_selection": false,
+  "test_results_equal_archive": true,
+  "masked_test_results_equal_archive": true,
+  "canonical_rows": 2700,
+  "dev_nodes": 15,
+  "test_nodes": 15,
+  "dev_rows": 1350,
+  "test_rows": 1350,
+  "elapsed_seconds": 85.15463781356812
+}

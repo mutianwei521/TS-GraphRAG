@@ -1,0 +1,25 @@
+{
+  "files": {
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\knowledge_base\\sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\knowledge_base\\scenario_summaries.json": "a1e3e9387fc61b10ae5d021925b255191d6a0932bb3ac2899e0a21c9592317f5",
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\knowledge_base\\topology_index.json": "64378ee5309df8b9931685d3020cdf9ac287aaecc7993abb00dc06d8cb37b091",
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\knowledge_base\\partition_adjacency.json": "ef0a8c84d270fa5b47c34a47754f0cb25a660cec3e54e1aa4a852b2462713034",
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\knowledge_base\\community_summaries.json": "1752c07409094abffb3d8ee72e99ad96a5d1a48e0f2381ebb4b6d394694e8bc7",
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\phase3_query\\leak_locator.py": "cb7a3bdce5d5a6dcf01d6e9567c13c499a66de91c641a1a8fc83cb0c99f35207",
+    "C:\\mutianwei\\paper\\WDSGraphRAG0829\\phase2_knowledge_base\\graph_rag.py": "d6c479f2e3569975f0111f264bdcde1f9e1fb9c359f9c71aca086a5d0a0e4c6b"
+  },
+  "model_files_sha256": {
+    "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+    "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+    "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+    "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "README.md": "7dfc82496ec33f906b5b0d6750c1e2397da6530c74d1ae3568c55bc2739125e7",
+    "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+    "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+    "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+    "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+    "1_Pooling\\config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+  },
+  "design_sha256": "1e82c6c53405c25d5b65333c22a74fce88090f374040b4bdf112ffdb82873101"
+}

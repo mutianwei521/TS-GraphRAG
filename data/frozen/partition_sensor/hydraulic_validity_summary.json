@@ -1,0 +1,14 @@
+{
+  "model": "DDA",
+  "new_simulations": 1144,
+  "rates_lps": [
+    0,
+    5,
+    20,
+    35
+  ],
+  "rows_with_negative_pressure": 30,
+  "minimum_pressure_m": -44.41343307495117,
+  "nonfinite_node_times": 0,
+  "elapsed_s": 136.82862329483032
+}

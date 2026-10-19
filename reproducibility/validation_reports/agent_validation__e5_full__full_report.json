@@ -1,0 +1,8 @@
+{
+  "study": "allocation",
+  "profile": "full",
+  "run_count": 1500,
+  "query_count": 270000,
+  "max_absolute_metric_difference": 0.0,
+  "archive_metrics_match": true
+}

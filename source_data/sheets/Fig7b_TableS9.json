@@ -1,0 +1,211 @@
+{
+  "name": "Fig7b_TableS9",
+  "max_row": 12,
+  "max_column": 6,
+  "rows": [
+    [
+      "Condition",
+      "Projection recall (%)",
+      "Projection median distance",
+      "Trimmed recall (%)",
+      "Trimmed median distance",
+      "Δ recall, trimmed − projection (pp)"
+    ],
+    [
+      "Baseline (30 deployed sensors)",
+      70.5,
+      243,
+      64,
+      264,
+      -6.5
+    ],
+    [
+      "Constant per-sensor bias (control)",
+      70.5,
+      243,
+      64,
+      264,
+      -6.5
+    ],
+    [
+      "Drift, s.d. 0.05 m",
+      55.5,
+      277,
+      46.5,
+      289,
+      -9
+    ],
+    [
+      "Drift, s.d. 0.15 m",
+      33,
+      385,
+      25.5,
+      430,
+      -7.5
+    ],
+    [
+      "Drift, s.d. 0.30 m",
+      16,
+      549,
+      10.5,
+      657,
+      -5.5
+    ],
+    [
+      "Missing channels, 10%",
+      67,
+      242,
+      60.5,
+      249,
+      -6.5
+    ],
+    [
+      "Missing channels, 30%",
+      61,
+      256,
+      51.5,
+      286,
+      -9.5
+    ],
+    [
+      "One sensor stuck",
+      47,
+      293,
+      47,
+      354,
+      0
+    ],
+    [
+      "Three sensors stuck",
+      20,
+      481,
+      26,
+      515,
+      6
+    ],
+    [
+      "Impulsive spikes (1 m) on 5% of readings",
+      36,
+      416,
+      39.5,
+      324,
+      3.5
+    ],
+    [
+      "Combined: drift 0.15 m + 10% missing + two stuck + spikes",
+      12.5,
+      805,
+      19,
+      578,
+      6.5
+    ]
+  ],
+  "cell_types": [
+    [
+      "s",
+      "s",
+      "s",
+      "s",
+      "s",
+      "s"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ]
+  ],
+  "number_formats": {},
+  "merged_ranges": [],
+  "sheet_state": "visible",
+  "freeze_panes": null,
+  "header_rows": [
+    1
+  ],
+  "row_policy": "All rows within worksheet dimensions, including blank and note rows, are retained.",
+  "column_widths": {},
+  "row_heights": {}
+}

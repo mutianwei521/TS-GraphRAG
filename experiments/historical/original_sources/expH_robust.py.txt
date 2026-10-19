@@ -1,0 +1,277 @@
+"""Historical S12_EXA7 computational source; original input locations are listed in dependencies.json."""
+import os, sys, json, copy, pickle, random, warnings, tempfile, uuid, time
+from collections import defaultdict
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import wntr
+from wds_verify import G, projection_residual
+
+_P = os.path.join(tempfile.mkdtemp(prefix='epanet_'), 'ep_' + uuid.uuid4().hex[:8])
+INP = 'dataset/Exa7.inp'
+PART_PKL, K = 'partition_results_leiden/partitions.pkl', 15
+PERIOD = {'night_low': 0.7, 'day_normal': 1.0, 'evening_peak': 1.2}
+Q_MAGS = [5.0, 20.0, 50.0]
+DESIGNS = {
+    'A  30n x 6m (submitted)':  (30, [2.0, 5.0, 10.0, 20.0, 35.0, 50.0]),
+    "A' 30n x 6m (no query mags)": (30, [3.0, 8.0, 15.0, 25.0, 30.0, 40.0]),
+    'C  60n x 3m':              (60, [2.0, 10.0, 35.0]),
+    'C  90n x 2m':              (90, [10.0, 35.0]),
+    'B 180n x 1m':              (180, [10.0]),
+}
+ALL_MAGS = sorted({m for _, ms in DESIGNS.values() for m in ms} | set(Q_MAGS))
+N_QUERY_NODES, N_SEEDS, QMAX = 20, 15, 50.0
+NOISE, SEED0 = 0.02, 41
+TENSOR, OUT = 'expH_robust_tensor.npz', 'expH_robust_results.json'
+PROTOCOLS = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
+PNAME = {'H0': 'closed world', 'H1': 'leave-one-scenario-out', 'H2': 'unseen NODE',
+         'H3': 'unseen MAGNITUDE', 'H4': 'unseen DEMAND STATE', 'H5': 'node x magnitude',
+         'H6': 'node x state', 'H7': 'magnitude x state', 'H8': 'all three unseen',
+         'H9': 'leave-one-partition-out'}
+
+
+def build_tensor():
+    """Simulate every (admissible node, magnitude, period) once. Everything else is indexing."""
+    from phase3_query.leak_locator import LeakLocator
+    import contextlib, io as _io
+    with contextlib.redirect_stdout(_io.StringIO()):
+        loc = LeakLocator('knowledge_base', 'sensor_results')
+    sensors = sorted(loc.sensor_nodes, key=lambda x: int(x))
+
+    wn0 = wntr.network.WaterNetworkModel(INP)
+    juncs = list(wn0.junction_name_list)
+    models, base = {}, {}
+    for per, mult in PERIOD.items():
+        wn = copy.deepcopy(wn0)
+        for j in juncs:
+            for d in wn.get_node(j).demand_timeseries_list:
+                d.base_value *= mult
+        models[per] = wn
+        P = wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(
+            file_prefix=_P).node['pressure'][juncs]
+        G.pressure_sane(P.values, f'EXA7 {per} baseline')
+        base[per] = P.mean(axis=0)
+
+    # ---- admissibility screen at the largest magnitude used (section 20.4)
+    bp = base['day_normal']
+    keepn = []
+    print(f'  admissibility screen at {QMAX:g} L/s over {len(juncs)} junctions', flush=True)
+    for i, nd in enumerate(juncs):
+        w = copy.deepcopy(models['day_normal'])
+        w.get_node(nd).add_demand(QMAX / 1000.0, '881')
+        lp = wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+        d = np.array([float(lp[j] - bp[j]) for j in juncs])
+        if float(lp[nd]) >= 0.0 and np.abs(d).max() <= 5.0 * QMAX:
+            keepn.append(nd)
+        if (i + 1) % 150 == 0:
+            print(f'    {i+1}/{len(juncs)}', flush=True)
+    print(f'  {len(juncs) - len(keepn)} of {len(juncs)} junctions excluded '
+          f'({100*(len(juncs)-len(keepn))/len(juncs):.1f}%)', flush=True)
+
+    T = np.zeros((len(keepn), len(ALL_MAGS), 3, len(sensors)))
+    t0, n = time.time(), 0
+    for pi, per in enumerate(PERIOD):
+        for mi, q in enumerate(ALL_MAGS):
+            for ni, nd in enumerate(keepn):
+                w = copy.deepcopy(models[per])
+                w.get_node(nd).add_demand(q / 1000.0, '881')
+                lp = wntr.sim.EpanetSimulator(w).run_sim(
+                    file_prefix=_P).node['pressure'].mean(axis=0)
+                T[ni, mi, pi] = [float(lp[s] - base[per][s]) for s in sensors]
+                n += 1
+            print(f'    {per} {q:g} L/s done ({n}/{len(keepn)*len(ALL_MAGS)*3}, '
+                  f'{time.time()-t0:.0f}s)', flush=True)
+    G.finite(T, 'EXA7 tensor')
+    np.savez_compressed(TENSOR, T=T, nodes=np.array(keepn), mags=np.array(ALL_MAGS),
+                        periods=np.array(list(PERIOD)), sensors=np.array(sensors))
+    return T, keepn, sensors
+
+
+def main():
+    print('=' * 112)
+    print('H-R2 — robustness pass: admissibility screen, 15 node splits, 5 corpus designs')
+    print('=' * 112)
+    t0 = time.time()
+
+    if os.path.exists(TENSOR):
+        z = np.load(TENSOR, allow_pickle=True)
+        T, nodes, sensors = z['T'], list(z['nodes']), list(z['sensors'])
+        print(f'  loaded tensor {T.shape} from {TENSOR}')
+    else:
+        T, nodes, sensors = build_tensor()
+    n_nodes, n_mags, n_per, m = T.shape
+    mi = {q: i for i, q in enumerate(ALL_MAGS)}
+    pi = {p: i for i, p in enumerate(PERIOD)}
+    ni = {nd: i for i, nd in enumerate(nodes)}
+
+    wn0 = wntr.network.WaterNetworkModel(INP)
+    xy = {j: np.array(wn0.get_node(j).coordinates) for j in nodes}
+    n2c = {n: int(c) for n, c in pickle.load(open(PART_PKL, 'rb'))[K]['node_to_community'].items()
+           if n in ni}
+    nodes = [n for n in nodes if n in n2c]
+    print(f'  {len(nodes)} admissible junctions with a partition label, {m} sensors, '
+          f'{len(ALL_MAGS)} magnitudes', flush=True)
+
+    def metrics(order, atoms, truth_p, truth_n):
+        seen, rk = set(), []
+        for i in order:
+            p = n2c[atoms[i][0]]
+            if p not in seen:
+                seen.add(p)
+                rk.append(p)
+            if len(rk) >= 5:
+                break
+        t1 = int(rk[0] == truth_p)
+        t3 = int(truth_p in rk[:3])
+        mrr = next((1.0 / (j + 1) for j, p in enumerate(rk) if p == truth_p), 0.0)
+        d = float(np.linalg.norm(xy[atoms[order[0]][0]] - xy[truth_n]))
+        return t1, t3, mrr, d
+
+    runs = []
+    for s in range(N_SEEDS):
+        rng = random.Random(SEED0 + s)
+        pool = [n for n in nodes if n not in set(sensors)]
+        b_nodes = rng.sample(pool, 180)
+        c90, c60, a_nodes = b_nodes[:90], b_nodes[:60], b_nodes[:30]
+        g1 = rng.sample(a_nodes, N_QUERY_NODES)
+        outside = [n for n in pool if n not in set(b_nodes)]
+        g2 = rng.sample(outside, N_QUERY_NODES)
+        dnodes = {'A  30n x 6m (submitted)': a_nodes, "A' 30n x 6m (no query mags)": a_nodes,
+                  'C  60n x 3m': c60, 'C  90n x 2m': c90, 'B 180n x 1m': b_nodes}
+
+        for dname, (nn, mags) in DESIGNS.items():
+            atoms = [(nd, q, t) for nd in dnodes[dname] for q in mags for t in PERIOD]
+            assert len(atoms) == 540, f'{dname}: {len(atoms)} atoms'
+            A = np.array([T[ni[a[0]], mi[a[1]], pi[a[2]]] for a in atoms])
+            for gname, qn in (('G1', g1), ('G2', g2)):
+                for proto in PROTOCOLS:
+                    acc = defaultdict(list)
+                    for nd in qn:
+                        for q in Q_MAGS:
+                            for t in PERIOD:
+                                mask = []
+                                for (an, aq, at) in atoms:
+                                    sn, sq, st = an == nd, aq == q, at == t
+                                    mask.append({
+                                        'H0': True, 'H1': not (sn and sq and st), 'H2': not sn,
+                                        'H3': not sq, 'H4': not st, 'H5': not (sn or sq),
+                                        'H6': not (sn or st), 'H7': not (sq or st),
+                                        'H8': not (sn or sq or st),
+                                        'H9': n2c[an] != n2c[nd]}[proto])
+                                idx = np.flatnonzero(mask)
+                                if idx.size == 0:
+                                    continue
+                                np.random.seed(SEED0 + s)
+                                y = T[ni[nd], mi[q], pi[t]] + np.random.normal(0, NOISE, m)
+                                order = idx[np.argsort(projection_residual(y, A[idx]))]
+                                t1, t3, mr, d = metrics(order, atoms, n2c[nd], nd)
+                                acc['top1'].append(t1); acc['top3'].append(t3)
+                                acc['mrr'].append(mr); acc['dist'].append(d)
+                                acc['node'].append(nd)
+                    if acc['top1']:
+                        runs.append(dict(seed=s, design=dname, group=gname, protocol=proto,
+                                         top1=float(np.mean(acc['top1'])),
+                                         top3=float(np.mean(acc['top3'])),
+                                         mrr=float(np.mean(acc['mrr'])),
+                                         med_m=float(np.median(acc['dist'])),
+                                         hits=acc['top1'], dists=acc['dist'], nodes=acc['node']))
+        print(f'  seed {s+1}/{N_SEEDS} done ({time.time()-t0:.0f}s)', flush=True)
+
+    # ---------------- aggregate across seeds
+    def agg(design, group, proto, key):
+        v = [r[key] for r in runs if r['design'] == design and r['group'] == group
+             and r['protocol'] == proto]
+        return (np.median(v), np.percentile(v, 25), np.percentile(v, 75)) if v else (np.nan,) * 3
+
+    print()
+    print('=' * 112)
+    print(f'DEPLOYMENT (G2, query node in no corpus): median [IQR] across {N_SEEDS} node splits')
+    print('=' * 112)
+    print(f'{"design":<30}{"Top-1 (%)":>22}{"Top-3 (%)":>20}{"MRR (%)":>18}{"median m":>20}')
+    print('-' * 112)
+    for d in DESIGNS:
+        a = [agg(d, 'G2', 'H0', k) for k in ('top1', 'top3', 'mrr', 'med_m')]
+        print(f'{d:<30}'
+              f'{100*a[0][0]:>10.1f} [{100*a[0][1]:.1f},{100*a[0][2]:.1f}]'
+              f'{100*a[1][0]:>10.1f} [{100*a[1][1]:.0f},{100*a[1][2]:.0f}]'
+              f'{100*a[2][0]:>9.1f} [{100*a[2][1]:.0f},{100*a[2][2]:.0f}]'
+              f'{a[3][0]:>11.0f} [{a[3][1]:.0f},{a[3][2]:.0f}]')
+
+    print()
+    print('=' * 112)
+    print('CLOSED WORLD (G1, H0) vs DEPLOYMENT (G2, H0) — does the protocol reverse the ranking?')
+    print('=' * 112)
+    print(f'{"design":<30}{"G1 H0 Top-1":>22}{"G2 H0 Top-1":>22}{"G1 rank":>10}{"G2 rank":>10}')
+    print('-' * 112)
+    g1v = {d: agg(d, 'G1', 'H0', 'top1')[0] for d in DESIGNS}
+    g2v = {d: agg(d, 'G2', 'H0', 'top1')[0] for d in DESIGNS}
+    r1 = {d: i + 1 for i, d in enumerate(sorted(DESIGNS, key=lambda x: -g1v[x]))}
+    r2 = {d: i + 1 for i, d in enumerate(sorted(DESIGNS, key=lambda x: -g2v[x]))}
+    for d in DESIGNS:
+        a1, a2 = agg(d, 'G1', 'H0', 'top1'), agg(d, 'G2', 'H0', 'top1')
+        print(f'{d:<30}{100*a1[0]:>10.1f} [{100*a1[1]:.1f},{100*a1[2]:.1f}]'
+              f'{100*a2[0]:>10.1f} [{100*a2[1]:.1f},{100*a2[2]:.1f}]{r1[d]:>10}{r2[d]:>10}')
+
+    print()
+    print('=' * 112)
+    print('HOLDOUT COST per design (G1, Top-1 percentage points lost vs H0), median across seeds')
+    print('=' * 112)
+    print(f'{"design":<30}' + ''.join(f'{p:>9}' for p in PROTOCOLS[1:]))
+    print('-' * 112)
+    for d in DESIGNS:
+        h0 = agg(d, 'G1', 'H0', 'top1')[0]
+        print(f'{d:<30}' + ''.join(f'{100*(h0-agg(d,"G1",p,"top1")[0]):>+9.1f}'
+                                   for p in PROTOCOLS[1:]))
+
+    # ---------------- node-level cluster bootstrap on the headline comparison
+    print()
+    print('=' * 112)
+    print('NODE-LEVEL CLUSTER BOOTSTRAP (2000 resamples of the 20 query nodes, pooled over seeds)')
+    print('=' * 112)
+    rb = np.random.default_rng(SEED0)
+
+    def boot(dA, dB, group, proto):
+        ra = [r for r in runs if r['design'] == dA and r['group'] == group and r['protocol'] == proto]
+        rbb = [r for r in runs if r['design'] == dB and r['group'] == group and r['protocol'] == proto]
+        diffs = []
+        for x, y in zip(ra, rbb):
+            byn_a, byn_b = defaultdict(list), defaultdict(list)
+            for nd, h in zip(x['nodes'], x['hits']):
+                byn_a[nd].append(h)
+            for nd, h in zip(y['nodes'], y['hits']):
+                byn_b[nd].append(h)
+            ns = sorted(byn_a)
+            for _ in range(2000 // len(ra)):
+                pick = rb.choice(len(ns), len(ns), replace=True)
+                a = np.mean([np.mean(byn_a[ns[i]]) for i in pick])
+                b = np.mean([np.mean(byn_b[ns[i]]) for i in pick])
+                diffs.append(b - a)
+        d = np.array(diffs)
+        return 100 * d.mean(), 100 * np.percentile(d, 2.5), 100 * np.percentile(d, 97.5), \
+            2 * min((d <= 0).mean(), (d >= 0).mean())
+
+    A, Ap, B = 'A  30n x 6m (submitted)', "A' 30n x 6m (no query mags)", 'B 180n x 1m'
+    for lab, dA, dB, g, p in (
+            ('B - A, deployment (G2, H0)', A, B, 'G2', 'H0'),
+            ('B - A, closed world (G1, H0)', A, B, 'G1', 'H0'),
+            ("B - A', deployment (G2, H0)", Ap, B, 'G2', 'H0'),
+            ("A' - A, closed world (G1, H0)  <- magnitude memorisation", A, Ap, 'G1', 'H0'),
+            ('B - A, strictest (G1, H8)', A, B, 'G1', 'H8')):
+        mu, lo, hi, pv = boot(dA, dB, g, p)
+        sig = 'significant' if lo * hi > 0 else 'NOT significant'
+        print(f'  {lab:<46} {mu:+6.1f} pp  95% CI [{lo:+.1f}, {hi:+.1f}]  '
+              f'bootstrap p = {pv:.3f}  {sig}')
+
+    json.dump(dict(runs=[{k: v for k, v in r.items() if k not in ('hits', 'dists', 'nodes')}
+                         for r in runs],
+                   designs={k: list(v[1]) for k, v in DESIGNS.items()},
+                   n_seeds=N_SEEDS, n_query_nodes=N_QUERY_NODES, q_mags=Q_MAGS,
+                   noise=NOISE, seed0=SEED0, n_admissible=len(nodes)),
+              open(OUT, 'w'), indent=1)
+    print(f'\n{time.time()-t0:.0f}s | saved -> {OUT}')
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,10 @@
+{
+  "study": "historical_physics",
+  "profile": "full",
+  "compared_query_predictions": 43200,
+  "archived_prediction_mismatches": 0,
+  "fit_errors": 0,
+  "status": "complete",
+  "completed": true,
+  "noise_rule": "RandomState(41 + original_query_index).normal(0, 0.02, 30)"
+}

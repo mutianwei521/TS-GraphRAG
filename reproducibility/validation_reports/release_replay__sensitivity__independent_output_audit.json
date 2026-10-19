@@ -1,0 +1,22 @@
+{
+  "study": "sensitivity",
+  "n_queries_per_seed": 540,
+  "all_query_protocol_retention_checks": 5400,
+  "unique_retained_pools": 1423,
+  "prediction_counts": {},
+  "H9_zero_checks_by_method": {},
+  "sensitivity_setting_seed_protocol_cells": 680,
+  "sensitivity_total_predictions": 367200,
+  "validated_record_counts": {
+    "sensitivity": 367200
+  },
+  "all_output_metrics_recomputed_successfully": true,
+  "numeric_baseline_ranks_exclude_all_ineligible_templates": null,
+  "archive_parity": {
+    "sensitivity_predictions.jsonl.gz": {
+      "records": 367200,
+      "mismatches": 0,
+      "exact_records_equal": true
+    }
+  }
+}

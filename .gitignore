@@ -31,17 +31,24 @@ tmp_*
 *.bin
 
 # Knowledge base (generated, large files)
-knowledge_base/
-knowledge_base_haining/
+/knowledge_base/
+/knowledge_base_haining/
 
 # Results (generated)
-results/
-partition_results_leiden/
-partition_plots_leiden/
-sensor_results/
+/results/
+/partition_results_leiden/
+/partition_plots_leiden/
+/sensor_results/
 
 # EPANET temporary files
 *.rpt
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Reproduction runs and local environments
+/outputs/
+.venv/
+.pytest_cache/
+*.hyd
+*.msx

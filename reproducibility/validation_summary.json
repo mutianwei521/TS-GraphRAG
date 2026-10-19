@@ -1,0 +1,739 @@
+{
+  "schema_version": 1,
+  "assembled_utc": "2026-10-19T08:31:03.651476+00:00",
+  "evidence_basis": "Executed run artifacts and independently compared scientific outputs; execution levels are specified per study.",
+  "paths": "All source and evidence references are repository-relative; Python environments are represented by placeholders.",
+  "runtime_environment": {
+    "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:12:15) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.1",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.8.0",
+      "wntr": "1.4.0",
+      "networkx": "3.6.1",
+      "leidenalg": "0.11.0",
+      "igraph": "1.0.0",
+      "matplotlib": "3.10.8",
+      "PyYAML": "6.0.3",
+      "openpyxl": "3.1.5",
+      "pypdf": "6.12.2",
+      "torch": null,
+      "torch-geometric": null,
+      "sentence-transformers": null
+    },
+    "environment_file_sha256_at_execution": {
+      "requirements-core.in.txt": "2755c4e36ca3df4086b9f008a160d2c1c13013dbb5862fb3cb3a43589de4fcda",
+      "requirements-core.lock.txt": "b52337755c38e9bf83dd62d46884657b99081b486e3bf5a0aac0a3c24513eb01",
+      "requirements-dev.txt": "bf4dc0555928a3facf67b3370001388d4b65e69a071c339f8b201310bde4486a",
+      "requirements-gnn.lock.txt": "ab3efc1fdfe0e3ee48354d346306e87d9f20940b8fd42b95c08e3ea4530b3ed7",
+      "requirements-legacy.lock.txt": "2b0cca86dbf732f9003ec8c03eacfc28b8968a780aa868a487bb7313d902e4f1",
+      "requirements-semantic.lock.txt": "5abb2f1d2b75e8c11e689c8a34fa5e0f16f79830a552775c9f8ec46a8f86c2e2",
+      "requirements.txt": "93f599638b2a6130a115ab1cee3a7b034dd02a9eeffa8b54b590adf4c5ad049c"
+    }
+  },
+  "execution_provenance": {
+    "git_base_at_execution": "74804a97083f2abff019e12120b8d7b7f9747ce7",
+    "implementation_hashes": "Recorded per file in the node_final, historical_final, exa7_final_release and smoke_final_release run reports",
+    "early_asset_manifest_sha256_at_execution": "05493318b5e3cfb77cdb0e63ab01b2b9479b4ca592d06ef6db350ab87167e9d6",
+    "early_input_integrity_at_execution": {
+      "checked": 295,
+      "status": "passed"
+    },
+    "final_asset_manifest_sha256_at_execution": "e8fe4af5d49e28f6ae0e3a01ccbd77cc609f01d25fce57f8870dc00b75bfbfe6",
+    "final_input_integrity_at_execution": {
+      "checked": 296,
+      "status": "passed"
+    }
+  },
+  "release_coordinator_checks": {
+    "test_suite": {
+      "status": "passed",
+      "passed_tests": 132,
+      "elapsed_seconds": 38.58,
+      "evidence_origin": "release coordinator observed tool session 85717; no synthetic raw report created"
+    },
+    "input_and_output_verification": {
+      "status": "passed",
+      "run_directories": [
+        "outputs/smoke_final_release",
+        "outputs/release_replay"
+      ],
+      "evidence_origin": "release coordinator verification after final asset assembly"
+    }
+  },
+  "studies": {
+    "reference540": {
+      "execution_level": "fresh EPANET reconstruction from network and frozen scenario manifest",
+      "status": "passed",
+      "simulated_scenarios": 540,
+      "baseline_states": 3,
+      "exact_fingerprint_rows": 540,
+      "maximum_absolute_fingerprint_difference_m": 0.0,
+      "solver_checks": {
+        "success_error_code": null,
+        "wntr_error_code_zero_means": "nonconvergence",
+        "all_pressure_arrays_complete_and_finite": true,
+        "checked_leak_solves": 540,
+        "checked_baseline_solves": 3
+      }
+    },
+    "strict_holdout": {
+      "execution_level": "fresh retrieval using fixed fingerprint and archived semantic feature arrays; independent prediction and retained-pool audit",
+      "status": "passed",
+      "validated_record_counts": {
+        "holdout": 83700,
+        "legacy_attribution": 54000
+      },
+      "retained_pool_checks": 5400,
+      "archive_parity": {
+        "predictions.jsonl.gz": {
+          "records": 83700,
+          "mismatches": 0,
+          "exact_records_equal": true
+        },
+        "legacy_attribution_predictions.jsonl.gz": {
+          "records": 54000,
+          "mismatches": 0,
+          "exact_records_equal": true
+        }
+      },
+      "numeric_baseline_ranks_exclude_all_ineligible_templates": true
+    },
+    "sensitivity": {
+      "execution_level": "fresh sensitivity-grid scoring from fixed features; independent output audit",
+      "status": "passed",
+      "setting_seed_protocol_cells": 680,
+      "predictions": 367200,
+      "archive_parity": {
+        "sensitivity_predictions.jsonl.gz": {
+          "records": 367200,
+          "mismatches": 0,
+          "exact_records_equal": true
+        }
+      }
+    },
+    "node_selection": {
+      "execution_level": "fresh feature reconstruction, 400-draw development search, frozen selection and test evaluation",
+      "status": "passed",
+      "selection_seed": 20261011,
+      "test_used_for_selection": false,
+      "dev_nodes": 15,
+      "test_nodes": 15,
+      "dev_rows": 1350,
+      "test_rows": 1350,
+      "test_results_equal_archive": true,
+      "masked_test_results_equal_archive": true
+    },
+    "historical_physics": {
+      "execution_level": "fresh dictionary-baseline fits from the 540 fixed reference fingerprints",
+      "study": "historical_physics",
+      "profile": "full",
+      "compared_query_predictions": 43200,
+      "archived_prediction_mismatches": 0,
+      "fit_errors": 0,
+      "status": "complete",
+      "completed": true,
+      "noise_rule": "RandomState(41 + original_query_index).normal(0, 0.02, 30)"
+    },
+    "hydraulic_robustness": {
+      "execution_level": "fresh network perturbation hydraulics, nominal library reconstruction, query evaluation and independent audit",
+      "status": "passed",
+      "metric_rows": 140400,
+      "hydraulic_query_rows": 7800,
+      "independent_realizations": 5,
+      "nominal_templates_replayed": 1053,
+      "nominal_pressure_arrays_identical": true,
+      "repeat_baseline_controls_identical": 106,
+      "archive_summary_comparison": {
+        "summary.csv": {
+          "status": "passed",
+          "rows": 468,
+          "cells": 14508,
+          "absolute_tolerance": 1e-08
+        }
+      },
+      "runtime_basis": "run_manifest.wall_time_s measures the last resumed invocation; cached corpus and preflight jobs are reused"
+    },
+    "partition_sensor": {
+      "execution_level": "fresh primary and feasibility hydraulics, design generation and retrieval from fixed sensitivity and reference design inputs",
+      "status": "passed",
+      "primary_hydraulic_scenarios": 1143,
+      "design_feasibility_simulations": 1144,
+      "primary_scenarios_have_nonnegative_pressure": true,
+      "archive_comparison": {
+        "query_results": {
+          "actual": "outputs/partition_full/query_level_results.csv.gz",
+          "archive": "data/frozen/partition_sensor/query_level_results.csv.gz",
+          "rows": 44460,
+          "columns": 23,
+          "cells_compared": 1022580,
+          "numeric_cells_compared": 755820,
+          "mismatched_cells": 0,
+          "maximum_absolute_numeric_difference": 0.0,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 0,
+          "actual_sha256": "92335d6abd7a7d70dd15b138014bfb078713d5000e63c8b4ed1ab8741be4d78f",
+          "archive_sha256": "d7a322fd3d097ebd28bfdd0c8477358bd5638da1c56cbc62238195da19854554"
+        },
+        "summary": {
+          "actual": "outputs/partition_full/summary_tidy.csv",
+          "archive": "data/frozen/partition_sensor/summary_tidy.csv",
+          "rows": 342,
+          "columns": 14,
+          "cells_compared": 4788,
+          "numeric_cells_compared": 3762,
+          "mismatched_cells": 0,
+          "maximum_absolute_numeric_difference": 0.0,
+          "absolute_tolerance": 1e-08,
+          "relative_tolerance": 0,
+          "actual_sha256": "a56f5a96bcd9ed5046b0994111bd4167e14be61b10ed505199aeed5640b7597e",
+          "archive_sha256": "a56f5a96bcd9ed5046b0994111bd4167e14be61b10ed505199aeed5640b7597e"
+        }
+      },
+      "runtime_basis": "last design/evaluation invocation reused the freshly generated response cache; its duration is not total hydraulic reconstruction time"
+    },
+    "additional_exa7": {
+      "multileak_exhaustive": {
+        "execution_level": "fresh EPANET event simulation and numerical evaluation",
+        "completed_full_study": true,
+        "hydraulic_simulations": 81,
+        "executed_solver_checks": {
+          "success_error_codes": [
+            null,
+            0
+          ],
+          "require_finite_full_pressure_grid": true,
+          "require_exact_report_times_and_node_ids": true,
+          "validated_before_averaging": true,
+          "validated_simulations": 81
+        },
+        "archived_metrics_comparison": {
+          "match": true,
+          "numeric_values_compared": 30,
+          "maximum_absolute_numeric_difference": 0.0,
+          "differences": [],
+          "difference_count": 0
+        }
+      },
+      "multileak_sparse": {
+        "execution_level": "fresh EPANET event simulation and numerical evaluation",
+        "completed_full_study": true,
+        "hydraulic_simulations": 721,
+        "executed_solver_checks": {
+          "success_error_codes": [
+            null,
+            0
+          ],
+          "require_finite_full_pressure_grid": true,
+          "require_exact_report_times_and_node_ids": true,
+          "validated_before_averaging": true,
+          "validated_simulations": 721
+        },
+        "archived_metrics_comparison": {
+          "match": true,
+          "numeric_values_compared": 111,
+          "maximum_absolute_numeric_difference": 0.0,
+          "differences": [],
+          "difference_count": 0
+        }
+      },
+      "pressure_dependent": {
+        "execution_level": "fresh EPANET event simulation and numerical evaluation",
+        "completed_full_study": true,
+        "hydraulic_simulations": 1282,
+        "executed_solver_checks": {
+          "success_error_codes": [
+            null,
+            0
+          ],
+          "require_finite_full_pressure_grid": true,
+          "require_exact_report_times_and_node_ids": true,
+          "validated_before_averaging": true,
+          "validated_simulations": 1282
+        },
+        "archived_metrics_comparison": {
+          "match": true,
+          "numeric_values_compared": 463,
+          "maximum_absolute_numeric_difference": 0.0,
+          "differences": [],
+          "difference_count": 0
+        }
+      },
+      "resolution": {
+        "execution_level": "fresh numerical analysis of fixed reference inputs",
+        "completed_full_study": true,
+        "hydraulic_simulations": 0,
+        "executed_solver_checks": {
+          "success_error_codes": [
+            null,
+            0
+          ],
+          "require_finite_full_pressure_grid": true,
+          "require_exact_report_times_and_node_ids": true,
+          "validated_before_averaging": true,
+          "validated_simulations": 0
+        },
+        "archived_metrics_comparison": {
+          "match": true,
+          "numeric_values_compared": 57,
+          "maximum_absolute_numeric_difference": 0.0,
+          "differences": [],
+          "difference_count": 0
+        }
+      },
+      "sensor_degradation": {
+        "execution_level": "fresh EPANET event simulation and numerical evaluation",
+        "completed_full_study": true,
+        "hydraulic_simulations": 175,
+        "executed_solver_checks": {
+          "success_error_codes": [
+            null,
+            0
+          ],
+          "require_finite_full_pressure_grid": true,
+          "require_exact_report_times_and_node_ids": true,
+          "validated_before_averaging": true,
+          "validated_simulations": 175
+        },
+        "archived_metrics_comparison": {
+          "match": true,
+          "numeric_values_compared": 127,
+          "maximum_absolute_numeric_difference": 0.0,
+          "differences": [],
+          "difference_count": 0
+        }
+      }
+    },
+    "additional_exa7_final_policy_audit": {
+      "execution_level": "independent re-audit of preserved solver-status traces under the final None-only success policy",
+      "status": "complete",
+      "hydraulic_simulations": 2259,
+      "success_error_code": null,
+      "errors": [],
+      "trace_checks": "Every stored solver status is None; report-time/node grids, shapes, finite means, simulation counts and grid-hash format are checked independently",
+      "full_grid_hash_scope": "The original execution validated unaveraged matrices before hashing; this audit verifies hash presence/format, not a recomputation from raw grids, which are not serialized",
+      "original_execution_provenance_preserved": true
+    },
+    "allocation_frozen_tensor": {
+      "execution_level": "fresh retrieval over 15 allocation draws and 1,500 design/group/protocol summaries from the supplied hydraulic tensor",
+      "study": "allocation",
+      "profile": "full",
+      "run_count": 1500,
+      "query_count": 270000,
+      "max_absolute_metric_difference": 0.0,
+      "archive_metrics_match": true
+    },
+    "historical_llm": {
+      "execution_level": "statistics reconstruction from saved outcomes and discordance counts",
+      "status": "passed",
+      "models": 7,
+      "paired_comparisons": 11,
+      "cloud_api_requests_executed": 0
+    },
+    "municipal_validation": {
+      "execution_level": "archived numerical results and approved vector artwork; municipal raw model files are held by their owners"
+    },
+    "source_data": {
+      "execution_level": "fresh workbook construction and native-cell comparison",
+      "status": "passed",
+      "sheet_count": 36,
+      "native_cell_parity": true,
+      "blank_and_note_rows_retained": true,
+      "table_s17_recomputed_from_test_json": true,
+      "canonical_workbook_sha256": "cbff510f2bf19abce1b65c8b75694ee14db8fb30606a0d8205fd02d3ef913a52",
+      "workbook_sha256": "cd84d0909653d9c0ea447efcf0e61f742e0afaf52f21ab380e82d1256b31dfac",
+      "selection_input_sha256": {
+        "test_results.json": "d69cc84c418309473b13bd0b18bf1da2df239ccf828160f51213c23a50cb8e93",
+        "test_masked_results.json": "f0db876b29fc96cd2b127bd877472daf81500d7be4c8d3675e64a93e52f35b49"
+      }
+    },
+    "paper_replay": {
+      "execution_level": "complete unified replay profile",
+      "status": "passed",
+      "step_count": 17,
+      "all_steps_exit_zero": true,
+      "elapsed_seconds": 379.67929379999987
+    },
+    "smoke": {
+      "execution_level": "unified smoke profile",
+      "status": "passed",
+      "step_count": 5,
+      "all_steps_exit_zero": true,
+      "elapsed_seconds": 10.300455300000976
+    },
+    "final_exa7_release": {
+      "execution_level": "fresh reference hydraulics and H0/H2/H8/H9 evaluation under final release code",
+      "status": "passed",
+      "step_count": 5,
+      "all_steps_exit_zero": true,
+      "elapsed_seconds": 100.31734829999914,
+      "input_integrity": {
+        "checked": 296,
+        "status": "passed"
+      }
+    },
+    "classical_main90": {
+      "execution_level": "fresh full classifier fitting and per-query comparison to archived predictions",
+      "status": "passed",
+      "predictions": 18000,
+      "mismatches": 0,
+      "model_seeds": [
+        41,
+        581,
+        1121,
+        1661,
+        2201
+      ],
+      "retained_pool_fits": 650,
+      "protocols": [
+        "H0",
+        "H2",
+        "H3",
+        "H4",
+        "H8"
+      ],
+      "queries_per_seed": 90,
+      "worker_count": 4
+    },
+    "classical_all540": {
+      "execution_level": "fresh full classifier fitting and per-query comparison to archived predictions",
+      "status": "passed",
+      "predictions": 216000,
+      "mismatches": 0,
+      "model_seeds": [
+        41,
+        581,
+        1121,
+        1661,
+        2201
+      ],
+      "retained_pool_fits": 7115,
+      "protocols": [
+        "H0",
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9"
+      ],
+      "queries_per_seed": 540,
+      "worker_count": 6
+    },
+    "allocation_raw_tensor": {
+      "execution_level": "fresh EPANET hydraulic tensor reconstruction; execution source hashes preserved in the rebuild report",
+      "execution_source": "recorded pre-guard source snapshot",
+      "study": "allocation_tensor",
+      "profile": "raw_hydraulics",
+      "input_sha256": {
+        "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+        "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+        "experiments/allocation/build_tensor.py": "edbf2f6dfa4cd11b804013d8ab37cc83e7740f88445de7fa204e5eeda5ff20cc",
+        "data/frozen/allocation/expH_robust_tensor.npz": "365f85b313a86845bb97dad2574da74519be7020118d3f01ac8ef343f9d96443"
+      },
+      "binding_sha256": "f80ab395e99475c717dbf23d2ea70c0ab81878787cf96745d493cd5e1f7f8b4d",
+      "tensor_shape": [
+        350,
+        12,
+        3,
+        30
+      ],
+      "reference_tensor_shape": [
+        350,
+        12,
+        3,
+        30
+      ],
+      "sensor_nodes": [
+        "34",
+        "35",
+        "36",
+        "38",
+        "41",
+        "45",
+        "49",
+        "51",
+        "56",
+        "59",
+        "62",
+        "64",
+        "80",
+        "86",
+        "87",
+        "89",
+        "92",
+        "95",
+        "115",
+        "169",
+        "212",
+        "254",
+        "284",
+        "297",
+        "318",
+        "332",
+        "336",
+        "343",
+        "365",
+        "404"
+      ],
+      "comparison": {
+        "shape_match": true,
+        "nodes_match": true,
+        "magnitudes_match": true,
+        "periods_match": true,
+        "sensors_match": true
+      },
+      "max_absolute_tensor_difference_m": 0.0,
+      "exact_tensor_match": true,
+      "simulations": {
+        "baselines": 3,
+        "screen": 381,
+        "tensor": 12600
+      },
+      "output_sha256": "365f85b313a86845bb97dad2574da74519be7020118d3f01ac8ef343f9d96443",
+      "elapsed_seconds": 2087.5844066,
+      "isolation": "per-process scratch cwd and TMP/TEMP/TMPDIR; restored before cleanup"
+    },
+    "allocation_raw_tensor_evaluation": {
+      "execution_level": "fresh full allocation evaluation from the rebuilt tensor",
+      "study": "allocation",
+      "profile": "full",
+      "run_count": 1500,
+      "query_count": 270000,
+      "max_absolute_metric_difference": 0.0,
+      "archive_metrics_match": true,
+      "distance_units": "native_network_coordinate_units",
+      "archive_metric_aliases": {
+        "median_coordinate_distance": "med_m"
+      }
+    }
+  },
+  "pending_evidence": [],
+  "reports": [
+    {
+      "path": "reproducibility/validation_reports/exa7_final_release__exa7__reference__rebuild_report.json",
+      "sha256": "156ee036a6a37955717b03c50c0a765d84e171d8f20ddfedb44a8d8d1498c3da",
+      "executed_source": "outputs/exa7_final_release/exa7/reference/rebuild_report.json",
+      "executed_source_sha256": "174a30e93c767c4b0011d92031c4574da9481e732e18257f80edbf640bb404d1"
+    },
+    {
+      "path": "reproducibility/validation_reports/node_final__run_report.json",
+      "sha256": "e099b327bdf886ad03773efc58e8765ad9185323243175047e8a11af2fe18998",
+      "executed_source": "outputs/node_final/run_report.json",
+      "executed_source_sha256": "7b1dc7d6630f7f5c92a9a1ac6a046f8c9b42b14f0cf3fed8869e8fc9d3b87e8c"
+    },
+    {
+      "path": "reproducibility/validation_reports/node_final__node_selection__run_completion.json",
+      "sha256": "3d3918c98a96a2e77ec0896657a5c11425bacb4be11e740daa48db9eba1e46ec",
+      "executed_source": "outputs/node_final/node_selection/run_completion.json",
+      "executed_source_sha256": "69ef9ab972695a8e42d009fe34694044e9a3e82bedb3632737a9480733758820"
+    },
+    {
+      "path": "reproducibility/validation_reports/node_final__node_selection__stage1_reproduction.json",
+      "sha256": "2fe8d7f8b42126804a83c3c8cd1022af1645baaf2ca3495646d91fda993df316",
+      "executed_source": "outputs/node_final/node_selection/stage1_reproduction.json",
+      "executed_source_sha256": "aa8492dccb94fe5810e4691cc5d411575deab9ce88a5588c8ae4a79b8016f182"
+    },
+    {
+      "path": "reproducibility/validation_reports/historical_final__run_report.json",
+      "sha256": "49ba4e975af1266d9041e31a2ac1c0eb693b7942f29ae14c23f64e531808ee0b",
+      "executed_source": "outputs/historical_final/run_report.json",
+      "executed_source_sha256": "5ddd0686639b0c6c672a65aee11ee245d2aec205155685c97ae02a2e8d68df71"
+    },
+    {
+      "path": "reproducibility/validation_reports/historical_final__historical__full_report.json",
+      "sha256": "1366cbb251bafac27b2a8018f81794f252e155654c00ace31e2de7a8e80939ed",
+      "executed_source": "outputs/historical_final/historical/full_report.json",
+      "executed_source_sha256": "d5e309fae18dcc4f25cf7d6d7411d3bf9846a11a184e718ea30a5894b51dcb8d"
+    },
+    {
+      "path": "reproducibility/validation_reports/historical_final__historical__physics__full_report.json",
+      "sha256": "4cef4c37336d3d8106ae51cf84e0bcc4a6fca237485b8c0e966e60f942c38dcd",
+      "executed_source": "outputs/historical_final/historical/physics/full_report.json",
+      "executed_source_sha256": "ac67607e574ca46b73eafaed4d5de7063fa00fc6929f6aa2ecbe63567d2c9abf"
+    },
+    {
+      "path": "reproducibility/validation_reports/repeated_main90_full__classical_main90_manifest.json",
+      "sha256": "4153f17acffdaa5f1fc5c6a2539fd0b112fa99f42398598dc646fe5a3d038264",
+      "executed_source": "outputs/repeated_main90_full/classical_main90_manifest.json",
+      "executed_source_sha256": "738ba07748c9fb3438109c0e5162192cfd0d858ea001dfd2addf3060d18860e6"
+    },
+    {
+      "path": "reproducibility/validation_reports/repeated_main90_full__archive_prediction_comparison.json",
+      "sha256": "6dffbe9299b2e964121f834bfce39bb54b9cce769660e29c133ffc1eee5df977",
+      "executed_source": "outputs/repeated_main90_full/archive_prediction_comparison.json",
+      "executed_source_sha256": "04c2774d322fdaa22f28eb8ee015f00ee48f7290ab5524e434a62471c31af27e"
+    },
+    {
+      "path": "reproducibility/validation_reports/repeated_all540_full__classical_all540_manifest.json",
+      "sha256": "e1a500197ec228030891380ae9151baf7560a5fbfa1a5d13f4f61bbc2daf3218",
+      "executed_source": "outputs/repeated_all540_full/classical_all540_manifest.json",
+      "executed_source_sha256": "e4f64b908ed3a3cb86622837e603640dd2f18cb59e0e6daef8254471ae3a594c"
+    },
+    {
+      "path": "reproducibility/validation_reports/repeated_all540_full__archive_prediction_comparison.json",
+      "sha256": "077337c56ebe5600b2127cee71798d5fc7b2276cf3979b87f676df54a9726520",
+      "executed_source": "outputs/repeated_all540_full/archive_prediction_comparison.json",
+      "executed_source_sha256": "1f40701b5966d4b51363ef84e7856955b4a75069ea6d5d47c9ce87d43895af18"
+    },
+    {
+      "path": "reproducibility/validation_reports/hydraulic_full__run_manifest.json",
+      "sha256": "5ccaf03e432f3a758034e935a6046d4119e1294c795432f23aa4a99a4c2b133a",
+      "executed_source": "outputs/hydraulic_full/run_manifest.json",
+      "executed_source_sha256": "19481d0db6825b759ca9bce300b9629da37a10d3cfa274b53572b1a7ab0bd9bf"
+    },
+    {
+      "path": "reproducibility/validation_reports/hydraulic_full__archive_comparison.json",
+      "sha256": "8ff8bb6d6a73df4a201899d4aecb05c0d63959cb017a338a40bfa4079fb71ee6",
+      "executed_source": "outputs/hydraulic_full/archive_comparison.json",
+      "executed_source_sha256": "af78e94ea58022d664ecba6b08d6d4fd1b221a90361c0fcf59025572dcbcc0a2"
+    },
+    {
+      "path": "reproducibility/validation_reports/hydraulic_full__qa__independent_audit.json",
+      "sha256": "6dbea980709ad26b18076febc04fb8a1111f34db3487a71dad7911450b06e788",
+      "executed_source": "outputs/hydraulic_full/qa/independent_audit.json",
+      "executed_source_sha256": "988ad72b648490c00868d2a6fe3f0a394dbea2cfb7f74033d4eb89fb812927d6"
+    },
+    {
+      "path": "reproducibility/validation_reports/hydraulic_full__qa__nominal_corpus_replay.json",
+      "sha256": "9926eb1c603ef4e93d74fbf54dd4095ded0f9768e56a7469980305fefe70a2ba",
+      "executed_source": "outputs/hydraulic_full/qa/nominal_corpus_replay.json",
+      "executed_source_sha256": "d7bb41e05b627d77ba251847d1b1318f56132225e63d341c5fbe65efdd700020"
+    },
+    {
+      "path": "reproducibility/validation_reports/hydraulic_full__qa__corpus_audit.json",
+      "sha256": "a3f7a5b992250bd6a22330f49c9b3d2d1027a6b029262522bf936effc0153052",
+      "executed_source": "outputs/hydraulic_full/qa/corpus_audit.json",
+      "executed_source_sha256": "54431f91528eeceb8fe0fe8ab4d7ac877807e9023781c36a773b24612c411f0e"
+    },
+    {
+      "path": "reproducibility/validation_reports/partition_full__audit.json",
+      "sha256": "46ce1fac01ed2f78b2dd2ce07a8f17c102a6f99c45e7f7e9cba98c7a0e0ff7ff",
+      "executed_source": "outputs/partition_full/audit.json",
+      "executed_source_sha256": "95913a6c7fb196a597c0c6fd025e91f703ce29e0ce7b1f5fd52741f4598a7431"
+    },
+    {
+      "path": "reproducibility/validation_reports/partition_full__run_manifest.json",
+      "sha256": "f81d36af26ce312f7c22c88b2abc40816f622762df32af302dd68fa0ff746e3e",
+      "executed_source": "outputs/partition_full/run_manifest.json",
+      "executed_source_sha256": "15ffbda35a7a9348f10124e829e062eff0ee026eb0a92cf0b43d0cba9e579464"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__run_report.json",
+      "sha256": "9b269d3c4e713a44313d22171c94ca4d6a34bb4ae8ce943856ab294ad4309025",
+      "executed_source": "outputs/release_replay/run_report.json",
+      "executed_source_sha256": "eab616a419f9da33259f90b89a0df9c3aba5ffc718653c3f108dc9bc7559ac24"
+    },
+    {
+      "path": "reproducibility/validation_reports/smoke_final_release__run_report.json",
+      "sha256": "1d41f2cf086df62b91ddff3b39b1e6b2b5b3d167526c5285fff901ac1ad5a54d",
+      "executed_source": "outputs/smoke_final_release/run_report.json",
+      "executed_source_sha256": "1775bd9bf5972549453c1ec002fac92f9a874cf8ca73176a39964938a139aad7"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__strict_holdout__independent_output_audit.json",
+      "sha256": "5ad0d23863366f46a8f3cbadffabe3ea587a38aa42a177d336c8dd3a76b538eb",
+      "executed_source": "outputs/release_replay/strict_holdout/independent_output_audit.json",
+      "executed_source_sha256": "e7f8e4b2b373155ea6d0975ebe5c315246c5a9709de04e3ae7922336c15022da"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__sensitivity__independent_output_audit.json",
+      "sha256": "ee618a435687c4827569532adcca41208c3e37c2c0957acceba7bc0aacfd76ca",
+      "executed_source": "outputs/release_replay/sensitivity/independent_output_audit.json",
+      "executed_source_sha256": "11e2aaa9956482f7f90cd273bb70d90e835a0b3ff82df3f6b9b55c115d90b2cb"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__source_data__build_report.json",
+      "sha256": "e689df1cf0d6f8679001e542eb1879261d86f3821e1e11482ba8d6df6985ff05",
+      "executed_source": "outputs/release_replay/source_data/build_report.json",
+      "executed_source_sha256": "e689df1cf0d6f8679001e542eb1879261d86f3821e1e11482ba8d6df6985ff05"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__repeated_benchmarks__main90__replay_report.json",
+      "sha256": "7cd104395b3083a0b33736bd5d92a1bf582623db5b7fb7992dcd324a5196bfc0",
+      "executed_source": "outputs/release_replay/repeated_benchmarks/main90/replay_report.json",
+      "executed_source_sha256": "187be4d8614a424d4af99567c737845b5b8ae96c60429925efc1cdfb582e43c2"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__repeated_benchmarks__all540__replay_report.json",
+      "sha256": "11485f7eb3953bf43f84e4110c064a0fd06919ac2d8966ddf786cabcd4f0ed7d",
+      "executed_source": "outputs/release_replay/repeated_benchmarks/all540/replay_report.json",
+      "executed_source_sha256": "b2eb9fcbd52ae2f50a949e8ed780587010a8575a2a0473782f06a9dda54f9238"
+    },
+    {
+      "path": "reproducibility/validation_reports/release_replay__allocation__replay_report.json",
+      "sha256": "753737afe996e82b3bf72d33a7fa06400f33c70a49bd7e15ae4f0aaf2d7f5c1d",
+      "executed_source": "outputs/release_replay/allocation/replay_report.json",
+      "executed_source_sha256": "9e857817467b2f2c635c652ec80a22585a716d6c85054ce9705e708ea1fb4dd6"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__e5_full__full_report.json",
+      "sha256": "ef1852a369102007f184fb6e926c86848fe8458af79a0ef74d5a061f62524270",
+      "executed_source": "outputs/agent_validation/e5_full/full_report.json",
+      "executed_source_sha256": "f8375c594433651fc3693087cab80158c571ae7b64b37c69fcf741404a2833a5"
+    },
+    {
+      "path": "reproducibility/validation_reports/exa7_final_release__run_report.json",
+      "sha256": "e3ef88c27d7864431d8e38bfb5e9ee7191f261ac05a0dc61885d2b061f10e8ef",
+      "executed_source": "outputs/exa7_final_release/run_report.json",
+      "executed_source_sha256": "b152a8050301dcb939c45db124082bd75c0c56bfd5e6dbd0b249121342290cca"
+    },
+    {
+      "path": "reproducibility/validation_reports/partition_full__archive_comparison.json",
+      "sha256": "5de44a739764915273dbce6c7e944ceb6a7cc22b191c335ef06079831e636c28"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__exa7_final__multileak_exhaustive__execution_report.json",
+      "sha256": "1f535edbe2c32956f23a162afc49d7583fe3c58dcc19948fcf29943f9125aa61",
+      "executed_source": "outputs/agent_validation/exa7_final/multileak_exhaustive/execution_report.json",
+      "executed_source_sha256": "b784a3f187f79709b38e582fd773f411736bfcd10ed3b677dd6d93014485ac48"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__exa7_final__multileak_sparse__execution_report.json",
+      "sha256": "e21bb05d2c2a90136e91d9bb3e2cd6faf048bd5b2014f107299c4f4233868887",
+      "executed_source": "outputs/agent_validation/exa7_final/multileak_sparse/execution_report.json",
+      "executed_source_sha256": "ac92f2bc41fea9cd4c51f247ed6ea1fe287a5fd92b98bb1d401e6f3c44cab537"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__exa7_final__pressure_dependent__execution_report.json",
+      "sha256": "d09e646e585c2d44ab8ce9acf58a0352d919a000db0ba848213843b6e3ba58aa",
+      "executed_source": "outputs/agent_validation/exa7_final/pressure_dependent/execution_report.json",
+      "executed_source_sha256": "9055190200c6bc10e01af776eccaa5582d79469861351fb95885a8baa2dd010b"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__exa7_final__resolution__execution_report.json",
+      "sha256": "d088b9201b07d06d646a3a764e3ef9460fcb800d8854e3272b8811ac675c21f8",
+      "executed_source": "outputs/agent_validation/exa7_final/resolution/execution_report.json",
+      "executed_source_sha256": "b6facec0f996456efd34228e0a512f76994776d7ed30a76f7b57ea57ccbf68a5"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__exa7_final__sensor_degradation__execution_report.json",
+      "sha256": "66b057fc803aa342028b27d8e6f5dd428c0308634847ebc241d5c23b3016a698",
+      "executed_source": "outputs/agent_validation/exa7_final/sensor_degradation/execution_report.json",
+      "executed_source_sha256": "d41b6208fecabf7fe3eed39c6ccad8edd687405b8b8045ce22da51689e1f4588"
+    },
+    {
+      "path": "reproducibility/validation_reports/agent_validation__exa7_final__final_policy_trace_audit.json",
+      "sha256": "fe26fdc37c19a3f0545a5c7878304f89378ae3c5e41ea6cea11265d663ed857b",
+      "executed_source": "outputs/agent_validation/exa7_final/final_policy_trace_audit.json",
+      "executed_source_sha256": "50b1956916b575ef1dd127416f921ec17d535ebecbb89c0714d999434c9cef95"
+    },
+    {
+      "path": "reproducibility/validation_reports/allocation_raw_tensor__rebuild_report.json",
+      "sha256": "f53a6c71c4028369ae454daa7d8d77f7aebf571f051ec024fbe984b9974764eb",
+      "executed_source": "outputs/allocation_raw_tensor/rebuild_report.json",
+      "executed_source_sha256": "49ab31ab87bfafa4339d1773507ea324d19513f97b6b0805104658d899cf7704"
+    },
+    {
+      "path": "reproducibility/validation_reports/allocation_final__full_report.json",
+      "sha256": "7e3fcfc40537a4f3f989e6d6db8953010700bf5e6d20278fdf91048ce16de496",
+      "executed_source": "outputs/allocation_final/full_report.json",
+      "executed_source_sha256": "a6bc10c4817e832ce5433b7adbe6b32071854b92ffdaef458c7e06d916faf558"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+"""Strict retained-corpus benchmark."""

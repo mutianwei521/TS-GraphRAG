@@ -1,0 +1,179 @@
+{
+  "name": "Fig6d_TableS7",
+  "max_row": 8,
+  "max_column": 8,
+  "rows": [
+    [
+      "Model identifier",
+      "Recovered / 120 errors",
+      "Broken / 60 correct",
+      "Failures",
+      "Correction rate",
+      "Breakage rate",
+      "Estimated change (pp)",
+      "Estimated Top-1 (%)"
+    ],
+    [
+      "deepseek-v4-flash:cloud",
+      2,
+      1,
+      0,
+      0.017,
+      0.017,
+      -0.9,
+      75.8
+    ],
+    [
+      "gemma4:31b-cloud",
+      5,
+      3,
+      0,
+      0.042,
+      0.05,
+      -2.9,
+      73.8
+    ],
+    [
+      "qwen3.5:397b-cloud",
+      6,
+      7,
+      3,
+      0.05,
+      0.117,
+      -7.8,
+      68.9
+    ],
+    [
+      "deepseek-v4-pro:cloud",
+      11,
+      19,
+      0,
+      0.092,
+      0.317,
+      -22.1,
+      54.5
+    ],
+    [
+      "gpt-oss:20b-cloud",
+      15,
+      23,
+      1,
+      0.125,
+      0.383,
+      -26.5,
+      50.2
+    ],
+    [
+      "gpt-oss:120b-cloud",
+      18,
+      29,
+      0,
+      0.15,
+      0.483,
+      -33.6,
+      43.1
+    ],
+    [
+      "glm-5.2:cloud",
+      18,
+      32,
+      1,
+      0.15,
+      0.533,
+      -37.4,
+      39.3
+    ]
+  ],
+  "cell_types": [
+    [
+      "s",
+      "s",
+      "s",
+      "s",
+      "s",
+      "s",
+      "s",
+      "s"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n",
+      "n"
+    ]
+  ],
+  "number_formats": {},
+  "merged_ranges": [],
+  "sheet_state": "visible",
+  "freeze_panes": null,
+  "header_rows": [
+    1
+  ],
+  "row_policy": "All rows within worksheet dimensions, including blank and note rows, are retained.",
+  "column_widths": {},
+  "row_heights": {}
+}

@@ -1,0 +1,1786 @@
+{
+  "schema_version": 1,
+  "asset_basis": "Executed experiments, 2026-10-10 and frozen estimator selection, 2026-10-11",
+  "network_sha256": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+  "assets": [
+    {
+      "path": "data/Exa7.inp",
+      "sha256": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+      "bytes": 51941,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "data/frozen/allocation/e5_g2_top1_pairwise.csv",
+      "source_record": "results/E5_design_curve_20260909/e5_g2_top1_pairwise.csv",
+      "bytes": 2160,
+      "sha256": "762d174727b6a40ab013edf88d8f1b5fae00f0deaf9b15467995523f3a67d2e1"
+    },
+    {
+      "path": "data/frozen/allocation/e5_h0_draws.csv",
+      "source_record": "results/E5_design_curve_20260909/e5_h0_draws.csv",
+      "bytes": 13442,
+      "sha256": "21d8d4aa0f3b2a8bda11e76c519441cdd2de8847cf3be47bf8329f3b4750a99d"
+    },
+    {
+      "path": "data/frozen/allocation/e5_h0_summary.csv",
+      "source_record": "results/E5_design_curve_20260909/e5_h0_summary.csv",
+      "bytes": 4191,
+      "sha256": "0885ed8a1e7f4a16c6524822053e6b93a434a70cb4d4ab2c6b572d65b02b8ca1"
+    },
+    {
+      "path": "data/frozen/allocation/expH_exa7_screen.json",
+      "source_record": "expH_exa7_screen.json",
+      "bytes": 474,
+      "sha256": "c2f53d17767b00058fdd37cd02ed7ca5b0f19a39f7c08cbfc294d4512450db1b"
+    },
+    {
+      "path": "data/frozen/allocation/expH_robust_results.json",
+      "source_record": "expH_robust_results.json",
+      "bytes": 328049,
+      "sha256": "70cc87096ec928aeab99569864987c5cc0691a66fab0c14a4b43413c3ec0fd70"
+    },
+    {
+      "path": "data/frozen/allocation/expH_robust_tensor.npz",
+      "source_record": "expH_robust_tensor.npz",
+      "bytes": 1013621,
+      "sha256": "365f85b313a86845bb97dad2574da74519be7020118d3f01ac8ef343f9d96443"
+    },
+    {
+      "path": "data/frozen/historical/exp1b_results.json",
+      "source_record": "exp1b_results.json",
+      "bytes": 18049,
+      "sha256": "382cbd527440c96b860cd51176c1d482001241eaa543c126d3e6a2a2fff6da43"
+    },
+    {
+      "path": "data/frozen/historical/exp2a_dense_corpus.npz",
+      "sha256": "394b15b0d49de7a48f72c44619ee339b53ec3fce3ce365b7c75804e477a78c59",
+      "bytes": 81416,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "data/frozen/historical/exp3_results.json",
+      "source_record": "exp3_results.json",
+      "bytes": 5388,
+      "sha256": "e613ed3ecc00f1b514aa6a551eb3ecd7e901ca00ecb9205e8980e67b4d3d6fd1"
+    },
+    {
+      "path": "data/frozen/historical/expA1_v2_results.json",
+      "source_record": "expA1_v2_results.json",
+      "bytes": 4186,
+      "sha256": "b2c9459e869da932abba4f1f2ab4a49c588b9786e6f31691dd8655313e53ff40"
+    },
+    {
+      "path": "data/frozen/historical/expA1a_results.json",
+      "source_record": "expA1a_results.json",
+      "bytes": 1528,
+      "sha256": "6c2566677b1267e11f0fe8dd6f06ebb291f80ad8f8f4c9444b6fdebf810557af"
+    },
+    {
+      "path": "data/frozen/historical/expA1b_results.json",
+      "source_record": "expA1b_results.json",
+      "bytes": 1059,
+      "sha256": "eba1d0a880cbcdb796b03d3b0ec9bb0192edf7e46a96d2eb90f202dd48eeee6f"
+    },
+    {
+      "path": "data/frozen/historical/expA2_results.json",
+      "source_record": "expA2_results.json",
+      "bytes": 4432,
+      "sha256": "223c94c75953d8170f6e700009bc05a48eaa44fa07981196b732019568e3adac"
+    },
+    {
+      "path": "data/frozen/historical/expH_dagang_results.json",
+      "source_record": "expH_dagang_results.json",
+      "bytes": 252296,
+      "sha256": "11d42642d6f2d3e9210de6d10de8cdb4fb47c83cc356dadd8e550e78634a8580"
+    },
+    {
+      "path": "data/frozen/historical/expH_gnn2_results.json.partial",
+      "source_record": "expH_gnn2_results.json.partial",
+      "bytes": 16435,
+      "sha256": "11071f138ea4defe9a3f70a9300e36c5479dba9916bd664249f418585fbed4c5"
+    },
+    {
+      "path": "data/frozen/historical/expH_haining_results.json",
+      "source_record": "expH_haining_results.json",
+      "bytes": 250200,
+      "sha256": "26c58fd90322fb5e9be3d5296441a1fa19295d5b8e8ca560a63b05cb940e4cc4"
+    },
+    {
+      "path": "data/frozen/historical/expH_llm_results.json",
+      "source_record": "expH_llm_results.json",
+      "bytes": 2159,
+      "sha256": "630db5abe920d6904046c34c7419519f93bdfe5343d5b1d40aa3fadfab8a20aa"
+    },
+    {
+      "path": "data/frozen/historical/expH_physics_baselines_results.json",
+      "source_record": "expH_physics_baselines_results.json",
+      "bytes": 351374,
+      "sha256": "e5b5c416368465267e3084104ec0edfc6757dcd5b394d8b8b376b167fffccd2b"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/design.json",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/design.json",
+      "bytes": 18207,
+      "sha256": "56f15cf9c435f71543db1a06804a609a8ca21e7a9140808724d607220b3de3a2"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/query_hydraulic_status.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/query_hydraulic_status.csv",
+      "bytes": 964446,
+      "sha256": "0260d7e418f1981342ea58b85603e8b4a587dc8316f981d336f3b5421249a78f"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/query_metrics.csv.gz",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/query_metrics.csv",
+      "sha256": "1b7b5d89053b5e395f5dc7f7ff0a4964b18e127459e42bdf3d255fbcdc1bbee3",
+      "bytes": 1364604,
+      "encoding": "gzip"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/query_service_pressure_status.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/query_service_pressure_status.csv",
+      "bytes": 739123,
+      "sha256": "eff1fec608cd8b80ced529987f91f22e0803f1b15b204213aea49bb158b2f634"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/seed_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/seed_summary.csv",
+      "bytes": 503215,
+      "sha256": "78d44e29c2f73801831ab1b533104b2b22044e3c50f3d0b84e43921301282bb5"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/service_secondary_seed_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/service_secondary_seed_summary.csv",
+      "bytes": 348600,
+      "sha256": "0db256569ff57d46f3aa6bcc1f538c447e12c5f546ed17b99cc8003d39717cbe"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/service_secondary_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/service_secondary_summary.csv",
+      "bytes": 80722,
+      "sha256": "b418d947873a5e59dee472ae94837415213444e57ff79e0fcd57f6e2f087fb5d"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/summary.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/summary.csv",
+      "bytes": 189143,
+      "sha256": "35e525773eacf9ed46ead97f675e91d3cc72ad298b7a9db833f9a641428efd79"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/Table_S13_hydraulic_mismatch.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/Table_S13_hydraulic_mismatch.csv",
+      "bytes": 6533,
+      "sha256": "7705e9c303f25d1a4f52f1607358c1da1639c7487ad3147227204ffb71bb23d9"
+    },
+    {
+      "path": "data/frozen/hydraulic_robustness/Table_S13_union_secondary.csv",
+      "source_record": "results/reviewer_closure_20261010/hydraulic_robustness/Table_S13_union_secondary.csv",
+      "bytes": 6734,
+      "sha256": "ec7925508c4bf66f2617fb2d9fe06e2d9533bf4d1c0ba8c3dceec9ebf616a754"
+    },
+    {
+      "path": "data/frozen/node_selection/dev_masked_top50.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/dev_masked_top50.json",
+      "bytes": 1956,
+      "sha256": "596b61076a7aadda21ab6a99fb08b0c3095d5344a5972da6bda36d1d55f72225"
+    },
+    {
+      "path": "data/frozen/node_selection/dev_search_all.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/dev_search_all.json",
+      "bytes": 41392,
+      "sha256": "613b1318e4f02f61e0550bfc9345f565c1da03f2a6df810caf792df43ac3dfe4"
+    },
+    {
+      "path": "data/frozen/node_selection/features.npz",
+      "source_record": "results/ts_graphrag_improvement_20261011/features.npz",
+      "bytes": 9103154,
+      "sha256": "b277acf8dc7936e1d96ee9ad403b0fbdab91c86157a086b2607f3373bdfea0d2"
+    },
+    {
+      "path": "data/frozen/node_selection/frozen_config.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/frozen_config.json",
+      "bytes": 471,
+      "sha256": "f3b4fc59a53b21fe1121e0ba5f7d3c13ad8e1cf4b21b3b4551fd5e20e887fcf9"
+    },
+    {
+      "path": "data/frozen/node_selection/frozen_masked_config.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/frozen_masked_config.json",
+      "bytes": 379,
+      "sha256": "eb06578ea6cb6005cf4412cfde12cd93fe47de429bf651425d37f432d8110de6"
+    },
+    {
+      "path": "data/frozen/node_selection/masked_scores.npz",
+      "source_record": "results/ts_graphrag_improvement_20261011/masked_scores.npz",
+      "bytes": 2619727,
+      "sha256": "cc03b8e49709e39aa799523e7d334afde589141d120223b709b74ed9d730d535"
+    },
+    {
+      "path": "data/frozen/node_selection/split.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/split.json",
+      "bytes": 487,
+      "sha256": "a42bc8cf92b7fc58e262410974167f011023ec43907350ceabd11f550454c807"
+    },
+    {
+      "path": "data/frozen/node_selection/stage1_reproduction.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/stage1_reproduction.json",
+      "bytes": 304,
+      "sha256": "86c0ca9a5437b6b30926061291118da06384e133a390485c1f2da52703388b8d"
+    },
+    {
+      "path": "data/frozen/node_selection/test_masked_results.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/test_masked_results.json",
+      "bytes": 3122,
+      "sha256": "f0db876b29fc96cd2b127bd877472daf81500d7be4c8d3675e64a93e52f35b49"
+    },
+    {
+      "path": "data/frozen/node_selection/test_results.json",
+      "source_record": "results/ts_graphrag_improvement_20261011/test_results.json",
+      "bytes": 3277,
+      "sha256": "d69cc84c418309473b13bd0b18bf1da2df239ccf828160f51213c23a50cb8e93"
+    },
+    {
+      "path": "data/frozen/partition_sensor/audit.json",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/audit.json",
+      "bytes": 1007,
+      "sha256": "5de039875ccc65ca08ffae77e6a4818f6574fbd3c8dfa4245a1781de1f25bc1b"
+    },
+    {
+      "path": "data/frozen/partition_sensor/boundary_interior_run_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/boundary_interior_run_summary.csv",
+      "bytes": 87748,
+      "sha256": "b05e028366535de85dd3b9d0cd79e75e93347255c9836721b1f6a671be17a98d"
+    },
+    {
+      "path": "data/frozen/partition_sensor/hydraulic_validity.csv",
+      "sha256": "c74ac92f0e959357499519ff237330b17ed4c54ad41d9f01cf82c079d7700846",
+      "bytes": 40373,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "data/frozen/partition_sensor/hydraulic_validity_summary.json",
+      "sha256": "9ed6072ea1bebd7669fcacc2cf488fc3c07b78657ad9ded1f16f0084c5ea1f23",
+      "bytes": 256,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "data/frozen/partition_sensor/magnitude_run_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/magnitude_run_summary.csv",
+      "bytes": 59769,
+      "sha256": "48b33995cf949ead0410406e70a129891dd96bfe7c9c2e27ec7b3f546c5326bb"
+    },
+    {
+      "path": "data/frozen/partition_sensor/network_pipe_lengths.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/network_pipe_lengths.csv",
+      "bytes": 10978,
+      "sha256": "4259af0da389536534ea8c3b888a151ddf56b7e124e6434f0af9001140ceddae"
+    },
+    {
+      "path": "data/frozen/partition_sensor/partition_assignments.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/partition_assignments.csv",
+      "bytes": 1090290,
+      "sha256": "88f3832d92316a063c253183ac90313372a07ff8f3636da5e99494facb09afe7"
+    },
+    {
+      "path": "data/frozen/partition_sensor/partition_geometry.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/partition_geometry.csv",
+      "bytes": 141801,
+      "sha256": "f52a424f4ae16291dd40e071e2ac2d2196a6beccf0e06427486c12878a95d361"
+    },
+    {
+      "path": "data/frozen/partition_sensor/partition_stability.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/partition_stability.csv",
+      "bytes": 8543,
+      "sha256": "6c8e52b7e77b058712f268e939ad96995cce3fa204d7094a4794844b440497a8"
+    },
+    {
+      "path": "data/frozen/partition_sensor/partition_structure_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/partition_structure_summary.csv",
+      "bytes": 11792,
+      "sha256": "1ef7038aa4181a4e425fd36b925acd98e329e4f978ba8974cfaab471283d55d6"
+    },
+    {
+      "path": "data/frozen/partition_sensor/primary_hydraulic_validity.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/primary_hydraulic_validity.csv",
+      "bytes": 34300,
+      "sha256": "fe1d5d038687829b52b3168bcc5cff44356bec6d2cf60fc3bceb5b4f327363c4"
+    },
+    {
+      "path": "data/frozen/partition_sensor/query_fingerprints_5_10_15_all_nodes.npz",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/query_fingerprints_5_10_15_all_nodes.npz",
+      "bytes": 860838,
+      "sha256": "7561f9f09a1d9e2480232e0791c2e3c4f46ea64fc729481e09e8394ef74d22c1"
+    },
+    {
+      "path": "data/frozen/partition_sensor/query_level_results.csv.gz",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/query_level_results.csv.gz",
+      "bytes": 474155,
+      "sha256": "d7a322fd3d097ebd28bfdd0c8477358bd5638da1c56cbc62238195da19854554"
+    },
+    {
+      "path": "data/frozen/partition_sensor/query_observations_all_channels.npz",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/query_observations_all_channels.npz",
+      "bytes": 5143204,
+      "sha256": "9543203efb87b62b7e461a58f75e4d87fcb4e8e3fc5c45dc1d8228efd43495fb"
+    },
+    {
+      "path": "data/frozen/partition_sensor/run_level_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/run_level_summary.csv",
+      "bytes": 66190,
+      "sha256": "0eb471db1046723cb7466789f498a867cfa2787ae864cddf3d7db33d92338ba2"
+    },
+    {
+      "path": "data/frozen/partition_sensor/sensor_allocations.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/sensor_allocations.csv",
+      "bytes": 92545,
+      "sha256": "3ec572828eec9dbc13ac6c47c0dad325229115a2c555387b497eaee0a17a9920"
+    },
+    {
+      "path": "data/frozen/partition_sensor/summary_tidy.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/summary_tidy.csv",
+      "bytes": 49230,
+      "sha256": "a56f5a96bcd9ed5046b0994111bd4167e14be61b10ed505199aeed5640b7597e"
+    },
+    {
+      "path": "data/frozen/partition_sensor/train_test_splits.csv",
+      "source_record": "results/reviewer_closure_20261010/partition_sensor/train_test_splits.csv",
+      "bytes": 27921,
+      "sha256": "39c53d953408daacca1d056a78a10215bcc93ef394df58d1da4f49fd411c10d5"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/all_run_accuracies.csv",
+      "source_record": "results/E4_mean_std_20260909/all_run_accuracies.csv",
+      "bytes": 37681,
+      "sha256": "edf48fb01b33f449f4e358bdb3da345c0e1018f8d93483f8b9a819904a944774"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_all540_manifest.json",
+      "source_record": "results/E4_mean_std_20260909/classical_all540_manifest.json",
+      "bytes": 35347,
+      "sha256": "6aa2ea25aab15d5607076cddf7e20d53c83982c248d77ec2cd551004c0edafdf"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_all540_predictions.csv.gz",
+      "source_record": "results/E4_mean_std_20260909/classical_all540_predictions.csv",
+      "bytes": 1194141,
+      "sha256": "c35b6e1ac2b187cf5282d03eeda2085e3a4f92099e2eb26e1acf7547c960f3f8",
+      "encoding": "gzip"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_all540_results.json",
+      "source_record": "results/E4_mean_std_20260909/classical_all540_results.json",
+      "bytes": 122687,
+      "sha256": "575572f7d76770c2acdc0758161195a729f4d453bd2b5121faf945f1b8aca4f7"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_main90_manifest.json",
+      "source_record": "results/E4_mean_std_20260909/classical_main90_manifest.json",
+      "bytes": 30885,
+      "sha256": "29e717d10b9bf6450a73bbbda759aab133267642a58bd4fe6fb0d7f9f6b14881"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_main90_predictions.csv.gz",
+      "source_record": "results/E4_mean_std_20260909/classical_main90_predictions.csv",
+      "bytes": 111431,
+      "sha256": "6265c043b5b3552f8508e2c8b6360fad61505e6c79b638c85b46093e4a33023e",
+      "encoding": "gzip"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_main90_results.json",
+      "source_record": "results/E4_mean_std_20260909/classical_main90_results.json",
+      "bytes": 74993,
+      "sha256": "b1f826e2b635134f65130e91ea25bd29e3e9262311a7213338f64dc4046e11e5"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_run_accuracies.csv",
+      "source_record": "results/E4_mean_std_20260909/classical_run_accuracies.csv",
+      "bytes": 34356,
+      "sha256": "5f333405357ee074a28bac625c7fd1890d4c61a27b55e85480af854b456595df"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/classical_verification.json",
+      "source_record": "results/E4_mean_std_20260909/classical_verification.json",
+      "bytes": 1115,
+      "sha256": "530bc04d241cd7f750f8fee04493c9ca0ef11442aee6c7315a16d4db7a63e59a"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/gnn_independent_verification.json",
+      "source_record": "results/E4_mean_std_20260909/gnn_independent_verification.json",
+      "bytes": 265310,
+      "sha256": "e9d8bb9440e12368e1d7227e1acbcc4e9a9c7f565f5688ffb5b5d5fb2c09b170"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/gnn_manifest.json",
+      "source_record": "results/E4_mean_std_20260909/gnn_manifest.json",
+      "bytes": 699099,
+      "sha256": "238bbc9e8db4ff97cf00391a80a854b5698a46e22ade5081abf1fb4fd1ef4409"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/gnn_repeats_results.json",
+      "source_record": "results/E4_mean_std_20260909/gnn_repeats_results.json",
+      "bytes": 9177599,
+      "sha256": "43d4c363f79dbda4758ef8adfb5ffcb420dd54e0db6e12df86f2c729e617f5f7"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/input_manifest.json",
+      "source_record": "results/E4_mean_std_20260909/input_manifest.json",
+      "bytes": 3312,
+      "sha256": "5b9a2f6b50c80e0b5c75800db24e6a0eb321a7db2e17ec1a5a4f069a032e5f2c"
+    },
+    {
+      "path": "data/frozen/repeated_benchmarks/query_manifest_90.csv",
+      "source_record": "results/E4_mean_std_20260909/query_manifest_90.csv",
+      "bytes": 5348,
+      "sha256": "47042938e2d16b8c0875de6dd0123b473baaee9fb93f4f30735d88098b32918b"
+    },
+    {
+      "path": "data/frozen/strict_engine/frozen_design.json",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/frozen_design.json",
+      "bytes": 10861,
+      "sha256": "1e82c6c53405c25d5b65333c22a74fce88090f374040b4bdf112ffdb82873101"
+    },
+    {
+      "path": "data/frozen/strict_engine/frozen_scenario_documents.json",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/frozen_scenario_documents.json",
+      "bytes": 931618,
+      "sha256": "c1984e2c0dedb59c39c3a6c366adc0829e0d121afa5e9996f93f14bc1bec1f58"
+    },
+    {
+      "path": "data/frozen/strict_engine/frozen_scenario_vectors.npz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/frozen_scenario_vectors.npz",
+      "bytes": 765666,
+      "sha256": "f0fd81355bc5a0c12ccc137c6c59cabd492a3c6985b5fd7e17fec22039920c32"
+    },
+    {
+      "path": "data/frozen/strict_engine/holdout_by_seed.csv",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/holdout_by_seed.csv",
+      "bytes": 10977,
+      "sha256": "07d5891a1bc97db3421b030b4de9c12955fe12a64a769d993d4ce8f873bfc448"
+    },
+    {
+      "path": "data/frozen/strict_engine/holdout_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/holdout_summary.csv",
+      "bytes": 3875,
+      "sha256": "d1b752076948f1224e2c8c08d349b2f854732b0af6358e2119ca1e155f4fb843"
+    },
+    {
+      "path": "data/frozen/strict_engine/independent_output_audit.json",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/independent_output_audit.json",
+      "bytes": 651,
+      "sha256": "9c56bc1ce6f6c70a94d08001ba6c16c377cfe3320fc5e84c00107aefbaefa00f"
+    },
+    {
+      "path": "data/frozen/strict_engine/integrity_checks.json",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/integrity_checks.json",
+      "bytes": 4716,
+      "sha256": "cb1d9f0566b5801cfba204616375da9091a64ec7822c073481a1b64a6ff376f4"
+    },
+    {
+      "path": "data/frozen/strict_engine/legacy_attribution_by_seed.csv",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/legacy_attribution_by_seed.csv",
+      "bytes": 9023,
+      "sha256": "cd1d8c726acac3306db20249a7440f267d07322b16e1c10d03e18fdde8c05956"
+    },
+    {
+      "path": "data/frozen/strict_engine/legacy_attribution_predictions.jsonl.gz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/legacy_attribution_predictions.jsonl.gz",
+      "bytes": 1032526,
+      "sha256": "1e8e49340866394aac9cba818f7aecf9b0b3f717222a2f130c0f57050c1efbb1"
+    },
+    {
+      "path": "data/frozen/strict_engine/legacy_attribution_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/legacy_attribution_summary.csv",
+      "bytes": 2987,
+      "sha256": "cdd0f3456e5dbeac387a52726f1687ae4f7de6f0c79df6356dc2075d3ae8eced"
+    },
+    {
+      "path": "data/frozen/strict_engine/predictions.jsonl.gz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/predictions.jsonl.gz",
+      "bytes": 5491558,
+      "sha256": "87f33c157db4a9d8eb7dee9620001b7722967378b6f3faf8d55c4dfbe2aa3a13"
+    },
+    {
+      "path": "data/frozen/strict_engine/query_observations_embeddings.npz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/query_observations_embeddings.npz",
+      "bytes": 4466873,
+      "sha256": "d00b6df9b7221ef802677a2c3f87e0bcc8d1fbf8a0cb252d19a1c15a0f5af5eb"
+    },
+    {
+      "path": "data/frozen/strict_engine/retained_community_embeddings.npz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/retained_community_embeddings.npz",
+      "bytes": 2016330,
+      "sha256": "fd0cc460be174966cf8351a8c34ef8bc2b6ab523523c9a132250f26bd7827594"
+    },
+    {
+      "path": "data/frozen/strict_engine/retained_provenance.jsonl.gz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/retained_provenance.jsonl.gz",
+      "bytes": 2924407,
+      "sha256": "ff07905a29456eb3bf5389838bc5a9f6c132df31d2de6cc0e8abedd0211c7677"
+    },
+    {
+      "path": "data/frozen/strict_engine/sensitivity_by_seed.csv",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/sensitivity_by_seed.csv",
+      "bytes": 56938,
+      "sha256": "e456990c9566f6ed2a4068a5e2c525bd9d9b27a743a641f94c67cd84e9228e7f"
+    },
+    {
+      "path": "data/frozen/strict_engine/sensitivity_predictions.jsonl.gz",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/sensitivity_predictions.jsonl.gz",
+      "bytes": 3771064,
+      "sha256": "0c8689e389878f2ea535dc8e4ec70980ee5f2dec8ba6b71774bcb1de44f97ca9"
+    },
+    {
+      "path": "data/frozen/strict_engine/sensitivity_summary.csv",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/sensitivity_summary.csv",
+      "bytes": 19001,
+      "sha256": "f8fa108ee7443256724a5dddf96178bbdea186cff275b426adca1f7814969934"
+    },
+    {
+      "path": "data/frozen/strict_engine/source_manifest.json",
+      "source_record": "results/reviewer_closure_20261010/strict_engine/source_manifest.json",
+      "bytes": 2255,
+      "sha256": "21c0dc9cebbc022d7b37af68593ff4ec320bcaeabaa41488f14bfda529fe5973"
+    },
+    {
+      "path": "data/reference/community_summaries.json",
+      "source_record": "knowledge_base/community_summaries.json",
+      "bytes": 15170,
+      "sha256": "1752c07409094abffb3d8ee72e99ad96a5d1a48e0f2381ebb4b6d394694e8bc7"
+    },
+    {
+      "path": "data/reference/partition_adjacency.json",
+      "source_record": "knowledge_base/partition_adjacency.json",
+      "bytes": 3622,
+      "sha256": "ef0a8c84d270fa5b47c34a47754f0cb25a660cec3e54e1aa4a852b2462713034"
+    },
+    {
+      "path": "data/reference/partition_summary.json",
+      "source_record": "partition_results_leiden/partition_summary.json",
+      "bytes": 200081,
+      "sha256": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5"
+    },
+    {
+      "path": "data/reference/partitions.pkl",
+      "source_record": "partition_results_leiden/partitions.pkl",
+      "bytes": 60215,
+      "sha256": "e1542ff48a6e360eeaa8cb750ae4a9957c6853fdd16e8fdbc5b72e8ad7a5b184"
+    },
+    {
+      "path": "data/reference/scenario_summaries.json",
+      "source_record": "knowledge_base/scenario_summaries.json",
+      "bytes": 931618,
+      "sha256": "a1e3e9387fc61b10ae5d021925b255191d6a0932bb3ac2899e0a21c9592317f5"
+    },
+    {
+      "path": "data/reference/sensitivity_matrix.npz",
+      "source_record": "exp_sensitivity_matrix.npz",
+      "bytes": 305176,
+      "sha256": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d"
+    },
+    {
+      "path": "data/reference/sensor_fingerprints.json",
+      "source_record": "knowledge_base/sensor_fingerprints.json",
+      "bytes": 570611,
+      "sha256": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2"
+    },
+    {
+      "path": "data/reference/sensor_placement.csv",
+      "sha256": "c4cd5f37134d5bacaa1c28d8e81fdfe7303eb722c4a3f410c3491c1f0e8b9399",
+      "bytes": 2208,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "data/reference/sensor_summary.json",
+      "source_record": "sensor_results/sensor_summary_20260320_180216.json",
+      "bytes": 2423,
+      "sha256": "539cabb122f5933e8d6b9cdd44a9957ca93993340b5552f3cf565c75e612b5fb"
+    },
+    {
+      "path": "data/reference/topology_index.json",
+      "source_record": "knowledge_base/topology_index.json",
+      "bytes": 8059,
+      "sha256": "64378ee5309df8b9931685d3020cdf9ac287aaecc7993abb00dc06d8cb37b091"
+    },
+    {
+      "path": "reproducibility/figure_table_map.csv",
+      "sha256": "4409b12c78bd350c54e4b2c336d630650a1f500a6ba0c06a4a07b71352ebe671",
+      "bytes": 47641,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "reproducibility/queries/reference540.csv",
+      "sha256": "45e84fdcd435ac27083fd564a4684da8d44eb064b78b96322e34b34b0ec14f8c",
+      "bytes": 32241,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "reproducibility/splits/node_selection.json",
+      "sha256": "a42bc8cf92b7fc58e262410974167f011023ec43907350ceabd11f550454c807",
+      "bytes": 487,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "reproducibility/splits/partition_sensor.csv",
+      "sha256": "39c53d953408daacca1d056a78a10215bcc93ef394df58d1da4f49fd411c10d5",
+      "bytes": 27921,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/artwork/Fig3_partition_maps.pdf",
+      "sha256": "9659e02e9788d9575ae7a500d0b5d4064764934487dc3e39435da62346476c65",
+      "bytes": 148832,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/artwork/Fig3_partition_maps.svg",
+      "sha256": "2df38b2016f75c36d2040af54ddfb30555f03196a21f875a3777f8a8f2e3f8c9",
+      "bytes": 994380,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig1_current_caption.txt",
+      "sha256": "d7e4e354409e7249c625d3fa2b4f7fb7cf440c6d72c85e85fbd538b4cc89f036",
+      "bytes": 2348,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig2_current_caption.txt",
+      "sha256": "d8ad508bf301fc5e24b4b69b6ec75d572db6fd14143720b3ea0cc8f233dd4590",
+      "bytes": 2870,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig3_current_caption.txt",
+      "sha256": "de466984b2f8f7cb59bf67a5def09aff1a5d1d4cf2c7f25cc8a3a7f2d0fb72e1",
+      "bytes": 1054,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig4_current_caption.txt",
+      "sha256": "ad59170715f376aef1e0a112c32129286767af9f0e5ad55e076cc36b2c9dc583",
+      "bytes": 1849,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig5_current_caption.txt",
+      "sha256": "b20b997302f6b8a399feab7ba37f8da940c51bde1f5f650a4a518a2a45a86830",
+      "bytes": 1810,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig6_current_caption.txt",
+      "sha256": "c56bf7c14c52da906cc897c4449f2351336e8e6a21d8d7b4dd797b5268873b99",
+      "bytes": 2200,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/Fig7_current_caption.txt",
+      "sha256": "662562ecf95441d0e12ebb71585c88a6d1713c4cf79bdc7ff18081253b348cb0",
+      "bytes": 1821,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS1_current_caption.txt",
+      "sha256": "70e0f441215c41f96a6af1c07f6422adb925de25d1f2a38d4b5e5df7859aa1b6",
+      "bytes": 1286,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS2_current_caption.txt",
+      "sha256": "eef313ba4f88328ea09de5cde13597150a26508d125767a88882fccaa543092a",
+      "bytes": 1513,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS3_current_caption.txt",
+      "sha256": "f415e51ccbcaaccbd802fa057b1866948e56b53b872038b2ec007f472dafdfcb",
+      "bytes": 1900,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS4_current_caption.txt",
+      "sha256": "711ac0d2a1f3094f21b26417ed6e6927cea8e1c2b8abc6f8b4ab3e1a919d09ef",
+      "bytes": 1700,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS5_current_caption.txt",
+      "sha256": "661f07952cb570421fd26cffcd075177cd268a7601f89148f9d959b1079a114a",
+      "bytes": 1935,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS6_current_caption.txt",
+      "sha256": "ca269a5a5dc4e1f5c58aa81237dbee0aa7d5f49479c9001037ee7d08bf0012d0",
+      "bytes": 1365,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/captions/FigS6_standalone_caption.txt",
+      "sha256": "d2103048b6674e9308dbc0e69fffc6a03e61b07536eeb43ebae0e1f4559b3f78",
+      "bytes": 1935,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_input_manifest.json",
+      "sha256": "65c761eb48cff66a319830e4476197b8d896bdccc9ebd59019c569f1fe8c0436",
+      "bytes": 13035,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/0829/figure_redesign_20260912/qa/Fig7_data_checks.json",
+      "sha256": "1ef4b8a842b4a8c4046e78dbf9263e817caf59155e44af6c3d4cc6bfedccf73c",
+      "bytes": 1299,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/0829/SI_new_tables/TableS11.txt",
+      "sha256": "b0a27387acd8132a668eaeda7abd6ea06555e44cf392f26de7c381120e995036",
+      "bytes": 11872,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/dataset/Exa7.inp",
+      "sha256": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+      "bytes": 51941,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/exp3_results.json",
+      "sha256": "e613ed3ecc00f1b514aa6a551eb3ecd7e901ca00ecb9205e8980e67b4d3d6fd1",
+      "bytes": 5388,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/expA1_v2_results.json",
+      "sha256": "b2c9459e869da932abba4f1f2ab4a49c588b9786e6f31691dd8655313e53ff40",
+      "bytes": 4186,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/expA1b_results.json",
+      "sha256": "eba1d0a880cbcdb796b03d3b0ec9bb0192edf7e46a96d2eb90f202dd48eeee6f",
+      "bytes": 1059,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/expA2_results.json",
+      "sha256": "223c94c75953d8170f6e700009bc05a48eaa44fa07981196b732019568e3adac",
+      "bytes": 4432,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/expH_engine_results.json",
+      "sha256": "d0763a466258b03d4cc4804bff251e9ae4257e850b148bf001c52ca5c219c617",
+      "bytes": 870070,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/expH_llm_results.json",
+      "sha256": "630db5abe920d6904046c34c7419519f93bdfe5343d5b1d40aa3fadfab8a20aa",
+      "bytes": 2159,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/expH_physics_baselines_results.json",
+      "sha256": "e5b5c416368465267e3084104ec0edfc6757dcd5b394d8b8b376b167fffccd2b",
+      "bytes": 351374,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig2/assets/centrifugal_pump.png",
+      "sha256": "95dacebfafabfcc2b86935ca69471a08859186ae1a22415e5bd01470e12d2827",
+      "bytes": 719887,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig2/assets/document.png",
+      "sha256": "f41dc9f368e94d6a688cf5070c8a49263ed7b910eb8552340c167588eb253ba4",
+      "bytes": 367067,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig2/assets/knowledge_layers.png",
+      "sha256": "893e4aa5322bdd80b524fbc25ee2c941982eb97b292a1f17216d08102c520708",
+      "bytes": 550741,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig2/assets/pressure_sensor.png",
+      "sha256": "be9a3a4d93faec66c976e03c9a46ea1031ade355a658232fca5e47d621d49418",
+      "bytes": 363714,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig2/assets/water_tank.png",
+      "sha256": "f042d3ab451a300b0e3caa4a79e874634118054ac3f584ddea223b9ec704ce31",
+      "bytes": 345532,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig2/source_data/sensor_fingerprints.json",
+      "sha256": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+      "bytes": 570611,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/fig3_sensor_assignments.json",
+      "sha256": "1e6c93e121cc192e3dc1e54c1e7dfc663cae18b795199eb877d8b3c29c8c3876",
+      "bytes": 1278,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/hydraulic_robustness/design.json",
+      "sha256": "56f15cf9c435f71543db1a06804a609a8ca21e7a9140808724d607220b3de3a2",
+      "bytes": 18207,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/hydraulic_robustness/seed_summary.csv",
+      "sha256": "78d44e29c2f73801831ab1b533104b2b22044e3c50f3d0b84e43921301282bb5",
+      "bytes": 503215,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/hydraulic_robustness/summary.csv",
+      "sha256": "35e525773eacf9ed46ead97f675e91d3cc72ad298b7a9db833f9a641428efd79",
+      "bytes": 189143,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/knowledge_base/partition_adjacency.json",
+      "sha256": "ef0a8c84d270fa5b47c34a47754f0cb25a660cec3e54e1aa4a852b2462713034",
+      "bytes": 3622,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/knowledge_base/sensor_fingerprints.json",
+      "sha256": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+      "bytes": 570611,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/partition_results_leiden/partition_summary.json",
+      "sha256": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+      "bytes": 200081,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/partition_sensor/partition_stability.csv",
+      "sha256": "6c8e52b7e77b058712f268e939ad96995cce3fa204d7094a4794844b440497a8",
+      "bytes": 8543,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/partition_sensor/partition_structure_summary.csv",
+      "sha256": "1ef7038aa4181a4e425fd36b925acd98e329e4f978ba8974cfaab471283d55d6",
+      "bytes": 11792,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/partition_sensor/run_level_summary.csv",
+      "sha256": "0eb471db1046723cb7466789f498a867cfa2787ae864cddf3d7db33d92338ba2",
+      "bytes": 66190,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/Fig4_all_plotted_cells_and_runs.csv",
+      "sha256": "562cfb8845955393a01e13260d6d6a3a54af695957ba0a1c7be5f8b0151bb725",
+      "bytes": 37961,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/Fig5b_paired_differences.csv",
+      "sha256": "ea743b1ee239e8421d6850d6de5ddc3031b3fb8e4d1b83567c1e2a3bba678347",
+      "bytes": 604,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/Fig6_legacy_plotted_values.csv",
+      "sha256": "1d84c9ecff0ad0a449ee64eaedb3fae4f43e38cbd500569e3b2e4f2e2e09cfde",
+      "bytes": 6198,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/holdout_summary.csv",
+      "sha256": "d1b752076948f1224e2c8c08d349b2f854732b0af6358e2119ca1e155f4fb843",
+      "bytes": 3875,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/sensitivity_by_seed.csv",
+      "sha256": "e456990c9566f6ed2a4068a5e2c525bd9d9b27a743a641f94c67cd84e9228e7f",
+      "bytes": 56938,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/sensitivity_summary.csv",
+      "sha256": "f8fa108ee7443256724a5dddf96178bbdea186cff275b426adca1f7814969934",
+      "bytes": 19001,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/plot_tables/TableS6_paired_tests.csv",
+      "sha256": "56bdecec4f529a6a85d14c70057459fc7c5242a7706907f1c4377178e29f3698",
+      "bytes": 859,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E4_mean_std_20260909/all_run_accuracies.csv",
+      "sha256": "edf48fb01b33f449f4e358bdb3da345c0e1018f8d93483f8b9a819904a944774",
+      "bytes": 37681,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E4_mean_std_20260909/classical_all540_predictions.csv",
+      "sha256": "a66570165df716ccfa7b31aee14dc34da5a72d3c1e1ac939e367caabb84cb2cd",
+      "bytes": 788126,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E4_mean_std_20260909/Table_S3a_matched90.tsv",
+      "sha256": "e9b93233198a708d4b88ad03bebe018ea9f60a646c880d48d65732ac8c48f6fa",
+      "bytes": 849,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E4_mean_std_20260909/Table_S3b_all540.tsv",
+      "sha256": "fa0ea476c4c17acbb21361611a0a716295886a1db4ed2ad9063393e7f4d308bb",
+      "bytes": 1130,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E5_design_curve_20260909/e5_g2_top1_pairwise.csv",
+      "sha256": "762d174727b6a40ab013edf88d8f1b5fae00f0deaf9b15467995523f3a67d2e1",
+      "bytes": 2160,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E5_design_curve_20260909/e5_h0_draws.csv",
+      "sha256": "21d8d4aa0f3b2a8bda11e76c519441cdd2de8847cf3be47bf8329f3b4750a99d",
+      "bytes": 13442,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/results/E5_design_curve_20260909/e5_h0_summary.csv",
+      "sha256": "0885ed8a1e7f4a16c6524822053e6b93a434a70cb4d4ab2c6b572d65b02b8ca1",
+      "bytes": 4191,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/sensitivity_standalone/strict_engine_sensitivity_by_seed.csv",
+      "sha256": "e456990c9566f6ed2a4068a5e2c525bd9d9b27a743a641f94c67cd84e9228e7f",
+      "bytes": 56938,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/sensitivity_standalone/strict_engine_sensitivity_summary.csv",
+      "sha256": "f8fa108ee7443256724a5dddf96178bbdea186cff275b426adca1f7814969934",
+      "bytes": 19001,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_inputs/strict_engine/cross_audit_hydraulic_final.json",
+      "sha256": "3b925e610c3568ad684d24c2383a43c0a77fff79c77a6b3ff91213a3c2b8658a",
+      "bytes": 53963,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/figure_replay_verification.json",
+      "sha256": "40c34f7e61d9f2ba8cf4472cb9224842560033dec91d7d45d4e94f97228b09f0",
+      "bytes": 8267,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_table_manifest.json",
+      "sha256": "34180f4c238f45682405895efc50caa259764baac06e34f83da9cbae88fa415f",
+      "bytes": 9707,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM10_language_gate.csv",
+      "sha256": "640614194bec9f18b5c49a1c3d531980122c5bd6f3a6845f6db432a9e0be2f87",
+      "bytes": 2239,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM10_language_gate.json",
+      "sha256": "2ab159e6c9f602a26b706104a422adf7f0744e8b8f0affaca2ba07e7c31e9bc2",
+      "bytes": 3064,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM2_sensor_settings.csv",
+      "sha256": "657b5757b9c5459b939415a8ad22843928bdf019a11506c27010084383c9ceff",
+      "bytes": 486,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM2_sensor_settings.json",
+      "sha256": "9ecde669c52c1584be6106c63306d6b67988cf573eee382922e27c82c2297843",
+      "bytes": 1219,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM4_text_embedding.csv",
+      "sha256": "9034fb148ca09f8855b6133134469bdf8b0264be34be939b33933fbdd9977fdb",
+      "bytes": 2460,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM4_text_embedding.json",
+      "sha256": "1bf2647918a285e7ccc7bde3691b1d8333dffdf1538afb2036dae7e9f412c486",
+      "bytes": 3279,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM5_scoring.csv",
+      "sha256": "ccc548869a83e05ee1a6983c5f97e162b18c9e4066071cec9bd56766c2490428",
+      "bytes": 1940,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/SM5_scoring.json",
+      "sha256": "ef1fc183357cf83aa5459dc5aa7e3751d1c9deff9d0e467a8e007dc2898ce26d",
+      "bytes": 2791,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS1.csv",
+      "sha256": "c6ca4bec535ca6230bf05a634748ba413e627455014a6b321ce33f19cdd0cc02",
+      "bytes": 348,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS1.json",
+      "sha256": "83b1799740b0b5977c3dbfc9c24b829173783e55b9af0f286271bdeae76965ea",
+      "bytes": 1439,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS10.csv",
+      "sha256": "72007aa0ca42c4156110c6ece5ba67c137a3009d47dde89f77af6dde17b79d3c",
+      "bytes": 166,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS10.json",
+      "sha256": "87a9810bef7410928780850c037d77e3e3181742f72907c46434ac03055fa7dd",
+      "bytes": 1443,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS11.csv",
+      "sha256": "98fbac6bf6cb717837e31bdbc921292eba32dd93d1aa0ad2e503ffa8e45c4afe",
+      "bytes": 689,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS11.json",
+      "sha256": "1e9c88153444ed46f0065c8dc3b00e6ec977f1e46977880fdf0f0de606a6c42b",
+      "bytes": 3049,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS12.csv",
+      "sha256": "32cf98c4bbc8def3b306aced280735b4c6d6bfed608a6c52b8eca295216980f0",
+      "bytes": 511,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS12.json",
+      "sha256": "4c985b8560d2e980e5a23123d4ad9b19adafc7f4c5d12fba85902a40b3eb70e4",
+      "bytes": 2548,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS13a.csv",
+      "sha256": "027d64166497fdee5a0a95d6844aa237065398093e0a819ae4eee3e76a0fd952",
+      "bytes": 2012,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS13a.json",
+      "sha256": "24e771c2c27d8572529d0f5ecf3d39d4eff1f6f9fd2299afd155543debbf3e23",
+      "bytes": 4634,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS13b.csv",
+      "sha256": "c2d9ea54d26489f87f6c0d29f9832a12968362d04ec5c6cb38d9eea6547e9b73",
+      "bytes": 2013,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS13b.json",
+      "sha256": "8eb41bb73db3e987cdb13d0153375d6c8a91c633b462a8ba050527d59c46f5f2",
+      "bytes": 4644,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS14.csv",
+      "sha256": "947d81192f9fca4cf4782bc0cd8b3456aaa5e900c98723ff171a28313bdf190f",
+      "bytes": 835,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS14.json",
+      "sha256": "1bf6a77aad2153689f27781e31b2bbf2c6929fbde699cba02da261c2428ddedd",
+      "bytes": 2709,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS15a.csv",
+      "sha256": "293eda6bd14abdc02c07542b710affb75e2caf73cfefb42eff535115b2e63180",
+      "bytes": 821,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS15a.json",
+      "sha256": "9f5f583d7c92745074cc0d5d01996bac6d655ffd779c73b67e20e81710d2e000",
+      "bytes": 2556,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS15b.csv",
+      "sha256": "e04c1e5a6c519688a3b66220842eed079809a5b46fb657048172c287d02ceca2",
+      "bytes": 814,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS15b.json",
+      "sha256": "cc66aed6639017f4bc0a0520763809959b6d72337e82cff7f6153186e638e73e",
+      "bytes": 2765,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS16.csv",
+      "sha256": "b6455a4de873440014c5aebc79e0d5fc76acf9cee36aa123433c5b674665b387",
+      "bytes": 2307,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS16.json",
+      "sha256": "124fb34e9604391e4de008dfe2e8f89dbbcda31f94439e6b915e819f88fdbc67",
+      "bytes": 5993,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS17.csv",
+      "sha256": "9afe8ebb9d5d93fbf0d7f2aafe6f0f06fef4b13be8b7cfa2700e17c96f683dfa",
+      "bytes": 399,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS17.json",
+      "sha256": "b38a99e3f9350e19203450f79750791d32d236b1d422566876f29dd0c96e8300",
+      "bytes": 2585,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS2a.csv",
+      "sha256": "b8e9742566a5e8759a78304dcfe22a52b6e51af8b2886c1b37ead9fcb6d7417b",
+      "bytes": 869,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS2a.json",
+      "sha256": "ed5dee5a203bb0a3c701bd627194bb81a396dcc1d1477c1067d338c7ecc9d9e0",
+      "bytes": 2112,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS2b.csv",
+      "sha256": "f45151f3dcf499f039d2f8e4cf0865d3117b0f6e187ff18bd277f038109bd2fa",
+      "bytes": 1120,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS2b.json",
+      "sha256": "cc20e4f10cac80d7cc8574d6ec6a43fe91b7581f744d4cfa7f079cbdc0d3a6e6",
+      "bytes": 2610,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS2c.csv",
+      "sha256": "b7761ee1bbb6c36ee9e916f406f4cb964aebb5bbd73f7d1ab52c8e87c6ca5435",
+      "bytes": 2230,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS2c.json",
+      "sha256": "8f86ba77da45771034ab00f7d946f2afddd2c1892613637dee1adfe7e6544fad",
+      "bytes": 3099,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS3a.csv",
+      "sha256": "96862d7e1e8a99bb2911217548c049ad1d1621b1f5b68e3cb373e825b59585aa",
+      "bytes": 194,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS3a.json",
+      "sha256": "83cad66333d6952c26304d4e058482f1924d4121f022d678a5b7b82f278fc4ab",
+      "bytes": 1285,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS3b.csv",
+      "sha256": "2b70d59b5ca90acac3209097f22c6dcee5041ce7f695e8ef7063ba40da248378",
+      "bytes": 466,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS3b.json",
+      "sha256": "a396fa08fb03b430bb78b15f748277caa9bc6aa028216c1d1878bced11727e77",
+      "bytes": 2310,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS3c.csv",
+      "sha256": "ec75d4601f6d4636f754ac7ea7fc189d2e627ba50ba048353de6ae36fcda306f",
+      "bytes": 565,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS3c.json",
+      "sha256": "e1d23b997a3db9f43ecf139efdf6b6e9bc01b89e7cbf3d8bc5a2d1586e46daa9",
+      "bytes": 1983,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS4.csv",
+      "sha256": "088016c618a0bdf5084c286e9e2737f7ba6df0fb8c6f8c8796002dee2a59eb24",
+      "bytes": 1507,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS4.json",
+      "sha256": "a67ee3942f73015d6d059735d01e040c6bf24d8ebefc4da55a8c54b3a4b6e145",
+      "bytes": 4611,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS5.csv",
+      "sha256": "ba6ec6bda7a7e93143f5e8d96b9f8916ba142e90403167d2fecef1de3657e31c",
+      "bytes": 753,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS5.json",
+      "sha256": "bafbbd1e217b9ae222fc80b3e92a8d4da6bfc5541a5e6e7e7b83d6538cc2239f",
+      "bytes": 2898,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS6.csv",
+      "sha256": "08de46f2fb304a5cc616d7562f299cce2fbac88a7230ba50d4aac6f8accf7bda",
+      "bytes": 847,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS6.json",
+      "sha256": "dc441724a63d82f0bce4e860c3b966ab2e807ac08bfa9a6baab0eb72500574a9",
+      "bytes": 2924,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS7.csv",
+      "sha256": "602c885648bc867ec5e8029fdbce2ec7b60d6d6373718f2400fc7debd90cc291",
+      "bytes": 482,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS7.json",
+      "sha256": "ee7c1190207d40ae4944fb24f8045b436174e8ee1a2f61701f6a8e3f50510349",
+      "bytes": 2428,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS8a.csv",
+      "sha256": "58576360e37d57c51a9ffd35a6ee5c092634689fb7faecd38b2dfcfa734bf1c8",
+      "bytes": 217,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS8a.json",
+      "sha256": "02c2885c608b5bda68908e931c80250e893b2c61ff526333e9842b59b8a8fc0c",
+      "bytes": 880,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS8b.csv",
+      "sha256": "c8c39b989a0edd2125fdb16fb490d0985d8862060bcbf725af627b2d5d7b1f43",
+      "bytes": 492,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS8b.json",
+      "sha256": "713dbc84055a31eb50593639069599aeba258148341b754031a929419a67ff2c",
+      "bytes": 1416,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS9.csv",
+      "sha256": "aa058dd9275ed063a365114904dbc7f9d23f483771a84eeb04eebf239e340c8a",
+      "bytes": 709,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/manuscript_tables/TableS9.json",
+      "sha256": "0a30821bbc4fa7618bf298a7baae76f686b0fcd564baa2a773950a5f7602ed87",
+      "bytes": 2883,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/README.md",
+      "sha256": "d0ef75d038dd024d6f4e0680114d104a2e4d5a3e662d1a9e08914518b4cde23e",
+      "bytes": 5038,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Boundary_interior.csv",
+      "sha256": "f8d27b14c647404cb234215e0b3ce84631938aa986c557270ff614be95a3faba",
+      "bytes": 82331,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Boundary_interior.json",
+      "sha256": "03c5c6913582da91b96865e6309636df1fb913cbb9d072c2ef3a46d8df46281f",
+      "bytes": 450339,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Design_controls.csv",
+      "sha256": "5bb09ccd77951d1ef4fe0006058f7774a751311d43ac9fd269e073ce8e86fb22",
+      "bytes": 46477,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Design_controls.json",
+      "sha256": "92555056fa9497c8a4959f39de899fdbaa3eb72f60cd3a48e2916164662b5409",
+      "bytes": 237880,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Design_per_seed.csv",
+      "sha256": "6177c4920a65f145146bd68986eca6912f1698aaf3471dad825c7b6b817c7b1d",
+      "bytes": 62557,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Design_per_seed.json",
+      "sha256": "b6cd4a92c3afb91839f4fd9bea7e62028dae56647045e884e3a62595cd330495",
+      "bytes": 288932,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4a_TableS2b_540q.csv",
+      "sha256": "f45151f3dcf499f039d2f8e4cf0865d3117b0f6e187ff18bd277f038109bd2fa",
+      "bytes": 1120,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4a_TableS2b_540q.json",
+      "sha256": "06e9098e9e8e122b394da7745344fbfd85124020b136b4866d61193429f1558d",
+      "bytes": 3952,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4abc_per_run.csv",
+      "sha256": "62a02c0157cad3f1aa79d17282a4176688f6f35afeb6af27d1ac708d4923812e",
+      "bytes": 36669,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4abc_per_run.json",
+      "sha256": "806307c87341391b0b3b8be2ccb4e78376bb7047a73fa4ed1b1f2e8a1c4c5ab5",
+      "bytes": 154702,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4bc_TableS2a_90q.csv",
+      "sha256": "9fa6aa5ec042a6be5999e9d3bcc1571ac1db9530d1ed4cc63b87f2d0d773e4a5",
+      "bytes": 836,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4bc_TableS2a_90q.json",
+      "sha256": "306decdc55bc41c07ac820cf18f3bfa630d2ca9a7d4b7952dd28dd6284a6a055",
+      "bytes": 3158,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4d_destination.csv",
+      "sha256": "f1d24e3ddd84eb67b82954f60ec7cff2fc662d37eab2cda36923194cd707ded9",
+      "bytes": 475,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4d_destination.json",
+      "sha256": "c189a8aef2d17c735480a14c583a6b074683bd3ac608f53d4d26d25604ea0588",
+      "bytes": 1732,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4d_destination_per_run.csv",
+      "sha256": "cdd4d753766fc1246105ae76a9afa4e238b25b63d46b3519646db9311f7f5dfc",
+      "bytes": 1186,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig4d_destination_per_run.json",
+      "sha256": "8513449e125f37ee20306fd93e8c961787ab66205126f6901a5f78550695ce3e",
+      "bytes": 4972,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig5_FigS1_draws.csv",
+      "sha256": "758156e1fca0713dad2de62a89d4c963a61d71fc503f8997673d45dd7b09ccf9",
+      "bytes": 12991,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig5_FigS1_draws.json",
+      "sha256": "634268f1ee27130a64046aac01ff858fe40b7d01af3c1afa76db47af9bcc6ae8",
+      "bytes": 51764,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig5_FigS1_TableS3b.csv",
+      "sha256": "a275f40972bb64318f8a970f53dc7ce288f90ffa1bbccb878e50ed1fa978c31a",
+      "bytes": 4388,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig5_FigS1_TableS3b.json",
+      "sha256": "ab9db56cbdb5ec2d819e4955551807f30f95762b42e3ed1aed65f0a69cc8ff98",
+      "bytes": 15383,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig5b_TableS3c_pairwise.csv",
+      "sha256": "6267767d3993173c9ae4201662358ecf2d62276bbfaae904285dd4b9996fd72a",
+      "bytes": 2100,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig5b_TableS3c_pairwise.json",
+      "sha256": "406a962b0ce4317dda1471ae22201a40b2f793bb51700149dc357c01fc4ce688",
+      "bytes": 6711,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6a_TableS5.csv",
+      "sha256": "b214e0d4e99732ae51dec2f949d61cd499ac59bb5c7a72171f84f1afcd3b28e9",
+      "bytes": 721,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6a_TableS5.json",
+      "sha256": "fd04cea9569caefc289f3edf98538f520c6940914db80201d3d1becf01c13762",
+      "bytes": 3445,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6b_per_seed.csv",
+      "sha256": "289a23b665726f63cd5a15f0efe07bee85d807c462d50fb46b755ec0b8ea0f6d",
+      "bytes": 10660,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6b_per_seed.json",
+      "sha256": "93ab56ba6390d1a50888777d3aa872dcb8affecb1e36a011855a1f445368188a",
+      "bytes": 56547,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6b_TableS4.csv",
+      "sha256": "1a6edd6c16201d6093e79ecce7a8d0fd4f094c31ecd2c268622d825557db1aee",
+      "bytes": 3688,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6b_TableS4.json",
+      "sha256": "c0ecdd7dd083722c6a60b08aff0043ef9d3ce083c44da4a23a88a8412898c35a",
+      "bytes": 17431,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6c_TableS6.csv",
+      "sha256": "5c15ad1bee0a8b24dcbedc381a3f5160f292f9d0a4803bbe6922bd9bb79cf9f2",
+      "bytes": 837,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6c_TableS6.json",
+      "sha256": "c179242558e701f01e7e6c9586159edba3fa4382ad173ca2dd141bb5e3ecc13f",
+      "bytes": 3551,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6d_TableS7.csv",
+      "sha256": "d07bcad70c5cc60a6fad9a64a690294f1512426f40e7ecf338dd6f481f22c76b",
+      "bytes": 478,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig6d_TableS7.json",
+      "sha256": "55fad75cadf177db9249c5b751a7791c26713f39871e120b822acdb1fcf29177",
+      "bytes": 2409,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7a_TableS8b.csv",
+      "sha256": "50b4bc570ba43ae9bc8c0e948dfe1375271e3bf7e650b4450ab61a37d07f9d23",
+      "bytes": 484,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7a_TableS8b.json",
+      "sha256": "b52136f85320b35ac275b9b736b071b77fe8c0cf9dc481ba0dcf02622c3b7865",
+      "bytes": 1948,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7b_TableS9.csv",
+      "sha256": "2dc84d2c508425b106f02c9e8162a585fe537ee47e77382287e09fda7d524a98",
+      "bytes": 675,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7b_TableS9.json",
+      "sha256": "a818e871944439d991884dbc1091a7ba27d082bb39857825e702597c64b54786",
+      "bytes": 2871,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7c_TableS10.csv",
+      "sha256": "34cfa713ad60bdf6e76cc96a8091218119850199316eaf1cab630d0d073aa1c6",
+      "bytes": 164,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7c_TableS10.json",
+      "sha256": "441acc584b0890589b971400f4c909d78a4450a08095a1dc73425335da865ada",
+      "bytes": 1000,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7d_TableS11.csv",
+      "sha256": "98fbac6bf6cb717837e31bdbc921292eba32dd93d1aa0ad2e503ffa8e45c4afe",
+      "bytes": 689,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Fig7d_TableS11.json",
+      "sha256": "34e3632a20d90fce76e48b462026f92c7fcf5c4b3fc2af713996f80c7f27a35a",
+      "bytes": 2923,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/FigS2abc_confusion_counts.csv",
+      "sha256": "d7c23b6af46d5f1c5023076363522baa8b736d0f6e3b377e09de914a8989cbc9",
+      "bytes": 6725,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/FigS2abc_confusion_counts.json",
+      "sha256": "053cb0c66041b18153c0d2707d461354538bdf259e317c20792532a9a446c66a",
+      "bytes": 81502,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/FigS2d_adjacent_per_run.csv",
+      "sha256": "a44d7ebf5d263861fc6f89d59684253a63bdc43fab3a2344f4e3ed9f68e789e6",
+      "bytes": 901,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/FigS2d_adjacent_per_run.json",
+      "sha256": "4cb2d86bedd7c4e4239f9853ba6bb77b4564b9c219df297b5e0d1ec6e627e4a1",
+      "bytes": 4041,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/FigS6_TableS16.csv",
+      "sha256": "1bc52fe3db9a2d947975d4669b7b828118a3c0f72c7ca8c03626b9f5a40fcf89",
+      "bytes": 18412,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/FigS6_TableS16.json",
+      "sha256": "27c2f30453a969ad88f355da70c9392742219fbe4db88c1d3ad10bda4f357a8c",
+      "bytes": 76074,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Hydraulic_per_seed.csv",
+      "sha256": "c315223c9e04eccebcdf6f0a2d98f88b06195882b1b2c08ba229516478876106",
+      "bytes": 474300,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Hydraulic_per_seed.json",
+      "sha256": "3420a6d56da1c0c59e3e66714abf0c364e325a2fbd768096b633b967209925ee",
+      "bytes": 2223118,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Hydraulic_service_check.csv",
+      "sha256": "c9e9b7a90ed0837b21e49f39e0debdfc5b61f4fe06ef124dc0dd1ba0a4b1f204",
+      "bytes": 75532,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Hydraulic_service_check.json",
+      "sha256": "3cf1d9b78a867eae0eba4003246a324b98c652bc96572c9b17f603eab17103a5",
+      "bytes": 327419,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Hydraulic_summary.csv",
+      "sha256": "507757ac475ac232094a348821ad29894d0b0dbdf6bbaf6115f215c3224e0958",
+      "bytes": 177625,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Hydraulic_summary.json",
+      "sha256": "e07321d1bd7ef3746d7dc4f712c5b38d8b45a6f795827dda0c9ffcfebc6e04e7",
+      "bytes": 763664,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Partition_geometry.csv",
+      "sha256": "8927519d9cfac6f03e2474e3246a348534fe950df23aef1ab760ac4a337581dc",
+      "bytes": 126562,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Partition_geometry.json",
+      "sha256": "158347bd73efb67699f23e5860bcd3f65e741804f77294ba551c4c3e9ec35512",
+      "bytes": 866383,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Partition_stability.csv",
+      "sha256": "d9696fdf0efb55e9ce79d9eb8956efb1563256520d8d70ffb1632c93c52b5d1b",
+      "bytes": 8171,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Partition_stability.json",
+      "sha256": "c64b31a98d7fec07ff1f3ed9ff46fadb9ccf7f543272405cc7850eac72de60f8",
+      "bytes": 48842,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Partition_structure.csv",
+      "sha256": "d9fc82996fc42cd3450e673672927e49a77d9a80eb60c694ceb608257f98276d",
+      "bytes": 11152,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Partition_structure.json",
+      "sha256": "c3fa87752c9e32a2131301207815a6c75f68d8afc6669f81336c555d11d98d03",
+      "bytes": 62368,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/README.csv",
+      "sha256": "c56d89887db896fa6a386b086bd097a491c36bad3a3109b0a49ab85024d3638f",
+      "bytes": 7404,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/README.json",
+      "sha256": "24d7839e11dbe0e1628f77a01d7ab532acaeada8acfdd2e0b183516d13d9a560",
+      "bytes": 11596,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Sensitivity_per_seed.csv",
+      "sha256": "99e8d54a13fb6b0b181fe971da07e1fe6f4a141921de7e7b99f8007ecbdc6e92",
+      "bytes": 55871,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Sensitivity_per_seed.json",
+      "sha256": "0b68b2e1cca799577973b782cefc297acac6bbaf6bd91e7048ad9379d241b667",
+      "bytes": 256639,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Sensor_allocations.csv",
+      "sha256": "62871214002d58fe4cd80ccbdfa75806a1e04a14096d579a26442ead2cf83912",
+      "bytes": 89694,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Sensor_allocations.json",
+      "sha256": "4d3fad990181522bcc0d1d6b6e47f8d8144d2b716d32837664c83545f0f22bb2",
+      "bytes": 678790,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Strict_H9_attribution.csv",
+      "sha256": "deed5fbd4d73529671c8095d104f53d9565cc5fc6e06972a0aa074638ed8d457",
+      "bytes": 2886,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/Strict_H9_attribution.json",
+      "sha256": "ea06f36f3c315d98f900d3e7e980e7598d643af7a29aef4d9ad8652e55bdaf97",
+      "bytes": 12071,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/TableS12_admissibility.csv",
+      "sha256": "32cf98c4bbc8def3b306aced280735b4c6d6bfed608a6c52b8eca295216980f0",
+      "bytes": 511,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/TableS12_admissibility.json",
+      "sha256": "a56dc3877c603426c4934fd4aed1ca452b4519236e98fcbc8895936b02466c5d",
+      "bytes": 2108,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/TableS17_node_holdout.csv",
+      "sha256": "6585a372aa10f180c977f2b1bda71db30bdd802d5eb9127adfc57f0c3a7376b3",
+      "bytes": 787,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/TableS17_node_holdout.json",
+      "sha256": "b43852cbfc173f4864201ac6c65af428c9569475ad1ba815f2e9fcebe6aecabc",
+      "bytes": 3476,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/TableS8a_direction.csv",
+      "sha256": "58576360e37d57c51a9ffd35a6ee5c092634689fb7faecd38b2dfcfa734bf1c8",
+      "bytes": 217,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/sheets/TableS8a_direction.json",
+      "sha256": "fcab8689cd9e41000dca13e9e74c555dad330ed6ff9812b42f1b621651a35b78",
+      "bytes": 1175,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/workbook_manifest.json",
+      "sha256": "4f8de08b744b735a7a0b57d644e31277dc8f051da6032a26944ed807b378d629",
+      "bytes": 14239,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    },
+    {
+      "path": "source_data/worksheet.schema.json",
+      "sha256": "bdb39e94084c4bf5d4d37bf5e6a263bde961f6d61c883b3e54021e1aff376b3c",
+      "bytes": 1515,
+      "source_record": "Current frozen release asset; see study/workbook/figure manifest"
+    }
+  ]
+}

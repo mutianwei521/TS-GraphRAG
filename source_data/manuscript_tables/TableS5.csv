@@ -1,0 +1,11 @@
+Protocol (deleted),Projection residual,Cosine 1-NN,WLS/NNLS,Mahalanobis,Bayes-marginal,KDE,Graph-regularized 1-NN,Label propagation
+H0 none (closed-world control),88.3,88.9,41.7,76.9,91.3,63.5,88.7,62.2
+H1 exact scenario,87.8,88.3,42.2,75.9,90.0,61.9,87.6,32.4
+H2 leak location,76.7,76.7,37.0,70.7,73.7,59.6,75.4,7.8
+H3 leak magnitude,86.7,87.4,43.0,76.3,90.0,62.6,87.2,61.3
+H4 demand state,74.8,75.6,38.7,70.4,78.1,57.4,74.1,55.7
+H5 location ∪ magnitude,75.0,75.0,37.8,70.6,72.6,59.8,73.9,7.8
+H6 location ∪ state,61.7,61.7,35.4,66.1,59.1,55.6,60.2,8.0
+H7 magnitude ∪ state,74.4,75.4,39.3,70.9,77.6,57.6,74.4,55.6
+H8 location ∪ magnitude ∪ state,61.3,61.3,34.8,66.5,58.3,55.6,59.4,8.0
+H9 true partition (audit),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

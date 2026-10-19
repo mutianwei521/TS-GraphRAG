@@ -1,0 +1,52 @@
+{
+  "id": "TableS3a",
+  "source": "0829/supplementary.docx",
+  "table_index": 9,
+  "preceding_paragraph": "a, Composition of the five corpora, each containing 540 templates. Three demand multipliers (0.7, 1.0 and 1.2) were used for every design. A′ shares A's locations. Query magnitudes are 5, 20 and 50 L s⁻¹ and occur in A but not in A′, C60, C90 or B. A matches the reference allocation shape, but its locations were newly sampled for each draw; it is not the original fixed corpus used in Table S2.",
+  "rows": [
+    [
+      "Design",
+      "Leak locations",
+      "Magnitudes (L s⁻¹)",
+      "States",
+      "Scenarios"
+    ],
+    [
+      "A",
+      "30",
+      "2, 5, 10, 20, 35, 50",
+      "3",
+      "540"
+    ],
+    [
+      "A′",
+      "30",
+      "3, 8, 15, 25, 30, 40",
+      "3",
+      "540"
+    ],
+    [
+      "C60",
+      "60",
+      "2, 10, 35",
+      "3",
+      "540"
+    ],
+    [
+      "C90",
+      "90",
+      "10, 35",
+      "3",
+      "540"
+    ],
+    [
+      "B",
+      "180",
+      "10",
+      "3",
+      "540"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

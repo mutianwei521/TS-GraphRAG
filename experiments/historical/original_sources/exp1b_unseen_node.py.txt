@@ -1,0 +1,249 @@
+"""Historical unseen_nodes computational source; original input locations are listed in dependencies.json."""
+import os, sys, json, time, copy, argparse, warnings, pickle
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import wntr
+
+# --- per-process EPANET scratch space (EPANET writes temp.inp/bin/rpt to CWD by
+#     default, so concurrent runs in the same directory corrupt each other) ---
+import tempfile, uuid as _uuid
+_EP_DIR = tempfile.mkdtemp(prefix='epanet_')
+_EP_PFX = os.path.join(_EP_DIR, 'ep_' + _uuid.uuid4().hex[:8])
+import networkx as nx
+
+KB_DIR, SENSOR_DIR = 'knowledge_base', 'sensor_results'
+INP = 'dataset/Exa7.inp'
+PART_PKL, K = 'partition_results_leiden/partitions.pkl', 15
+NOISE, REF_RATE = 0.02, 20.0
+PERIOD_MULT = {'night_low': 0.7, 'day_normal': 1.0, 'evening_peak': 1.2}
+QUERY_RATES = [5.0, 20.0]
+QUERY_PERIOD = 'day_normal'
+QUANT = 0.25                      # hypothesis magnitude grid (L/s), for simulation caching
+OUT = 'exp1b_results.json'
+
+
+class Simulator:
+    def __init__(self, inp_file):
+        wn0 = wntr.network.WaterNetworkModel(inp_file)
+        self.models, self.base, self.cache, self.n_sims = {}, {}, {}, 0
+        for period, mult in PERIOD_MULT.items():
+            wn = copy.deepcopy(wn0)
+            for j in wn.junction_name_list:
+                for d in wn.get_node(j).demand_timeseries_list:
+                    d.base_value *= mult
+            self.models[period] = wn
+            r = wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(file_prefix=_EP_PFX)
+            self.base[period] = r.node['pressure'].mean(axis=0).to_dict()
+            self.n_sims += 1
+
+    def dp(self, node, rate, period, quantize=True):
+        q = round(rate / QUANT) * QUANT if quantize else round(rate, 3)
+        q = float(max(q, QUANT))
+        key = (node, q, period)
+        if key in self.cache:
+            return self.cache[key]
+        wn = copy.deepcopy(self.models[period])
+        wn.get_node(node).add_demand(q / 1000.0, '881')
+        r = wntr.sim.EpanetSimulator(wn).run_sim(file_prefix=_EP_PFX)
+        self.n_sims += 1
+        lp = r.node['pressure'].mean(axis=0).to_dict()
+        bp = self.base[period]
+        d = {n: lp[n] - bp[n] for n in bp if n in lp}
+        self.cache[key] = d
+        return d
+
+
+def vec(d, sensors):
+    return np.array([float(d.get(s, d.get(str(s), 0.0))) for s in sensors])
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--per-partition', type=int, default=2, help='held-out leak nodes per partition')
+    ap.add_argument('--seed', type=int, default=7)
+    ap.add_argument('--exhaustive', type=int, default=0,
+                    help='run whole-network inversion on the first N queries (expensive)')
+    args = ap.parse_args()
+
+    from phase3_query.leak_locator import LeakLocator
+
+    print('=' * 80)
+    print('EXPERIMENT 1b — unseen leak NODES: can a generative corpus localise what it never stored?')
+    print('=' * 80)
+
+    loc = LeakLocator(KB_DIR, SENSOR_DIR)
+    sensors = sorted(loc.sensor_nodes, key=lambda x: int(x))
+    sensor_set = set(map(str, loc.sensor_nodes))
+
+    fp = json.load(open(os.path.join(KB_DIR, 'sensor_fingerprints.json')))
+    corpus_node_set = {str(f['leak_node']) for f in fp['fingerprints']}
+    ref = {(str(f['leak_node']), f['demand_period']): np.asarray(f['sensor_fingerprint'], float)
+           for f in fp['fingerprints'] if float(f['leak_rate_Ls']) == REF_RATE}
+
+    wn = wntr.network.WaterNetworkModel(INP)
+    n2c = pickle.load(open(PART_PKL, 'rb'))[K]['node_to_community']
+    part_nodes = {}
+    for n, c in n2c.items():
+        if n in wn.junction_name_list:
+            part_nodes.setdefault(int(c), []).append(n)
+    for c in part_nodes:
+        part_nodes[c].sort()
+
+    G = wn.to_graph().to_undirected()
+    xy = {n: np.array(wn.get_node(n).coordinates) for n in wn.junction_name_list}
+
+    # ---- held-out query nodes: not in corpus, not a sensor
+    rng = np.random.default_rng(args.seed)
+    held = {}
+    for c in sorted(part_nodes):
+        pool = [n for n in part_nodes[c] if n not in corpus_node_set and n not in sensor_set]
+        if not pool:
+            continue
+        pick = rng.choice(pool, size=min(args.per_partition, len(pool)), replace=False)
+        held[c] = [str(x) for x in pick]
+    n_held = sum(len(v) for v in held.values())
+    print(f'held-out leak nodes: {n_held} across {len(held)} partitions '
+          f'(corpus stores {len(corpus_node_set)} nodes; network has {len(wn.junction_name_list)})')
+
+    sim = Simulator(INP)
+
+    # ---- ground truth: simulate the held-out leaks (these are the "real" events)
+    print(f'\nsimulating {n_held * len(QUERY_RATES)} ground-truth events...', flush=True)
+    queries = []
+    for c, nodes in held.items():
+        for n in nodes:
+            for q in QUERY_RATES:
+                queries.append(dict(gt_part=c, gt_node=n, rate=q, period=QUERY_PERIOD,
+                                    dp=sim.dp(n, q, QUERY_PERIOD, quantize=False)))
+    import random as _rnd
+    _rnd.Random(args.seed).shuffle(queries)
+    print(f'queries: {len(queries)}  ({sim.n_sims} sims so far)')
+
+    budgets = [0, 1, 2, 3, 5]                      # number of partitions opened for simulation
+    part_hit = {b: 0 for b in budgets}
+    node_hit = {b: 0 for b in budgets[1:]}
+    hop, dist, nsim_used = {b: [] for b in budgets[1:]}, {b: [] for b in budgets[1:]}, {b: [] for b in budgets[1:]}
+    ex_part = ex_node = 0
+    ex_hop, ex_dist = [], []
+    rows = []
+    np.random.seed(args.seed)
+    t0 = time.time()
+
+    for qi, Q in enumerate(queries, 1):
+        obs = {s: round(Q['dp'].get(s, Q['dp'].get(str(s), 0.0)) + np.random.normal(0, NOISE), 4)
+               for s in loc.sensor_nodes}
+        y = vec(obs, sensors)
+        gt_p, gt_n = Q['gt_part'], Q['gt_node']
+
+        r = loc.localize_leak(obs, demand_period=Q['period'], top_k=15, verbose=False, use_llm=False)
+        sc = r.get('final_scores', {})
+        ranking = [int(p) for p in sorted(sc, key=lambda x: -sc[x])]
+        ranking += [p for p in sorted(part_nodes) if p not in ranking]
+        part_hit[0] += (ranking[0] == gt_p)
+
+        row = dict(gt_part=gt_p, gt_node=gt_n, rate=Q['rate'], static_pred=ranking[0])
+
+        best_cache = {}          # node -> (residual, qhat)
+
+        def score_nodes(nodes):
+            out = []
+            for n in nodes:
+                if n in best_cache:
+                    out.append((best_cache[n][0], n)); continue
+                f_ref = ref.get((n, Q['period']))
+                if f_ref is None:                       # node absent from corpus -> bootstrap
+                    f_ref = vec(sim.dp(n, REF_RATE, Q['period']), sensors)
+                nn = float(np.dot(f_ref, f_ref))
+                if nn == 0:
+                    best_cache[n] = (np.inf, 0.0); out.append((np.inf, n)); continue
+                qh = float(np.clip(np.dot(y, f_ref) / nn * REF_RATE, QUANT, 100.0))
+                f_sim = vec(sim.dp(n, qh, Q['period']), sensors)
+                ff = float(np.dot(f_sim, f_sim))
+                if ff == 0:
+                    res = np.inf
+                else:
+                    beta = float(np.dot(y, f_sim) / ff)
+                    res = float(np.linalg.norm(y - beta * f_sim))
+                best_cache[n] = (res, qh)
+                out.append((res, n))
+            return out
+
+        for b in budgets[1:]:
+            n0 = sim.n_sims
+            cand_nodes = [n for p in ranking[:b] for n in part_nodes.get(p, [])]
+            sc_nodes = score_nodes(cand_nodes)
+            if not sc_nodes:
+                pred_n, pred_p = None, ranking[0]
+            else:
+                pred_n = min(sc_nodes)[1]
+                pred_p = int(n2c[pred_n])
+            part_hit[b] += (pred_p == gt_p)
+            node_hit[b] += (pred_n == gt_n)
+            if pred_n is not None:
+                try:
+                    hop[b].append(nx.shortest_path_length(G, pred_n, gt_n))
+                except Exception:
+                    hop[b].append(np.nan)
+                dist[b].append(float(np.linalg.norm(xy[pred_n] - xy[gt_n])))
+            nsim_used[b].append(sim.n_sims - n0)
+            row[f'pred_p_b{b}'] = pred_p
+            row[f'pred_n_b{b}'] = pred_n
+
+        if args.exhaustive and qi <= args.exhaustive:
+            sc_all = score_nodes(wn.junction_name_list)
+            pn = min(sc_all)[1]
+            ex_part += (int(n2c[pn]) == gt_p); ex_node += (pn == gt_n)
+            try:
+                ex_hop.append(nx.shortest_path_length(G, pn, gt_n))
+            except Exception:
+                ex_hop.append(np.nan)
+            ex_dist.append(float(np.linalg.norm(xy[pn] - xy[gt_n])))
+            row['pred_n_exhaustive'] = pn
+
+        rows.append(row)
+        if qi % 5 == 0 or qi == len(queries):
+            print(f'  [{qi}/{len(queries)}] static P={100*part_hit[0]/qi:5.1f}%  '
+                  f'b=3 P={100*part_hit[3]/qi:5.1f}% N={100*node_hit[3]/qi:5.1f}%  '
+                  f'({time.time()-t0:.0f}s, {sim.n_sims} sims)', flush=True)
+
+    n = len(queries)
+    print('\n' + '=' * 80)
+    print('RESULT — leaks at nodes the corpus has never stored')
+    print('=' * 80)
+    print(f'{"budget":<26} | {"sims/query":>10} | {"partition":>10} | {"exact node":>11} | {"hops":>6} | {"metres":>8}')
+    print('-' * 88)
+    print(f'{"0  static retrieval":<26} | {0:>10} | {100*part_hit[0]/n:>9.1f}% | '
+          f'{"n/a (30 stored)":>11} | {"-":>6} | {"-":>8}')
+    for b in budgets[1:]:
+        h = [x for x in hop[b] if not np.isnan(x)]
+        print(f'{f"{b}  top-{b} partitions":<26} | {np.mean(nsim_used[b]):>10.0f} | '
+              f'{100*part_hit[b]/n:>9.1f}% | {100*node_hit[b]/n:>10.1f}% | '
+              f'{np.median(h) if h else float("nan"):>6.1f} | {np.median(dist[b]):>8.0f}')
+    if args.exhaustive:
+        m = min(args.exhaustive, n)
+        print(f'{f"   exhaustive (n={m})":<26} | {len(wn.junction_name_list):>10} | '
+              f'{100*ex_part/m:>9.1f}% | {100*ex_node/m:>10.1f}% | '
+              f'{np.median([x for x in ex_hop if not np.isnan(x)]):>6.1f} | {np.median(ex_dist):>8.0f}')
+    print(f'\ntotal simulations {sim.n_sims} (cache {len(sim.cache)}) | '
+          f'wall clock {time.time()-t0:.0f}s')
+
+    json.dump(dict(config=dict(per_partition=args.per_partition, rates=QUERY_RATES,
+                               period=QUERY_PERIOD, noise=NOISE, seed=args.seed,
+                               n_queries=n, held_out_nodes=held),
+                   partition_acc={str(b): part_hit[b] / n for b in budgets},
+                   node_acc={str(b): node_hit[b] / n for b in budgets[1:]},
+                   median_hops={str(b): float(np.median([x for x in hop[b] if not np.isnan(x)]))
+                                for b in budgets[1:]},
+                   median_metres={str(b): float(np.median(dist[b])) for b in budgets[1:]},
+                   sims_per_query={str(b): float(np.mean(nsim_used[b])) for b in budgets[1:]},
+                   n_simulations=sim.n_sims, rows=rows),
+              open(OUT, 'w'), indent=1, default=str)
+    print(f'saved -> {OUT}')
+
+
+if __name__ == '__main__':
+    main()

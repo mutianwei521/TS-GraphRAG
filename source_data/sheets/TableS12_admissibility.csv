@@ -1,0 +1,5 @@
+Network,Junction records,Physical junctions,Feasible peak multiplier μ*,Demand states used,Minimum baseline pressure at μ* (m),Junctions failing the screen,Failing (%),Admissible junctions,Sensors
+EXA7,381,381,1.2,0.7 / 1.0 / 1.2,0.91,31,8.1,350,30 (fixed reference configuration)
+City D (Dagang),541,383,1.2,0.7 / 1.0 / 1.2,35.92,32,8.4,351,28
+Haining,920,920,1,0.5833 / 0.8333 / 1,0.62,139,15.1,781,62
+EXA6,109,109,not determined (negative pressure at x1.2),not evaluated,-3148.3 (at ×1.2),n/a,n/a,n/a,n/a

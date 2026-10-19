@@ -1,0 +1,70 @@
+{
+  "id": "SM5_scoring",
+  "source": "0829/supplementary.docx",
+  "table_index": 3,
+  "preceding_paragraph": "Scoring and aggregation configuration.",
+  "rows": [
+    [
+      "Parameter or operation",
+      "Current setting"
+    ],
+    [
+      "Sensor–partition coefficients",
+      "(αsum,αmax,αcount)=(0.5,0.3,0.2)."
+    ],
+    [
+      "Affected-sensor count",
+      "τaff=0.05 m, using strict absolute-change greater-than comparison."
+    ],
+    [
+      "Sensor–partition near-zero cutoff",
+      "ϵprior=10−10 m applied to the largest partition total; no mapped input also returns no scores."
+    ],
+    [
+      "Centroid/fingerprint mixture",
+      "αcent=0.5. Both centroid matching and individual-fingerprint matching use Eq. (SM25)."
+    ],
+    [
+      "Scaled-Euclidean denominator floor",
+      "ϵscale=0.1 m."
+    ],
+    [
+      "Centroid/fingerprint norm cutoff",
+      "ϵmatch=10−10 m; norms below it are omitted."
+    ],
+    [
+      "Numeric state matching",
+      "Use supplied state when present; otherwise rank/fingerprint search falls back to all currently supplied numerical templates. Each missing partition–state centroid falls back to that partition’s cross-state mean."
+    ],
+    [
+      "Ordinal-rank construction",
+      "Two successive sorting operations assign distinct ordinal ranks; no average ranks are assigned to ties, and zero-norm templates are retained."
+    ],
+    [
+      "Retrieval depths",
+      "The default retrieval depth is 10. Lrank=10; Lfp=20; Lsem=20. The latter two are twice the default depth."
+    ],
+    [
+      "Rank weighting",
+      "Every retained scenario vote is weighted by reciprocal result rank, 1/r, using that channel’s score."
+    ],
+    [
+      "Channel normalization",
+      "Divide each nonempty channel by its maximum positive partition score; absent/nonpositive channels contribute zero. No minimum subtraction and no renormalization of the weights when a channel is unavailable."
+    ],
+    [
+      "Fusion boundaries",
+      "τF,1=0.1 m and τF,2=1.0 m, applied to δ=maxℓ|yℓ|."
+    ],
+    [
+      "Graph coefficient",
+      "λgraph=0.15. One row-normalized adjacency aggregation is applied, without convergence iterations or a sum-to-one probability normalization."
+    ],
+    [
+      "Returned numerical rankings",
+      "The numerical output contains Top-3 and Top-5 label lists and up to ten final scores. Stored score values are rounded to four decimals; ranking and the confidence gap are calculated before this output rounding."
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

@@ -1,0 +1,208 @@
+"""Historical S5_S6 computational source; original input locations are listed in dependencies.json."""
+import os, sys, io, json, time, random, warnings, contextlib
+from collections import defaultdict
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from wds_verify import G, projection_residual
+
+NOISE, SEED = 0.02, 41
+PROTOCOLS = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
+PNAME = {'H0': 'closed world', 'H1': 'leave-one-scenario-out', 'H2': 'unseen NODE',
+         'H3': 'unseen MAGNITUDE', 'H4': 'unseen DEMAND STATE', 'H5': 'node x magnitude',
+         'H6': 'node x state', 'H7': 'magnitude x state', 'H8': 'all three unseen',
+         'H9': 'leave-one-partition-out'}
+OUT = 'expH_physics_baselines_results.json'
+
+
+def unit(V):
+    n = np.linalg.norm(V, axis=1, keepdims=True)
+    return V / np.maximum(n, 1e-12)
+
+
+def main(n_queries=None):
+    from phase3_query.leak_locator import LeakLocator
+    from scipy.optimize import nnls
+    print('=' * 116)
+    print('H-P — physics-aware baselines under the holdout matrix (Reviewer 2 #11)')
+    print('=' * 116)
+    t0 = time.time()
+
+    with contextlib.redirect_stdout(io.StringIO()):
+        loc = LeakLocator('knowledge_base', 'sensor_results')
+    ALL = list(loc.fingerprints)
+    F = np.array([f['sensor_fingerprint'] for f in ALL], float)
+    part = np.array([f['leak_partition'] for f in ALL])
+    G.finite(F, 'KB fingerprints')
+    P = sorted(set(part.tolist()))
+    m = F.shape[1]
+    print(f'  {len(ALL)} scenarios, {m} sensors, {len(P)} partitions')
+
+    # partition adjacency for the graph-regularization baselines
+    pag = json.load(open('knowledge_base/partition_adjacency.json'))
+    A = np.zeros((len(P), len(P)))
+    for a_, nbrs in (pag.get('adjacency') or {}).items():
+        for b_ in nbrs:
+            a_i, b_i = int(a_), int(b_)
+            if a_i in P and b_i in P:
+                A[P.index(a_i), P.index(b_i)] = A[P.index(b_i), P.index(a_i)] = 1.0
+    Adeg = A / np.maximum(A.sum(1, keepdims=True), 1e-9)
+    print(f'  partition graph: {int(A.sum()/2)} undirected adjacencies')
+
+    def keep_idx(q, proto):
+        sn = np.array([f['leak_node'] == q['leak_node'] for f in ALL])
+        sq = np.array([f['leak_rate_Ls'] == q['leak_rate_Ls'] for f in ALL])
+        st = np.array([f['demand_period'] == q['demand_period'] for f in ALL])
+        sp = np.array([f['leak_partition'] == q['leak_partition'] for f in ALL])
+        return np.flatnonzero({'H0': np.ones(len(ALL), bool), 'H1': ~(sn & sq & st), 'H2': ~sn,
+                               'H3': ~sq, 'H4': ~st, 'H5': ~(sn | sq), 'H6': ~(sn | st),
+                               'H7': ~(sq | st), 'H8': ~(sn | sq | st), 'H9': ~sp}[proto])
+
+    def part_scores_to_pred(sc):
+        """sc: dict partition -> score (higher is better). Returns best partition."""
+        return max(sc.items(), key=lambda kv: kv[1])[0] if sc else -1
+
+    def smooth(sc, beta=0.15):
+        v = np.array([sc.get(p, 0.0) for p in P])
+        v = v / max(v.max(), 1e-12)
+        v2 = (1 - beta) * v + beta * (Adeg @ v)
+        return {p: float(v2[i]) for i, p in enumerate(P)}
+
+    names = ['projection', 'cosine 1-NN', 'WLS/NNLS', 'Mahalanobis', 'Bayes-marginal',
+             'KDE', 'graph-reg 1-NN', 'label-prop']
+    acc = {p: {n: [] for n in names} for p in PROTOCOLS}
+
+    rng = random.Random(SEED)
+    queries = ALL if not n_queries else rng.sample(ALL, n_queries)
+    print(f'  {len(queries)} queries x {len(PROTOCOLS)} protocols x {len(names)} methods',
+          flush=True)
+
+    for qi, q in enumerate(queries):
+        np.random.seed(SEED + qi)
+        y = np.array(q['sensor_fingerprint'], float) + np.random.normal(0, NOISE, m)
+        truth = q['leak_partition']
+        yn = y / max(np.linalg.norm(y), 1e-12)
+        for proto in PROTOCOLS:
+            idx = keep_idx(q, proto)
+            if idx.size == 0 or len(set(part[idx])) < 2:
+                continue
+            D, yl = F[idx], part[idx]
+            Dn = unit(D)
+
+            # ---- 1. projection residual (matched subspace / GLR with unknown gain)
+            r = projection_residual(y, D)
+            acc[proto]['projection'].append(int(yl[int(np.argmin(r))] == truth))
+
+            # ---- 2. cosine 1-NN
+            cs = Dn @ yn
+            acc[proto]['cosine 1-NN'].append(int(yl[int(np.argmax(cs))] == truth))
+
+            # ---- 3. WLS / NNLS sensitivity-matrix localization
+            try:
+                coef, _ = nnls(D.T, y)
+            except Exception:
+                coef = np.zeros(len(idx))
+            acc[proto]['WLS/NNLS'].append(
+                int(yl[int(np.argmax(coef))] == truth) if coef.max() > 0 else 0)
+
+            # ---- 4. Mahalanobis covariance-aware nearest prototype (on scale-normalised space)
+            mu, resid = {}, []
+            for p in set(yl.tolist()):
+                sel = Dn[yl == p]
+                mu[p] = sel.mean(0)
+                resid.append(sel - mu[p])
+            Rm = np.vstack(resid)
+            C = (Rm.T @ Rm) / max(len(Rm) - 1, 1)
+            C = C + np.trace(C) / m * 0.1 * np.eye(m)          # shrinkage
+            Ci = np.linalg.pinv(C)
+            sc = {}
+            for p, v in mu.items():
+                d = yn - v
+                sc[p] = -float(d @ Ci @ d)
+            acc[proto]['Mahalanobis'].append(int(part_scores_to_pred(sc) == truth))
+
+            # ---- 5. Bayesian model selection: magnitude marginalised out per atom
+            #      log p(y|k) after integrating beta under a flat scale prior is
+            #      -(||y||^2 - <y,f>^2/||f||^2) / (2 sigma^2) - log||f||
+            nf2 = np.maximum((D ** 2).sum(1), 1e-18)
+            proj = (D @ y) ** 2 / nf2
+            ll = -(float(y @ y) - proj) / (2 * NOISE ** 2) - 0.5 * np.log(nf2)
+            ll -= ll.max()
+            w = np.exp(ll)
+            post = defaultdict(float)
+            for lab, wi in zip(yl, w):
+                post[int(lab)] += float(wi)
+            acc[proto]['Bayes-marginal'].append(int(part_scores_to_pred(post) == truth))
+
+            # ---- 6. KDE per partition on the scale-normalised fingerprint
+            h = 0.25
+            sc = {}
+            for p in set(yl.tolist()):
+                Z = Dn[yl == p]
+                d2 = ((Z - yn) ** 2).sum(1)
+                sc[int(p)] = float(np.exp(-d2 / (2 * h ** 2)).mean())
+            acc[proto]['KDE'].append(int(part_scores_to_pred(sc) == truth))
+
+            # ---- 7. graph-regularized 1-NN: NN votes smoothed once over the partition graph
+            top = np.argsort(-cs)[:10]
+            votes = defaultdict(float)
+            for rank, i in enumerate(top):
+                votes[int(yl[i])] += float(max(cs[i], 0)) / (rank + 1)
+            acc[proto]['graph-reg 1-NN'].append(int(part_scores_to_pred(smooth(dict(votes))) == truth))
+
+            # ---- 8. label propagation over a fingerprint similarity graph (corpus + query)
+            X = np.vstack([Dn, yn[None, :]])
+            S = np.exp((X @ X.T - 1.0) / 0.05)
+            np.fill_diagonal(S, 0.0)
+            Wn = S / np.maximum(S.sum(1, keepdims=True), 1e-12)
+            Y = np.zeros((len(X), len(P)))
+            for i, lab in enumerate(yl):
+                Y[i, P.index(int(lab))] = 1.0
+            Z = Y.copy()
+            for _ in range(30):
+                Z = 0.5 * (Wn @ Z) + 0.5 * Y
+                Z[:len(yl)] = Y[:len(yl)]                     # clamp labelled corpus
+            acc[proto]['label-prop'].append(int(P[int(np.argmax(Z[-1]))] == truth))
+
+        if (qi + 1) % 60 == 0:
+            print(f'    {qi+1}/{len(queries)} queries ({time.time()-t0:.0f}s)', flush=True)
+
+    print()
+    print('=' * 116)
+    print(f'PARTITION Top-1 (%) — identical retained corpus, identical noise (n = {len(queries)})')
+    print('=' * 116)
+    hdr = f'{"":<4}{"protocol":<26}' + ''.join(f'{n[:14]:>15}' for n in names)
+    print(hdr)
+    print('-' * len(hdr))
+    summary = {}
+    for p in PROTOCOLS:
+        row = {n: 100 * float(np.mean(acc[p][n])) if acc[p][n] else float('nan') for n in names}
+        for n in names:
+            if acc[p][n]:
+                G.prob(row[n] / 100, f'{p}/{n}')
+        summary[p] = row
+        print(f'{p:<4}{PNAME[p]:<26}' + ''.join(f'{row[n]:>14.1f}%' for n in names))
+
+    print()
+    print('READING')
+    print('-' * 116)
+    for p in ('H0', 'H2', 'H8'):
+        best = max(names, key=lambda n: summary[p][n])
+        print(f'  {p:<4} best: {best} ({summary[p][best]:.1f}%)   '
+              f'projection {summary[p]["projection"]:.1f}%   '
+              f'gap {summary[p]["projection"]-summary[p][best]:+.1f} pp')
+    g0 = summary['H0']['graph-reg 1-NN'] - summary['H0']['cosine 1-NN']
+    g8 = summary['H8']['graph-reg 1-NN'] - summary['H8']['cosine 1-NN']
+    print(f'\n  what one graph-smoothing step is worth on its own '
+          f'(graph-reg 1-NN minus cosine 1-NN): H0 {g0:+.1f} pp, H8 {g8:+.1f} pp')
+
+    json.dump(dict(summary=summary, raw={p: acc[p] for p in acc}, methods=names,
+                   n_queries=len(queries), noise=NOISE, seed=SEED, protocols=PNAME),
+              open(OUT, 'w'), indent=1)
+    print(f'\n{time.time()-t0:.0f}s | saved -> {OUT}')
+
+
+if __name__ == '__main__':
+    main(int(sys.argv[1]) if len(sys.argv) > 1 else None)

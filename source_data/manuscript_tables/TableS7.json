@@ -1,0 +1,90 @@
+{
+  "id": "TableS7",
+  "source": "0829/supplementary.docx",
+  "table_index": 15,
+  "preceding_paragraph": "Table S7 | Stratified language-model re-ranking of the projection predictor's Top-3 candidates under H2. Single noise realization; base accuracy 414/540 (76.7%); 120 sampled errors and 60 sampled correct controls (sampling seed 41); 57 of the 126 population errors and 55 of the 120 sampled errors had the true partition within the Top-3 list. Recovered is the number of sampled errors corrected; broken is the number of sampled correct predictions made incorrect; failures are request failures, invalid first choices and parsing failures, which fell back to the projection Top-1. The estimated change is (1 − p₀)r − p₀b with p₀ = 0.767, expressed in percentage points, and the estimated Top-1 is p₀ plus that change. Model identifiers are the service tags used for the requests and do not identify immutable model-weight versions. Explanation quality was not evaluated.",
+  "rows": [
+    [
+      "Model identifier",
+      "Recovered / 120 errors",
+      "Broken / 60 correct",
+      "Failures",
+      "Correction rate",
+      "Breakage rate",
+      "Estimated change (pp)",
+      "Estimated Top-1 (%)"
+    ],
+    [
+      "deepseek-v4-flash:cloud",
+      "2",
+      "1",
+      "0",
+      "0.017",
+      "0.017",
+      "-0.9",
+      "75.8"
+    ],
+    [
+      "gemma4:31b-cloud",
+      "5",
+      "3",
+      "0",
+      "0.042",
+      "0.050",
+      "-2.9",
+      "73.8"
+    ],
+    [
+      "qwen3.5:397b-cloud",
+      "6",
+      "7",
+      "3",
+      "0.050",
+      "0.117",
+      "-7.8",
+      "68.9"
+    ],
+    [
+      "deepseek-v4-pro:cloud",
+      "11",
+      "19",
+      "0",
+      "0.092",
+      "0.317",
+      "-22.1",
+      "54.5"
+    ],
+    [
+      "gpt-oss:20b-cloud",
+      "15",
+      "23",
+      "1",
+      "0.125",
+      "0.383",
+      "-26.5",
+      "50.2"
+    ],
+    [
+      "gpt-oss:120b-cloud",
+      "18",
+      "29",
+      "0",
+      "0.150",
+      "0.483",
+      "-33.6",
+      "43.1"
+    ],
+    [
+      "glm-5.2:cloud",
+      "18",
+      "32",
+      "1",
+      "0.150",
+      "0.533",
+      "-37.4",
+      "39.3"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

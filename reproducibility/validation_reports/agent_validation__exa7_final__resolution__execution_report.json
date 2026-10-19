@@ -1,0 +1,46 @@
+{
+  "study": "resolution",
+  "profile": "full",
+  "completed_full_study": true,
+  "status": "complete",
+  "original_script": "expA1a_fix.py",
+  "input_sha256": {
+    "experiments/historical/exa7_sources/resolution.py": "8e319ab7d8f8eac88e65045983d1f5a437096446a4931cbf9c7a430f472cd140",
+    "experiments/historical/exa7.py": "a1884d4053980f2838fe6ab9888c254797f1a66184cc12786b21c5658f53ed3c",
+    "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+    "experiments/reference_corpus.py": "75f507aee3896d9b1ee7697c25714fca951651679ee51eb6975634ca7afb69dc",
+    "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+    "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+    "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+    "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+    "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+    "data/frozen/historical/expA1a_results.json": "6c2566677b1267e11f0fe8dd6f06ebb291f80ad8f8f4c9444b6fdebf810557af"
+  },
+  "distance_units": "native_network_coordinate_units",
+  "archive_field_aliases": {
+    "median_coordinate_distance": "med_m",
+    "class_span_coordinate_units": "class_span_m",
+    "distance_median_coordinate_units": "dist_median"
+  },
+  "hydraulic_simulations": 0,
+  "startpoint": "fixed sensitivity matrix and network coordinates; linear algebra with no fresh hydraulic simulations",
+  "isolation": "per-process scratch cwd and TMP/TEMP/TMPDIR; restored before cleanup",
+  "elapsed_seconds": 20.45806570000059,
+  "solver_checks": {
+    "success_error_codes": [
+      null,
+      0
+    ],
+    "require_finite_full_pressure_grid": true,
+    "require_exact_report_times_and_node_ids": true,
+    "validated_before_averaging": true,
+    "validated_simulations": 0
+  },
+  "archived_metrics_comparison": {
+    "match": true,
+    "numeric_values_compared": 57,
+    "maximum_absolute_numeric_difference": 0.0,
+    "differences": [],
+    "difference_count": 0
+  }
+}

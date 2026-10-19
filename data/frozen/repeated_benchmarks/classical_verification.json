@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "seeds": [
+    41,
+    581,
+    1121,
+    1661,
+    2201
+  ],
+  "sd_ddof": 1,
+  "scopes": {
+    "main90": {
+      "rows": 18000,
+      "unique_seed_pools": 650,
+      "summary_cells": 40,
+      "fit_errors": 0,
+      "sources_match": true,
+      "means_and_sample_sds_recomputed": true
+    },
+    "all540": {
+      "rows": 216000,
+      "unique_seed_pools": 7115,
+      "summary_cells": 80,
+      "fit_errors": 0,
+      "sources_match": true,
+      "means_and_sample_sds_recomputed": true
+    }
+  },
+  "source_hashes_checked": 14,
+  "pool_model_configs_checked": 42690,
+  "mlp_internal_splits_checked": 7115,
+  "warnings": [
+    {
+      "method": "Nearest Centroid",
+      "category": "UserWarning",
+      "message": "self.within_class_std_dev_ has at least 1 zero standard deviation.Inputs within the same classes for at least 1 feature are identical.",
+      "pool_count": 7115
+    }
+  ],
+  "legacy_seed41_mismatches": [],
+  "main90_all540_shared_predictions_checked": 18000,
+  "main90_all540_mismatches": [],
+  "noise_seed_blocks_disjoint": true
+}

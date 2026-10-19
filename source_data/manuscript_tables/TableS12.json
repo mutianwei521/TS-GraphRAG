@@ -1,0 +1,70 @@
+{
+  "id": "TableS12",
+  "source": "0829/supplementary.docx",
+  "table_index": 21,
+  "preceding_paragraph": "Table S12 | Hydraulic admissibility screen across the network roster. A junction fails the screen if, under a nominal 50 L s⁻¹ leak added as nodal demand in the day-normal demand state (×1.0 for EXA7 and City D; 0.833 of the feasible peak multiplier for Haining), the time-averaged pressure at the leak junction is negative or any junction's time-averaged pressure changes by more than 5 m per L s⁻¹ (250 m); every excluded junction failed the pressure criterion (9 on City D and 6 on Haining also failed the response criterion). The feasible peak multiplier μ* is the largest multiplier on a 0.05 grid (≤ 1.2) for which the minimum baseline pressure over all junctions and times is non-negative. EXA6 has a negative minimum baseline pressure at ×1.2 (−3148.3 m) and was not evaluated. EXA7 uses its fixed 30-sensor reference configuration (two per partition); the 8% placement rule of Supplementary Note 1.8 applies to City D and Haining. The EXA7 reference corpus of Table S2 was retained unscreened (three of its 30 leak junctions, 82, 84 and 94, fail the screen); the allocation tensor of Table S3 used the 350 admissible EXA7 junctions.",
+  "rows": [
+    [
+      "Network",
+      "Junction records",
+      "Physical junctions",
+      "Feasible peak multiplier μ*",
+      "Demand states used",
+      "Minimum baseline pressure at μ* (m)",
+      "Junctions failing the screen",
+      "Failing (%)",
+      "Admissible junctions",
+      "Sensors"
+    ],
+    [
+      "EXA7",
+      "381",
+      "381",
+      "1.2",
+      "0.7 / 1.0 / 1.2",
+      "0.91",
+      "31",
+      "8.1",
+      "350",
+      "30 (fixed reference configuration)"
+    ],
+    [
+      "City D (Dagang)",
+      "541",
+      "383",
+      "1.2",
+      "0.7 / 1.0 / 1.2",
+      "35.92",
+      "32",
+      "8.4",
+      "351",
+      "28"
+    ],
+    [
+      "Haining",
+      "920",
+      "920",
+      "1",
+      "0.5833 / 0.8333 / 1",
+      "0.62",
+      "139",
+      "15.1",
+      "781",
+      "62"
+    ],
+    [
+      "EXA6",
+      "109",
+      "109",
+      "not determined (negative pressure at x1.2)",
+      "not evaluated",
+      "-3148.3 (at ×1.2)",
+      "n/a",
+      "n/a",
+      "n/a",
+      "n/a"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

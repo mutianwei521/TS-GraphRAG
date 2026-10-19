@@ -11,7 +11,6 @@ import os
 import json
 import glob
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 
 def load_sensor_nodes(sensor_results_dir='sensor_results'):
@@ -31,7 +30,9 @@ def load_sensor_nodes(sensor_results_dir='sensor_results'):
             f"No sensor summary files found in {sensor_results_dir}"
         )
 
-    summary_file = sorted(summaries)[-1]  # most recent
+    if len(summaries)!=1:
+        raise ValueError('Provide a sensor results directory with exactly one explicit sensor summary')
+    summary_file = summaries[0]
     print(f"  Loading sensor summary: {summary_file}")
 
     with open(summary_file, 'r') as f:

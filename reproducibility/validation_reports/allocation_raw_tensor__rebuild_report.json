@@ -1,0 +1,72 @@
+{
+  "study": "allocation_tensor",
+  "profile": "raw_hydraulics",
+  "input_sha256": {
+    "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+    "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+    "experiments/allocation/build_tensor.py": "edbf2f6dfa4cd11b804013d8ab37cc83e7740f88445de7fa204e5eeda5ff20cc",
+    "data/frozen/allocation/expH_robust_tensor.npz": "365f85b313a86845bb97dad2574da74519be7020118d3f01ac8ef343f9d96443"
+  },
+  "binding_sha256": "f80ab395e99475c717dbf23d2ea70c0ab81878787cf96745d493cd5e1f7f8b4d",
+  "tensor_shape": [
+    350,
+    12,
+    3,
+    30
+  ],
+  "reference_tensor_shape": [
+    350,
+    12,
+    3,
+    30
+  ],
+  "sensor_nodes": [
+    "34",
+    "35",
+    "36",
+    "38",
+    "41",
+    "45",
+    "49",
+    "51",
+    "56",
+    "59",
+    "62",
+    "64",
+    "80",
+    "86",
+    "87",
+    "89",
+    "92",
+    "95",
+    "115",
+    "169",
+    "212",
+    "254",
+    "284",
+    "297",
+    "318",
+    "332",
+    "336",
+    "343",
+    "365",
+    "404"
+  ],
+  "comparison": {
+    "shape_match": true,
+    "nodes_match": true,
+    "magnitudes_match": true,
+    "periods_match": true,
+    "sensors_match": true
+  },
+  "max_absolute_tensor_difference_m": 0.0,
+  "exact_tensor_match": true,
+  "simulations": {
+    "baselines": 3,
+    "screen": 381,
+    "tensor": 12600
+  },
+  "output_sha256": "365f85b313a86845bb97dad2574da74519be7020118d3f01ac8ef343f9d96443",
+  "elapsed_seconds": 2087.5844066,
+  "isolation": "per-process scratch cwd and TMP/TEMP/TMPDIR; restored before cleanup"
+}

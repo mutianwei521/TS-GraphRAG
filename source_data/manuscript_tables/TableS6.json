@@ -1,0 +1,130 @@
+{
+  "id": "TableS6",
+  "source": "0829/supplementary.docx",
+  "table_index": 14,
+  "preceding_paragraph": "Table S6 | Paired comparisons among physics-aware estimators. McNemar exact tests on the 540 shared queries of Table S5; n10 is the number of queries the first method answers correctly and the second incorrectly, and n01 the reverse. Holm-adjusted P values are computed over the eleven comparisons listed. The last five rows compare graph-regularized 1-NN with cosine 1-NN. This contrast changes both rank-weighted voting and adjacency smoothing and does not isolate smoothing (graph-regularized 1-NN minus cosine 1-NN; both keep the zero-response templates eligible). These comparisons are exploratory and rest on one noise realization.",
+  "rows": [
+    [
+      "Protocol",
+      "Comparison (first vs second)",
+      "Top-1 first (%)",
+      "Top-1 second (%)",
+      "n10",
+      "n01",
+      "Exact P",
+      "Holm-adjusted P"
+    ],
+    [
+      "H0",
+      "Projection residual vs Bayes-marginal",
+      "88.3",
+      "91.3",
+      "8",
+      "24",
+      "0.007",
+      "0.051"
+    ],
+    [
+      "H2",
+      "Projection residual vs Bayes-marginal",
+      "76.7",
+      "73.7",
+      "18",
+      "2",
+      "4.0e-04",
+      "0.004"
+    ],
+    [
+      "H2",
+      "Projection residual vs Mahalanobis",
+      "76.7",
+      "70.7",
+      "51",
+      "19",
+      "1.7e-04",
+      "0.002"
+    ],
+    [
+      "H4",
+      "Projection residual vs Bayes-marginal",
+      "74.8",
+      "78.1",
+      "5",
+      "23",
+      "9.1e-04",
+      "0.008"
+    ],
+    [
+      "H6",
+      "Projection residual vs Mahalanobis",
+      "61.7",
+      "66.1",
+      "44",
+      "68",
+      "0.029",
+      "0.107"
+    ],
+    [
+      "H8",
+      "Projection residual vs Mahalanobis",
+      "61.3",
+      "66.5",
+      "42",
+      "70",
+      "0.010",
+      "0.062"
+    ],
+    [
+      "H0",
+      "Graph-regularized 1-NN vs Cosine 1-NN",
+      "88.7",
+      "88.9",
+      "2",
+      "3",
+      "1.000",
+      "1.000"
+    ],
+    [
+      "H2",
+      "Graph-regularized 1-NN vs Cosine 1-NN",
+      "75.4",
+      "76.7",
+      "1",
+      "8",
+      "0.039",
+      "0.107"
+    ],
+    [
+      "H4",
+      "Graph-regularized 1-NN vs Cosine 1-NN",
+      "74.1",
+      "75.6",
+      "1",
+      "9",
+      "0.021",
+      "0.107"
+    ],
+    [
+      "H6",
+      "Graph-regularized 1-NN vs Cosine 1-NN",
+      "60.2",
+      "61.7",
+      "1",
+      "9",
+      "0.021",
+      "0.107"
+    ],
+    [
+      "H8",
+      "Graph-regularized 1-NN vs Cosine 1-NN",
+      "59.4",
+      "61.3",
+      "1",
+      "11",
+      "0.006",
+      "0.051"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

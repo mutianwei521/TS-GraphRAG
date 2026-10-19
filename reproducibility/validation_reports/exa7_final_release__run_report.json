@@ -1,0 +1,2485 @@
+{
+  "profile": "full",
+  "study": "exa7",
+  "started_utc": "2026-10-19T08:28:28.707292+00:00",
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:12:15) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "status": "passed",
+  "steps": [
+    {
+      "name": "exa7",
+      "command": [
+        "<core-environment>/python",
+        "-m",
+        "experiments.reference_corpus",
+        "--output-dir",
+        "outputs/exa7_final_release/exa7/reference"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 83.94260100000065,
+      "log": "exa7.log",
+      "outputs": [
+        {
+          "path": "exa7.log",
+          "sha256": "3887abf17990543c617b0f0653da7827588c257d7449d31c1ecab9e318a90a4c"
+        }
+      ]
+    },
+    {
+      "name": "numerical_H0",
+      "command": [
+        "<core-environment>/python",
+        "main.py",
+        "--mode",
+        "evaluate",
+        "--protocol",
+        "H0",
+        "--output-dir",
+        "outputs/exa7_final_release/exa7/H0",
+        "--fingerprints",
+        "outputs/exa7_final_release/exa7/reference/sensor_fingerprints.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.2676759000005404,
+      "log": "numerical_H0.log",
+      "outputs": [
+        {
+          "path": "numerical_H0.log",
+          "sha256": "ff8cf0626af82ca69879873975d6ab63ff839df4b052c2ebe0cef6fcc8a83a5c"
+        }
+      ]
+    },
+    {
+      "name": "numerical_H2",
+      "command": [
+        "<core-environment>/python",
+        "main.py",
+        "--mode",
+        "evaluate",
+        "--protocol",
+        "H2",
+        "--output-dir",
+        "outputs/exa7_final_release/exa7/H2",
+        "--fingerprints",
+        "outputs/exa7_final_release/exa7/reference/sensor_fingerprints.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.2888895999985834,
+      "log": "numerical_H2.log",
+      "outputs": [
+        {
+          "path": "numerical_H2.log",
+          "sha256": "1b2b33e3dc3d76ef4386fa7a09e3a5de0837ba3344fc9df440d3c3459da8f8c3"
+        }
+      ]
+    },
+    {
+      "name": "numerical_H8",
+      "command": [
+        "<core-environment>/python",
+        "main.py",
+        "--mode",
+        "evaluate",
+        "--protocol",
+        "H8",
+        "--output-dir",
+        "outputs/exa7_final_release/exa7/H8",
+        "--fingerprints",
+        "outputs/exa7_final_release/exa7/reference/sensor_fingerprints.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.8525382000007085,
+      "log": "numerical_H8.log",
+      "outputs": [
+        {
+          "path": "numerical_H8.log",
+          "sha256": "e0b30f768d2eae69b282602dc2d2c63db3e10b7e5206a67592331b48db023ae2"
+        }
+      ]
+    },
+    {
+      "name": "numerical_H9",
+      "command": [
+        "<core-environment>/python",
+        "main.py",
+        "--mode",
+        "evaluate",
+        "--protocol",
+        "H9",
+        "--output-dir",
+        "outputs/exa7_final_release/exa7/H9",
+        "--fingerprints",
+        "outputs/exa7_final_release/exa7/reference/sensor_fingerprints.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.3047068000014406,
+      "log": "numerical_H9.log",
+      "outputs": [
+        {
+          "path": "numerical_H9.log",
+          "sha256": "b19675d69cddb2194294f1ef278f908f812b8ba1b9527d466997612927716b43"
+        }
+      ]
+    }
+  ],
+  "input_integrity": {
+    "checked": 296,
+    "status": "passed"
+  },
+  "asset_manifest_sha256": "e8fe4af5d49e28f6ae0e3a01ccbd77cc609f01d25fce57f8870dc00b75bfbfe6",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.1",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "wntr": "1.4.0",
+    "networkx": "3.6.1",
+    "leidenalg": "0.11.0",
+    "igraph": "1.0.0",
+    "matplotlib": "3.10.8",
+    "PyYAML": "6.0.3",
+    "openpyxl": "3.1.5",
+    "pypdf": "6.12.2",
+    "torch": null,
+    "torch-geometric": null,
+    "sentence-transformers": null
+  },
+  "implementation_sha256": {
+    "src/configuration.py": "11a2b967f5c5bfffad2ed7ce80d61796035ba3c4b2d315e5b0080a28038cfce7",
+    "src/__init__.py": "2c2010eb3ee751840e407066fa372218b18813645aa980d89d186c412f1cd615",
+    "src/evaluation/metrics.py": "8388d2f213be3da54d01f4b31b6b631605c8049a01b306456cc6e6e0b2ed896f",
+    "src/evaluation/protocols.py": "209c113d2eeccbdcfbf43b385a93daa09e7973389ef9560601f06127ec02c210",
+    "src/evaluation/runner.py": "75e0a8ceb1689966f6794b5e53bede12fcb9acaa4da980b976508ef323e6f537",
+    "src/evaluation/__init__.py": "a8b6cbd9bf008b6c3b9deb4c82ae4261288d2ca6b47265ffe2aca8294c856904",
+    "src/phase1_partition/hydraulic.py": "3113492ba1a2a8d3a9a3d1065310fb14a242906a67a1584b41841084b4ae1a78",
+    "src/phase1_partition/partitioning_leiden.py": "0ab2453aacaecd2ce26c45e94c3b17d422ebce86e7c0b6f51f60f227fa349c52",
+    "src/phase1_partition/similarity.py": "11925d1e78f5af35b2071ae0e79a260c47a0ccddd5204eebbb5b6b5edcdee0b5",
+    "src/phase1_partition/visualization.py": "e20293ed6e94222b4d1a7dcb16c8393b8e77181b59199a2264fda31a8ad5675a",
+    "src/phase1_partition/__init__.py": "ecccdc45e5b4c1850224d6458588326c4be2b0aa89dc0e171e197d4ec82d8c81",
+    "src/phase2_knowledge_base/batch_simulation.py": "91cf9fd5cb48d8d3f1097605b5c2ebef88fa2f53b35caa3e1c10b67dd2ae02c8",
+    "src/phase2_knowledge_base/graph_rag.py": "2603d91c9744148e8536add5170155f72e2f3a70f114da1ee8f2a95414efab8b",
+    "src/phase2_knowledge_base/scenario_summary_generator.py": "30b4f6d8eb0b9193e3fcb434b466ef99fc8870f8d95f5d773447e03a63bc480c",
+    "src/phase2_knowledge_base/semantic_mapping.py": "9d0d3bb53e5ce0831dafc8dcc5773934dc8f832969af2da279420c3ee85f1084",
+    "src/phase2_knowledge_base/sensor_fingerprint.py": "aa96ab8692c604260ce292a0f62dc575e30563932a49504ddc0790ea977334d6",
+    "src/phase2_knowledge_base/vector_store.py": "85597fecc3926915303529fa0520da116c0da2620ec39a987f103f751d3bec82",
+    "src/phase2_knowledge_base/__init__.py": "c61471597c0cd4e1ad35795b246e5bf8ab9adb61897f77473808c4a9f161254f",
+    "src/phase3_query/eval_comprehensive.py": "bb821b37003243bc34942b2bb5c9890eec5307ea393cc0182713d35240df348c",
+    "src/phase3_query/leak_locator.py": "c3fd9d9b92a0465e95b6b2d9190f6d5ab92f6c7a0f132bfcd51cb534636b8d3a",
+    "src/phase3_query/numerical_retrieval.py": "17da79200bb0d74ce69e403db1663d4787a5744166b4a849ff2d2e1c61ced9f9",
+    "src/phase3_query/validate.py": "9e854464e95d9df52c4636de49828fbb8f207e7221da2a830a4355ba9f0e9339",
+    "src/phase3_query/__init__.py": "57a7d1588c0a4cf2cccef2f146e56234620ea466f461c63ea7722f299377c8f9",
+    "scripts/build_source_data.py": "9660853544448288cc53ca7d7ddb43065a96d650abbea59582834cf60e03b617",
+    "scripts/reproduce.py": "7b19e053a698e95705f9780dc3a67d49eaf8aaa1033b9ca9eb6ce5edf2fa5216",
+    "scripts/verify_outputs.py": "8a97117917b6cf5799b952578f2436d230bed5b61dd3d2908f559182148706e3",
+    "scripts/figures/allocation_data.py": "d86ace74c6d920f63b2816711ac187aba595fbf19eb74729646413392772b9c8",
+    "scripts/figures/compose_fig2.py": "114d44a8fde1872c808f92eedf06060449d2eda4b16fe6530d02acd296efd2e2",
+    "scripts/figures/fig_style.py": "21d095a8a868179bf9d5395830da288a75f8e5f3bf940190d760018d76cb19cc",
+    "scripts/figures/make_fig1_infographic.py": "4e3ae19e33b835365296beea8251fc86aaf0cdb3b6e5ad131e9abf5033449d23",
+    "scripts/figures/make_fig3_maps.py": "ebe7e5cb836c920b1993f6db02cc91c07f37fcd1235dd1162d3200b124de646c",
+    "scripts/figures/make_fig4_holdout.py": "eb528258e6c0e8723b2355415edc2d03d836d4b09b1382d4dfdb49c0bc3888b9",
+    "scripts/figures/make_fig5_allocation.py": "c41f5ed422b88b5b621e48cb5bfb1d5596cc56dfd1e519e0e3911fb77e43c9cd",
+    "scripts/figures/make_fig6_components.py": "94d7edf279e6c4bfb69063b60a179160b6ddc145393165fb416c95fb0c056a47",
+    "scripts/figures/make_fig7_robustness.py": "78f47971fa41d512c28bb7456f64796e019c1a044735eff6d85935cdf6a22e86",
+    "scripts/figures/make_figS1_drawlevel.py": "b3d8a9bdcb6b4571d7866576b8da8052e830e06b7d38724d2cc02e2337eeeb93",
+    "scripts/figures/make_figS2_confusion.py": "4f0750697d1f740392786516a53aef509150be35b8fdc7e4a6b43f1cf056053c",
+    "scripts/figures/make_figS3.py": "dd3e86429434976138d12a5187c702dbad39a44eece4c0ac9b341819749e55f5",
+    "scripts/figures/make_figS4_S5.py": "557bfdb9c8dff34a83773295cbd6146a4f94f04215be0f1a425b745a352d4efa",
+    "scripts/figures/make_figS6_current.py": "f73c081fc8a63d82259797df11b616a24f0ba1e8acce6f7a5a63481370232bdd",
+    "scripts/figures/make_figS6_standalone.py": "ec87d537930c0ae91619aaa10b8d384198949c2fd6bafd11b5369a5e206ad8a0",
+    "scripts/figures/nature_style.py": "a6ff6636e22d76d404d1a1d5b87eba57318d67ab93829705b30033be7a996d4c",
+    "scripts/figures/pastel_style.py": "29d7e3d68d96d242ac67be16f125ea581b43862d64b6f4348b56a0dced4c03d4",
+    "scripts/figures/replay.py": "69de39ed0e4740335622f0137fbff7393b5226d5f998cfb49c0a445cd5cba016",
+    "scripts/figures/_paths.py": "0b845cad59396a06faa21e18f80cfb02e24f5ab7fbd8f4b5c4649d5b59518030",
+    "experiments/reference_corpus.py": "8a4eb0a0e316a632cba44223e2f67688e223abfa53cb610f63ce9b61d715fb76",
+    "experiments/__init__.py": "f7e56b09063b5717e538edff7497f7b7bf62a13e52ef362d20735c6887e3f0ca",
+    "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+    "experiments/allocation/run.py": "d99c5fc05277102de15ff147a29756fd50c0de6430c891589f7228156804dad8",
+    "experiments/allocation/__init__.py": "0ae47d321bf1395255e8413c8edf1b20fff150eb60a8bd611d3782c86b494714",
+    "experiments/historical/audit_exa7_traces.py": "b53d9565cb8bbbb053d240ddaee6429bf08bb7eb1449be4a8e0362413e9bad22",
+    "experiments/historical/exa7.py": "40f94fa753fa294503d3ae5476388382904dc37678411614aac15552ebc1202e",
+    "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+    "experiments/historical/physics.py": "edea909bffaeb8856fba29131941fae446ba65f6349b12c48eca782658c60b5c",
+    "experiments/historical/run.py": "671d4bb87743b76a428ce0bd4f0f449f88cd9bf1f360eb411b09d8a90ac72520",
+    "experiments/historical/__init__.py": "cdf682ffcaa48aa34dcaadf386ba32232e1446e5cbb2c28e950107524cba900c",
+    "experiments/historical/exa7_sources/multileak_exhaustive.py": "6417f7633e34a6a0aa80595333754d57eb39721ff71a5c8ecb1df28827759bbe",
+    "experiments/historical/exa7_sources/multileak_sparse.py": "416106698513c76da51ebe8e00f1d48feff3e8c0d27c7138d5a83b7f71757da8",
+    "experiments/historical/exa7_sources/pressure_dependent.py": "a6b6074c40d47a7e405c71827aeaad6a94f44ff03ad6d0905f67c25f3b5756b2",
+    "experiments/historical/exa7_sources/resolution.py": "8e319ab7d8f8eac88e65045983d1f5a437096446a4931cbf9c7a430f472cd140",
+    "experiments/historical/exa7_sources/sensor_degradation.py": "dedd297c48327cc548031351e6c2fa89835e95a44d4a805d50f59d5f4c6b800e",
+    "experiments/hydraulic_robustness/audit.py": "32ee459c97c5cfd51e137ff9076d458f80aaa205496e7c810280455a36df40dc",
+    "experiments/hydraulic_robustness/model.py": "5cefb08d67cac0afeda20fb25ed80c0fd51bbcac9fb5afa170116ec829f427f0",
+    "experiments/hydraulic_robustness/replay.py": "03c05f6f591763af59d5e628f416e5d6dea64f19dcde6e08733368f8e0ecb5bd",
+    "experiments/hydraulic_robustness/run.py": "593bcb5b8a1ccfda1431df4fd232c03aab05c70feb6b3de155af43d7387df1cc",
+    "experiments/hydraulic_robustness/__init__.py": "6fae45a2f1ad9bde3eaa621013545aa79b6b44947baf2509234620e203cef26a",
+    "experiments/node_selection/run.py": "db6c07d757c6f35e78ef532ee1a595e5d250dc17c5483c03f961890903b0282a",
+    "experiments/node_selection/__init__.py": "ce06c3505be51ec23dec9a30db234e87fb8e79232054f20492d31d5c4f9c9cbd",
+    "experiments/partition_sensor/audit.py": "d665ef244aac30ff5d91fc56690e675a82b56c84352a5cf332c9500b23ee5355",
+    "experiments/partition_sensor/model.py": "cacfe65368377693484e78c63deabc512ed840bbb09104288799ab15c70a50b1",
+    "experiments/partition_sensor/run.py": "bbbcd443999a8c133c9828e650fa9e7eb218ac5bdb907146a85d550dc73d7901",
+    "experiments/partition_sensor/validity.py": "887e7f3a3b40364f89f0d655e5f7ffc104d1520d53961f2ee7a72696d946c1d0",
+    "experiments/partition_sensor/__init__.py": "9d46f25b7b586bfedb80ff8e5a8c346e3fa4d40362359a469723e7c1c2bb68f0",
+    "experiments/repeated_benchmarks/architecture.py": "ff728196a3f377dcabe7d23fc890adb251a1f6e65eccbd9231cebd4ff1714286",
+    "experiments/repeated_benchmarks/classical.py": "9eda6953ed154a4f0164e8a0431a8779c45bd38112f34efd13ec8bbf313ffeb0",
+    "experiments/repeated_benchmarks/gnn.py": "fb4304e82bdea8975aceef0d6e00b50c4e19a8e58f768d071ea299e849ba0f80",
+    "experiments/repeated_benchmarks/primitives.py": "2f8877612c2056135b6a3194834a9e2d24c3196f600cc630fdf392ff77e9bda1",
+    "experiments/repeated_benchmarks/run.py": "916a7ade829fbfb77bcf0c0e20df0f1a4bec04585bdcd72281c9ec8d3f38deaa",
+    "experiments/repeated_benchmarks/__init__.py": "a790fc353588a011e83839d15a0c42e51b5840df751db993b556e61288e1fc70",
+    "experiments/strict_engine/engine.py": "fcfbcbd1c2443ec6b5533e0ddb6ae9ebd7416a40d424a58817dd479d90fbc965",
+    "experiments/strict_engine/run.py": "6be7cf58fd69f07211dbd3dd71a7f5112fff51271bf8e063c8ba0a65431c5149",
+    "experiments/strict_engine/verify.py": "da06bf7b2dc9ebcfc4a8e9b91ac33d4f5178cecca37df1b1be378c7cb8b288a9",
+    "experiments/strict_engine/__init__.py": "27a1e24db700d68fbc0f8745fb5854fd2ba5dde53671b36d3f92c73825ce63b0",
+    "build_knowledge_base.py": "16b8a99cca8fcefa3d678f46086758e4962235c2056cfba5c246796ed5f5e826",
+    "main.py": "7584288e6251aa84805193508853f736921e5b6d5a5c5c99f843c75e7c174e8e",
+    "wds_partition_leiden_main.py": "69e0bdf27477516bc17516970ff623083ebc0d78a876b950f4b33ab56ba7216c",
+    "wds_sensor_main.py": "3242abedbe27e46391120f9e847e330d921078a6266e67f83185929d6c8a341c"
+  },
+  "environment_sha256": {
+    "requirements-core.in.txt": "2755c4e36ca3df4086b9f008a160d2c1c13013dbb5862fb3cb3a43589de4fcda",
+    "requirements-core.lock.txt": "b52337755c38e9bf83dd62d46884657b99081b486e3bf5a0aac0a3c24513eb01",
+    "requirements-dev.txt": "bf4dc0555928a3facf67b3370001388d4b65e69a071c339f8b201310bde4486a",
+    "requirements-gnn.lock.txt": "ab3efc1fdfe0e3ee48354d346306e87d9f20940b8fd42b95c08e3ea4530b3ed7",
+    "requirements-legacy.lock.txt": "2b0cca86dbf732f9003ec8c03eacfc28b8968a780aa868a487bb7313d902e4f1",
+    "requirements-semantic.lock.txt": "5abb2f1d2b75e8c11e689c8a34fa5e0f16f79830a552775c9f8ec46a8f86c2e2",
+    "requirements.txt": "93f599638b2a6130a115ab1cee3a7b034dd02a9eeffa8b54b590adf4c5ad049c"
+  },
+  "git_head": "74804a97083f2abff019e12120b8d7b7f9747ce7",
+  "elapsed_seconds": 100.31734829999914,
+  "result_files": [
+    {
+      "path": "exa7.log",
+      "sha256": "3887abf17990543c617b0f0653da7827588c257d7449d31c1ecab9e318a90a4c"
+    },
+    {
+      "path": "numerical_H0.log",
+      "sha256": "ff8cf0626af82ca69879873975d6ab63ff839df4b052c2ebe0cef6fcc8a83a5c"
+    },
+    {
+      "path": "numerical_H2.log",
+      "sha256": "1b2b33e3dc3d76ef4386fa7a09e3a5de0837ba3344fc9df440d3c3459da8f8c3"
+    },
+    {
+      "path": "numerical_H8.log",
+      "sha256": "e0b30f768d2eae69b282602dc2d2c63db3e10b7e5206a67592331b48db023ae2"
+    },
+    {
+      "path": "numerical_H9.log",
+      "sha256": "b19675d69cddb2194294f1ef278f908f812b8ba1b9527d466997612927716b43"
+    },
+    {
+      "path": "exa7/H0/predictions.jsonl",
+      "sha256": "635872bf57e610647cc8ddcd0c9536028939b57f6d52d009350b04e2189a95e3"
+    },
+    {
+      "path": "exa7/H0/query_manifest.json",
+      "sha256": "ee497d8a6df5a3f691dae49481de0cb585ded43e4d4dfad462d8bb34760a8b52"
+    },
+    {
+      "path": "exa7/H0/summary.json",
+      "sha256": "ff8cf0626af82ca69879873975d6ab63ff839df4b052c2ebe0cef6fcc8a83a5c"
+    },
+    {
+      "path": "exa7/H2/predictions.jsonl",
+      "sha256": "ce362e46a382f131a8e4de9e5d1b865aedd61c78ac84ad2b797935d9a4a7e38d"
+    },
+    {
+      "path": "exa7/H2/query_manifest.json",
+      "sha256": "ee497d8a6df5a3f691dae49481de0cb585ded43e4d4dfad462d8bb34760a8b52"
+    },
+    {
+      "path": "exa7/H2/summary.json",
+      "sha256": "1b2b33e3dc3d76ef4386fa7a09e3a5de0837ba3344fc9df440d3c3459da8f8c3"
+    },
+    {
+      "path": "exa7/H8/predictions.jsonl",
+      "sha256": "584716e7eb63656a23142c6614f160fc347cc01e82594c3a2fb0325cdf82262b"
+    },
+    {
+      "path": "exa7/H8/query_manifest.json",
+      "sha256": "ee497d8a6df5a3f691dae49481de0cb585ded43e4d4dfad462d8bb34760a8b52"
+    },
+    {
+      "path": "exa7/H8/summary.json",
+      "sha256": "e0b30f768d2eae69b282602dc2d2c63db3e10b7e5206a67592331b48db023ae2"
+    },
+    {
+      "path": "exa7/H9/predictions.jsonl",
+      "sha256": "f7a3411afbbb8700180f7d4e929790916378352af2f0caeeffd19005d15009cb"
+    },
+    {
+      "path": "exa7/H9/query_manifest.json",
+      "sha256": "ee497d8a6df5a3f691dae49481de0cb585ded43e4d4dfad462d8bb34760a8b52"
+    },
+    {
+      "path": "exa7/H9/summary.json",
+      "sha256": "b19675d69cddb2194294f1ef278f908f812b8ba1b9527d466997612927716b43"
+    },
+    {
+      "path": "exa7/reference/rebuild_report.json",
+      "sha256": "174a30e93c767c4b0011d92031c4574da9481e732e18257f80edbf640bb404d1"
+    },
+    {
+      "path": "exa7/reference/sensor_fingerprints.json",
+      "sha256": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_10Ls_day_normal.json",
+      "sha256": "6a14a12389d69e331bab62891a207eb45f80c1bfc7a3d740e6398b52af2daad9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_10Ls_evening_peak.json",
+      "sha256": "dfe6d40d7bc0486976febe05428284181ae0d53db36942081b44fa90044e5df1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_10Ls_night_low.json",
+      "sha256": "39c3d4b2b441a2b3bde55d1282fb7f2655f4632d700cad882610a3a3b501061a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_20Ls_day_normal.json",
+      "sha256": "61556ccf355c2cd57af25730a6aa12f7e16d778226943c24aa5e207c00d80685"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_20Ls_evening_peak.json",
+      "sha256": "d24c7112b5a229028ed7a15d16ed146258b7e482e9962d81d5e5d8122e130c0a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_20Ls_night_low.json",
+      "sha256": "76f5fd2060d8da267e29fc775a65b83628a074255574541ccb3a5b55d9cf3d9c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_2Ls_day_normal.json",
+      "sha256": "d480dae77faacee6bb6eaf33da74d62e3377422ab1891b011b735c2b261c617f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_2Ls_evening_peak.json",
+      "sha256": "995f79d48187528545964cf6285371e6b63c0692ac20db203e6608cd5220acdc"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_2Ls_night_low.json",
+      "sha256": "d4dedd6e5c38ff4ff67f051b705965f75d3c7ed9b5d46c619eecb86e5e24be92"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_35Ls_day_normal.json",
+      "sha256": "eccac0805608ed7fa0830237989e94545b7e653ffae7807209cec4198154e84a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_35Ls_evening_peak.json",
+      "sha256": "f0f7e001461368c78cb5c9dba7c2de4637e20a111250d4b0d79b00c0f79cd107"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_35Ls_night_low.json",
+      "sha256": "dac5a3b9752bef9c7bd0c941c3aec674da713e4c86f9bbbabc17664294bf0bdf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_50Ls_day_normal.json",
+      "sha256": "20806243e3ab27f01d9f345f9230f597d71445bbe7170eecb5624f7bb74d8066"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_50Ls_evening_peak.json",
+      "sha256": "02b2e10d38b88ffb55aadbbfe38c3b70b7d461484f6e39ae718231d3d01d1b23"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_50Ls_night_low.json",
+      "sha256": "223a2ce8de4db07acf3aefebcf3e684fe8e3d90591925dd98c708790ad0efea4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_5Ls_day_normal.json",
+      "sha256": "5ed22830b789146ef166e2ba846fccc88ea5dffa445bc614d4bd10c0cf61d474"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_5Ls_evening_peak.json",
+      "sha256": "f3ce25c8a2ce8e5916e8136af60456aa9b5f4f279cd592014f3137ce06b322b6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N258_5Ls_night_low.json",
+      "sha256": "4a33e12322284a3f14103c00cec212cadf7fe9d8d222cb0dc76cfe0524321e39"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_10Ls_day_normal.json",
+      "sha256": "94fb639dc495cbe660855d92cd13b1d5d88093705e448f1bcc12b3124829cccb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_10Ls_evening_peak.json",
+      "sha256": "24a0cb21c8b29930fa8c96cfe975868b21dcb1b2af14abbffa1d0b78f6719b54"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_10Ls_night_low.json",
+      "sha256": "30367209266eded1a40998fb23664fd5edfc3c3f3a7ed32743aeb50e7fefcfe0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_20Ls_day_normal.json",
+      "sha256": "ea5ee59ef6ebf06fbcddd8b8009ae6c4e0e30a405290129195d7a51286912d7a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_20Ls_evening_peak.json",
+      "sha256": "25f0e5b0e7c03378ffa3776f66671639fa0981fc6f61b8ce74ce062c371e4305"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_20Ls_night_low.json",
+      "sha256": "5b3a1a4cdb79d661c46d6dcf7f66bb4bbe94d7256867636720e1f6705349c117"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_2Ls_day_normal.json",
+      "sha256": "8e9e0b7266c647fd8bf24cfcc75f01ef89bfe4efa278e350cc9c447e37f5309a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_2Ls_evening_peak.json",
+      "sha256": "94af5f9e52957c4f6589c967baea1fa6361973dce2d68ecda8565b98da264ac2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_2Ls_night_low.json",
+      "sha256": "83f29d561cb53cb2acd48782a1a1877e49b08b8d12fc3c8264d40e0b0cf68a96"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_35Ls_day_normal.json",
+      "sha256": "077f78d35084502f3a8aa1278e1c0281995f248d1969335ac05f41a791224496"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_35Ls_evening_peak.json",
+      "sha256": "06cd68134ac40a3ec91ffc53f0117559402e395a113a3bf06994053796bc5018"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_35Ls_night_low.json",
+      "sha256": "57525e1692f5dec827d178187e9eca742680935fe0d3a67bec8128ff85aae147"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_50Ls_day_normal.json",
+      "sha256": "53fee422dbaa3a93144d3db1f3b3372ff336531128fb23f86009aaf8f403e5b7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_50Ls_evening_peak.json",
+      "sha256": "7c7e9a613d751973e07cc451be2c6695b07b048b810f64e907dbd5b4eb3dc52b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_50Ls_night_low.json",
+      "sha256": "12dfa9eea10105324a320a99c6e194c10ec0d9bdcc5133b83a1a527e0f828da2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_5Ls_day_normal.json",
+      "sha256": "e047d41dfb497e910aa9f38a9fd9f877aea27dacd1f5110fa35058b1fe74cb61"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_5Ls_evening_peak.json",
+      "sha256": "3692b4dedf8970ab6969fc2a0c9d62ba9938e5eacf2e2ea0a6c91ac6937916b0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P0_N266_5Ls_night_low.json",
+      "sha256": "8a3f37d126ae1bb5a505ac4d781bd0f2ae1fe346e3c58f3a156f12032b2edb3b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_10Ls_day_normal.json",
+      "sha256": "ff54eec5cd8d95c3c6b8710ff0a3db6cb18d3696432a0dc4e8ef22e22c58511a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_10Ls_evening_peak.json",
+      "sha256": "3dbc3420a2f77bf9fc1c9956b7f4eed21d510a946c25749d13b0560afdaf01f2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_10Ls_night_low.json",
+      "sha256": "79780b3e4253ee492e8e2cdc481bca0c204dece4a82c4e8d3c0275a98835df73"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_20Ls_day_normal.json",
+      "sha256": "01f64b7f3702f97888f6a27c34e3f09f6a9ab9d5fe30f87d3f9c600b690f9171"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_20Ls_evening_peak.json",
+      "sha256": "3c01d185cc53a6c488dba67fbe277dc8b6c22f72afd6157e2615687b26841cad"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_20Ls_night_low.json",
+      "sha256": "1bc0e9362cdcc6c79d32602c16c47f42ef0a2e94539540fedc2834009e001d26"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_2Ls_day_normal.json",
+      "sha256": "cb8c299b31e2eca8b6077928018f0fa728191b53a9fa1ad9fcc74b26d051716e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_2Ls_evening_peak.json",
+      "sha256": "e3d9663c5e0d68faa7949696d7095ea9fbaa8c9522ff8942f77a4ada42a97bbf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_2Ls_night_low.json",
+      "sha256": "4c16d142acb2a0765e94b9c4b5fa55f952a69705ebdafdb745d0c4eba4fadea9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_35Ls_day_normal.json",
+      "sha256": "c245046bfb9cef2bd3c5baacaeec5eb8402e1638173310f2aba2ec26a09e37aa"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_35Ls_evening_peak.json",
+      "sha256": "66573d7412632fd625949dc8fad9ba9a6f7a032f5e72575f0f8e5d3f5640eb01"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_35Ls_night_low.json",
+      "sha256": "6d475318b3f61770458108cc44c2adfdfbccccaaef69bf21444f1f6a6d473ac9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_50Ls_day_normal.json",
+      "sha256": "11daf8edd03ad6a0c945244ef7d1e3b52331a85a4d3e51a5aaa6e157cbc58574"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_50Ls_evening_peak.json",
+      "sha256": "3fff9e70ed371782f3ddc16ab2b17612c1cda0d3114be98db6105886dc514e5a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_50Ls_night_low.json",
+      "sha256": "405549d537567d7c94ed1da41915fa80869a5e4d75e0a08eb7dafd999f6a5d9c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_5Ls_day_normal.json",
+      "sha256": "06f7193e5e6e8c2ca7767fe981c1282494f62d75e2ebecd786e8778dd9d5d0a1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_5Ls_evening_peak.json",
+      "sha256": "68bb719b281d7b4fb7d3b911d8f2f88079fc235722bfc054912f260c620b9db4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N53_5Ls_night_low.json",
+      "sha256": "28a950e6099b9586fdb98a0d9511679904d97c6a6250efc2f2993fda9a719076"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_10Ls_day_normal.json",
+      "sha256": "14bd0bf30cae9511358d79f73939713f7daeb783eca05b5c06bf875ef82c829a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_10Ls_evening_peak.json",
+      "sha256": "6bc775eaeb26aa112ae010e130065ae442c913c61839a142d6202e3631b8989c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_10Ls_night_low.json",
+      "sha256": "c0293165efc4487bd8e97691e23b3cc16129d344a96491abc4232763d539265b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_20Ls_day_normal.json",
+      "sha256": "95a51238fcc6f97971dcd70e3a15fc6063bacccc8ac88d58ad037749be4955a4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_20Ls_evening_peak.json",
+      "sha256": "62218757eec76f021fb1e71615b889eee98e9bfc3cbab703cfe56b27756788c8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_20Ls_night_low.json",
+      "sha256": "ae63aa1c90243f30e5e0caa016b7a77c104c455377b7bddae5235b87fde197c6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_2Ls_day_normal.json",
+      "sha256": "ebc2f3606ce8eae4dba979581157b6caf1a06f59c8e74a11445e20fb7faea18b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_2Ls_evening_peak.json",
+      "sha256": "115d8ca215a3d6534ccb7f957063ce804c90e6093ce151d8061a3a7c68b997d5"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_2Ls_night_low.json",
+      "sha256": "664360b70ac4d6e0b833a6db217a23c4a1d5850dea5e0483c034cb9ea837e845"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_35Ls_day_normal.json",
+      "sha256": "6cbcb593692679963bbbae82e539c14abc16fb10140d386ea60753746eeb0f0c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_35Ls_evening_peak.json",
+      "sha256": "ffc2a1ca170bf26d3aaf741638c40ce9ca539c3f3d6db27ab36e0a2b3bb43ff4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_35Ls_night_low.json",
+      "sha256": "a89c02e5e65ec3385a2511527db93e78788243158a4f43b22413dae13bdc6d4e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_50Ls_day_normal.json",
+      "sha256": "d4e05602844b62b744d36d89a0a48d41bbbca461bedc6eb0aa0ff8c020129828"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_50Ls_evening_peak.json",
+      "sha256": "b2991ea3439ea07652d4dc21b77d5f7ba97b085b137d2a200d645d97bf078c31"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_50Ls_night_low.json",
+      "sha256": "edae9d29855ef3ea2a5bf391dc506fc08fb9d61a284eb3ae8393e8c42f0adb38"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_5Ls_day_normal.json",
+      "sha256": "99dea1eecb5b3ee1a9cb3460f048528d799f0ca2ce8dab69514731a83dc641d0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_5Ls_evening_peak.json",
+      "sha256": "83889cfed6cbaf4b0e40d80355b62623a9cf36288ac9f5b42de0c7e63c053b6d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P10_N56_5Ls_night_low.json",
+      "sha256": "eb5058ccb039085ceb109a059caadd0c48a25f5478156ae9e223b355f7375e82"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_10Ls_day_normal.json",
+      "sha256": "d615dd3312a2e877bb3969678b1c9e69b701343265b0e98c9c790d83c50261ea"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_10Ls_evening_peak.json",
+      "sha256": "8abf926b2e7360ed0b5f8fc8e358305e7fcb779f581baac0f078cb8e9a918ab1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_10Ls_night_low.json",
+      "sha256": "dd5259331f8a9136c47656ef12600a670492a06daa59cb50eeb530e922d69db2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_20Ls_day_normal.json",
+      "sha256": "f8c0aa7a93fc0e33fe48f2bcc04f3d6412c16290eb5490d42046bf4d1052e774"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_20Ls_evening_peak.json",
+      "sha256": "c9e4f35c155e4dfb199c9e0e45851f82e91419eab0cc228259cca2f1b20b6126"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_20Ls_night_low.json",
+      "sha256": "90b3f5e8f878028302dd3e0cc28e50be0cdaccb7b7372b1aa94df8cd45164afe"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_2Ls_day_normal.json",
+      "sha256": "51f0ab10893ff6108fefcbb3a31414c0151bb915ed2e4b5983e458993e324e05"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_2Ls_evening_peak.json",
+      "sha256": "affad7aec538d1ca7186cba04c864d72a933265fe3a0b0d62606851fa9c18e6a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_2Ls_night_low.json",
+      "sha256": "1ba324d1998211819b7c5cdf8170a7ead667887e4caa1648bd032024a7db7454"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_35Ls_day_normal.json",
+      "sha256": "9d4025cfe4f0dc3f91898d1e2730914445eaaa3758a683c029ab4d36671f8d0f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_35Ls_evening_peak.json",
+      "sha256": "66081e2d4b563d9f1f3a0da2f50a37663dee4476c1d0af5eb1e8b38aad447735"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_35Ls_night_low.json",
+      "sha256": "726157505af924846b60d4c06326596f27f3f7f2738bca13891c7e724efc1798"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_50Ls_day_normal.json",
+      "sha256": "0ca2773846b7d353ba6ed5c73edfc35a888afc0bdf8b2dad2180878a8d3c473f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_50Ls_evening_peak.json",
+      "sha256": "44cc1af259b1d729beb414cfc9fdb83eac4c5b92c0f77b0b48326eda1acccc2c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_50Ls_night_low.json",
+      "sha256": "b070351c8ba7d9f5896f7caa19df23e70f8d0c99326968cc1971cbc7ef3d920b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_5Ls_day_normal.json",
+      "sha256": "8f9865271169697689f508b75e35696122b415f5e3d32045392ceb60b7623ecc"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_5Ls_evening_peak.json",
+      "sha256": "27146bbecdaefe4155460ddf5997923e86ac628c5a8fa73c33973d086d474951"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N332_5Ls_night_low.json",
+      "sha256": "15239fe8b7e5cbae07b8ae228ed11a0eea35165364710811eb31975333036752"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_10Ls_day_normal.json",
+      "sha256": "a3a2a3a06779aa6037383aa811a1eded9c78c4ca87332cc26d79a6e9ee1c26f3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_10Ls_evening_peak.json",
+      "sha256": "cb72eb663ad73d7ad917f52470d78779f32bf99b79bb514a56da5c313630160b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_10Ls_night_low.json",
+      "sha256": "4a4a773d37a90e12a963eb366aeaf361987b539a8acac946d592871d50b0c402"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_20Ls_day_normal.json",
+      "sha256": "0ac266303096f946248b9dde42aa55e08b3a252fd44abbf867239e1d2dd4424b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_20Ls_evening_peak.json",
+      "sha256": "199c90b913838f106cbda84298fd3a25c6a800f197a404ace67da9d5cb99fb58"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_20Ls_night_low.json",
+      "sha256": "dd5c49ffc8b2e7ff1f20505fed48f2a9c05d18e681c1e2776e44011618379054"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_2Ls_day_normal.json",
+      "sha256": "421a61c6c7bf29b54639d6727c72068688417d4cdbea17a7235606870ce36890"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_2Ls_evening_peak.json",
+      "sha256": "3a97ac15064271d2e587dd3b1e45142b5bff2e74505663a9dc2a0d1c7121df93"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_2Ls_night_low.json",
+      "sha256": "9fe15f382a35bdeb3a9805e0f7893ffd2a829b9b2ed41c32f8d845dd74310049"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_35Ls_day_normal.json",
+      "sha256": "4fad4f0df5bc1cd84343c95077b906b0660eceab8a28c9ecf1f0fa72809558da"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_35Ls_evening_peak.json",
+      "sha256": "9a59a2b964d3793a12151b156471891cda6c7b9d529595fd669ba5c64bc6819a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_35Ls_night_low.json",
+      "sha256": "df2f7abcf1c70daa6b07efe90099360930291a157bf0f12cabe5553620843130"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_50Ls_day_normal.json",
+      "sha256": "0927872319925116725672224369407a3410f3ab5bef49a0e57beb1c0e7efdcf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_50Ls_evening_peak.json",
+      "sha256": "165534ede654298b307e2fab8068963582504523b0fc4f902a64ab109d448686"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_50Ls_night_low.json",
+      "sha256": "b785504eb64be94df163c3bdae3293813453d4b460d88765e5cffb42488fb6bf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_5Ls_day_normal.json",
+      "sha256": "fbcf2de3dcfe9a874168e209eb18eb63486fae370e0a70afdd70776527c1211c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_5Ls_evening_peak.json",
+      "sha256": "c8cced0e82d12c3fa0b0eeb280718c7dfd362c4ea3c280b25288378e77d610ab"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P11_N335_5Ls_night_low.json",
+      "sha256": "49bd61f12e132ad41a8e8c764a235fb6b502871e9936c47856667383c0aa10a0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_10Ls_day_normal.json",
+      "sha256": "4b40bea585e6ca0aa6b13a9135a2612905c65ac736acd5adc46d7329ccde0ed2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_10Ls_evening_peak.json",
+      "sha256": "31c6bb114cd1b9fe543581a34e1bd422fe8c27f8c89b309335c1bd7fa490a5be"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_10Ls_night_low.json",
+      "sha256": "7049ed9f049ddbb6a91c67f13049df77d24040b1d4c171cd59b15415e366395d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_20Ls_day_normal.json",
+      "sha256": "2e744d02db4dc804bbe65244be3d326c964f313ec9415d8d3340e40ad691b5cf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_20Ls_evening_peak.json",
+      "sha256": "33d12f39ea3eab7c981da40cf7fa3b3a7b85676f05cfe33be9f09b753c5c5cc9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_20Ls_night_low.json",
+      "sha256": "c31e400d65a7cdaf1a62f3802d24d9b2e3ba0aff2a8a7812b72e09108b3df0dd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_2Ls_day_normal.json",
+      "sha256": "f5cdfa59c2e8b660e84d8ca1cd456988d0f0df497decfe8cfcba075b4d1e9736"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_2Ls_evening_peak.json",
+      "sha256": "060819e9a81d44cb00cb762ed274a805d6602051dfcb04f5fd4f10caaca8c6ef"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_2Ls_night_low.json",
+      "sha256": "b5115e5cfa068b6edf700ee02d0726f7f534b77d5e8b9f27598aba988946b92f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_35Ls_day_normal.json",
+      "sha256": "4b7dd06e0beddbac117c00fefc63e07bf23c921693367be764fb9faa1c05cc2a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_35Ls_evening_peak.json",
+      "sha256": "bac958cb58c9f990b2d30db845fb039c00e4651350acad8a92cc7fbef5625ef6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_35Ls_night_low.json",
+      "sha256": "d86c6a9d51f0a3ead404fac98adcf45eaf13721b1f9f9e288d9461b8153b1dba"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_50Ls_day_normal.json",
+      "sha256": "feb5c58ca68251ba69963b1844aa2d10b7be66a50c40e468a16a72cef70d2875"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_50Ls_evening_peak.json",
+      "sha256": "d5c527d92172f75748e513df51376fb9ecdea5d92742d35710c8aa4de5904a38"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_50Ls_night_low.json",
+      "sha256": "694478cb210d0f69b5a7ad557e74f7959b392fe8625944aa268e57b89bb28d80"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_5Ls_day_normal.json",
+      "sha256": "243554cceae45f034e841bb34e8eae4be49cb241c43e5c4797603971db0564c7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_5Ls_evening_peak.json",
+      "sha256": "03389bb22fd9e6fb101169a6e909b565ecd1866b788685934e78f3413e221a5a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N117_5Ls_night_low.json",
+      "sha256": "315fa7cd78045cce7b1d21c8f87d51da9327c77fce60f7e41d25e38be61f2c2b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_10Ls_day_normal.json",
+      "sha256": "37a3411327885e2774240c36b4628939362a83126b26c5acf2cc5cc7b39de3ca"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_10Ls_evening_peak.json",
+      "sha256": "d7792bca37ffca5c8fc9dfddfeee42f5c5859d7caab42f9e5cf9f22326492c1c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_10Ls_night_low.json",
+      "sha256": "cdb4a503eb7d2fd178cb929486e731d9a2e19d029d1b710ce4cb8b4df33605ee"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_20Ls_day_normal.json",
+      "sha256": "0c6a039c9bea2524915de11171dc4ffa6e7998aebbd786956422772a1455dcc9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_20Ls_evening_peak.json",
+      "sha256": "4bce6cd28248c892348df4df245ddb0235b71a8ddb818319a0b360ebf29cc5b9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_20Ls_night_low.json",
+      "sha256": "739aa9ddf49d43248f6786d4e39e5d934afde9e58b761ae4c3f95789b6e0befb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_2Ls_day_normal.json",
+      "sha256": "3fab25a7e059e3f6f609d1920ba1ff96c6f9feda05957dda342ba6f124957489"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_2Ls_evening_peak.json",
+      "sha256": "fcd7494931897640d0e2222529fc28e9257192837770bf09b05d88d5dc7895fb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_2Ls_night_low.json",
+      "sha256": "9ba8ad40123664f549a93a5a909c34a721cc1e07cff9bc31b90d2b30752a158e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_35Ls_day_normal.json",
+      "sha256": "e88989c7817bad0bde2223790fd4885dbbc8024513df34fe1c6924f085c5a81f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_35Ls_evening_peak.json",
+      "sha256": "3d1ea7a70d706366a1925aecdcbddf6ad0312255e7ea1f0d3c81a1667d5fdc1d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_35Ls_night_low.json",
+      "sha256": "9a38a4ee39d113d8bbe233a6c2d52219c01189f6831251f621ca9ebebe987fef"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_50Ls_day_normal.json",
+      "sha256": "5d181ce50317530d4eb6da04cb8e0eb40a1687a5e9dc14a45e0556fff20968ab"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_50Ls_evening_peak.json",
+      "sha256": "b587953f036d2c5a1f2048e95a21a76ae893047ed5bb80d8c94b22a6ae167c9c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_50Ls_night_low.json",
+      "sha256": "921d593362396103802fea9711ef316dd0321a3105f2a71af006710882315a61"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_5Ls_day_normal.json",
+      "sha256": "ca995a7393b91606b35d484cc4e84ef8946950cace09508aabdb0de7116171b9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_5Ls_evening_peak.json",
+      "sha256": "76360363c6d043d86eeb68ade1bb65319f47129066f945c0f8ca11d3d71b162b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P12_N94_5Ls_night_low.json",
+      "sha256": "11c2d52bd95872ac6d441ed77d7e7780632c64c9fc296207667472bd339c08bf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_10Ls_day_normal.json",
+      "sha256": "4a236f50bbf8aa881d32f8659e9714c35016d1b528d474f6f923dfbefd243b25"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_10Ls_evening_peak.json",
+      "sha256": "3c3571713a938ad0119763aa46afe6af9e8782be1d5e33968ef8d7c4fda95413"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_10Ls_night_low.json",
+      "sha256": "c1f4462b208d91c2969d12434412d1d87370fa5f979967e4b6f1dc4be7f16a74"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_20Ls_day_normal.json",
+      "sha256": "18e32c1447bcd91bfdbed4579f40b48ed9305b54e34d5f8c9f37f4c26ed399f9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_20Ls_evening_peak.json",
+      "sha256": "ab721f5ba1d0ab3216f5886d16dc3cbd24bd8d8027de88fa4331e6e292fe28a7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_20Ls_night_low.json",
+      "sha256": "4a90d467087dbd57316bf3401b5ed6d7f3d5665f90a03e8e3f93beb06ed75b25"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_2Ls_day_normal.json",
+      "sha256": "e2de9231bfec61e89cd370890aa9cfa0f33d71a39115e5beb015e2306e801cb4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_2Ls_evening_peak.json",
+      "sha256": "e6fc8dfbed609ecd7902c3770f7f6b3d37ef3db682e9aff4073391052e911682"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_2Ls_night_low.json",
+      "sha256": "8ff69e8681d17bb1921b46c5598016a5ac5b11528ac692bf634715ac8c75e0f6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_35Ls_day_normal.json",
+      "sha256": "cd1a2ce3bd76aa49dc7028efff559b1613703c3303a8b2ba4f0068c0cdc60156"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_35Ls_evening_peak.json",
+      "sha256": "8219523be60496dcf561fb798b645220642aac3c3ac440348b1efd137555e259"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_35Ls_night_low.json",
+      "sha256": "8de586c3e3ddc1b6f318aa1ece1ccd307aaa9b93e233590b30d5b217cdaf6628"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_50Ls_day_normal.json",
+      "sha256": "b934e018dd0556f689d86de91d19d31a28e8cd568c01ad10f4e0b98b2da9120e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_50Ls_evening_peak.json",
+      "sha256": "ae5ca6294d5a63fff1ad61d4bb50828227036152871a90eb54050cd12029703a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_50Ls_night_low.json",
+      "sha256": "621736075b0d7afb04413c9a62df2a7ac4166a324c6269d1e3f61f88f2f7f258"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_5Ls_day_normal.json",
+      "sha256": "de75f7076f8f31f34146dfffd393108ce000cab8cf74e0f6b6e29e38923ff671"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_5Ls_evening_peak.json",
+      "sha256": "cba1b09aab616b8225c3b43a9d199875a939f2d320c30c21c62aadaeb489c443"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N364_5Ls_night_low.json",
+      "sha256": "8b6a07fd28def06b0fc400d046c7b40c18fd9b00b77afd3aafa28fd29d98e062"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_10Ls_day_normal.json",
+      "sha256": "8c5b3721ebd40667821d484744d90a5ec70f7eb346809fc4828881a9126b079d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_10Ls_evening_peak.json",
+      "sha256": "4fbcd45bf09ed1db0b6c112e12d69837d0a3b2d946000434ccfd89a6b8060f7e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_10Ls_night_low.json",
+      "sha256": "8efe509aa3ea0179e5566e303ecaf1fc445b6ffd3ea2bf6126021564991bf1ec"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_20Ls_day_normal.json",
+      "sha256": "2b5f962b20d4ac551fb6c58ff118e9b729026189321032508d4250e1ca9130e2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_20Ls_evening_peak.json",
+      "sha256": "f984915815b2aa34d5a2ea9d1b3a18a2085912aa1bc09a57400e3c8449edca67"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_20Ls_night_low.json",
+      "sha256": "da0dd3b4c95468595a2fa6ea250d6f4acf6b7338fcf42a68f76c876479c23df7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_2Ls_day_normal.json",
+      "sha256": "674a4879669aecb62e2053a602fd76037b33570c6e0fe17c3de1c9bb93f2c665"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_2Ls_evening_peak.json",
+      "sha256": "d6fd77371d467bcfa4507af37b04428f0e590da82bc878b2a8f558bdebdd65d2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_2Ls_night_low.json",
+      "sha256": "63e96fc09b582a3876c203c382012a801596ddd376caf7575449ceb447b06b0e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_35Ls_day_normal.json",
+      "sha256": "1b2c9ab1222cd0f9f5f117eb0bc9202a39be598c9bacdcbfc5c4b2b3abd05244"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_35Ls_evening_peak.json",
+      "sha256": "db349ec9dd25509d12551557e953e9469beaf6d75108a2683115c1298f89bdda"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_35Ls_night_low.json",
+      "sha256": "32988c2f2789e15b22552d5b1bed2dd9005d861c876540747ee3a7800d8de474"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_50Ls_day_normal.json",
+      "sha256": "65a487c2416462b6c90a6434ef0af536e67b594985035dbd4d657040eb005ace"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_50Ls_evening_peak.json",
+      "sha256": "c8f9add48f40b692984718bcc16fb361f4be8461cb1a0277208f1c107d81854c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_50Ls_night_low.json",
+      "sha256": "240264903eef45fec507921afccd0cd64ef5b3f9ea5d052977302f93e7be929c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_5Ls_day_normal.json",
+      "sha256": "3d0e11d1ed58615d93577851b3c413007923519863cf0d8a87a07c1902e7bd57"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_5Ls_evening_peak.json",
+      "sha256": "c05b15a89b70802928cbd2f2cca3a270ecbe78a6d13af9b9dc727cd89bce3e18"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P13_N366_5Ls_night_low.json",
+      "sha256": "b235377de6c2a1144cace462377af96710d03831185eddb73bccbd5009e9b8cb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_10Ls_day_normal.json",
+      "sha256": "440b9a987c7b76fa5878690f95af927d915a9379d1a5eb0a8d7a267fbf057619"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_10Ls_evening_peak.json",
+      "sha256": "d53b589435322a96160067b2b29bd3b4df137c3e700bfecdc0af2e6678dd8b9d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_10Ls_night_low.json",
+      "sha256": "08ce6c9bfca80394360e9cef39a0e0d6fa33ec6d78e79d12025e4e398e6dfd49"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_20Ls_day_normal.json",
+      "sha256": "8f7f0785fca5a694e599dfd9b3211f726fcc58d23c89ec6dbdb3917c1ccd17b7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_20Ls_evening_peak.json",
+      "sha256": "bb1a7ee629c73d6a91df7cd098a0a0034a15e2ef8fc0f43645d0d24819a49674"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_20Ls_night_low.json",
+      "sha256": "3c2122185ac37f74ee936f6fe63afeb0d64237ce29cfa7d33b0e1d917784805e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_2Ls_day_normal.json",
+      "sha256": "89bff2fe96cf06dd92539753e46d4562e886f7dd96ede445af5f3a82e6738c75"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_2Ls_evening_peak.json",
+      "sha256": "43083048d7657eb6e4c71bc980e475968e803fd11ddb7779e13b32c19e0bf86c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_2Ls_night_low.json",
+      "sha256": "a472e2bfe1d2b29c3390f7023bd80157d6705c8f5f6b3f5f216e2e4134bd9b1b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_35Ls_day_normal.json",
+      "sha256": "ec7100428281df08da27860006c34765d7743d872833a7ceb9d36f7706bdc857"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_35Ls_evening_peak.json",
+      "sha256": "ee0feda3c63f719375530dd716bc64fc7731a47253a6b6527c0faac30ee366e6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_35Ls_night_low.json",
+      "sha256": "1c231e67218f4be061a64f43f3264e6b5bf913a588c7d8f6de4eed6853556d42"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_50Ls_day_normal.json",
+      "sha256": "7723372e6aeb12c262d4e187d2463a186cfe037c9df1c466c62a64430c6dde78"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_50Ls_evening_peak.json",
+      "sha256": "14590cee8d9b7309da0904a300fd4e3c3962560640ab325e2d81969e58265ac2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_50Ls_night_low.json",
+      "sha256": "dc8261c7d4b256d526e8c9bb8ee80323cab08cca914ea833fd49c15a50e737d7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_5Ls_day_normal.json",
+      "sha256": "6fbed53de1202b7f40882b55371724bcf95064751f4807c24d0598331d62b507"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_5Ls_evening_peak.json",
+      "sha256": "543ea371843b5fddd58398356479a0ec1b3b191533026cdcb3f9a4983a0bfcab"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N82_5Ls_night_low.json",
+      "sha256": "aad48c05956c0da1168635c9d3a6fee7eb8bd8d63f9d656b8a830509aac62f8b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_10Ls_day_normal.json",
+      "sha256": "ba672855d4011594dd5b2f736e29c163dd0720bb22d7c3876f82d710508f7238"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_10Ls_evening_peak.json",
+      "sha256": "8558fe0c341b436f3336632f0df624781a933613a5d4c8e2d27a2892b0640b52"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_10Ls_night_low.json",
+      "sha256": "a1959ffc91871eb4cc0aa3666f26a9c43354653e798668310120279e43087bfd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_20Ls_day_normal.json",
+      "sha256": "07c01ab5b6dfb604ad9777f0335113da0a34893ce0ef9040914bc695a78f8d31"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_20Ls_evening_peak.json",
+      "sha256": "ed7fff6f4294dbc3a43f175e54162af1b79dc55217726d9cb99741dc89b09ca0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_20Ls_night_low.json",
+      "sha256": "3e319564e806ebafe4e9018f074f50c80553865408772bf138e2c871313956ea"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_2Ls_day_normal.json",
+      "sha256": "c305a531d4059cc3b634ffe86c3cbcb723c608625456f519890dc792b0320cbc"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_2Ls_evening_peak.json",
+      "sha256": "859c30e526c71986a9b7f1fb6e7d871c4820b86431162d8b6e09b1659edc45ac"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_2Ls_night_low.json",
+      "sha256": "15be4682fd9b4c688c270b0bca553e59de93846b78d1f96ab0066eb5f76d5a7b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_35Ls_day_normal.json",
+      "sha256": "ada24236768de694e73470adadc8a2d620f0494d91d66a4eecca97b982403b63"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_35Ls_evening_peak.json",
+      "sha256": "3aaad9873e40df5834f1168800e766207ae22da7872eced755cd27f201036420"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_35Ls_night_low.json",
+      "sha256": "dd21455cda4508eb31671df72a57ca3f5c4c1b946aca34c81f4aea0803e1747c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_50Ls_day_normal.json",
+      "sha256": "1b24d10a60e5967558aa8a8357df7abe75a47c13ec69dbf2a76a150f4a0f8c1d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_50Ls_evening_peak.json",
+      "sha256": "04fb9394afe6dea6e64ebec1eb4f748657589658f0a4fcf25a34eaba60969f05"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_50Ls_night_low.json",
+      "sha256": "12d93751c8d8d406e6037f2cf9e5b3d228a70984e8d8e54b02b095b62309aa94"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_5Ls_day_normal.json",
+      "sha256": "f0e3e37a51a480123ccb3cff2ec089ab860554f5f0e5945cc8800311e84f9161"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_5Ls_evening_peak.json",
+      "sha256": "bf4137a9ca5fb885e1be1861cf09a6163d54e96c73241d0b55bb7d3ad9e9fdc6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P14_N84_5Ls_night_low.json",
+      "sha256": "324ae71765b2321078f956e2be8ba1efaa642a0efce07ea6026d61dae9119a89"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_10Ls_day_normal.json",
+      "sha256": "1a449dccd0c70b3119204ccd31dfa2dafa9b63796090ba8d1ee053d0d3652a37"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_10Ls_evening_peak.json",
+      "sha256": "101755c97afaf402a78a64e15e23daea63c6a032c38a2878e9a86779315c9e83"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_10Ls_night_low.json",
+      "sha256": "024e3cc6ed85a6648b156d946f6ba8fbced74c67b51014eb2a8a1d9157142c2a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_20Ls_day_normal.json",
+      "sha256": "184b7749dba622dd174e92cc48c0efc69db0554f9e787049f3659baa2762c3c6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_20Ls_evening_peak.json",
+      "sha256": "f7a68022a364028ca8c95b3bab70de2a59cf09acdfac6989125b1490a3e94eb7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_20Ls_night_low.json",
+      "sha256": "4c0bb0792c1800ce275a98fe453b4c8c217f5152274f7a91e8afd219b2ae30ff"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_2Ls_day_normal.json",
+      "sha256": "e1265a60940c2718d3aed24ff655fcbc7f2920102f41575f7a5929b9f1bfcdf3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_2Ls_evening_peak.json",
+      "sha256": "17d618a10721f927041705eefeb9e23cbc64c1cc654d994c7fe91234209f56d1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_2Ls_night_low.json",
+      "sha256": "68d6bdcc3e7fa3c72db171250ffb5dffe87b53b3b89f3078cd0cae3b23683130"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_35Ls_day_normal.json",
+      "sha256": "59883450e00b6d4acd9e00a5a8435ca3c211f347831ff32bf7bf2203a8dcceea"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_35Ls_evening_peak.json",
+      "sha256": "992a1d1d29aa296c7a35dc495c6f33b77fc43e232e3782e5ea34c4285a49611a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_35Ls_night_low.json",
+      "sha256": "ba8477faa728c7e0963918ec7d0aaba7f793ae03023a263d4808ddbc7c4c3164"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_50Ls_day_normal.json",
+      "sha256": "f2fbbc4ea65c4a01b536bd1db55cf7f05ea8c7dd7aced1c140c463c646814f53"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_50Ls_evening_peak.json",
+      "sha256": "33974a99d3ebc802250732f98d2514ff08918fa062b778e863c340842d977a71"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_50Ls_night_low.json",
+      "sha256": "b97f869eee5e905b81b42b573ef3bae11d8d7d7523b4f20fa1849750bb270fcf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_5Ls_day_normal.json",
+      "sha256": "8b8b0803a8c0d539c9f4ef3c7fa7d6250b37cb551c6a281d1c0b301f7d7d5dcd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_5Ls_evening_peak.json",
+      "sha256": "059241d9a90b4a1578587b82c9f99748f92ddf357bac7e74e0d8d4f5aec40650"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N107_5Ls_night_low.json",
+      "sha256": "1625c5a2c62c19ace7dd6352d3aa5409f927f0b53d224abed20ef00a37062a76"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_10Ls_day_normal.json",
+      "sha256": "70148a9ca2b24501294d1eea1c009273f1d763d01065a9ba38c912c07f17e4e3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_10Ls_evening_peak.json",
+      "sha256": "21007b4d1615eb513badfb6a8fe18024fff8800cb6ce976303a13a6efe3a8d87"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_10Ls_night_low.json",
+      "sha256": "88d57edf687d6acba0dbe33a4bc1af4fabb7a009d6c6ccc70240a17000ec53f7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_20Ls_day_normal.json",
+      "sha256": "4f4041bab30517b066ec88046a73993d3b8e01fa7665f79e3d5a676a8aebd88b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_20Ls_evening_peak.json",
+      "sha256": "e7e31121f61727f03ece9e395820b85be1c0157796d8fcfe6ff68072c0b422b9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_20Ls_night_low.json",
+      "sha256": "13c646a9b626ba4975317efe7df7cbb97e282745d19d55f0a0fddbb642f2f423"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_2Ls_day_normal.json",
+      "sha256": "14a0978ed85f897dca9f9c4ae6f44dfd8936d3df7e415e62b04b4ca1bc9fa1ee"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_2Ls_evening_peak.json",
+      "sha256": "4020582c59f61da5d5e38d2900ffb77d831eba1b048b250afcb8b3683a277513"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_2Ls_night_low.json",
+      "sha256": "01ceb6896094e7e3a9baeaa6935efb7fcc67710b6e7138c5e7d6aa0ffda9b63d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_35Ls_day_normal.json",
+      "sha256": "b9498cd4e3dd3f408d7e2f33239c821ae0f1e6662b042f47aff2015998575083"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_35Ls_evening_peak.json",
+      "sha256": "d503116e7984a68a365025cea6ff9d7bf8cfdb061ef9573073578e7cef7f648f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_35Ls_night_low.json",
+      "sha256": "b5f23634c823d657c49ddd86a56fbb832bc1a6d7416183ae7d11f080fac8a548"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_50Ls_day_normal.json",
+      "sha256": "52b2530c33bdb44be3297125aaf09212e7dc8dc12b5dd4a372ece3be2e2758a7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_50Ls_evening_peak.json",
+      "sha256": "45e758b17b1180e1176199ce5645386349d3563ae9cbdfb4055861f67d3e0034"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_50Ls_night_low.json",
+      "sha256": "8d9ac1ddf83f3ea342e38259da8554e0744bdf74a2f25913842843c005b38336"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_5Ls_day_normal.json",
+      "sha256": "d7b16c49b024b9443e28330480457d1bf7e3e6f3b118124e1184fdc5b2d18dc4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_5Ls_evening_peak.json",
+      "sha256": "19df3012f2d1aa1f3eb833d7d1661917cf5fdb8041b0bd339c2962c07c85d890"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P1_N50_5Ls_night_low.json",
+      "sha256": "8c0da4d596c2607b34e83d0a88809be7c106558df09ae4362fadfaa09442fb33"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_10Ls_day_normal.json",
+      "sha256": "f5057bb10b79a7947ed529b69b54ffc93dfc55933226c9a14f34b272b5d622c1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_10Ls_evening_peak.json",
+      "sha256": "f2e5b566071976f288964fdc82ccfd461bd067caac4bbb25bedec7bca2765d36"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_10Ls_night_low.json",
+      "sha256": "90ee0f8653a20eb499fdf2bfc3bdd60a6f82e5f08710520dc8cb0da63cb756a5"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_20Ls_day_normal.json",
+      "sha256": "8355e1a8da54a98e73fcaf0004d4861d32d521d041305e5a50041cb99bfb40de"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_20Ls_evening_peak.json",
+      "sha256": "b2becb959ecaae8e764ab6a26616d12c87581295f67416accfa7c9f450a92d27"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_20Ls_night_low.json",
+      "sha256": "8247066613e02ca9afcf4cec42610d9167944265472ba6170b76f1d7d0654388"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_2Ls_day_normal.json",
+      "sha256": "4f65bce7b5dffb3487b950c5c3b44d0c2e5c259b6af14b830e60fe9339c91e95"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_2Ls_evening_peak.json",
+      "sha256": "0d7e19c6e6ec2eed0459d8d24a27acb655bc99734cc34e3f8a59cdd73d2ff152"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_2Ls_night_low.json",
+      "sha256": "691b11a96a3d117f139e1c9eb1436a78cd850175306e1c62d47d8ad9dd8840f8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_35Ls_day_normal.json",
+      "sha256": "f1cd6b582dbb2714d7fc8f54901205e7e1e1824013bb1efa2ba5dcc649793d43"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_35Ls_evening_peak.json",
+      "sha256": "7fd43755e5688ed33ccabc63227ab845a0e7e7b4348d5eec2327fff4052e0fd7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_35Ls_night_low.json",
+      "sha256": "53fa277d00408f65352d08985c7596fa2b22ea693a7e738a188a3e8bb9bc4ad6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_50Ls_day_normal.json",
+      "sha256": "5914cbf3726c2410589c8e4503036d109b0cb5163876ef80669c6f6095c519d8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_50Ls_evening_peak.json",
+      "sha256": "0222ebad52cd78ab88ebd349816edbd5cc36df72bf7941ded135d915cdffa2cb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_50Ls_night_low.json",
+      "sha256": "c6e1dbffedf25dfbc74b5dcc0ee672a0128ba7b16f8d5cd744ae93b162e48b60"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_5Ls_day_normal.json",
+      "sha256": "eb9f98be8b49cbae23140c945b212ec4e3b424321d4676b739f2f421dd2a2d9e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_5Ls_evening_peak.json",
+      "sha256": "d897ce040e8fb0b82891f6ef6346bcf746cc982a22e1d1b06954ac2a24f76095"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N163_5Ls_night_low.json",
+      "sha256": "74d99f57dc26c56d17f023c91386d347f94d24bb5aeaec73238212fffa8d3a86"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_10Ls_day_normal.json",
+      "sha256": "86f016bec85da609dd951c7d54adc5ebb731c5c1a8d415cd83e779d8a326cdc1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_10Ls_evening_peak.json",
+      "sha256": "0954dc21e50b3f7ecc4d5ebd92fd32fec8e7cb58d48efe1ff8dd59de2a13df90"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_10Ls_night_low.json",
+      "sha256": "b88d566c4d5d60bb90405496b96935fef1c2a47145290fe603ddbba7bc7dc807"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_20Ls_day_normal.json",
+      "sha256": "bb31a6d87dfa20ef915bdbc72ae2005c9b3495728475b7d47114319d8c390922"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_20Ls_evening_peak.json",
+      "sha256": "fa78a77ffb70edf0178cd471a7a373331a9d046e5e6bfac4c58df680764a0b2e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_20Ls_night_low.json",
+      "sha256": "fd8dc0cbef35cf4ba153665a56a5665bccc9f47f0f1c04520a34e9db5018452a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_2Ls_day_normal.json",
+      "sha256": "f6268c7ca8b64eef4b64fa1a19c3e3c3c2fc8c96db1b416209e1453fe5702989"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_2Ls_evening_peak.json",
+      "sha256": "e0c964d089d1e93a18df92c1533e856021ace8ec925f36e5de29b2c1705234f0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_2Ls_night_low.json",
+      "sha256": "eed22296ed8799eeefd15d5442fc6ed8e5bf92328bba03f2eeb0151dce114f18"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_35Ls_day_normal.json",
+      "sha256": "84701377e0c8c738c9b14f31c38d6d94883c449225a8062316866398a0b056ac"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_35Ls_evening_peak.json",
+      "sha256": "4ebd625607d3136d04f874f6df1a9183ee523e896172b63afd4b0e2733b361fa"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_35Ls_night_low.json",
+      "sha256": "f1e911cac6a1d1dfe1b7acbb80b06d578ff0c83cd4df5d92873774920ffa8183"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_50Ls_day_normal.json",
+      "sha256": "815e5ecd192362821cc9763a65d749e938d51b9e361818446298326f722c4e90"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_50Ls_evening_peak.json",
+      "sha256": "b3892bca6958c6f94fe1bb414471e53c342ebc3adb439b4d4f5ce803b7fe2a59"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_50Ls_night_low.json",
+      "sha256": "fa35885504aa71ea80fe706b7e8c3575c0268a8c32d7e141ddff28b6aabd2559"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_5Ls_day_normal.json",
+      "sha256": "a128d5bc57e36511ad0214d61afd6561b6f09a35e3f27a7501b07b5688e61409"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_5Ls_evening_peak.json",
+      "sha256": "72274c2e5a15a3c43e4fd889c75a1ee8015f247c5a4d6bf28112bc9d43ff09e0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P2_N164_5Ls_night_low.json",
+      "sha256": "b2d456b96fb5428f11379e407fa5b091a58f969441c6939f1ad8706e807b6d1b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_10Ls_day_normal.json",
+      "sha256": "b33258729633e59c159cbd77aa11461031c9bf00c11e1a319b3090213f5c34b5"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_10Ls_evening_peak.json",
+      "sha256": "641706039c8df46d6c425fdb9b1c4a0fc19d94c2a9e782db961fe49a372efadd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_10Ls_night_low.json",
+      "sha256": "574d7f7377845329bf2c1c181701547d621b9778fc97cdcd7ea5d306354b25a4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_20Ls_day_normal.json",
+      "sha256": "b6e4355def018e8c618a335e00246efe9d8c0047300d3af2ddb1d534e907aacc"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_20Ls_evening_peak.json",
+      "sha256": "2110bd2d2c6181c342a022918c5296390f7bf218f5d9cec5cfde7b311f1dcb53"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_20Ls_night_low.json",
+      "sha256": "433ea6bf316363e5003fefbd1a9f8dc996dddd042c474cfa47f9f70ce1be7991"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_2Ls_day_normal.json",
+      "sha256": "03d2ebfab46804b079905c22eb643fbde3f47a3a7341e4f8ad6495a7c7470afb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_2Ls_evening_peak.json",
+      "sha256": "cf1000751eb07f8aabe72e98d1d4f6ef9bb9885a9d9868ff56ab5196200cdca2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_2Ls_night_low.json",
+      "sha256": "d852e512cf7e1f854f02cb57624a0886b6c099923b9faaea84697387ebf22cf4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_35Ls_day_normal.json",
+      "sha256": "49e0a55cc35021b5dec35d1b71af402c32193e3516ec18c823097731c9e3f2db"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_35Ls_evening_peak.json",
+      "sha256": "063dd5e2d2757ed6c65e8f89dd50d4be48049989c8c83b375c0620c1d2b38fdf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_35Ls_night_low.json",
+      "sha256": "30c97b565cfe5e77b72bebf8eb7b8f955615c60296c717e8c07ae28b276d6e9b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_50Ls_day_normal.json",
+      "sha256": "30fc36930d8c8ecdf243e2a5b8e3cdaa7019eb6888fe776deac53f9161aa70ba"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_50Ls_evening_peak.json",
+      "sha256": "c8185235150f87d38b29e018726624ea08b3371b82a6dd066d3b68b3044393d3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_50Ls_night_low.json",
+      "sha256": "e7b18c1dd9e1a2abd420b5164c7d9601876270f093b37ad274e43463f4a3f627"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_5Ls_day_normal.json",
+      "sha256": "f8d65edcea39ef445da6cf41741ab32f8b9c9a56097f32ec2118272ebced21eb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_5Ls_evening_peak.json",
+      "sha256": "f1edb88fbfa7279f07c2820ea2ce02b2d479bb5b54668c1b8a6a64b2b3eaf5dd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N96_5Ls_night_low.json",
+      "sha256": "6fdba9e7d8769f105368842df38b03565822f454faf7c264b33598cc24deeff6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_10Ls_day_normal.json",
+      "sha256": "ca36320fd63f6205ce96733eff9867d9ab6f952aee58d61684535a001c356e77"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_10Ls_evening_peak.json",
+      "sha256": "69ecdbac28cc42a07ceb32bc75947a6696750735a998b880664a50294875af27"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_10Ls_night_low.json",
+      "sha256": "10d1083006d53410254a42fa011a10237dac4e1456ca6f1989dfd77a69cd5ea0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_20Ls_day_normal.json",
+      "sha256": "790afb41b530eba43d5c72b45ad15b2186dd96e4fe3b365dcb513fdf322e5a1e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_20Ls_evening_peak.json",
+      "sha256": "d66c87716c87ac5ba7cd34574f3bcad34db3c1718b0ed7d83a430362f09dde8e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_20Ls_night_low.json",
+      "sha256": "2fe292adb16cd3d6b901ff39bf1baa55ecc58b20adb4fa838ad776d8ee221e1c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_2Ls_day_normal.json",
+      "sha256": "8f98a7f29437dcab97a737a12109edb1f1973cdee83ecdd02390b0c1d96d58d2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_2Ls_evening_peak.json",
+      "sha256": "71d5efe020e434985544935f997f602c1b0c6afa263bedb418cccb609b9ba9bb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_2Ls_night_low.json",
+      "sha256": "43f16a7549ab161005f905c5dbe406af63ba042477183a11fb6f2f1dea35889e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_35Ls_day_normal.json",
+      "sha256": "0ef23af49c577def3d682a90a3fa7934f896179b906fbb4fee3aee2c980b49e2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_35Ls_evening_peak.json",
+      "sha256": "3e3bbb267d9cac0feb6cba1d84f26c3a5533a887b103ad855b5703874b039e83"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_35Ls_night_low.json",
+      "sha256": "de064efaf046d589a08e269bff4b95ec73d9d6217db20fcd4b3d8a2b0092c2e5"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_50Ls_day_normal.json",
+      "sha256": "9b95f5feffc1b0fae22ecd5468bb3b3e8265698108b8090a81db718a4a6cb8f7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_50Ls_evening_peak.json",
+      "sha256": "5b43892bd77b58acc232df52fd417ac798daaf0729a36fce1e7a556cc0caf006"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_50Ls_night_low.json",
+      "sha256": "88f1141d18804df5ecc5f2e39d168c86d0a2cdcb1d91e6c47d7101f89d7cfae8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_5Ls_day_normal.json",
+      "sha256": "ae3d46959fb80eaa4c09e24c3c193858b278758e78fd730a276f81170dec0190"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_5Ls_evening_peak.json",
+      "sha256": "9ec253e292b941ee1f0c55f238a49d5cc24abf6eba3bcc41e8db125ff6e71891"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P3_N99_5Ls_night_low.json",
+      "sha256": "4072cea57cb3a9e09a32f0c3de32c4fb8adf1aa2fc25feade6ed7f797c505559"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_10Ls_day_normal.json",
+      "sha256": "8712888533913ad3d41c189debaa48c05bb1c6f12ab638fbb57c8a6239ca8831"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_10Ls_evening_peak.json",
+      "sha256": "1b2ae88b845559e22de0db506e40a9bf357ffccff899ac14a7eef3e40c025167"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_10Ls_night_low.json",
+      "sha256": "be047737ddb046da53c0c7955915981da92822c5dba2db8afdc7575ca6b84026"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_20Ls_day_normal.json",
+      "sha256": "65ea4de2dd9cc6cf5f62caaaf4e480d870fcd3d41d63a4f0f1227a17e0b17eee"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_20Ls_evening_peak.json",
+      "sha256": "3622a43231edf32663d146039a46be77c5c66105ebbbb7ad90918f2b31e55da1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_20Ls_night_low.json",
+      "sha256": "c38b84616fff720580654bd7a8064aeb4fb153b2ac8930e490131d60a5d08374"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_2Ls_day_normal.json",
+      "sha256": "a3eb3e4e53627e002c9d24d6fa3bcaf70ae7963a2e39d4c577ba6b59eb44e730"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_2Ls_evening_peak.json",
+      "sha256": "ecb7255424f11c840ef3a29e266860e0a935f9ebff7c9c1f7043b173fa82e465"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_2Ls_night_low.json",
+      "sha256": "ef5659e1ddf16b84e4ee36122c92794270dfb187932d84f5523b736d67d45a5d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_35Ls_day_normal.json",
+      "sha256": "332eb8024328c37b2a50ccc443fabf03608e9df27cb16c249964961efb971e68"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_35Ls_evening_peak.json",
+      "sha256": "4c14d761fab9b541ae15651b41f9fa893ecc8c504870a544ff6f4fab149842ed"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_35Ls_night_low.json",
+      "sha256": "abf2539c0747d1d9d29c6a2ef3ddb868ba35a03b45ff4ab122c7811b3385cbf9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_50Ls_day_normal.json",
+      "sha256": "1372bd45299b2d1a6faece2cc74146877e1d603d72b77aaf1ecb750c216aea44"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_50Ls_evening_peak.json",
+      "sha256": "3be1db0c7ec2d266ea047a959f69c0f964d8e6109451934dd20e545e107f75f6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_50Ls_night_low.json",
+      "sha256": "502d99042d351e4305e9affa6c318ab60bb3746cf160dfaf1e061a6c3c39b4a4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_5Ls_day_normal.json",
+      "sha256": "327d774ca4fc7f1a1c3d5a9585f04f8d2da4ea9ae2d259395e9fce98973a67c2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_5Ls_evening_peak.json",
+      "sha256": "71fd08f2de9a527b4e11a2b9c8bd9157ab0a9646ba4ee44fd43fbce85a917c30"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N144_5Ls_night_low.json",
+      "sha256": "9f36428608245d4b890fb484576d1efc61653bc4d622c3cfa399d4aa793594eb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_10Ls_day_normal.json",
+      "sha256": "3d58ebe74472deb410dd0addc18012e50dd68e4300ee1e96b2a422e4459b451d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_10Ls_evening_peak.json",
+      "sha256": "c85b8a1542b98e51ea5491c4059cc190b3e7f5878c3095b4006d66f2ce186efc"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_10Ls_night_low.json",
+      "sha256": "3c3121cdd6c2ff44184c48f9fc0643b21d64a0e2f3b1f963dbec41de494a9723"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_20Ls_day_normal.json",
+      "sha256": "598c14765aab95342e48aa33145d80af8c8b3ffb3353174f64cfc7556667cbbf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_20Ls_evening_peak.json",
+      "sha256": "7927ff16f49b202ed665ee26035c86f53c51f9e4343aa5e28a94a9eea7e194ee"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_20Ls_night_low.json",
+      "sha256": "3ca890a5371ff46ef34686530f53c6c7af10d038cf7183f6fbbc2bc6d7e16384"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_2Ls_day_normal.json",
+      "sha256": "eb3f1ed4805a3f0c188610566c52d3979cdb8b46d06a669da1ebd1d2fa2729a8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_2Ls_evening_peak.json",
+      "sha256": "37144af14b397556fbdd26a261c780490f37a1268f2ff172762b2905d4bd3e1a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_2Ls_night_low.json",
+      "sha256": "459e679c3a4b4592e0e5791d93f5d07a35e2bfb3b6ef9b542adbbef007373199"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_35Ls_day_normal.json",
+      "sha256": "5b47fbd4d70214f3466ffabcde82203f083cb5c5d89094c4c62515999e24113b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_35Ls_evening_peak.json",
+      "sha256": "2409850064645c28972397ec904d7528fa4ad86ba6f6bcff8e4d1768d8bba627"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_35Ls_night_low.json",
+      "sha256": "12253fc2d188cdff522a90001e1ca62cf803d327d759490a90eb40aaf77bebb7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_50Ls_day_normal.json",
+      "sha256": "660bd5099b2493b7b6c465ca9f0801419a12cf13d0c267cb464efaa956ddf735"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_50Ls_evening_peak.json",
+      "sha256": "1fab46c54e515b021567e7d3a7901655f288192e4fa1e8bde9649a376e1dbca6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_50Ls_night_low.json",
+      "sha256": "16eac3ac3b4f37ef8df363ed9b3c41884b0849fb389e8cd949228412fb0fc1c2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_5Ls_day_normal.json",
+      "sha256": "7fc9ab65b67e40e76da5afd190677189b19961957ef0708a87220c1e24cd5a0e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_5Ls_evening_peak.json",
+      "sha256": "afe80ef2ef639f6e170e4f3ba1549a5c70790ac0b202522f083c61ce821d17e8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P4_N44_5Ls_night_low.json",
+      "sha256": "cc7f82bbeac40598b724d81cd37ff32564358f2be7e2a4038900f2c418ebfbb7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_10Ls_day_normal.json",
+      "sha256": "918f8265aca64aed358b4a2a0d27a74369372084c4609a99eff147ef13bb72f1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_10Ls_evening_peak.json",
+      "sha256": "d7075e9868ec1cc96a11cc03372939235efdbba4d16633b165be9ac3782cc6a6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_10Ls_night_low.json",
+      "sha256": "2db344a70331c061e55836f1e2d8998cdf259882ef2bd662b35afd8ba3944eac"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_20Ls_day_normal.json",
+      "sha256": "9ec993409c444d01622acaad6db68c39c1523d5b59151eecbc898a2f0120e08d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_20Ls_evening_peak.json",
+      "sha256": "1b3f02ac73dcf26610628d114e55b0cd73e6ffa14cbf413f0b4dd1c5eb2aec65"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_20Ls_night_low.json",
+      "sha256": "61819dfc7b423e15b689744fd5511776ae76aabee11a881a8d6ecd78790e5862"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_2Ls_day_normal.json",
+      "sha256": "aa7c5d735fcd8de65f41991c1186438af2d5d78577603ccd8dff0fb6f203383c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_2Ls_evening_peak.json",
+      "sha256": "6b61d3b1cf30cd797d5f166acf849257b394616222215336f713c02f87953128"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_2Ls_night_low.json",
+      "sha256": "2e29378525ee577521bb905c0797f287d7fc9efc5f12cca32e907aa3b7041c9d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_35Ls_day_normal.json",
+      "sha256": "70ef98d1eeba19e09dc1593b6e1d704894c875a4cb99f957f27a52f09701c3e2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_35Ls_evening_peak.json",
+      "sha256": "eb05e1f3e6d7956bc24b717b39a499a3f894fe60b578cd1b8d6caf190766f095"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_35Ls_night_low.json",
+      "sha256": "0666872244c84e4dfe0a32b1a31a9a983962ebcff165ebbc89c6f2b38a0e744d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_50Ls_day_normal.json",
+      "sha256": "7e07eee105a6bcb82c7bd0472066facae6a85a9f2c606a15d12ead2095fd746b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_50Ls_evening_peak.json",
+      "sha256": "aba665b9afaab284a0bee51d321eb219e15a6443ee171b47354bd188a79e1c62"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_50Ls_night_low.json",
+      "sha256": "8ca992bb8d1b668b6f343b47c32e795615db424a7945eff4efc4ea72b2704a12"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_5Ls_day_normal.json",
+      "sha256": "68617ca5cd16f1b9c5e44b2f32bf652dee31b05c071b8883b531165a92a51aa2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_5Ls_evening_peak.json",
+      "sha256": "bbf6305f1a611b7b2bb3715cd8efa7f1202ce7de3d388b867199bc3a83d677b5"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N243_5Ls_night_low.json",
+      "sha256": "bdc74fe2cb79d97ebc19fd2a55bfe5e73ef6bf650d5e1c4de7c70aabf3b54486"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_10Ls_day_normal.json",
+      "sha256": "e42bdce1ffc7bd4aa8c0e906a3f29b0aa17db7ffe7580b5c493e47dbf9342bed"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_10Ls_evening_peak.json",
+      "sha256": "0b63bff304b3cafa8b5663ff9ac6f70b82a0d8d24cd5038af6b1ad60c6019c63"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_10Ls_night_low.json",
+      "sha256": "98f61825b708ccf9310a4e83bcc14a63247d033a160ad549dde4b4272c42199d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_20Ls_day_normal.json",
+      "sha256": "53008dee9c8443f8a51b91b434ceb4d6cda6e6b7ebdbb47f1378bf2df33611c1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_20Ls_evening_peak.json",
+      "sha256": "41814bf76a8d40f3667dd5291f549b01ef755356c47c7b48e5eaa9c13d8a09d9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_20Ls_night_low.json",
+      "sha256": "3a56b2c46e04e1ef055cd52e0dee17e8ae897ac152cc84d4a60a5e4321e71d09"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_2Ls_day_normal.json",
+      "sha256": "baeb64871641c8d93e95169d8fd7b3d57d17f4ce1717a9ba5ec08c589e3960e7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_2Ls_evening_peak.json",
+      "sha256": "92664ab1560bdd6056aa6a0c43bcabe605838f2e87dfd0741890c8a8f0923cdf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_2Ls_night_low.json",
+      "sha256": "b54df8b9863626e8c77b5d555338e31b90c556a7adcafd5d2c55174ecf606786"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_35Ls_day_normal.json",
+      "sha256": "2a2fa7001d2dbc25b12a9f34bdfb32855a9c04ecb54e6b92f1605dc506edc133"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_35Ls_evening_peak.json",
+      "sha256": "9cdb8194578465f92a9a762fdf1be4b09acec9c14a4028d11e7b97240d3ba43c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_35Ls_night_low.json",
+      "sha256": "8fb7b8f7770950c43592f3d77edc5b597407bc45edf0791846535a40dd319e94"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_50Ls_day_normal.json",
+      "sha256": "2e28bb2d3e0e9f9f232258cee8f26c0e671fc3729d23ad20f2677ad185ec4c6b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_50Ls_evening_peak.json",
+      "sha256": "2a8455737f0022d1b2b532a858c8ce4a6cfa7c7b4a91ecd3c1790a1f34a1933c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_50Ls_night_low.json",
+      "sha256": "6dbfc163fa8b4b622ea55b2db8b10ec32f64c9c7b2e9da569b8302dcd212754a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_5Ls_day_normal.json",
+      "sha256": "634bfa75d435d32ab41361574924312f2d834bce04e072c0edea65d3e0cca520"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_5Ls_evening_peak.json",
+      "sha256": "2bf60f79fb1533156de5e07c7e69d557ee04f9a8b321f552475f9a3b9c7c53ce"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P5_N244_5Ls_night_low.json",
+      "sha256": "02718c3acccbe152865c7db2d5efb2d4d31ebefb48c1b0ccbc88d275855accd9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_10Ls_day_normal.json",
+      "sha256": "0a6dc213d7c7c3d560ffe3ceb5e2af8ce871172b5e0660c13d1666d291540bec"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_10Ls_evening_peak.json",
+      "sha256": "adf134788b6196d278472f1650cff080ebbdee11a6eaf8668b7ebcc7e61863fd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_10Ls_night_low.json",
+      "sha256": "16423c7fae5ecdd12db43fda0bbf78a405f6ea313e94b10491da8f021dcd6b0a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_20Ls_day_normal.json",
+      "sha256": "302e8b2376454d9493929b4e9327b8b36630b0dc09aec83ef8800bcf0e024bf4"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_20Ls_evening_peak.json",
+      "sha256": "b1e3eefce6d0427fde59d9f30c9465ebe30c3da2b9c9c3aedc368ab4f0e07b95"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_20Ls_night_low.json",
+      "sha256": "f6e0ccf706079dacab0a0596aea3a59f608397b2a93aec38de1c2f1a2274816f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_2Ls_day_normal.json",
+      "sha256": "33944d62b5883a0f8e7146fa5171e1116691e199bdef984d77ffe59461546fea"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_2Ls_evening_peak.json",
+      "sha256": "e780309c271312630d43b736c23d5aa0e1a32cd6607b58f154fd9bca9a513b29"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_2Ls_night_low.json",
+      "sha256": "59eb9dcc0ad8365a4dc2c9f71db6e38dd8f9f3f9ece532a179aa72f6ab0b4ebe"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_35Ls_day_normal.json",
+      "sha256": "3216f80f62839807a4a8d046a5cc105b5c007e6b9c282c38c9646107133999a7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_35Ls_evening_peak.json",
+      "sha256": "e02364fac3d75067f56cf61913118dd6ad9ed8adec48eddae63cc37de8943ace"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_35Ls_night_low.json",
+      "sha256": "dec878e6315c41b138ce2d91eb46d7f027c4e2389d902798c8e134596344bd52"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_50Ls_day_normal.json",
+      "sha256": "4542c7b94551f14a989de4338d2f577b56c61ab7db9e3780efeaf7fefcc72007"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_50Ls_evening_peak.json",
+      "sha256": "27a4874a58a3d4dc4c61d7b9f21460ea1fcbd5176e053e7e28c4ac4798596433"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_50Ls_night_low.json",
+      "sha256": "1186be3171210d4247fdca1a407cb5fd115de1cc13e50eea3f4c6600900b1cd2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_5Ls_day_normal.json",
+      "sha256": "25f7c9ba850ccf1f2b2e86d90a1428954842e790fff8f2e993fcdd6a8a978814"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_5Ls_evening_peak.json",
+      "sha256": "293964b600139c5a9a35010af6038363aec4a702b8dbfc6f38d50023babef615"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N60_5Ls_night_low.json",
+      "sha256": "c4c348218b08e64b9571f9bedf798ecb1753d81845e6a5b372b73b3cb94c816f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_10Ls_day_normal.json",
+      "sha256": "86496da2b23fb55c8abc15eb6f99adb2bebe3db19f0b449ddd95b446ca0bebc7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_10Ls_evening_peak.json",
+      "sha256": "0f11f6738c2f35deeb8dbee18cd89cbf00eb34a25491528c36a5c1088783ce30"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_10Ls_night_low.json",
+      "sha256": "66f59be403b49090265d75aa1b1a4a31007f7af3c1a1b30b7029dcd53ed82a5e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_20Ls_day_normal.json",
+      "sha256": "412634c329f4aae6674c156354b7beaf37b982e28ff6f6b3fd3058ec1a6eb9ac"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_20Ls_evening_peak.json",
+      "sha256": "c4612beb1626deafdeb967883c0eb1c526c9b15dc231a54f1d0ec5b7b0e2c0eb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_20Ls_night_low.json",
+      "sha256": "7a57440f99b517b0a6f5b797578d86b2479818e2b39b51bc1c2b04ba4670f224"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_2Ls_day_normal.json",
+      "sha256": "25dc9228ef598c6f54da31f7350aa14fe80e5c2e5ecf93653846a2288b5fd01b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_2Ls_evening_peak.json",
+      "sha256": "edc2f0be54013b33f8bbfb68fee5d3f7754d94c8a8f7dfec0e614a990336ff33"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_2Ls_night_low.json",
+      "sha256": "ac87dd37181193050af5dda75dffeef5c740fd0824a953359731cd4ed7bc8f51"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_35Ls_day_normal.json",
+      "sha256": "c8ad9932fa77f562d67cdd8bd5d581f7282fc1a9eb4d9b7087ac04411f2b957d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_35Ls_evening_peak.json",
+      "sha256": "4c9a19652cdaf2e510674034f298c5e7030b7d7feac6ed63b69ce6e28773ab6e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_35Ls_night_low.json",
+      "sha256": "d597525547fe0357e3b04f3509c5175578190d98d5f0981a5f05acb04c85f735"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_50Ls_day_normal.json",
+      "sha256": "b31c99cf8f10421936cace55f95d6107bef3cafb39de4eac3b319a019f88d459"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_50Ls_evening_peak.json",
+      "sha256": "1e65d0b744e45735e602179fd9ad9e1eeed8dc6ce5602ac0e29c0ee113dcd788"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_50Ls_night_low.json",
+      "sha256": "9269f823b2fb906a19784a6e079ca7a9787faef565e2c2b53be4cdbaef50d62b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_5Ls_day_normal.json",
+      "sha256": "708b89c98a6defb5298cf0380814d0d6286ef72deb800b2041df61dad0abdf9f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_5Ls_evening_peak.json",
+      "sha256": "09ca71a9e0eea3be4a802aa884bf0f95651732ae66cc29c60263fc056429cdbf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P6_N61_5Ls_night_low.json",
+      "sha256": "0e6635bcb9e34fefedfa4781f5e1ffb68bf643ef4b2b9076f87c1899f62da987"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_10Ls_day_normal.json",
+      "sha256": "123bd719119ee3efd6acca5ae800a7e021b4bfaf4e9f81a1086640f7d5e61ae0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_10Ls_evening_peak.json",
+      "sha256": "02850054356877304768072f61ecc6829ca0e1430014f8ea1747aad0b13a2425"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_10Ls_night_low.json",
+      "sha256": "29c5d8b665259c58c481626109b3ea350b44733706d90e4bae3f4cf12cb46c2a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_20Ls_day_normal.json",
+      "sha256": "4e2e4b9095fb51c339f683d9f93d54710fc71cdc84bd0e17543adfd15602884d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_20Ls_evening_peak.json",
+      "sha256": "0f38dabbe115ab57dbb5a42a2181025560b98800e0e6156c56a6bee7d6f69c58"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_20Ls_night_low.json",
+      "sha256": "6b35d79a85f8d4ffbc60ed2576205e66bd89138f0c949770745dbdba2cab1991"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_2Ls_day_normal.json",
+      "sha256": "f8ee9a012031a8cd19f85b61b1eb3d52f80b88f22f2e530d2bd3ee68ceb487c1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_2Ls_evening_peak.json",
+      "sha256": "dfe5397ab6a3eddffa989ccc875019b2cde5cef2761adf7f42f5551b5a380459"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_2Ls_night_low.json",
+      "sha256": "404a9704038270fcea7d6dcc95c76c5606aa5fe7c2c351a50c65473c96bb1eba"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_35Ls_day_normal.json",
+      "sha256": "4b19f8b24d34197ac40aa60e5bac47276308920ac1bca560d9082928f5f4e476"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_35Ls_evening_peak.json",
+      "sha256": "142bc0360d441546d36d7a2cf65856bb5f53bbb8a0f44e69b4fd288644ea8250"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_35Ls_night_low.json",
+      "sha256": "d90a2f51e76bb531b521832354d30271706321b7f4cb390a9a727f1ea758f52a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_50Ls_day_normal.json",
+      "sha256": "aaff8921dda774709ca58b5c955213633abe36836ac84855269779f1bb074bb9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_50Ls_evening_peak.json",
+      "sha256": "65c350305537635c9ee794e460e74cecd5e9f76486f12430666852067a502856"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_50Ls_night_low.json",
+      "sha256": "32cbfc9d64c53ad2f125b09a5d75e6520587d482ca6956bf563b980bc854b0a3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_5Ls_day_normal.json",
+      "sha256": "1873d8960d5f77cf944dc441ce74ec0b6a52fec48e85319d23c9f176fd6e84f8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_5Ls_evening_peak.json",
+      "sha256": "8a32aac655b2bd42cd33063460c583dd4c6a1c61df9d9e79e948bb7a77fdfa1b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N33_5Ls_night_low.json",
+      "sha256": "44e79dd0eb8cd5e265fa56740620e7839cb990fc8723922ad5cb4ca0b7ad8fd8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_10Ls_day_normal.json",
+      "sha256": "e85834ddd00409cbaa3939b1112ff6dbb4a3f978fcbcfcf920df664afa991990"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_10Ls_evening_peak.json",
+      "sha256": "d5c854663df455c3d95addd11cd95a63401009b9b8c026c9fc54b5a021fa7709"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_10Ls_night_low.json",
+      "sha256": "72b1849a3606895cf2d95c6301702809de24f7a3ed7a97fd7f4f31ca144e1e3f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_20Ls_day_normal.json",
+      "sha256": "f3053c05cd6e002b8c497f01812f671c5d31d6d78d7e22ebf241b9209ff76e84"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_20Ls_evening_peak.json",
+      "sha256": "5869dc5150585bd8824c5cc4dc195f71c8b49dd77b60c4d8355726fdd997de93"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_20Ls_night_low.json",
+      "sha256": "326f458dd3d581f4134d0c2a265ac39e43e55b72a2b2c7dad7e4f71aae90f97e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_2Ls_day_normal.json",
+      "sha256": "7b82547062d8bb34a1631ff58a95fe13738a2121b448028951a1c2303bce1570"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_2Ls_evening_peak.json",
+      "sha256": "8302fa8f0b1f380bf9a74037bf4d5e94ab43d50d67c9946ad92b2bf2173fcd1c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_2Ls_night_low.json",
+      "sha256": "e9b5f344f7b97042de67af890e0ff21432e72088d124c8ca91e07009b31bfffd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_35Ls_day_normal.json",
+      "sha256": "109cc30c131644313a09566bfd05de8079ce0fd6a926efa595c32f763cf8ef4d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_35Ls_evening_peak.json",
+      "sha256": "db0304633bbaea1811ce5797d01fa71b58fbce3a811a75b650b748c11709a21a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_35Ls_night_low.json",
+      "sha256": "8af5e977a70ff82312248dca7573b70c864e6204fc568193eea4fa9bf01a11bd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_50Ls_day_normal.json",
+      "sha256": "8d5ee45b10a4881d1233aef9328788c5209b0fbfec432040f1194d9cf62d5c33"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_50Ls_evening_peak.json",
+      "sha256": "9d93c8e08d4ba449684871e48a589cb8beaaf727eb39da67e99349b728f0bd2b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_50Ls_night_low.json",
+      "sha256": "281518e987b9f6edc63b811a58b4f7b705f5022ec20c5cabc6414de493058020"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_5Ls_day_normal.json",
+      "sha256": "a960b0518714b74d0f60b68e5fdb359e8c75dc7609fd297c666dde424221decd"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_5Ls_evening_peak.json",
+      "sha256": "e0c16016921a6435cc77436ececdc4a766780da64b8e1e70c6db06b6d4016f40"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P7_N34_5Ls_night_low.json",
+      "sha256": "7ff3ba6b91cfbb288112d3ecc1effbb3871a32d4c6bfb4de49a0a3359b8134d8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_10Ls_day_normal.json",
+      "sha256": "d14da4f5f6721ab58e42b3df88546961981bc1c93e10293c7a2a7a7cd7e2118f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_10Ls_evening_peak.json",
+      "sha256": "df2777ab674b286c08bf8099d859c65bc5d73c0bcd9fc4d10391340f74fd3dba"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_10Ls_night_low.json",
+      "sha256": "9f3c07e3ce151fc208f08d6e32b2f9c93a403f8cd6da4531d938c37892689c47"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_20Ls_day_normal.json",
+      "sha256": "228faf26ae3938b0978935fd703cb0e1ed18d44b70812689d20186776901ffd8"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_20Ls_evening_peak.json",
+      "sha256": "4c0717a3c70feff2570b0c104117f7c3167bea4f0e3b369644c9eea57322b6aa"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_20Ls_night_low.json",
+      "sha256": "11712e0b8231e12c34b6857e7ce27c23f23109fa67b0354282446c963b7b3644"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_2Ls_day_normal.json",
+      "sha256": "2c59297a5c36e35ea085ff7755a9914c6a76252c7f7497b98ad3e1d36e848658"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_2Ls_evening_peak.json",
+      "sha256": "a7b67ab342c218a949acebb20fd8c6bd13d5393e9a3d7b10ce33ab41ee50a805"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_2Ls_night_low.json",
+      "sha256": "e0a3f618bbb8f5521c10ca5b676952a791156b20da3aadb798ea976b3fa02735"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_35Ls_day_normal.json",
+      "sha256": "a3ef604749802c0c3c02f67e2574a8a12bfd98006e4f53fd47ea78b9bffb68ac"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_35Ls_evening_peak.json",
+      "sha256": "b5ccdb89e0318b4a0d62165041dfa183b78742bbbf7513499aee166f50689b03"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_35Ls_night_low.json",
+      "sha256": "9a5138445b89afab6f8920ff33ec22a2ede49f3ca589c68a656d5006b3d4575c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_50Ls_day_normal.json",
+      "sha256": "27a61da5f6db87e237f30f89028a5a4140e8e1c3f60a54a37ae3e22d5cd47798"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_50Ls_evening_peak.json",
+      "sha256": "19f0d6029de38d2c1ff2637b355d021d405d059c4dca1d1d02b206c4f8df3801"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_50Ls_night_low.json",
+      "sha256": "9d1b49b8f5321b655e420a7293428d111afd0df9847f3cff975f65d731fd631a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_5Ls_day_normal.json",
+      "sha256": "2d5716368c2c24922c2fa9cb68c9b2af60bf47b83c4afb694c80c781f3ea69b7"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_5Ls_evening_peak.json",
+      "sha256": "c1903bf819eda2f6925f9fe5790566f9ef8768df38216e377ad1fb8605dfb935"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N357_5Ls_night_low.json",
+      "sha256": "1c237218d8dfb2a923f11207f497fc533bf25fa1e99a65ecd0dfc39fc933ff1d"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_10Ls_day_normal.json",
+      "sha256": "6006f4d2bd212a1f6058b721adb5a321594d2406f719e4992873fcd287c37645"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_10Ls_evening_peak.json",
+      "sha256": "44ea2c802c4ddab63432f56690e6a12d2b8af59b41c37761b941c893d62d3ab2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_10Ls_night_low.json",
+      "sha256": "5fe86cb2e74411b8a4d462d850781d099b9d5f0e37bc706074e5a4c42bd368ab"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_20Ls_day_normal.json",
+      "sha256": "d8108ad78f553a34c97bb90eab84be02b9cd2d020f8eaa0cd92acdc3cc45f6d3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_20Ls_evening_peak.json",
+      "sha256": "0973e803e5587633fbd5b8c9199b4365f2c26b70b34ecf694a9142848f3e1a90"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_20Ls_night_low.json",
+      "sha256": "25556344e6884e944a030325a19db84929786ca8c66d71103fc6e648e114e4d3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_2Ls_day_normal.json",
+      "sha256": "20dc02a84237003013593cf9aa78df583118b8170b9e283c301171e55f845ccb"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_2Ls_evening_peak.json",
+      "sha256": "5d79d8728f14875a9e51f0ab588cbf99eebff3ff21dcefc4c2892925fe9f5507"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_2Ls_night_low.json",
+      "sha256": "c983f789c08d092546178b2f2448cf2248c28d11c80f21b6bff954d518d6efd9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_35Ls_day_normal.json",
+      "sha256": "6a6e939d4d5e098aa336e3a810629c0c7be1c9415b95910706d2aeed3eb3a034"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_35Ls_evening_peak.json",
+      "sha256": "71d6ba4915221e65efd42c4284b51b98267b47977c2be50527375643eed5d05e"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_35Ls_night_low.json",
+      "sha256": "514bee949b995502e4ce9ec7a235f26ef108cb715fb007b36d2b54a597334e95"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_50Ls_day_normal.json",
+      "sha256": "674b4a878ffa85a5327e58cf74059acf35817f1a55c84a5b61eb5eecd2b97574"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_50Ls_evening_peak.json",
+      "sha256": "afe134e58afe2427174a0ad4544698146dcef6f272c7668e216c701a7eafdf78"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_50Ls_night_low.json",
+      "sha256": "d4128b9804bc4bfdd5a47a197683c5a90c65e12af5eefea21f27fc467651db80"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_5Ls_day_normal.json",
+      "sha256": "a9e299c2e8a9e025ea6d4e7f46070042759ac1b09a5171708bc1a7eb024c97e9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_5Ls_evening_peak.json",
+      "sha256": "6263c65d1023bea0c800dfe59d0f1c1d4082083d3186bab6facd35d3aebd8a35"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P8_N358_5Ls_night_low.json",
+      "sha256": "935d9b4b29911006c331c91dfd5396427f5f61e040134cd11a0aec1961ccad8f"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_10Ls_day_normal.json",
+      "sha256": "37379ac466dae095826af1e76fb3393897fc7866660ec5f1520088d6a436665a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_10Ls_evening_peak.json",
+      "sha256": "2fd488bd975c2bf1205c7e88b4c67530673cec091ba107a13ecca5d29a8e85ce"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_10Ls_night_low.json",
+      "sha256": "81a3dd7a30781d082063d2b86375237dedc0d8a8211a285fce79d8fb52a3811c"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_20Ls_day_normal.json",
+      "sha256": "2a17f5c675095b8835ca6caf994ca0c416580361a51b7ce427b7749125877aa2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_20Ls_evening_peak.json",
+      "sha256": "1ab2004101955276d039645d71063efb0880c7d562a60e001be94f06573de309"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_20Ls_night_low.json",
+      "sha256": "e4f801a2a94b5b85235cf072ffb8b54b30fe0b0201d2b1bad829d87d46da20ed"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_2Ls_day_normal.json",
+      "sha256": "27d74fe50178e8afcd1bbbb8c4cc7f880c2eab5efbb589ee14bbab78ce2ee4db"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_2Ls_evening_peak.json",
+      "sha256": "c8f78fccaefefb580cc6ebf20bf420315595ff7c3632b6d007843a591337f527"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_2Ls_night_low.json",
+      "sha256": "d504095a67369eae7bdc82e862dbb1d99153d22a6806b3a5cf09400cd328e912"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_35Ls_day_normal.json",
+      "sha256": "937f827cdcd119b7f5256e79f8a3be7ccd1d45232ab0fe46e2e5e9400e254cf6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_35Ls_evening_peak.json",
+      "sha256": "2072d8891b0e3fb438bf5eeaeacec62bbba157b6a854ad07d1516d6f8e1f67bf"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_35Ls_night_low.json",
+      "sha256": "1fc079bd58d2e2bc096311fa88d9ec14b33687a3c1b141ed6a253a671d0b9291"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_50Ls_day_normal.json",
+      "sha256": "04f859c0881e2163c24742950fefbd19fce528051ab8824022e95f0cd1cf5047"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_50Ls_evening_peak.json",
+      "sha256": "78a8e1c8fdb1a0cf6aaf18c5bdf7c0a4dc27f3fe5062d7b63cac8ef3b13ef1e1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_50Ls_night_low.json",
+      "sha256": "266e513a1d35d6f7a1383953422a0c911c775edf2544e962062563bda7dca4e6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_5Ls_day_normal.json",
+      "sha256": "f0596d084faf3c3c2dff8ea653b1adc3f1ccceb3a4a0db9d7a6740b3fa9d16ca"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_5Ls_evening_peak.json",
+      "sha256": "d647d80411d21e2e8ac44ecf406efe5d7d6d0e27c976c1d50204c0f9b0c4cc7a"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N289_5Ls_night_low.json",
+      "sha256": "6a6069e3a7e82e7c89fb0317817f05686b084017b3de90ea6ba62021464a6285"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_10Ls_day_normal.json",
+      "sha256": "379f4312e64dd84dc34c78b9ad97de0b2c85ddbef9f89947ad00b9a0f250749b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_10Ls_evening_peak.json",
+      "sha256": "368afc2aa6bebf358e1c07da26a1ec84433a67e9f7517c9302c65161b35f61d1"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_10Ls_night_low.json",
+      "sha256": "138115532ba09f6cce0c1b3e91de0e91b76f13da4565498eb0b5bd8da7e886f0"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_20Ls_day_normal.json",
+      "sha256": "11760531e53e52b80c12f33e35b4555f862fed4a7678afa187bc775927ac0256"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_20Ls_evening_peak.json",
+      "sha256": "034aca0b3bf263ccdd16b734e97467fd53b19571f5df4954f260b52de2c30538"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_20Ls_night_low.json",
+      "sha256": "336e88ed31088efef290142a992d4adbdf530f917cd5292463d1c9a306a4c856"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_2Ls_day_normal.json",
+      "sha256": "5c30225bb2ebb6d8e2cf36d54523df4dfd59a438f0e217d8afebfaa3d7daee19"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_2Ls_evening_peak.json",
+      "sha256": "1ae08b29ff7f5caeef503ca260a355471fa52cf9d915e8a9338315212f37ca53"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_2Ls_night_low.json",
+      "sha256": "df65ccde44c1054350c728cc4124f6991d3bf8cb24ba5af5b408622168443aae"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_35Ls_day_normal.json",
+      "sha256": "55a2bbd1b9075f824970bb3c57383d02a49c749fa503c3829f05e831bb80ab82"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_35Ls_evening_peak.json",
+      "sha256": "e7c1c6045086334c3516efa265481f4189be9f7810f7c7b1b5f63c03ae75a9a9"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_35Ls_night_low.json",
+      "sha256": "982261a47eca79ecb5151d8829387daace34d5c06cf68e49166415d5d2153d02"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_50Ls_day_normal.json",
+      "sha256": "d2df0e93501e0277f31d64e1c693b6b66dee92fc6976aac365f74fcfb4062aa6"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_50Ls_evening_peak.json",
+      "sha256": "e50abd4ffc95c05a70aa5b66021fb81b8181ae5fc05dee3201f9858b79721a0b"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_50Ls_night_low.json",
+      "sha256": "5dcdecaff6583e8f62c97dbe75207d9fa245567ad58f711457db05afc9c9dd13"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_5Ls_day_normal.json",
+      "sha256": "003dd596562fef1635857f1e95f6e5a32e0efdcfb02aebd711f3f0ba714c5cb3"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_5Ls_evening_peak.json",
+      "sha256": "ac258ce6f2e31af797439c1c72807ffb541b3ccbf8e78fe48b1934faa5dbc1b2"
+    },
+    {
+      "path": "exa7/reference/simulation_results/leak_P9_N65_5Ls_night_low.json",
+      "sha256": "b5fedba34c31245d0660a1f123143ac44f9fc5449808a1f93a9e6701881a5cae"
+    }
+  ]
+}

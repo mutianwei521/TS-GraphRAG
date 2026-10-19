@@ -1,0 +1,14 @@
+Item,Current setting or recorded behavior
+Language model,gpt-oss:120b-cloud through Ollama; temperature 0.1; maximum output length of 1024 tokens.
+Activation,Language-assisted interpretation is disabled by default and is applied only when explicitly enabled.
+Gap thresholds,"τL,1=0.05, τL,2=0.15. Explain for gap strictly above 0.15; suggest for gap strictly above 0.05 and at most 0.15; refine for gap at most 0.05. These are dimensionless score gaps."
+Fewer than two candidates,Gap is treated as zero; mode is refine.
+Candidate/profile depths,"Lref=3, Lexplain=5, Lprof=5. Refine receives scores for up to three candidates but may receive community profiles for up to five. Explain/suggest list up to five scored candidates."
+Sensor context,"All supplied sensor observations, sorted by signed value and rendered to four decimals; partition sums and maxima of absolute change; sensor-to-partition assignments; partition adjacency."
+Community context,"For up to five candidates: node count, scenario count, maximum-drop range and up to three representative leak-node identifiers. This is not the node-stripped context used in the separate re-ranking experiment below."
+Refine prompt,"Requests spatial, topological and pattern checks and instructs retention of Top-1 when at least two of three checks pass."
+Enforced override rule,"The label extracted from the response must be in the original Top-3 and differ from the numerical Top-1. The generated check assessments and reported number of passed checks are recorded, but acceptance requires neither a threshold count nor an independently recomputed hydraulic check."
+Explain/suggest behavior,Suggestions and rationales are recorded; numerical predictions remain unchanged.
+Effect of an accepted override,The revised partition label and whether it changed are recorded. The numerical Top-3/Top-5 lists and scores remain unchanged.
+Failure behavior,Generation failures and responses without a usable extracted label retain the numerical prediction.
+Scope of evidence,"The language interface is available as an optional component. The projection results in Tables S2 and S3 did not use it, and the mode description does not establish a gate-related accuracy gain or explanation quality."

@@ -1,0 +1,9 @@
+{
+  "pairs_compared": 24300,
+  "mismatches": {
+    "fusion_strict": 0,
+    "projection": 0
+  },
+  "dev_queries": 1350,
+  "test_queries": 1350
+}

@@ -1,0 +1,130 @@
+{
+  "id": "TableS15a",
+  "source": "0829/supplementary.docx",
+  "table_index": 25,
+  "preceding_paragraph": "Table S15 | Sensor placement, count and observation quality. a, Placement comparisons on the historical 15-region map. Means ± sample s.d. over five paired runs (156 queries per run); distances are means ± s.d. of run-level median pipe distances. The historical set is a fixed reference and was not refitted using the new train/test split.",
+  "rows": [
+    [
+      "Placement",
+      "Sensors",
+      "Top-1 (%)",
+      "Median pipe distance (m)"
+    ],
+    [
+      "Historical fixed",
+      "30",
+      "84.1 ± 4.0",
+      "188.4 ± 14.1"
+    ],
+    [
+      "Random",
+      "10",
+      "57.7 ± 7.3",
+      "404.7 ± 122.1"
+    ],
+    [
+      "Random",
+      "15",
+      "69.2 ± 5.4",
+      "288.6 ± 43.8"
+    ],
+    [
+      "Random",
+      "20",
+      "73.7 ± 4.7",
+      "239.1 ± 17.1"
+    ],
+    [
+      "Random",
+      "30",
+      "77.3 ± 4.8",
+      "208.9 ± 2.1"
+    ],
+    [
+      "Random",
+      "45",
+      "82.2 ± 3.3",
+      "181.3 ± 8.9"
+    ],
+    [
+      "Random",
+      "60",
+      "85.1 ± 3.7",
+      "158.1 ± 13.8"
+    ],
+    [
+      "Topology maximin",
+      "10",
+      "70.5 ± 4.8",
+      "284.6 ± 45.1"
+    ],
+    [
+      "Topology maximin",
+      "15",
+      "76.3 ± 3.8",
+      "231.7 ± 21.4"
+    ],
+    [
+      "Topology maximin",
+      "20",
+      "80.1 ± 2.6",
+      "214.8 ± 6.8"
+    ],
+    [
+      "Topology maximin",
+      "30",
+      "81.9 ± 3.2",
+      "182.3 ± 16.8"
+    ],
+    [
+      "Topology maximin",
+      "45",
+      "85.9 ± 3.3",
+      "141.9 ± 7.3"
+    ],
+    [
+      "Topology maximin",
+      "60",
+      "87.7 ± 4.0",
+      "127.2 ± 6.3"
+    ],
+    [
+      "D-optimal",
+      "10",
+      "63.2 ± 4.8",
+      "354.7 ± 56.7"
+    ],
+    [
+      "D-optimal",
+      "15",
+      "68.5 ± 4.6",
+      "258.0 ± 36.2"
+    ],
+    [
+      "D-optimal",
+      "20",
+      "69.5 ± 5.5",
+      "255.4 ± 43.9"
+    ],
+    [
+      "D-optimal",
+      "30",
+      "75.0 ± 6.4",
+      "227.1 ± 32.9"
+    ],
+    [
+      "D-optimal",
+      "45",
+      "80.8 ± 4.3",
+      "195.1 ± 20.6"
+    ],
+    [
+      "D-optimal",
+      "60",
+      "83.3 ± 3.3",
+      "172.5 ± 11.2"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

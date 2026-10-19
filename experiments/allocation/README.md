@@ -1,0 +1,18 @@
+# Fixed-budget allocation (E5)
+
+Five nested corpus designs have exactly 540 atoms each: A (30 locations × 6 magnitudes), A′ (the same 30 locations × 6 magnitudes absent from the queries), C60 (60 × 3), C90 (90 × 2), and B (180 × 1), each under three demand states. The tensor contains 350 screened EXA7 locations × 12 magnitudes × 3 states × 30 sensors.
+
+```text
+python -m experiments.allocation.run --profile replay --output-dir outputs/e5/replay
+python -m experiments.allocation.run --profile full --output-dir outputs/e5/from_tensor
+python -m experiments.allocation.build_tensor --inp data/Exa7.inp --output-dir outputs/e5/rebuilt_tensor
+python -m experiments.allocation.run --profile full --tensor outputs/e5/rebuilt_tensor/expH_robust_tensor.npz --output-dir outputs/e5/from_hydraulics
+```
+
+Replay recalculates all 1,500 draw summaries, the H0 table, all pairwise sign tests, and the ten-comparison G2/H0 Top-1 Holm sensitivity family. It reconstructs corpus/query locations for every original draw using `random.Random(41 + stored_seed)`, with stored seeds 0–14 and actual seeds 41–55. Full reruns 270,000 query rankings from the tensor and compares every draw-level metric to its archive. `--draws 0` selects the first original draw for a short calculation.
+
+The original noise rule is preserved: one 30-dimensional `RandomState(41 + stored_seed)` Gaussian vector is shared by every query, design and protocol within each draw. This differs from E4. G1 locations occur within the 30-location subset; G2 locations are outside all corpus designs. Query magnitudes are 5, 20 and 50 L/s, under multipliers 0.7, 1.0 and 1.2. Rankings retain each partition's first occurrence; reciprocal rank is truncated at five distinct partitions (MRR@5). Distance is the Euclidean distance to the highest-ranked atom in native network-coordinate units, with no conversion applied. Fresh outputs use `median_coordinate_distance`, `median_error_coordinate_units` and `distance_coordinate_units`. Explicit metadata maps the first two to the archived `med_m` and `median_error_m` names; the numerical values are identical. Reported intervals are linear Q1–Q3 across 15 draw-level values; alternative SD uses `ddof=1`.
+
+The hydraulic builder ports `expH_robust.py` directly. It uses the frozen reference sensors without initializing LeakLocator or an embedding model. The original day-normal, 50 L/s screen retains locations whose mean pressure at the leak node is non-negative and whose maximum absolute junction response is at most 250 m. This screen excludes 31 of 381 junctions. Building the tensor entails 381 screening runs, three baselines and 12,600 leak simulations. Replay and retrieval can also start from the distributed tensor. The builder uses a separate working directory for each run and a native temporary directory kept alive for the process, then restores the environment. Each output directory holds one recorded run. `rebuild_report.json` binds the input and implementation hashes, compares every tensor axis and ordered sensor list, and requires a maximum absolute tensor difference of at most 1e-8 m. Solver status, complete pressure grids and finite values are checked before averaging.
+
+`run.py` ports the computations in `expH_robust.py` and `results/E5_design_curve_20260909/analyze_e5.py`. Partition labels come from the equivalent plain JSON map in `data/reference/partition_summary.json`, avoiding executable pickle inputs. Full writes per-query predictions, Top-1, Top-3, MRR@5 and distance, plus all original draw-level metrics. These metrics are checked against the frozen archive; differences raise an exception after outputs have been written for inspection.

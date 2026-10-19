@@ -1,0 +1,180 @@
+{
+  "H0_summary_text_exact_match": {
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true,
+    "7": true,
+    "8": true,
+    "9": true,
+    "10": true,
+    "11": true,
+    "12": true,
+    "13": true,
+    "14": true
+  },
+  "production_H0_equivalence": [
+    {
+      "query": "leak_P0_N258_10Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 3.285539922570635e-05
+    },
+    {
+      "query": "leak_P0_N266_35Ls_evening_peak",
+      "top10_equal": true,
+      "max_score_difference": 3.9823986006215506e-05
+    },
+    {
+      "query": "leak_P10_N56_10Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.539860117802608e-05
+    },
+    {
+      "query": "leak_P11_N332_50Ls_evening_peak",
+      "top10_equal": true,
+      "max_score_difference": 4.8895827780670587e-05
+    },
+    {
+      "query": "leak_P12_N117_20Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.8485785975715956e-05
+    },
+    {
+      "query": "leak_P12_N94_5Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 4.302501930653069e-05
+    },
+    {
+      "query": "leak_P13_N366_2Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.6713168829981555e-05
+    },
+    {
+      "query": "leak_P14_N84_10Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 4.9935173310644565e-05
+    },
+    {
+      "query": "leak_P1_N107_35Ls_evening_peak",
+      "top10_equal": true,
+      "max_score_difference": 4.610010198080605e-05
+    },
+    {
+      "query": "leak_P2_N163_20Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 4.820021796869689e-05
+    },
+    {
+      "query": "leak_P2_N164_50Ls_evening_peak",
+      "top10_equal": true,
+      "max_score_difference": 4.072278060029966e-05
+    },
+    {
+      "query": "leak_P3_N99_2Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 4.9812322827635924e-05
+    },
+    {
+      "query": "leak_P4_N144_5Ls_evening_peak",
+      "top10_equal": true,
+      "max_score_difference": 3.770015963389106e-05
+    },
+    {
+      "query": "leak_P5_N243_2Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.981484127042357e-05
+    },
+    {
+      "query": "leak_P6_N60_10Ls_evening_peak",
+      "top10_equal": true,
+      "max_score_difference": 3.826981951748909e-05
+    },
+    {
+      "query": "leak_P6_N61_35Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.54821113495818e-05
+    },
+    {
+      "query": "leak_P7_N34_20Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 4.1519738018136465e-05
+    },
+    {
+      "query": "leak_P8_N357_50Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.148233621292796e-05
+    },
+    {
+      "query": "leak_P9_N289_2Ls_day_normal",
+      "top10_equal": true,
+      "max_score_difference": 4.915152765327946e-05
+    },
+    {
+      "query": "leak_P9_N65_5Ls_night_low",
+      "top10_equal": true,
+      "max_score_difference": 4.924720075305533e-05
+    }
+  ],
+  "excluded_counterfactual_tests": [
+    {
+      "protocol": "H1",
+      "excluded_records": 1,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H2",
+      "excluded_records": 18,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H3",
+      "excluded_records": 90,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H4",
+      "excluded_records": 180,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H5",
+      "excluded_records": 105,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H6",
+      "excluded_records": 192,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H7",
+      "excluded_records": 240,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H8",
+      "excluded_records": 250,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    },
+    {
+      "protocol": "H9",
+      "excluded_records": 36,
+      "artifact_identical": true,
+      "ranking_and_scores_identical": true
+    }
+  ],
+  "H9_zero_metric_checks": 8100,
+  "retained_label_violations": 0,
+  "total_query_protocol_pairs": 27000
+}

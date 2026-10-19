@@ -1,0 +1,14 @@
+Item,Current setting or recorded behavior
+Offline scenario-text generator,Model identifier in Ollama: gpt-oss:120b-cloud; temperature 0.3; maximum output length of 512 tokens. The prompt requests 150–200 English words.
+Offline prompt fields,"Leak node and partition, nominal added base demand and demand-state label/multiplier, node description, maximum pressure drop and its node, affected-node and partition information, top-five pressure drops and top-five flow changes."
+Historical generation provenance,"Saved records contain text and hydraulic metadata, without a complete per-call prompt/response archive, call timestamps or immutable model-weight revision. The current generator configuration is not proof of the exact service version used for every saved text."
+Community text construction,Deterministic metadata aggregation without an additional language-model generation step. Community texts include representative leak-node identifiers. A global text is stored but is not used for a separate retrieval stage.
+Sentence encoder,all-MiniLM-L6-v2; demb=384. No additional embedding normalization is explicitly requested.
+Saved vectors,LanceDB vector collection with 540 records and fixed-size 384-dimensional vectors.
+Embedding lifecycle,Scenario embeddings are stored in the vector table. Community embeddings are recomputed before query processing from saved summaries; query embeddings are computed for the query text. The sentence encoder remains fixed.
+Vector search,"The vector search retains its default distance metric; for LanceDB version 0.24.3, the documented default is L2. The score is exactly 1/(1+djDB) using the returned distance. The saved table is version 1 and has no approximate-nearest-neighbour index."
+Query text length and precision,"Ltext=8 most negative signed sensor values, or all supplied observations if fewer; values formatted to three decimals in metres."
+Query text affected threshold,"τtext=0.1 m, strict yℓ<−0.1 comparison."
+Textual severity boundaries,"(ηtext,1,ηtext,2,ηtext,3)=(0.2,1,5) m. The severity categories use δtext≥5 for severe, ≥1 for moderate, ≥0.2 for small and otherwise micro."
+Community search depth,All available communities are scored. A nominal retrieval depth of 5 is specified but inactive: it neither truncates the community scores nor restricts scenario search.
+Semantic norm cutoff,ϵemb=10−10; query or community norms below this threshold yield no corresponding score.

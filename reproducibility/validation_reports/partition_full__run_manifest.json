@@ -1,0 +1,138 @@
+{
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "k_grid": [
+    5,
+    10,
+    15,
+    20,
+    30,
+    40
+  ],
+  "budgets": [
+    10,
+    15,
+    20,
+    30,
+    45,
+    60
+  ],
+  "noise_sd_m": [
+    0,
+    0.01,
+    0.02,
+    0.05,
+    0.1
+  ],
+  "dropout_fractions": [
+    0,
+    0.1,
+    0.25,
+    0.5
+  ],
+  "test_rates_lps": [
+    5.0,
+    15.0
+  ],
+  "reference_rate_lps": 10,
+  "reference_pattern": "881",
+  "network_junctions": 381,
+  "network_nodes": 383,
+  "pipes": 469,
+  "total_pipe_length_m": 49642.29902196626,
+  "input_inp_units": "GPM",
+  "reported_length_units": "metres (WNTR converts EPANET input feet to SI)",
+  "primary_noise_sd_m": 0.02,
+  "simulated_primary_response_scenarios": 1143,
+  "primary_response_rates_lps": [
+    5,
+    10,
+    15
+  ],
+  "query_level_rows": 44460,
+  "seed_query_counts": {
+    "101": 156,
+    "202": 156,
+    "303": 156,
+    "404": 156,
+    "505": 156
+  },
+  "elapsed_seconds": 18.174132823944092,
+  "software": {
+    "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:12:15) [MSC v.1942 64 bit (AMD64)]",
+    "wntr": "1.4.0",
+    "numpy": "2.3.5"
+  },
+  "inputs": {
+    "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+    "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+    "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+    "data/reference/sensor_summary.json": "539cabb122f5933e8d6b9cdd44a9957ca93993340b5552f3cf565c75e612b5fb"
+  },
+  "script_sha256": "cacfe65368377693484e78c63deabc512ed840bbb09104288799ab15c70a50b1",
+  "outputs": {
+    "audit.json": "95913a6c7fb196a597c0c6fd025e91f703ce29e0ce7b1f5fd52741f4598a7431",
+    "boundary_interior_run_summary.csv": "b05e028366535de85dd3b9d0cd79e75e93347255c9836721b1f6a671be17a98d",
+    "hydraulic_validity.csv": "c74ac92f0e959357499519ff237330b17ed4c54ad41d9f01cf82c079d7700846",
+    "hydraulic_validity_summary.json": "5f0e41e4cd6168582cf44ea57dfc5765bd3b8323ff7f6c2b091fa424c83c4727",
+    "magnitude_run_summary.csv": "48b33995cf949ead0410406e70a129891dd96bfe7c9c2e27ec7b3f546c5326bb",
+    "network_pipe_lengths.csv": "4259af0da389536534ea8c3b888a151ddf56b7e124e6434f0af9001140ceddae",
+    "partition_assignments.csv": "88f3832d92316a063c253183ac90313372a07ff8f3636da5e99494facb09afe7",
+    "partition_geometry.csv": "f52a424f4ae16291dd40e071e2ac2d2196a6beccf0e06427486c12878a95d361",
+    "partition_stability.csv": "6c8e52b7e77b058712f268e939ad96995cce3fa204d7094a4794844b440497a8",
+    "partition_structure_summary.csv": "a7e05953d979277cc11e71ba5353e706dc260b3f745df986c1de2d6c30dd13b5",
+    "primary_hydraulic_validity.csv": "5cd9f3eff11516fdd9338823b371db8608c92900e141292b8366c0272dae72ea",
+    "query_fingerprints_5_10_15_all_nodes.npz": "693a87a6c11990301cb21b7400793dff2e219c84c0dff9f6b0218513f49a0b24",
+    "query_fingerprints_primary_partial.npz": "e2884a608d08072c71222ab7f3c673a6d300b78c31ca87e8aa3570765448cde4",
+    "query_level_results.csv.gz": "92335d6abd7a7d70dd15b138014bfb078713d5000e63c8b4ed1ab8741be4d78f",
+    "query_observations_all_channels.npz": "9543203efb87b62b7e461a58f75e4d87fcb4e8e3fc5c45dc1d8228efd43495fb",
+    "run_level_summary.csv": "0eb471db1046723cb7466789f498a867cfa2787ae864cddf3d7db33d92338ba2",
+    "sensor_allocations.csv": "3ec572828eec9dbc13ac6c47c0dad325229115a2c555387b497eaee0a17a9920",
+    "summary_tidy.csv": "a56f5a96bcd9ed5046b0994111bd4167e14be61b10ed505199aeed5640b7597e",
+    "train_test_splits.csv": "39c53d953408daacca1d056a78a10215bcc93ef394df58d1da4f49fd411c10d5",
+    "frozen_inputs/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+    "frozen_inputs/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+    "frozen_inputs/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+    "frozen_inputs/sensor_summary.json": "539cabb122f5933e8d6b9cdd44a9957ca93993340b5552f3cf565c75e612b5fb"
+  },
+  "design_scope": [
+    "Controlled physical retrieval experiment; the six retrieval channels plus graph aggregation are not retrained.",
+    "One benchmark network; five prescribed seed runs are Monte Carlo split/design/noise replicates, not independent physical networks.",
+    "All design grids fixed before outcomes; no best configuration chosen on test results.",
+    "Historical 30-sensor design was built previously; only new sensitivity designs enforce train-row restrictions.",
+    "Region pipe length is a candidate-set proxy, not measured field labour or travel."
+  ],
+  "hydraulic_validity": {
+    "source": "fresh hydraulic simulation",
+    "model": "DDA",
+    "new_simulations": 1144,
+    "rates_lps": [
+      0,
+      5,
+      20,
+      35
+    ],
+    "rows_with_negative_pressure": 30,
+    "minimum_pressure_m": -44.41343307495117,
+    "nonfinite_node_times": 0,
+    "elapsed_s": 169.08621820000008
+  },
+  "boundary_definition": "True leak node touches at least one physical pipe joining different assigned regions; pumps are excluded from the boundary definition.",
+  "primary_response_scenarios_in_final_cache": 1143,
+  "design_feasibility_screen": {
+    "rates_lps": [
+      0,
+      5,
+      20,
+      35
+    ],
+    "source": "fresh hydraulic simulation",
+    "n_scenarios": 1144
+  },
+  "primary_physical_design": "Fixed 10 L/s reference and 5/15 L/s test rates; all 1143 primary hydraulic responses have nonnegative junction pressures."
+}

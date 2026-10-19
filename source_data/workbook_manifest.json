@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "sheet_count": 36,
+  "canonical_workbook": "0829/reviewer_closure_20261010/Source_Data.xlsx",
+  "canonical_sha256": "cbff510f2bf19abce1b65c8b75694ee14db8fb30606a0d8205fd02d3ef913a52",
+  "canonical_bytes": 715924,
+  "value_contract": "Typed JSON preserves native cell values and data types. CSV includes row 1 and every blank/note row; empty CSV fields are disambiguated by JSON. Workbook presentation styles are not part of numerical parity.",
+  "sheets": [
+    {
+      "name": "README",
+      "rows_including_header": 43,
+      "columns": 2,
+      "json": "sheets/README.json",
+      "csv": "sheets/README.csv",
+      "json_sha256": "24d7839e11dbe0e1628f77a01d7ab532acaeada8acfdd2e0b183516d13d9a560",
+      "csv_sha256": "c56d89887db896fa6a386b086bd097a491c36bad3a3109b0a49ab85024d3638f"
+    },
+    {
+      "name": "Fig4a_TableS2b_540q",
+      "rows_including_header": 9,
+      "columns": 11,
+      "json": "sheets/Fig4a_TableS2b_540q.json",
+      "csv": "sheets/Fig4a_TableS2b_540q.csv",
+      "json_sha256": "06e9098e9e8e122b394da7745344fbfd85124020b136b4866d61193429f1558d",
+      "csv_sha256": "f45151f3dcf499f039d2f8e4cf0865d3117b0f6e187ff18bd277f038109bd2fa"
+    },
+    {
+      "name": "Fig4bc_TableS2a_90q",
+      "rows_including_header": 12,
+      "columns": 6,
+      "json": "sheets/Fig4bc_TableS2a_90q.json",
+      "csv": "sheets/Fig4bc_TableS2a_90q.csv",
+      "json_sha256": "306decdc55bc41c07ac820cf18f3bfa630d2ca9a7d4b7952dd28dd6284a6a055",
+      "csv_sha256": "9fa6aa5ec042a6be5999e9d3bcc1571ac1db9530d1ed4cc63b87f2d0d773e4a5"
+    },
+    {
+      "name": "Fig4abc_per_run",
+      "rows_including_header": 676,
+      "columns": 7,
+      "json": "sheets/Fig4abc_per_run.json",
+      "csv": "sheets/Fig4abc_per_run.csv",
+      "json_sha256": "806307c87341391b0b3b8be2ccb4e78376bb7047a73fa4ed1b1f2e8a1c4c5ab5",
+      "csv_sha256": "62a02c0157cad3f1aa79d17282a4176688f6f35afeb6af27d1ac708d4923812e"
+    },
+    {
+      "name": "Fig4d_destination",
+      "rows_including_header": 4,
+      "columns": 9,
+      "json": "sheets/Fig4d_destination.json",
+      "csv": "sheets/Fig4d_destination.csv",
+      "json_sha256": "c189a8aef2d17c735480a14c583a6b074683bd3ac608f53d4d26d25604ea0588",
+      "csv_sha256": "f1d24e3ddd84eb67b82954f60ec7cff2fc662d37eab2cda36923194cd707ded9"
+    },
+    {
+      "name": "Fig4d_destination_per_run",
+      "rows_including_header": 16,
+      "columns": 9,
+      "json": "sheets/Fig4d_destination_per_run.json",
+      "csv": "sheets/Fig4d_destination_per_run.csv",
+      "json_sha256": "8513449e125f37ee20306fd93e8c961787ab66205126f6901a5f78550695ce3e",
+      "csv_sha256": "cdd4d753766fc1246105ae76a9afa4e238b25b63d46b3519646db9311f7f5dfc"
+    },
+    {
+      "name": "Fig5_FigS1_draws",
+      "rows_including_header": 151,
+      "columns": 11,
+      "json": "sheets/Fig5_FigS1_draws.json",
+      "csv": "sheets/Fig5_FigS1_draws.csv",
+      "json_sha256": "634268f1ee27130a64046aac01ff858fe40b7d01af3c1afa76db47af9bcc6ae8",
+      "csv_sha256": "758156e1fca0713dad2de62a89d4c963a61d71fc503f8997673d45dd7b09ccf9"
+    },
+    {
+      "name": "Fig5_FigS1_TableS3b",
+      "rows_including_header": 41,
+      "columns": 11,
+      "json": "sheets/Fig5_FigS1_TableS3b.json",
+      "csv": "sheets/Fig5_FigS1_TableS3b.csv",
+      "json_sha256": "ab9db56cbdb5ec2d819e4955551807f30f95762b42e3ed1aed65f0a69cc8ff98",
+      "csv_sha256": "a275f40972bb64318f8a970f53dc7ce288f90ffa1bbccb878e50ed1fa978c31a"
+    },
+    {
+      "name": "Fig5b_TableS3c_pairwise",
+      "rows_including_header": 11,
+      "columns": 17,
+      "json": "sheets/Fig5b_TableS3c_pairwise.json",
+      "csv": "sheets/Fig5b_TableS3c_pairwise.csv",
+      "json_sha256": "406a962b0ce4317dda1471ae22201a40b2f793bb51700149dc357c01fc4ce688",
+      "csv_sha256": "6267767d3993173c9ae4201662358ecf2d62276bbfaae904285dd4b9996fd72a"
+    },
+    {
+      "name": "Fig6a_TableS5",
+      "rows_including_header": 11,
+      "columns": 9,
+      "json": "sheets/Fig6a_TableS5.json",
+      "csv": "sheets/Fig6a_TableS5.csv",
+      "json_sha256": "fd04cea9569caefc289f3edf98538f520c6940914db80201d3d1becf01c13762",
+      "csv_sha256": "b214e0d4e99732ae51dec2f949d61cd499ac59bb5c7a72171f84f1afcd3b28e9"
+    },
+    {
+      "name": "Fig6b_TableS4",
+      "rows_including_header": 32,
+      "columns": 10,
+      "json": "sheets/Fig6b_TableS4.json",
+      "csv": "sheets/Fig6b_TableS4.csv",
+      "json_sha256": "c0ecdd7dd083722c6a60b08aff0043ef9d3ce083c44da4a23a88a8412898c35a",
+      "csv_sha256": "1a6edd6c16201d6093e79ecce7a8d0fd4f094c31ecd2c268622d825557db1aee"
+    },
+    {
+      "name": "Fig6c_TableS6",
+      "rows_including_header": 12,
+      "columns": 8,
+      "json": "sheets/Fig6c_TableS6.json",
+      "csv": "sheets/Fig6c_TableS6.csv",
+      "json_sha256": "c179242558e701f01e7e6c9586159edba3fa4382ad173ca2dd141bb5e3ecc13f",
+      "csv_sha256": "5c15ad1bee0a8b24dcbedc381a3f5160f292f9d0a4803bbe6922bd9bb79cf9f2"
+    },
+    {
+      "name": "Fig6d_TableS7",
+      "rows_including_header": 8,
+      "columns": 8,
+      "json": "sheets/Fig6d_TableS7.json",
+      "csv": "sheets/Fig6d_TableS7.csv",
+      "json_sha256": "55fad75cadf177db9249c5b751a7791c26713f39871e120b822acdb1fcf29177",
+      "csv_sha256": "d07bcad70c5cc60a6fad9a64a690294f1512426f40e7ecf338dd6f481f22c76b"
+    },
+    {
+      "name": "TableS8a_direction",
+      "rows_including_header": 5,
+      "columns": 4,
+      "json": "sheets/TableS8a_direction.json",
+      "csv": "sheets/TableS8a_direction.csv",
+      "json_sha256": "fcab8689cd9e41000dca13e9e74c555dad330ed6ff9812b42f1b621651a35b78",
+      "csv_sha256": "58576360e37d57c51a9ffd35a6ee5c092634689fb7faecd38b2dfcfa734bf1c8"
+    },
+    {
+      "name": "Fig7a_TableS8b",
+      "rows_including_header": 8,
+      "columns": 5,
+      "json": "sheets/Fig7a_TableS8b.json",
+      "csv": "sheets/Fig7a_TableS8b.csv",
+      "json_sha256": "b52136f85320b35ac275b9b736b071b77fe8c0cf9dc481ba0dcf02622c3b7865",
+      "csv_sha256": "50b4bc570ba43ae9bc8c0e948dfe1375271e3bf7e650b4450ab61a37d07f9d23"
+    },
+    {
+      "name": "Fig7b_TableS9",
+      "rows_including_header": 12,
+      "columns": 6,
+      "json": "sheets/Fig7b_TableS9.json",
+      "csv": "sheets/Fig7b_TableS9.csv",
+      "json_sha256": "a818e871944439d991884dbc1091a7ba27d082bb39857825e702597c64b54786",
+      "csv_sha256": "2dc84d2c508425b106f02c9e8162a585fe537ee47e77382287e09fda7d524a98"
+    },
+    {
+      "name": "Fig7c_TableS10",
+      "rows_including_header": 4,
+      "columns": 4,
+      "json": "sheets/Fig7c_TableS10.json",
+      "csv": "sheets/Fig7c_TableS10.csv",
+      "json_sha256": "441acc584b0890589b971400f4c909d78a4450a08095a1dc73425335da865ada",
+      "csv_sha256": "34cfa713ad60bdf6e76cc96a8091218119850199316eaf1cab630d0d073aa1c6"
+    },
+    {
+      "name": "Fig7d_TableS11",
+      "rows_including_header": 9,
+      "columns": 8,
+      "json": "sheets/Fig7d_TableS11.json",
+      "csv": "sheets/Fig7d_TableS11.csv",
+      "json_sha256": "34e3632a20d90fce76e48b462026f92c7fcf5c4b3fc2af713996f80c7f27a35a",
+      "csv_sha256": "98fbac6bf6cb717837e31bdbc921292eba32dd93d1aa0ad2e503ffa8e45c4afe"
+    },
+    {
+      "name": "TableS12_admissibility",
+      "rows_including_header": 5,
+      "columns": 10,
+      "json": "sheets/TableS12_admissibility.json",
+      "csv": "sheets/TableS12_admissibility.csv",
+      "json_sha256": "a56dc3877c603426c4934fd4aed1ca452b4519236e98fcbc8895936b02466c5d",
+      "csv_sha256": "32cf98c4bbc8def3b306aced280735b4c6d6bfed608a6c52b8eca295216980f0"
+    },
+    {
+      "name": "FigS2abc_confusion_counts",
+      "rows_including_header": 676,
+      "columns": 4,
+      "json": "sheets/FigS2abc_confusion_counts.json",
+      "csv": "sheets/FigS2abc_confusion_counts.csv",
+      "json_sha256": "053cb0c66041b18153c0d2707d461354538bdf259e317c20792532a9a446c66a",
+      "csv_sha256": "d7c23b6af46d5f1c5023076363522baa8b736d0f6e3b377e09de914a8989cbc9"
+    },
+    {
+      "name": "FigS2d_adjacent_per_run",
+      "rows_including_header": 16,
+      "columns": 7,
+      "json": "sheets/FigS2d_adjacent_per_run.json",
+      "csv": "sheets/FigS2d_adjacent_per_run.csv",
+      "json_sha256": "4cb2d86bedd7c4e4239f9853ba6bb77b4564b9c219df297b5e0d1ec6e627e4a1",
+      "csv_sha256": "a44d7ebf5d263861fc6f89d59684253a63bdc43fab3a2344f4e3ed9f68e789e6"
+    },
+    {
+      "name": "Fig6b_per_seed",
+      "rows_including_header": 156,
+      "columns": 7,
+      "json": "sheets/Fig6b_per_seed.json",
+      "csv": "sheets/Fig6b_per_seed.csv",
+      "json_sha256": "93ab56ba6390d1a50888777d3aa872dcb8affecb1e36a011855a1f445368188a",
+      "csv_sha256": "289a23b665726f63cd5a15f0efe07bee85d807c462d50fb46b755ec0b8ea0f6d"
+    },
+    {
+      "name": "Strict_H9_attribution",
+      "rows_including_header": 21,
+      "columns": 10,
+      "json": "sheets/Strict_H9_attribution.json",
+      "csv": "sheets/Strict_H9_attribution.csv",
+      "json_sha256": "ea06f36f3c315d98f900d3e7e980e7598d643af7a29aef4d9ad8652e55bdaf97",
+      "csv_sha256": "deed5fbd4d73529671c8095d104f53d9565cc5fc6e06972a0aa074638ed8d457"
+    },
+    {
+      "name": "FigS6_TableS16",
+      "rows_including_header": 137,
+      "columns": 10,
+      "json": "sheets/FigS6_TableS16.json",
+      "csv": "sheets/FigS6_TableS16.csv",
+      "json_sha256": "27c2f30453a969ad88f355da70c9392742219fbe4db88c1d3ad10bda4f357a8c",
+      "csv_sha256": "1bc52fe3db9a2d947975d4669b7b828118a3c0f72c7ca8c03626b9f5a40fcf89"
+    },
+    {
+      "name": "Sensitivity_per_seed",
+      "rows_including_header": 681,
+      "columns": 7,
+      "json": "sheets/Sensitivity_per_seed.json",
+      "csv": "sheets/Sensitivity_per_seed.csv",
+      "json_sha256": "0b68b2e1cca799577973b782cefc297acac6bbaf6bd91e7048ad9379d241b667",
+      "csv_sha256": "99e8d54a13fb6b0b181fe971da07e1fe6f4a141921de7e7b99f8007ecbdc6e92"
+    },
+    {
+      "name": "Design_controls",
+      "rows_including_header": 343,
+      "columns": 14,
+      "json": "sheets/Design_controls.json",
+      "csv": "sheets/Design_controls.csv",
+      "json_sha256": "92555056fa9497c8a4959f39de899fdbaa3eb72f60cd3a48e2916164662b5409",
+      "csv_sha256": "5bb09ccd77951d1ef4fe0006058f7774a751311d43ac9fd269e073ce8e86fb22"
+    },
+    {
+      "name": "Design_per_seed",
+      "rows_including_header": 286,
+      "columns": 19,
+      "json": "sheets/Design_per_seed.json",
+      "csv": "sheets/Design_per_seed.csv",
+      "json_sha256": "b6cd4a92c3afb91839f4fd9bea7e62028dae56647045e884e3a62595cd330495",
+      "csv_sha256": "6177c4920a65f145146bd68986eca6912f1698aaf3471dad825c7b6b817c7b1d"
+    },
+    {
+      "name": "Partition_structure",
+      "rows_including_header": 91,
+      "columns": 14,
+      "json": "sheets/Partition_structure.json",
+      "csv": "sheets/Partition_structure.csv",
+      "json_sha256": "c3fa87752c9e32a2131301207815a6c75f68d8afc6669f81336c555d11d98d03",
+      "csv_sha256": "d9fc82996fc42cd3450e673672927e49a77d9a80eb60c694ceb608257f98276d"
+    },
+    {
+      "name": "Partition_stability",
+      "rows_including_header": 181,
+      "columns": 5,
+      "json": "sheets/Partition_stability.json",
+      "csv": "sheets/Partition_stability.csv",
+      "json_sha256": "c64b31a98d7fec07ff1f3ed9ff46fadb9ccf7f543272405cc7850eac72de60f8",
+      "csv_sha256": "d9696fdf0efb55e9ce79d9eb8956efb1563256520d8d70ffb1632c93c52b5d1b"
+    },
+    {
+      "name": "Partition_geometry",
+      "rows_including_header": 1801,
+      "columns": 10,
+      "json": "sheets/Partition_geometry.json",
+      "csv": "sheets/Partition_geometry.csv",
+      "json_sha256": "158347bd73efb67699f23e5860bcd3f65e741804f77294ba551c4c3e9ec35512",
+      "csv_sha256": "8927519d9cfac6f03e2474e3246a348534fe950df23aef1ab760ac4a337581dc"
+    },
+    {
+      "name": "Boundary_interior",
+      "rows_including_header": 571,
+      "columns": 16,
+      "json": "sheets/Boundary_interior.json",
+      "csv": "sheets/Boundary_interior.csv",
+      "json_sha256": "03c5c6913582da91b96865e6309636df1fb913cbb9d072c2ef3a46d8df46281f",
+      "csv_sha256": "f8d27b14c647404cb234215e0b3ce84631938aa986c557270ff614be95a3faba"
+    },
+    {
+      "name": "Sensor_allocations",
+      "rows_including_header": 2851,
+      "columns": 5,
+      "json": "sheets/Sensor_allocations.json",
+      "csv": "sheets/Sensor_allocations.csv",
+      "json_sha256": "4d3fad990181522bcc0d1d6b6e47f8d8144d2b716d32837664c83545f0f22bb2",
+      "csv_sha256": "62871214002d58fe4cd80ccbdfa75806a1e04a14096d579a26442ead2cf83912"
+    },
+    {
+      "name": "Hydraulic_summary",
+      "rows_including_header": 469,
+      "columns": 31,
+      "json": "sheets/Hydraulic_summary.json",
+      "csv": "sheets/Hydraulic_summary.csv",
+      "json_sha256": "e07321d1bd7ef3746d7dc4f712c5b38d8b45a6f795827dda0c9ffcfebc6e04e7",
+      "csv_sha256": "507757ac475ac232094a348821ad29894d0b0dbdf6bbaf6115f215c3224e0958"
+    },
+    {
+      "name": "Hydraulic_per_seed",
+      "rows_including_header": 2341,
+      "columns": 19,
+      "json": "sheets/Hydraulic_per_seed.json",
+      "csv": "sheets/Hydraulic_per_seed.csv",
+      "json_sha256": "3420a6d56da1c0c59e3e66714abf0c364e325a2fbd768096b633b967209925ee",
+      "csv_sha256": "c315223c9e04eccebcdf6f0a2d98f88b06195882b1b2c08ba229516478876106"
+    },
+    {
+      "name": "Hydraulic_service_check",
+      "rows_including_header": 469,
+      "columns": 14,
+      "json": "sheets/Hydraulic_service_check.json",
+      "csv": "sheets/Hydraulic_service_check.csv",
+      "json_sha256": "3cf1d9b78a867eae0eba4003246a324b98c652bc96572c9b17f603eab17103a5",
+      "csv_sha256": "c9e9b7a90ed0837b21e49f39e0debdfc5b61f4fe06ef124dc0dd1ba0a4b1f204"
+    },
+    {
+      "name": "TableS17_node_holdout",
+      "rows_including_header": 14,
+      "columns": 6,
+      "json": "sheets/TableS17_node_holdout.json",
+      "csv": "sheets/TableS17_node_holdout.csv",
+      "json_sha256": "b43852cbfc173f4864201ac6c65af428c9569475ad1ba815f2e9fcebe6aecabc",
+      "csv_sha256": "6585a372aa10f180c977f2b1bda71db30bdd802d5eb9127adfc57f0c3a7376b3"
+    }
+  ]
+}

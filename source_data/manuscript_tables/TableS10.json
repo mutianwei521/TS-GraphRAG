@@ -1,0 +1,34 @@
+{
+  "id": "TableS10",
+  "source": "0829/supplementary.docx",
+  "table_index": 19,
+  "preceding_paragraph": "Table S10 | Recovery of simultaneous leaks with a resolvable-class dictionary. Leaks were placed at junctions in distinct classes of the 74-class dictionary (Supplementary Note 1.5) with discharges drawn uniformly between 5 and 20 L s⁻¹; component noise s.d. 0.02 m; 40 scenarios per case (seed 11), except the single-leak reference (60 scenarios). Class recall is the fraction of true leak classes contained in the estimated support when the number of leaks is supplied. Greedy is non-negative orthogonal matching pursuit; exhaustive evaluates all class pairs (2,701) or triples (64,824) by non-negative least-squares residual. The dictionary's mutual coherence is 0.9998. Fitted coefficients are not proportional to discharge and are not reported.",
+  "rows": [
+    [
+      "Number of simultaneous leaks",
+      "Scenarios",
+      "Exhaustive search, class recall (%)",
+      "Greedy NNOMP, class recall (%)"
+    ],
+    [
+      "1 (reference)",
+      "60",
+      "76.7",
+      "76.7"
+    ],
+    [
+      "2",
+      "40",
+      "65.0",
+      "13.8"
+    ],
+    [
+      "3",
+      "40",
+      "53.3",
+      "8.3"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

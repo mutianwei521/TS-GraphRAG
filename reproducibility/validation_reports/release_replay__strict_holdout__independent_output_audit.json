@@ -1,0 +1,37 @@
+{
+  "study": "holdout",
+  "n_queries_per_seed": 540,
+  "all_query_protocol_retention_checks": 5400,
+  "unique_retained_pools": 1423,
+  "prediction_counts": {
+    "fusion_strict": 27000,
+    "projection": 27000,
+    "cosine": 27000,
+    "fusion_open_topology": 2700
+  },
+  "H9_zero_checks_by_method": {
+    "fusion_strict": 2700,
+    "projection": 2700,
+    "cosine": 2700
+  },
+  "sensitivity_setting_seed_protocol_cells": 0,
+  "sensitivity_total_predictions": 0,
+  "validated_record_counts": {
+    "holdout": 83700,
+    "legacy_attribution": 54000
+  },
+  "all_output_metrics_recomputed_successfully": true,
+  "numeric_baseline_ranks_exclude_all_ineligible_templates": true,
+  "archive_parity": {
+    "predictions.jsonl.gz": {
+      "records": 83700,
+      "mismatches": 0,
+      "exact_records_equal": true
+    },
+    "legacy_attribution_predictions.jsonl.gz": {
+      "records": 54000,
+      "mismatches": 0,
+      "exact_records_equal": true
+    }
+  }
+}

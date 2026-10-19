@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "expected_metric_rows": 140400,
+  "actual_metric_rows": 140400,
+  "query_hydraulic_rows": 7800,
+  "n_complete_realizations": 5,
+  "n_queries_per_cell": 60,
+  "query_nodes_overlap": 0,
+  "nominal_matched_stale_predictions_identical": true,
+  "n_service_junctions": 316,
+  "n_all_junctions": 381,
+  "n_identical_before_after_baseline_controls": 106,
+  "native_solver_worker_cwd_and_tmp_isolated": true,
+  "exhaustive_nominal_corpus_replay_templates": 1053,
+  "exhaustive_nominal_corpus_replay_identical": true,
+  "service_endpoint_note": "Post-run diagnostic supplements, but does not replace, the frozen all-junction pressure rule. Pump suction auxiliary nodes can have negative gauge pressure while demand-serving nodes remain positive.",
+  "all_scenarios_numerical_nonconvergence_pct": 0.0
+}

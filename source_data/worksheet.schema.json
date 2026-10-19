@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TS-GraphRAG public worksheet cells",
+  "type": "object",
+  "required": ["name", "max_row", "max_column", "rows", "cell_types", "number_formats", "merged_ranges", "header_rows", "row_policy"],
+  "properties": {
+    "name": {"type": "string"},
+    "max_row": {"type": "integer", "minimum": 1},
+    "max_column": {"type": "integer", "minimum": 1},
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {"type": ["number", "string", "boolean", "null"]},
+            {"type": "object", "required": ["iso8601", "kind"], "properties": {"iso8601": {"type": "string"}, "kind": {"enum": ["date", "datetime", "time"]}}, "additionalProperties": false}
+          ]
+        }
+      }
+    },
+    "cell_types": {"type": "array", "items": {"type": "array", "items": {"enum": ["n", "s", "b", "f", "e", "d", "inlineStr", "str"]}}},
+    "number_formats": {"type": "object", "additionalProperties": {"type": "string"}},
+    "merged_ranges": {"type": "array", "items": {"type": "string"}},
+    "sheet_state": {"enum": ["visible", "hidden", "veryHidden"]},
+    "freeze_panes": {"type": ["string", "null"]},
+    "header_rows": {"const": [1]},
+    "row_policy": {"type": "string"},
+    "column_widths": {"type": "object", "additionalProperties": {"type": "number"}},
+    "row_heights": {"type": "object", "additionalProperties": {"type": "number"}}
+  },
+  "additionalProperties": false
+}

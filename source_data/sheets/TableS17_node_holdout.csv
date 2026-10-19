@@ -1,0 +1,14 @@
+Protocol,Projection test Top-1 (%),Default fusion (%),Cosine (%),Masked projection (%),McNemar masked vs projection P
+H0,85.7,86.67,85.7,85.78,1
+H1,85.19,76.52,85.19,85.26,1
+H2,81.11,73.19,81.11,81.19,1
+H3,84.96,53.63,84.96,85.04,1
+H4,73.04,58.81,73.04,73.04,1
+H5,79.85,37.56,79.85,80,0.625
+H6,65.7,45.7,65.7,65.85,0.5
+H7,72.67,59.26,72.67,72.74,1
+H8,65.33,46.3,65.33,65.48,0.5
+,,,,,
+Notes,"Frozen node-held-out test; 1,350 test queries per protocol. Selection and masking were performed on a separate 1,350-query development split.",,,,
+Source,results/ts_graphrag_improvement_20261011/test_results.json and test_masked_results.json,,,,
+Comparison,Cosine and recomputed projection were identical query by query on test; McNemar P compares masked projection with unmasked projection.,,,,

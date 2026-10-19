@@ -1,0 +1,4 @@
+Number of simultaneous leaks,Scenarios,"Exhaustive search, class recall (%)","Greedy NNOMP, class recall (%)"
+1 (reference),60,76.7,76.7
+2,40,65,13.8
+3,40,53.3,8.3

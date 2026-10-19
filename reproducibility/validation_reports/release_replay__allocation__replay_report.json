@@ -1,0 +1,46 @@
+{
+  "study": "allocation",
+  "profile": "replay",
+  "run_count": 1500,
+  "actual_seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55
+  ],
+  "tensor_shape": [
+    350,
+    12,
+    3,
+    30
+  ],
+  "sampling_pool_size": 326,
+  "archive_tables_match": true,
+  "G2_H0_equals_H2_all_metrics": true,
+  "noise_rule": "one shared RandomState(41 + stored_seed).normal(0, 0.02, 30) vector per draw",
+  "metrics": {
+    "top1": "percent",
+    "top3": "percent",
+    "mrr": "MRR@5 percent; five distinct partitions",
+    "median_coordinate_distance": "within-draw median Euclidean distance in native network-coordinate units"
+  },
+  "distance_units": "native_network_coordinate_units",
+  "archive_metric_aliases": {
+    "median_coordinate_distance": "med_m"
+  },
+  "archive_csv_aliases": {
+    "median_error_coordinate_units": "e5_h0_draws.csv:median_error_m"
+  },
+  "uncertainty": "median [linear Q1,Q3]; sample SD ddof=1 over 15 draws"
+}

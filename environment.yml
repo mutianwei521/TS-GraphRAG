@@ -1,0 +1,8 @@
+name: ts-graphrag-repro
+channels:
+  - defaults
+dependencies:
+  - python=3.11.15
+  - pip=24.0
+  - pip:
+    - -r requirements-core.lock.txt

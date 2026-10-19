@@ -1,0 +1,92 @@
+{
+  "id": "TableS17",
+  "source": "0829/supplementary.docx",
+  "table_index": 27,
+  "preceding_paragraph": "Table S16 | All prespecified inference settings. Top-1 (%) is mean ± sample s.d. over five measurement-noise realizations, each with the same 540 queries and strictly rebuilt retained artifacts. Setting names identify changes from the unchanged default; exact configurations are supplied in Source Data and the frozen design. All settings are retained, including decreases. This is a one-factor sensitivity grid, not an exhaustive factorial search or independent selection of an optimum.",
+  "rows": [
+    [
+      "Protocol",
+      "Projection test Top-1 (%)",
+      "Default fusion (%)",
+      "Cosine (%)",
+      "Masked projection (%)",
+      "McNemar masked vs projection P"
+    ],
+    [
+      "H0",
+      "85.70",
+      "86.67",
+      "85.70",
+      "85.78",
+      "1.0"
+    ],
+    [
+      "H1",
+      "85.19",
+      "76.52",
+      "85.19",
+      "85.26",
+      "1.0"
+    ],
+    [
+      "H2",
+      "81.11",
+      "73.19",
+      "81.11",
+      "81.19",
+      "1.0"
+    ],
+    [
+      "H3",
+      "84.96",
+      "53.63",
+      "84.96",
+      "85.04",
+      "1.0"
+    ],
+    [
+      "H4",
+      "73.04",
+      "58.81",
+      "73.04",
+      "73.04",
+      "1.0"
+    ],
+    [
+      "H5",
+      "79.85",
+      "37.56",
+      "79.85",
+      "80.00",
+      "0.625"
+    ],
+    [
+      "H6",
+      "65.70",
+      "45.70",
+      "65.70",
+      "65.85",
+      "0.5"
+    ],
+    [
+      "H7",
+      "72.67",
+      "59.26",
+      "72.67",
+      "72.74",
+      "1.0"
+    ],
+    [
+      "H8",
+      "65.33",
+      "46.30",
+      "65.33",
+      "65.48",
+      "0.5"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here.",
+  "intended_caption": "Table S17 | Node-held-out test of the frozen estimator choice. Values are Top-1 partition accuracy on 1,350 test queries per protocol. The projection choice and all masking parameters were selected using the separate 1,350-query development split; the test set was evaluated once. Cosine and recomputed projection were identical on every test query. McNemar P values compare the frozen masked projection with the unmasked projection on paired test queries.",
+  "source_caption_linkage": "The native preceding paragraph is preserved. Table ID follows scientific content (header), independent of native source position."
+}

@@ -1,0 +1,67 @@
+{
+  "name": "Fig7c_TableS10",
+  "max_row": 4,
+  "max_column": 4,
+  "rows": [
+    [
+      "Number of simultaneous leaks",
+      "Scenarios",
+      "Exhaustive search, class recall (%)",
+      "Greedy NNOMP, class recall (%)"
+    ],
+    [
+      "1 (reference)",
+      60,
+      76.7,
+      76.7
+    ],
+    [
+      2,
+      40,
+      65,
+      13.8
+    ],
+    [
+      3,
+      40,
+      53.3,
+      8.3
+    ]
+  ],
+  "cell_types": [
+    [
+      "s",
+      "s",
+      "s",
+      "s"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "n",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "n",
+      "n",
+      "n",
+      "n"
+    ]
+  ],
+  "number_formats": {},
+  "merged_ranges": [],
+  "sheet_state": "visible",
+  "freeze_panes": null,
+  "header_rows": [
+    1
+  ],
+  "row_policy": "All rows within worksheet dimensions, including blank and note rows, are retained.",
+  "column_widths": {},
+  "row_heights": {}
+}

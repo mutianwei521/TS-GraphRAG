@@ -1,0 +1,43 @@
+sheet,content
+Fig4a_TableS2b_540q,"Fig. 4a and Supplementary Table S2b: Top-1 accuracy, mean ± sample s.d. over five repetitions, 540 queries, protocols H0-H9"
+Fig4bc_TableS2a_90q,"Fig. 4b,c and Supplementary Table S2a: Top-1 accuracy, mean ± sample s.d. over five repetitions, fixed 90-query subset"
+Fig4abc_per_run,"Fig. 4a-c replicate points: Top-1 accuracy of every run (panel, protocol, method, run seed)"
+Fig4d_destination,"Fig. 4d bars and caps: shares of correct, adjacent-error and non-adjacent-error predictions (mean and s.d. over five runs)"
+Fig4d_destination_per_run,Fig. 4d replicate points: the same shares for each run
+Fig5_FigS1_draws,Fig. 5 and Supplementary Fig. S1 replicate points: draw-level metrics (15 draws x 5 designs x G1/G2); median_distance_coord_units is in network-coordinate units
+Fig5_FigS1_TableS3b,"Fig. 5 bars and caps, Supplementary Fig. S1 and Supplementary Table S3b: mean, sample s.d., median and quartiles over the 15 draws; metric median_distance is in network-coordinate units"
+Fig5b_TableS3c_pairwise,Fig. 5b and Supplementary Table S3c: paired exact sign tests with Holm adjustment
+Fig6a_TableS5,Fig. 6a and Supplementary Table S5: physics-aware estimators (single realization); cosine 1-NN here keeps the 18 zero-response templates eligible (see the Table S5 caption)
+Fig6b_TableS4,Fig. 6b and Table S4: strictly rebuilt retained numeric/semantic artifacts; mean and sample SD over five fixed-query measurement-noise realizations. Full eligible ranking RR; zero-response templates excluded from numerical rankings.
+Fig6c_TableS6,Fig. 6c and Supplementary Table S6: paired McNemar exact tests with Holm adjustment (n10 = first-named method correct and second wrong)
+Fig6d_TableS7,Fig. 6d and Supplementary Table S7: language-model re-ranking of projection candidates under H2
+TableS8a_direction,Supplementary Table S8a: fingerprint direction stability across leak discharge
+Fig7a_TableS8b,Fig. 7a and Supplementary Table S8b: retrieval of emitter leaks
+Fig7b_TableS9,Fig. 7b and Supplementary Table S9: sensor degradation
+Fig7c_TableS10,Fig. 7c and Supplementary Table S10: simultaneous leaks
+Fig7d_TableS11,Fig. 7d and Supplementary Table S11: deletion protocols on City D and Haining
+TableS12_admissibility,Supplementary Table S12: hydraulic admissibility screen
+FigS2abc_confusion_counts,Supplementary Fig. S2a-c: confusion counts of the projection residual pooled over five runs
+FigS2d_adjacent_per_run,Supplementary Fig. S2d: adjacent-partition share of Top-1 errors in each run
+(Fig. 1a),"Published estimates of non-revenue water (Liemberger & Wyatt 2019) and of physical losses in urban systems (Kingdom et al. 2006), cited in the main text, and the EXA7 sensor ratio (30 sensors for 381 junctions, 7.9%; dataset/Exa7.inp and knowledge_base/sensor_fingerprints.json). No result of this study is shown."
+(Fig. 1b),"Fig. 1b uses the approved dense schematic. Optional H8 fusion/projection labels are updated to 43.0%/59.7%, means of the strict five-noise-realization rerun (Fig6b_TableS4). Graph and LLM branches retain their separately labelled historical analyses."
+(Fig. 1c),"Projection-residual Top-1 under H0, H1, H2 and H8, mean ± s.d. over five repetitions (sheet Fig4a_TableS2b_540q). ""78% of H2 errors fall in an adjacent partition"": 503 of 648 pooled Top-1 errors (sheet FigS2d_adjacent_per_run, sums of n_adjacent_errors and n_errors for H2; pooled confusion counts in sheet FigS2abc_confusion_counts)."
+(Fig. 1d),"GraphSAGE+, Random Forest and projection-residual Top-1 under H0, H2 and H8 on the 90 fixed queries (sheet Fig4bc_TableS2a_90q)."
+(Fig. 1e),"G2 Top-1 of designs A, C60, C90 and B, mean ± s.d. over 15 draws (sheet Fig5_FigS1_TableS3b, group G2, metric top1); ""C90 > A in 15 of 15 draws"" (sheet Fig5b_TableS3c_pairwise, row C90 vs A: positive 15, non_tied_n 15). ""Closed-world protocol (H0) prefers A"": G1 Top-1 means of A, C60, C90 and B, the four designs shown (90.3, 88.3, 87.9 and 83.6%; sheet Fig5_FigS1_TableS3b, group G1, metric top1; design A_prime, 90.4%, is not shown in Fig. 1e)."
+(Figs 2 and 3),Method schematic and partition maps; no plotted quantities.
+(Distance units),"Legacy distance sheets use uncalibrated Euclidean map-coordinate distances. New partition/sensor tables use shortest physical pipe-length paths in metres (WNTR SI conversion); predicted candidate-pipe length is a set-extent proxy, not measured field effort."
+Fig6b_per_seed,"Source: strict_engine_holdout_by_seed.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Strict_H9_attribution,"Source: strict_engine_legacy_attribution_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+FigS6_TableS16,"Source: strict_engine_sensitivity_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Sensitivity_per_seed,"Source: strict_engine_sensitivity_by_seed.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Design_controls,"Source: partition_sensor_summary_tidy.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Design_per_seed,"Source: partition_sensor_run_level_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Partition_structure,"Source: partition_sensor_partition_structure_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Partition_stability,"Source: partition_sensor_partition_stability.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Partition_geometry,"Source: partition_sensor_partition_geometry.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Boundary_interior,"Source: partition_sensor_boundary_interior_run_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Sensor_allocations,"Source: partition_sensor_sensor_allocations.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Hydraulic_summary,"Source: hydraulic_robustness_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Hydraulic_per_seed,"Source: hydraulic_robustness_seed_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+Hydraulic_service_check,"Source: hydraulic_robustness_service_secondary_summary.csv, supplied with this revision. Exact methods, seeds and units are specified in the accompanying SI and reproducibility manifest."
+TableS17_node_holdout,"Supplementary Table S17: frozen node-held-out development/test estimator selection; test Top-1 for projection, default fusion, cosine and masked projection, with paired McNemar P values."

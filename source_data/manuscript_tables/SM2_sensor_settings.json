@@ -1,0 +1,54 @@
+{
+  "id": "SM2_sensor_settings",
+  "source": "0829/supplementary.docx",
+  "table_index": 1,
+  "preceding_paragraph": "The current sensor-construction settings are as follows:",
+  "rows": [
+    [
+      "Quantity",
+      "Current construction setting"
+    ],
+    [
+      "Demand perturbation fraction ηD",
+      "0.20"
+    ],
+    [
+      "Threshold candidates τ",
+      "0.4, 0.5, 0.6"
+    ],
+    [
+      "Target row coverage ctar",
+      "0.95"
+    ],
+    [
+      "Count-policy ratios ρmin,ρmax",
+      "0.04, 0.15"
+    ],
+    [
+      "Count-policy constants nmin,0,nmax,0,ncap",
+      "2, 3, 10"
+    ],
+    [
+      "Score parameters ωR,ωC,nref",
+      "0.4, 0.6, 2"
+    ],
+    [
+      "Score cost and floor λcost,εJ",
+      "0.001, 0.001"
+    ],
+    [
+      "Minimum eligible junctions per processed partition",
+      "2"
+    ],
+    [
+      "Saved selected threshold",
+      "0.4"
+    ],
+    [
+      "Saved sensor and processed-partition counts",
+      "NS=30, KS=K=15"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

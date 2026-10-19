@@ -1,0 +1,58 @@
+{
+  "id": "TableS3b",
+  "source": "0829/supplementary.docx",
+  "table_index": 10,
+  "preceding_paragraph": "b, Performance on represented-location queries (G1) and unseen-location queries (G2), with no additional template deletion (H0). Values are arithmetic means ± sample standard deviations across 15 randomized corpus/query-location draws; the variance estimate uses a denominator of 14. All designs share the same query locations and perturbation vector within each group and draw. The vector has Gaussian components with standard deviation 0.02 m and is reused across all queries in that draw. Each group contains 180 queries per draw (20 locations × three magnitudes × three demand states). MRR@5 is reciprocal rank truncated at five distinct partitions and averaged over the queries, reported on a 0–1 scale. The distance endpoint is the within-draw median Euclidean separation between the highest-ranked template location and the true leak location, in network-coordinate units; its arithmetic mean and sample s.d. across draws are reported here. Supplementary Fig. S1 presents the same means ± sample s.d. as bars with error caps, with the 15 individual draws overlaid as points.",
+  "rows": [
+    [
+      "Design",
+      "G1 Top-1 (%)",
+      "G2 Top-1 (%)",
+      "G2 Top-3 (%)",
+      "G2 MRR@5",
+      "G2 within-draw median coordinate distance (network-coordinate units)"
+    ],
+    [
+      "A",
+      "90.3 ± 4.7",
+      "69.9 ± 8.6",
+      "83.0 ± 7.4",
+      "0.765 ± 0.074",
+      "221.8 ± 39.1"
+    ],
+    [
+      "A′",
+      "90.4 ± 4.6",
+      "70.1 ± 9.1",
+      "83.2 ± 7.3",
+      "0.767 ± 0.078",
+      "223.6 ± 40.9"
+    ],
+    [
+      "C60",
+      "88.3 ± 6.6",
+      "79.0 ± 8.4",
+      "93.4 ± 4.1",
+      "0.864 ± 0.060",
+      "190.2 ± 24.0"
+    ],
+    [
+      "C90",
+      "87.9 ± 6.3",
+      "82.0 ± 7.4",
+      "94.7 ± 4.0",
+      "0.887 ± 0.054",
+      "168.8 ± 27.2"
+    ],
+    [
+      "B",
+      "83.6 ± 6.8",
+      "79.2 ± 6.9",
+      "94.7 ± 4.1",
+      "0.871 ± 0.049",
+      "166.0 ± 24.5"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

@@ -1,105 +1,87 @@
-"""
-TS-GraphRAG: Topology-Stratified Graph RAG for Leak Localization
-================================================================
-
-Main executable for the full TS-GraphRAG pipeline.
-
-Usage:
-  # Phase 1: Hydraulic partitioning & sensor placement
-  python main.py --mode partition --inp data/Exa7.inp --k 15
-
-  # Phase 2: Build knowledge base (offline)
-  python main.py --mode build-kb --inp data/Exa7.inp --k 15
-
-  # Phase 3: Real-time leak localization (inference)
-  python main.py --mode inference --kb-dir knowledge_base --observations data/test_obs.csv
-
-  # Full pipeline evaluation
-  python main.py --mode evaluate --kb-dir knowledge_base
-"""
+"""TS-GraphRAG entry point; numerical inference/evaluation run fully offline."""
+from __future__ import annotations
 
 import argparse
-import sys
-import os
+import json
+from pathlib import Path
+
+from src.configuration import load_config, validate_reference_configuration
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description='TS-GraphRAG: Topology-Stratified Graph RAG for Leak Localization'
-    )
-    parser.add_argument(
-        '--mode', type=str, required=True,
-        choices=['partition', 'build-kb', 'inference', 'evaluate'],
-        help='Pipeline stage to execute'
-    )
-    parser.add_argument('--inp', type=str, default='data/Exa7.inp',
-                        help='Path to EPANET INP file')
-    parser.add_argument('--k', type=int, default=15,
-                        help='Number of Leiden partitions')
-    parser.add_argument('--kb-dir', type=str, default='knowledge_base',
-                        help='Knowledge base directory')
-    parser.add_argument('--observations', type=str, default=None,
-                        help='Path to sensor observations CSV (inference mode)')
-    parser.add_argument('--use-llm', action='store_true',
-                        help='Enable confidence-gated LLM arbitration')
-    parser.add_argument('--verbose', action='store_true', default=True,
-                        help='Enable verbose output')
-
-    args = parser.parse_args()
-
-    if args.mode == 'partition':
-        print("=" * 60)
-        print("Phase 1: Hydraulic Partitioning & Sensor Placement")
-        print("=" * 60)
-        # Run Leiden partitioning
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="TS-GraphRAG reproducibility tools")
+    parser.add_argument("--mode", required=True, choices=["partition", "build-kb", "inference", "evaluate"])
+    parser.add_argument("--config", type=Path, help="YAML config; paths resolve relative to the config")
+    parser.add_argument("--method", choices=["projection", "cosine", "fusion"], help="Override inference.method")
+    parser.add_argument("--fingerprints", type=Path, help="Override saved fingerprint corpus")
+    parser.add_argument("--query-manifest", type=Path, help="Explicit ordered evaluation query manifest")
+    parser.add_argument("--protocol", choices=[f"H{i}" for i in range(10)], help="Retained-corpus deletion rule")
+    parser.add_argument("--seed", type=int, help="Evaluation noise seed")
+    parser.add_argument("--output-dir", type=Path, help="Evaluation artifact directory")
+    parser.add_argument("--observations", type=Path, help="Ordered sensor_id,value or single-row wide CSV")
+    parser.add_argument("--inp", type=Path, help="Override EPANET network file")
+    parser.add_argument("--k", type=int, help="Override requested number of partitions")
+    parser.add_argument("--kb-dir", type=Path, help="Legacy knowledge base directory")
+    parser.add_argument("--sensor-results-dir", type=Path, help="Legacy sensor summary directory")
+    parser.add_argument("--demand-period", help="Legacy fusion demand period")
+    parser.add_argument("--use-llm", action="store_true", help="Enable optional legacy fusion LLM arbitration")
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args(argv)
+    try:
+        config = load_config(args.config)
+        method = args.method or config.method
+        if args.use_llm and method != "fusion":
+            raise ValueError("--use-llm requires the explicit --method fusion path")
+        corpus = args.fingerprints.resolve() if args.fingerprints else config.fingerprints_path
+        if args.mode == "inference":
+            if args.observations is None:
+                raise ValueError("Inference requires --observations <CSV path>")
+            from src.phase3_query.numerical_retrieval import NumericalRetriever, read_observations
+            numerical = NumericalRetriever.from_file(corpus)
+            y = read_observations(args.observations, numerical.sensor_nodes)
+            if method == "fusion":
+                # Optional legacy behavior is explicit. Dependency/model errors
+                # are exposed; projection is never substituted for fusion.
+                from src.phase3_query.leak_locator import LeakLocator
+                kb = args.kb_dir.resolve() if args.kb_dir else config.kb_dir
+                sensors = args.sensor_results_dir.resolve() if args.sensor_results_dir else config.config_path.parent / "sensor_results"
+                locator = LeakLocator(knowledge_base_dir=str(kb), sensor_results_dir=str(sensors))
+                result = locator.localize_leak(dict(zip(numerical.sensor_nodes, y)),
+                    demand_period=args.demand_period, use_llm=args.use_llm, verbose=args.verbose,
+                    propagation_beta=config.beta)
+            else:
+                if config.beta != 0:
+                    raise ValueError("Numerical inference requires inference.beta = 0")
+                result = numerical.rank(y, method)
+                result["sensor_nodes"] = numerical.sensor_nodes
+            print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+            return result
+        if args.mode == "evaluate":
+            from src.evaluation.runner import run_evaluation
+            result = run_evaluation(config, protocol=args.protocol, seed=args.seed,
+                method=method, output_dir=args.output_dir,
+                fingerprints_path=args.fingerprints, query_manifest_path=args.query_manifest)
+            print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+            return result
+        inp = args.inp.resolve() if args.inp else config.network_inp
+        k = args.k if args.k is not None else config.raw["partitioning"]["num_partitions"]
+        if args.mode == "build-kb":
+            from src.phase3_query.numerical_retrieval import load_fingerprints
+            schema, rows = load_fingerprints(corpus)
+            validate_reference_configuration(config, schema, rows)
+            if k != config.raw["partitioning"]["num_partitions"]:
+                raise ValueError("Frozen reference rebuild does not support a different --k")
+            # This stage rebuilds the frozen numerical corpus from EPANET;
+            # optional semantic/LLM assets have their own explicit legacy path.
+            from experiments.reference_corpus import rebuild_reference
+            output = args.output_dir or args.kb_dir or config.kb_dir
+            return rebuild_reference(inp, corpus.parent, Path(output).resolve(), fingerprint_file=corpus)
         from wds_partition_leiden_main import main as partition_main
-        partition_main()
-
-    elif args.mode == 'build-kb':
-        print("=" * 60)
-        print("Phase 2: Build Knowledge Base")
-        print("=" * 60)
-        from build_knowledge_base import main as kb_main
-        sys.argv = [
-            'build_knowledge_base.py',
-            '--inp', args.inp,
-            '--partition-k', str(args.k),
-            '--output-dir', args.kb_dir,
-        ]
-        kb_main()
-
-    elif args.mode == 'inference':
-        print("=" * 60)
-        print("Phase 3: Real-Time Leak Localization")
-        print("=" * 60)
-        from src.phase3_query.leak_locator import LeakLocator
-        locator = LeakLocator(knowledge_base_dir=args.kb_dir)
-
-        if args.observations:
-            import csv
-            obs = {}
-            with open(args.observations, 'r') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    obs[row['sensor_node']] = float(row['pressure_drop'])
-            result = locator.localize_leak(obs, use_llm=args.use_llm,
-                                           verbose=args.verbose)
-            print(f"\n{'=' * 40}")
-            print(f"Predicted Partition: {result['predicted_partition']}")
-            print(f"Confidence: {result['confidence']}")
-            print(f"Top-3: {result['top3_partitions']}")
-        else:
-            print("Please provide --observations <CSV path> for inference.")
-
-    elif args.mode == 'evaluate':
-        print("=" * 60)
-        print("Comprehensive Evaluation")
-        print("=" * 60)
-        from src.phase3_query.eval_comprehensive import main as eval_main
-        eval_main()
-
-    print("\nDone.")
+        output = args.output_dir or config.config_path.parent / "partition_results_leiden"
+        return partition_main(inp_file=str(inp), output_dir=str(Path(output).resolve()), num_partitions=k)
+    except (ValueError, FileNotFoundError) as exc:
+        parser.error(str(exc))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

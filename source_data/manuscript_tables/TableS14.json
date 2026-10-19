@@ -1,0 +1,124 @@
+{
+  "id": "TableS14",
+  "source": "0829/supplementary.docx",
+  "table_index": 24,
+  "preceding_paragraph": "Table S14 | Partition method and resolution. Mean ± sample s.d. over five paired split/design/noise runs, each with 156 held-out-node queries. The template retriever and node predictions are identical across partitions; only region definitions change. Candidate length sums internal and incident boundary pipes for the predicted region, not field effort. All 90 partition realizations have exactly K connected regions. Full geometry, size, boundary length, modularity, stability and boundary/interior data are supplied in Source Data.",
+  "rows": [
+    [
+      "Partition method",
+      "K",
+      "Top-1 (%)",
+      "Candidate pipe (km)"
+    ],
+    [
+      "Pressure Leiden",
+      "5",
+      "93.1 ± 2.6",
+      "11.60 ± 0.31"
+    ],
+    [
+      "Pressure Leiden",
+      "10",
+      "86.2 ± 3.2",
+      "5.81 ± 0.35"
+    ],
+    [
+      "Pressure Leiden",
+      "15",
+      "81.4 ± 4.4",
+      "3.92 ± 0.20"
+    ],
+    [
+      "Pressure Leiden",
+      "20",
+      "76.9 ± 4.6",
+      "2.82 ± 0.10"
+    ],
+    [
+      "Pressure Leiden",
+      "30",
+      "66.8 ± 5.9",
+      "2.09 ± 0.17"
+    ],
+    [
+      "Pressure Leiden",
+      "40",
+      "62.1 ± 6.2",
+      "1.59 ± 0.04"
+    ],
+    [
+      "Topology Leiden",
+      "5",
+      "96.2 ± 3.3",
+      "11.49 ± 0.18"
+    ],
+    [
+      "Topology Leiden",
+      "10",
+      "85.8 ± 4.3",
+      "5.66 ± 0.28"
+    ],
+    [
+      "Topology Leiden",
+      "15",
+      "81.5 ± 5.0",
+      "4.23 ± 0.35"
+    ],
+    [
+      "Topology Leiden",
+      "20",
+      "75.5 ± 6.5",
+      "3.07 ± 0.17"
+    ],
+    [
+      "Topology Leiden",
+      "30",
+      "66.7 ± 5.3",
+      "2.07 ± 0.06"
+    ],
+    [
+      "Topology Leiden",
+      "40",
+      "60.0 ± 6.3",
+      "1.76 ± 0.28"
+    ],
+    [
+      "Hydraulic Ward",
+      "5",
+      "99.6 ± 0.9",
+      "17.60 ± 0.26"
+    ],
+    [
+      "Hydraulic Ward",
+      "10",
+      "97.6 ± 1.2",
+      "9.60 ± 0.61"
+    ],
+    [
+      "Hydraulic Ward",
+      "15",
+      "94.0 ± 0.7",
+      "8.09 ± 1.05"
+    ],
+    [
+      "Hydraulic Ward",
+      "20",
+      "91.3 ± 0.9",
+      "6.12 ± 0.38"
+    ],
+    [
+      "Hydraulic Ward",
+      "30",
+      "85.9 ± 3.0",
+      "5.02 ± 0.30"
+    ],
+    [
+      "Hydraulic Ward",
+      "40",
+      "78.7 ± 4.0",
+      "3.85 ± 0.21"
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

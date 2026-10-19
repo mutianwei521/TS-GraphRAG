@@ -1,0 +1,416 @@
+{
+  "level_0_global": {
+    "summary": "The water distribution network comprises 383 junction nodes organized into 15 hydraulically coherent partitions via pressure-weighted Leiden community detection. The knowledge base contains 540 pre-simulated leak scenarios spanning leak rates from 2 to 50 L/s across 3 demand periods (night low, day normal, evening peak). Each scenario is encoded as both a natural-language hydraulic summary and a 30-dimensional sensor-differential fingerprint vector.",
+    "num_partitions": 15,
+    "total_scenarios": 540,
+    "total_nodes": 383
+  },
+  "level_1_communities": {
+    "0": {
+      "partition_id": 0,
+      "node_count": 49,
+      "scenario_count": 36,
+      "summary": "Partition 0 contains 49 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.15 and 14.50 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 258, 266. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.1507,
+        14.4958
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "258",
+        "266"
+      ]
+    },
+    "1": {
+      "partition_id": 1,
+      "node_count": 43,
+      "scenario_count": 36,
+      "summary": "Partition 1 contains 43 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.06 and 7.84 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 107, 50. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0566,
+        7.8422
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "107",
+        "50"
+      ]
+    },
+    "2": {
+      "partition_id": 2,
+      "node_count": 35,
+      "scenario_count": 36,
+      "summary": "Partition 2 contains 35 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.07 and 9.74 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 163, 164. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0726,
+        9.7383
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "163",
+        "164"
+      ]
+    },
+    "3": {
+      "partition_id": 3,
+      "node_count": 35,
+      "scenario_count": 36,
+      "summary": "Partition 3 contains 35 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.06 and 8.12 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 96, 99. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0585,
+        8.1195
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "96",
+        "99"
+      ]
+    },
+    "4": {
+      "partition_id": 4,
+      "node_count": 33,
+      "scenario_count": 36,
+      "summary": "Partition 4 contains 33 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.09 and 13.15 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 144, 44. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0942,
+        13.1486
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "144",
+        "44"
+      ]
+    },
+    "5": {
+      "partition_id": 5,
+      "node_count": 28,
+      "scenario_count": 36,
+      "summary": "Partition 5 contains 28 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.16 and 15.17 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 243, 244. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.1649,
+        15.1689
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "243",
+        "244"
+      ]
+    },
+    "6": {
+      "partition_id": 6,
+      "node_count": 27,
+      "scenario_count": 36,
+      "summary": "Partition 6 contains 27 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.12 and 25.23 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 60, 61. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.1176,
+        25.2315
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "60",
+        "61"
+      ]
+    },
+    "7": {
+      "partition_id": 7,
+      "node_count": 26,
+      "scenario_count": 36,
+      "summary": "Partition 7 contains 26 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.00 and 7.32 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 33, 34. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0,
+        7.3186
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "33",
+        "34"
+      ]
+    },
+    "8": {
+      "partition_id": 8,
+      "node_count": 20,
+      "scenario_count": 36,
+      "summary": "Partition 8 contains 20 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.07 and 8.74 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 357, 358. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0714,
+        8.7366
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "357",
+        "358"
+      ]
+    },
+    "9": {
+      "partition_id": 9,
+      "node_count": 19,
+      "scenario_count": 36,
+      "summary": "Partition 9 contains 19 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.08 and 9.00 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 289, 65. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0763,
+        9.0015
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "289",
+        "65"
+      ]
+    },
+    "10": {
+      "partition_id": 10,
+      "node_count": 18,
+      "scenario_count": 36,
+      "summary": "Partition 10 contains 18 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.08 and 17.05 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 53, 56. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.078,
+        17.0495
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "53",
+        "56"
+      ]
+    },
+    "11": {
+      "partition_id": 11,
+      "node_count": 15,
+      "scenario_count": 36,
+      "summary": "Partition 11 contains 15 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.16 and 13.39 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 332, 335. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.1569,
+        13.3917
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "332",
+        "335"
+      ]
+    },
+    "12": {
+      "partition_id": 12,
+      "node_count": 14,
+      "scenario_count": 36,
+      "summary": "Partition 12 contains 14 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.07 and 35.15 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 117, 94. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0746,
+        35.1456
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "117",
+        "94"
+      ]
+    },
+    "13": {
+      "partition_id": 13,
+      "node_count": 12,
+      "scenario_count": 36,
+      "summary": "Partition 13 contains 12 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.07 and 12.53 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 364, 366. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.0669,
+        12.5343
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "364",
+        "366"
+      ]
+    },
+    "14": {
+      "partition_id": 14,
+      "node_count": 9,
+      "scenario_count": 36,
+      "summary": "Partition 14 contains 9 junction nodes. This community has been characterized through 36 leak simulation scenarios with leak rates ranging from 2 to 50 L/s. The hydraulic response shows maximum pressure drops between 0.32 and 75.13 meters, affecting 0 to 378 nodes. Demand periods covered: day_normal, evening_peak, night_low. Representative leak nodes in this community: 82, 84. Severity distribution: micro: 6, moderate: 6, moderate-severe: 6, severe: 6, small: 6, small-moderate: 6.",
+      "leak_rate_range": [
+        2.0,
+        50.0
+      ],
+      "max_drop_range": [
+        0.322,
+        75.1251
+      ],
+      "affected_range": [
+        0,
+        378
+      ],
+      "periods": [
+        "day_normal",
+        "evening_peak",
+        "night_low"
+      ],
+      "leak_nodes": [
+        "82",
+        "84"
+      ]
+    }
+  },
+  "level_2_scenario_count": 540
+}

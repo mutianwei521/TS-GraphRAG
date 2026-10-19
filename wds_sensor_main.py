@@ -17,6 +17,7 @@ import json
 import pickle
 import logging
 import argparse
+from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -808,17 +809,17 @@ def main():
     parser.add_argument(
         '--inp', '-i',
         type=str,
-        default='dataset/Exa7.inp',
-        help='Path to EPANET INP file (default: dataset/Exa7.inp)'
+        default=str(Path(__file__).resolve().parent/'data/Exa7.inp'),
+        help='Path to EPANET INP file'
     )
     parser.add_argument(
         '--partitions', '-p',
         type=str,
-        default='partition_results/partition_summary.json',
-        help='Path to partition_summary.json (default: partition_results/partition_summary.json)'
+        default=str(Path(__file__).resolve().parent/'data/reference/partition_summary.json'),
+        help='Path to explicit partition_summary.json'
     )
     parser.add_argument(
-        '--num-partitions', '-n',
+        '--num-partitions', '--partition-k', '-n',
         type=int,
         default=None,
         help='Number of partitions to use (default: auto-select)'

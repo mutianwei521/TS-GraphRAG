@@ -1,0 +1,29 @@
+{
+  "every_prediction_is_train_node_and_truth_is_heldout": true,
+  "sensor_counts_and_uniqueness_match_all_budgets": true,
+  "all_90_partitions_have_exact_K_and_connected_regions": true,
+  "internal_boundary_inspection_length_accounting_consistent": true,
+  "node_predictions_identical_across_partition_controls": true,
+  "no_duplicate_configuration_query_rows": true,
+  "distance_missing_only_for_declared_abstention": true,
+  "abstentions_across_all_configuration_query_rows": 32,
+  "raw_query_fields_and_frozen_inputs_saved": true,
+  "hydraulic_validity": {
+    "source": "fresh hydraulic simulation",
+    "model": "DDA",
+    "new_simulations": 1144,
+    "rates_lps": [
+      0,
+      5,
+      20,
+      35
+    ],
+    "rows_with_negative_pressure": 30,
+    "minimum_pressure_m": -44.41343307495117,
+    "nonfinite_node_times": 0,
+    "elapsed_s": 169.08621820000008
+  },
+  "primary_hydraulic_scenarios": 1143,
+  "primary_minimum_pressure_m": 0.9065927863121032,
+  "all_primary_scenarios_have_nonnegative_pressure": true
+}

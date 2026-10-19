@@ -1,146 +1,56 @@
-"""
-Water Distribution Network Partitioning Optimization (Leiden Algorithm)
-Based on wds_partition_main.py, replacing Louvain with Leiden algorithm.
-
-pip install leidenalg
-
-Leiden is an improved version of Louvain that:
-- Guarantees connected communities (Louvain may produce disconnected ones)
-- Has better convergence properties
-- Produces more stable partition results
-
-This script performs:
-1. Load water network from EPANET INP file
-2. Run hydraulic simulation to get node pressures
-3. Calculate average pressure for each node across all time steps
-4. Build similarity matrix based on pressure averages
-5. Use Leiden algorithm to partition the network
-6. Extract unique partition solutions and save results
-"""
-import os
+"""Export the frozen hydraulic partition or generate a seeded Leiden design."""
+from __future__ import annotations
+import argparse
+import hashlib
 import json
+from pathlib import Path
 import pickle
-import numpy as np
-import wntr
 
-from partition_utils.hydraulic import run_hydraulic_simulation, calculate_average_pressure
-from partition_utils.similarity import create_network_graph
-from partition_utils.partitioning_leiden import run_leiden_partitioning, extract_partitions_with_merge
-from partition_utils.visualization import save_all_partitions_plots
+ROOT=Path(__file__).resolve().parent
 
 
-def main():
-    # ==================== Configuration ====================
-    inp_file = 'dataset/Exa7.inp'
-    output_dir = 'partition_results_leiden'
-    plot_dir = 'partition_plots_leiden'
-
-    # Leiden parameters
-    # Adjust the resolution range to obtain 2 to 50 partitions
-    # The smaller the resolution, the fewer partitions; the larger the resolution, the more partitions
-    resolution_range = (0.001, 3.0)   # Expanded range
-    num_iterations = 300              # More iterations to cover a wider range of partition numbers
-
-    # Save range configuration: Only save the results within the specified range of partitions
-    save_range = (2, 40)  # Only save the results with partition numbers ranging from 2 to 40
-
-    os.makedirs(output_dir, exist_ok=True)
-
-    # ==================== Step 1: Load Network ====================
-    print("=" * 60)
-    print("Step 1: Loading water distribution network...")
-    wn = wntr.network.WaterNetworkModel(inp_file)
-    print(f"  Network loaded: {inp_file}")
-    print(f"  Junctions: {len(wn.junction_name_list)}")
-    print(f"  Pipes: {len(wn.pipe_name_list)}")
-    print(f"  Tanks: {len(wn.tank_name_list)}")
-    print(f"  Reservoirs: {len(wn.reservoir_name_list)}")
-
-    # ==================== Step 2: Hydraulic Simulation ====================
-    print("\n" + "=" * 60)
-    print("Step 2: Running hydraulic simulation...")
-    results = run_hydraulic_simulation(wn)
-    print(f"  Simulation completed for {len(results.node['pressure'])} time steps")
-
-    # ==================== Step 3: Calculate Average Pressure ====================
-    print("\n" + "=" * 60)
-    print("Step 3: Calculating average pressure for each node...")
-    avg_pressure = calculate_average_pressure(results, wn)
-    print(f"  Calculated average pressure for {len(avg_pressure)} nodes")
-
-    # Save average pressure data
-    pressure_file = os.path.join(output_dir, 'average_pressure.json')
-    with open(pressure_file, 'w') as f:
-        json.dump(avg_pressure, f, indent=2)
-    print(f"  Saved: {pressure_file}")
-
-    # ==================== Step 4: Build Similarity Matrix/Graph ====================
-    print("\n" + "=" * 60)
-    print("Step 4: Building similarity matrix (network graph with pressure weights)...")
-    G, pos = create_network_graph(wn, avg_pressure)
-    print(f"  Graph nodes: {G.number_of_nodes()}")
-    print(f"  Graph edges: {G.number_of_edges()}")
-
-    # ==================== Step 5: Run Leiden Partitioning ====================
-    print("\n" + "=" * 60)
-    print("Step 5: Running Leiden partitioning algorithm...")
-    print(f"  Resolution range: {resolution_range}")
-    print(f"  Number of iterations: {num_iterations}")
-
-    all_partitions = run_leiden_partitioning(G, resolution_range, num_iterations)
-    print(f"  Generated {len(all_partitions)} partition solutions")
-
-    # ==================== Step 6: Extract Partitions with Merge ====================
-    print("\n" + "=" * 60)
-    print("Step 6: Extracting partitions (Leiden + merged for small counts)...")
-    unique_partitions = extract_partitions_with_merge(G, all_partitions, merge_range=(2, 15))
-
-    # ==================== Step 7: Filter and Save Results ====================
-    print("\n" + "=" * 60)
-    print("Step 7: Saving partitioning results...")
-
-    # Filter partitions by save_range if specified
-    if save_range is not None:
-        filtered_partitions = {k: v for k, v in unique_partitions.items()
-                               if save_range[0] <= k <= save_range[1]}
-        print(f"  Save range: {save_range[0]} to {save_range[1]} communities")
-        print(f"  Filtered from {len(unique_partitions)} to {len(filtered_partitions)} partitions")
+def main(inp_file=None, output_dir=None, num_partitions=15, seed=41, design='frozen'):
+    import wntr
+    inp=Path(inp_file or ROOT/'data/Exa7.inp').resolve()
+    output=Path(output_dir or ROOT/'outputs/partition').resolve();output.mkdir(parents=True,exist_ok=True)
+    wn=wntr.network.WaterNetworkModel(str(inp))
+    if design=='frozen':
+        if hashlib.sha256(inp.read_bytes()).digest()!=hashlib.sha256((ROOT/'data/Exa7.inp').read_bytes()).digest():
+            raise ValueError('Frozen physical partition requires the released EXA7 input; use --design leiden for a new network')
+        summary=json.loads((ROOT/'data/reference/partition_summary.json').read_text())
+        if str(num_partitions) not in summary:raise ValueError(f'No frozen partition at K={num_partitions}')
+        row=summary[str(num_partitions)]
+        partitions={num_partitions:{'node_to_community':row['node_assignments'],'resolution':row['resolution']}}
     else:
-        filtered_partitions = unique_partitions
-        print(f"  Saving all {len(filtered_partitions)} partitions")
-
-    # Save partition data as pickle
-    partition_file = os.path.join(output_dir, 'partitions.pkl')
-    with open(partition_file, 'wb') as f:
-        pickle.dump(filtered_partitions, f)
-    print(f"  Saved: {partition_file}")
-
-    # Save partition summary as JSON
-    summary = {}
-    for num_comm, data in filtered_partitions.items():
-        summary[str(num_comm)] = {
-            'num_communities': num_comm,
-            'resolution': data['resolution'],
-            'node_assignments': data['node_to_community']
-        }
-
-    summary_file = os.path.join(output_dir, 'partition_summary.json')
-    with open(summary_file, 'w') as f:
-        json.dump(summary, f, indent=2)
-    print(f"  Saved: {summary_file}")
-
-    # ==================== Step 8: Generate Visualizations ====================
-    print("\n" + "=" * 60)
-    print("Step 8: Generating partition visualizations (saving to files)...")
-    save_all_partitions_plots(G, pos, filtered_partitions, plot_dir)
-
-    print("\n" + "=" * 60)
-    print("Leiden partitioning completed successfully!")
-    print(f"  Results saved in: {output_dir}/")
-    print(f"  Plots saved in: {plot_dir}/")
+        from src.phase1_partition.hydraulic import calculate_average_pressure
+        from src.phase1_partition.similarity import create_network_graph
+        from src.phase1_partition.partitioning_leiden import run_leiden_partitioning,extract_partitions_with_merge
+        import os
+        work=output/'epanet_work';work.mkdir(exist_ok=True)
+        previous=Path.cwd();os.chdir(work)
+        try:result=wntr.sim.EpanetSimulator(wn).run_sim(file_prefix='partition_baseline')
+        finally:os.chdir(previous)
+        graph,_=create_network_graph(wn,calculate_average_pressure(result,wn))
+        candidates=run_leiden_partitioning(graph,(.001,3.),300,seed=seed)
+        all_parts=extract_partitions_with_merge(graph,candidates,merge_range=(2,max(15,num_partitions)),target_k=num_partitions)
+        if num_partitions not in all_parts:raise ValueError(f'Seeded search did not produce K={num_partitions}')
+        partitions={num_partitions:all_parts[num_partitions]}
+    summary={str(k):{'num_communities':k,'resolution':v['resolution'],'node_assignments':v['node_to_community']} for k,v in partitions.items()}
+    (output/'partition_summary.json').write_text(json.dumps(summary,indent=2),encoding='utf-8')
+    (output/'partitions.pkl').write_bytes(pickle.dumps(partitions))
+    manifest={'design':design,'seed':seed if design=='leiden' else None,'num_partitions':num_partitions,
+              'network_sha256':hashlib.sha256(inp.read_bytes()).hexdigest(),
+              'network_counts':{'junctions':len(wn.junction_name_list),'pipes':len(wn.pipe_name_list),'pumps':len(wn.pump_name_list),'reservoirs':len(wn.reservoir_name_list),'tanks':len(wn.tank_name_list)}}
+    (output/'run_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
+    print(json.dumps(manifest,indent=2));return manifest
 
 
-# Training
-# python wds_partition_leiden_main.py
-if __name__ == '__main__':
-    main()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--inp',type=Path,default=ROOT/'data/Exa7.inp')
+    parser.add_argument('--output-dir',type=Path,default=ROOT/'outputs/partition')
+    parser.add_argument('--num-partitions','--partition-k',type=int,default=15)
+    parser.add_argument('--seed',type=int,default=41)
+    parser.add_argument('--design',choices=['frozen','leiden'],default='frozen')
+    args=parser.parse_args()
+    main(args.inp,args.output_dir,args.num_partitions,args.seed,args.design)

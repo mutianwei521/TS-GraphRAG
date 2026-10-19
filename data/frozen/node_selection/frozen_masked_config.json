@@ -1,0 +1,14 @@
+{
+  "name": "proj_tau1.0",
+  "dev_mean_top1": 0.7420576131687242,
+  "spec": {
+    "kind": "proj",
+    "tau": 1.0,
+    "beta": null
+  },
+  "dev_reference": {
+    "projection_tau0": 0.7409053497942387,
+    "cosine_tau0": 0.7409053497942387
+  },
+  "selection_rule": "max mean dev top-1 over H0-H8 among masked projection, masked cosine (tau 0-3) and 400 fusion draws"
+}

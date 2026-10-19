@@ -1,0 +1,984 @@
+{
+  "source_sha256": {
+    "knowledge_base\\sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+    "expH_gnn2_results.json.partial": "11071f138ea4defe9a3f70a9300e36c5479dba9916bd664249f418585fbed4c5",
+    "expH_baselines.py": "2e008478bbf25857e955d1f68a8048aab8290fa9290bace2c06399215f95c08a",
+    "wds_verify.py": "208d306e7716ca990730b61cb1eec7182ff0a78a82c99cf2ce486367d9bd2b08",
+    "expH_baselines_results.json": "d133558b2a7ced0ba01b570f5c92442a084d159fe7c4c1e90a4754feb01be367",
+    "expH_gnn2_results.json": "8450585dd35f8352ad03dfca89f2ee4bf3b877ef413dbe6f04dd00db0d6ffab0",
+    "results\\E4_mean_std_20260909\\classical_repeats.py": "537c86647ddd5903e72d15dd8eaeeae49bbac51f9245af6022ebcf428596a8a0"
+  },
+  "python": "3.11.15 | packaged by Anaconda, Inc. | (main, Mar 11 2026, 17:12:15) [MSC v.1942 64 bit (AMD64)]",
+  "numpy": "2.3.5",
+  "scipy": "1.17.1",
+  "sklearn": "1.8.0",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "noise_rule": "RandomState(actual_run_seed + original_query_index).normal(0, 0.02, 30)",
+  "model_seeds": [
+    41,
+    581,
+    1121,
+    1661,
+    2201
+  ],
+  "thread_limits": 1,
+  "configs_by_seed": {
+    "41": {
+      "k-NN (k=5)": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "cosine",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+      },
+      "Random Forest": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 41,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "SVM (RBF)": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "svc",
+            "SVC(random_state=41)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "svc": "SVC(random_state=41)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "svc__C": 1.0,
+        "svc__break_ties": false,
+        "svc__cache_size": 200,
+        "svc__class_weight": null,
+        "svc__coef0": 0.0,
+        "svc__decision_function_shape": "ovr",
+        "svc__degree": 3,
+        "svc__gamma": "scale",
+        "svc__kernel": "rbf",
+        "svc__max_iter": -1,
+        "svc__probability": false,
+        "svc__random_state": 41,
+        "svc__shrinking": true,
+        "svc__tol": 0.001,
+        "svc__verbose": false
+      },
+      "MLP": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "mlpclassifier",
+            "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=41)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "mlpclassifier": "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=41)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "mlpclassifier__activation": "relu",
+        "mlpclassifier__alpha": 0.0001,
+        "mlpclassifier__batch_size": "auto",
+        "mlpclassifier__beta_1": 0.9,
+        "mlpclassifier__beta_2": 0.999,
+        "mlpclassifier__early_stopping": true,
+        "mlpclassifier__epsilon": 1e-08,
+        "mlpclassifier__hidden_layer_sizes": [
+          128,
+          64
+        ],
+        "mlpclassifier__learning_rate": "constant",
+        "mlpclassifier__learning_rate_init": 0.001,
+        "mlpclassifier__max_fun": 15000,
+        "mlpclassifier__max_iter": 400,
+        "mlpclassifier__momentum": 0.9,
+        "mlpclassifier__n_iter_no_change": 10,
+        "mlpclassifier__nesterovs_momentum": true,
+        "mlpclassifier__power_t": 0.5,
+        "mlpclassifier__random_state": 41,
+        "mlpclassifier__shuffle": true,
+        "mlpclassifier__solver": "adam",
+        "mlpclassifier__tol": 0.0001,
+        "mlpclassifier__validation_fraction": 0.1,
+        "mlpclassifier__verbose": false,
+        "mlpclassifier__warm_start": false
+      },
+      "Nearest Centroid": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "nearestcentroid",
+            "NearestCentroid()"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "nearestcentroid": "NearestCentroid()",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "nearestcentroid__metric": "euclidean",
+        "nearestcentroid__priors": "uniform",
+        "nearestcentroid__shrink_threshold": null
+      },
+      "Logistic Regression": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "logisticregression",
+            "LogisticRegression(max_iter=1000, random_state=41)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "logisticregression": "LogisticRegression(max_iter=1000, random_state=41)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "logisticregression__C": 1.0,
+        "logisticregression__class_weight": null,
+        "logisticregression__dual": false,
+        "logisticregression__fit_intercept": true,
+        "logisticregression__intercept_scaling": 1,
+        "logisticregression__l1_ratio": 0.0,
+        "logisticregression__max_iter": 1000,
+        "logisticregression__n_jobs": null,
+        "logisticregression__penalty": "deprecated",
+        "logisticregression__random_state": 41,
+        "logisticregression__solver": "lbfgs",
+        "logisticregression__tol": 0.0001,
+        "logisticregression__verbose": 0,
+        "logisticregression__warm_start": false
+      }
+    },
+    "581": {
+      "k-NN (k=5)": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "cosine",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+      },
+      "Random Forest": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 581,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "SVM (RBF)": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "svc",
+            "SVC(random_state=581)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "svc": "SVC(random_state=581)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "svc__C": 1.0,
+        "svc__break_ties": false,
+        "svc__cache_size": 200,
+        "svc__class_weight": null,
+        "svc__coef0": 0.0,
+        "svc__decision_function_shape": "ovr",
+        "svc__degree": 3,
+        "svc__gamma": "scale",
+        "svc__kernel": "rbf",
+        "svc__max_iter": -1,
+        "svc__probability": false,
+        "svc__random_state": 581,
+        "svc__shrinking": true,
+        "svc__tol": 0.001,
+        "svc__verbose": false
+      },
+      "MLP": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "mlpclassifier",
+            "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=581)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "mlpclassifier": "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=581)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "mlpclassifier__activation": "relu",
+        "mlpclassifier__alpha": 0.0001,
+        "mlpclassifier__batch_size": "auto",
+        "mlpclassifier__beta_1": 0.9,
+        "mlpclassifier__beta_2": 0.999,
+        "mlpclassifier__early_stopping": true,
+        "mlpclassifier__epsilon": 1e-08,
+        "mlpclassifier__hidden_layer_sizes": [
+          128,
+          64
+        ],
+        "mlpclassifier__learning_rate": "constant",
+        "mlpclassifier__learning_rate_init": 0.001,
+        "mlpclassifier__max_fun": 15000,
+        "mlpclassifier__max_iter": 400,
+        "mlpclassifier__momentum": 0.9,
+        "mlpclassifier__n_iter_no_change": 10,
+        "mlpclassifier__nesterovs_momentum": true,
+        "mlpclassifier__power_t": 0.5,
+        "mlpclassifier__random_state": 581,
+        "mlpclassifier__shuffle": true,
+        "mlpclassifier__solver": "adam",
+        "mlpclassifier__tol": 0.0001,
+        "mlpclassifier__validation_fraction": 0.1,
+        "mlpclassifier__verbose": false,
+        "mlpclassifier__warm_start": false
+      },
+      "Nearest Centroid": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "nearestcentroid",
+            "NearestCentroid()"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "nearestcentroid": "NearestCentroid()",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "nearestcentroid__metric": "euclidean",
+        "nearestcentroid__priors": "uniform",
+        "nearestcentroid__shrink_threshold": null
+      },
+      "Logistic Regression": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "logisticregression",
+            "LogisticRegression(max_iter=1000, random_state=581)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "logisticregression": "LogisticRegression(max_iter=1000, random_state=581)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "logisticregression__C": 1.0,
+        "logisticregression__class_weight": null,
+        "logisticregression__dual": false,
+        "logisticregression__fit_intercept": true,
+        "logisticregression__intercept_scaling": 1,
+        "logisticregression__l1_ratio": 0.0,
+        "logisticregression__max_iter": 1000,
+        "logisticregression__n_jobs": null,
+        "logisticregression__penalty": "deprecated",
+        "logisticregression__random_state": 581,
+        "logisticregression__solver": "lbfgs",
+        "logisticregression__tol": 0.0001,
+        "logisticregression__verbose": 0,
+        "logisticregression__warm_start": false
+      }
+    },
+    "1121": {
+      "k-NN (k=5)": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "cosine",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+      },
+      "Random Forest": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 1121,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "SVM (RBF)": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "svc",
+            "SVC(random_state=1121)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "svc": "SVC(random_state=1121)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "svc__C": 1.0,
+        "svc__break_ties": false,
+        "svc__cache_size": 200,
+        "svc__class_weight": null,
+        "svc__coef0": 0.0,
+        "svc__decision_function_shape": "ovr",
+        "svc__degree": 3,
+        "svc__gamma": "scale",
+        "svc__kernel": "rbf",
+        "svc__max_iter": -1,
+        "svc__probability": false,
+        "svc__random_state": 1121,
+        "svc__shrinking": true,
+        "svc__tol": 0.001,
+        "svc__verbose": false
+      },
+      "MLP": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "mlpclassifier",
+            "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=1121)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "mlpclassifier": "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=1121)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "mlpclassifier__activation": "relu",
+        "mlpclassifier__alpha": 0.0001,
+        "mlpclassifier__batch_size": "auto",
+        "mlpclassifier__beta_1": 0.9,
+        "mlpclassifier__beta_2": 0.999,
+        "mlpclassifier__early_stopping": true,
+        "mlpclassifier__epsilon": 1e-08,
+        "mlpclassifier__hidden_layer_sizes": [
+          128,
+          64
+        ],
+        "mlpclassifier__learning_rate": "constant",
+        "mlpclassifier__learning_rate_init": 0.001,
+        "mlpclassifier__max_fun": 15000,
+        "mlpclassifier__max_iter": 400,
+        "mlpclassifier__momentum": 0.9,
+        "mlpclassifier__n_iter_no_change": 10,
+        "mlpclassifier__nesterovs_momentum": true,
+        "mlpclassifier__power_t": 0.5,
+        "mlpclassifier__random_state": 1121,
+        "mlpclassifier__shuffle": true,
+        "mlpclassifier__solver": "adam",
+        "mlpclassifier__tol": 0.0001,
+        "mlpclassifier__validation_fraction": 0.1,
+        "mlpclassifier__verbose": false,
+        "mlpclassifier__warm_start": false
+      },
+      "Nearest Centroid": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "nearestcentroid",
+            "NearestCentroid()"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "nearestcentroid": "NearestCentroid()",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "nearestcentroid__metric": "euclidean",
+        "nearestcentroid__priors": "uniform",
+        "nearestcentroid__shrink_threshold": null
+      },
+      "Logistic Regression": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "logisticregression",
+            "LogisticRegression(max_iter=1000, random_state=1121)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "logisticregression": "LogisticRegression(max_iter=1000, random_state=1121)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "logisticregression__C": 1.0,
+        "logisticregression__class_weight": null,
+        "logisticregression__dual": false,
+        "logisticregression__fit_intercept": true,
+        "logisticregression__intercept_scaling": 1,
+        "logisticregression__l1_ratio": 0.0,
+        "logisticregression__max_iter": 1000,
+        "logisticregression__n_jobs": null,
+        "logisticregression__penalty": "deprecated",
+        "logisticregression__random_state": 1121,
+        "logisticregression__solver": "lbfgs",
+        "logisticregression__tol": 0.0001,
+        "logisticregression__verbose": 0,
+        "logisticregression__warm_start": false
+      }
+    },
+    "1661": {
+      "k-NN (k=5)": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "cosine",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+      },
+      "Random Forest": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 1661,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "SVM (RBF)": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "svc",
+            "SVC(random_state=1661)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "svc": "SVC(random_state=1661)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "svc__C": 1.0,
+        "svc__break_ties": false,
+        "svc__cache_size": 200,
+        "svc__class_weight": null,
+        "svc__coef0": 0.0,
+        "svc__decision_function_shape": "ovr",
+        "svc__degree": 3,
+        "svc__gamma": "scale",
+        "svc__kernel": "rbf",
+        "svc__max_iter": -1,
+        "svc__probability": false,
+        "svc__random_state": 1661,
+        "svc__shrinking": true,
+        "svc__tol": 0.001,
+        "svc__verbose": false
+      },
+      "MLP": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "mlpclassifier",
+            "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=1661)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "mlpclassifier": "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=1661)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "mlpclassifier__activation": "relu",
+        "mlpclassifier__alpha": 0.0001,
+        "mlpclassifier__batch_size": "auto",
+        "mlpclassifier__beta_1": 0.9,
+        "mlpclassifier__beta_2": 0.999,
+        "mlpclassifier__early_stopping": true,
+        "mlpclassifier__epsilon": 1e-08,
+        "mlpclassifier__hidden_layer_sizes": [
+          128,
+          64
+        ],
+        "mlpclassifier__learning_rate": "constant",
+        "mlpclassifier__learning_rate_init": 0.001,
+        "mlpclassifier__max_fun": 15000,
+        "mlpclassifier__max_iter": 400,
+        "mlpclassifier__momentum": 0.9,
+        "mlpclassifier__n_iter_no_change": 10,
+        "mlpclassifier__nesterovs_momentum": true,
+        "mlpclassifier__power_t": 0.5,
+        "mlpclassifier__random_state": 1661,
+        "mlpclassifier__shuffle": true,
+        "mlpclassifier__solver": "adam",
+        "mlpclassifier__tol": 0.0001,
+        "mlpclassifier__validation_fraction": 0.1,
+        "mlpclassifier__verbose": false,
+        "mlpclassifier__warm_start": false
+      },
+      "Nearest Centroid": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "nearestcentroid",
+            "NearestCentroid()"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "nearestcentroid": "NearestCentroid()",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "nearestcentroid__metric": "euclidean",
+        "nearestcentroid__priors": "uniform",
+        "nearestcentroid__shrink_threshold": null
+      },
+      "Logistic Regression": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "logisticregression",
+            "LogisticRegression(max_iter=1000, random_state=1661)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "logisticregression": "LogisticRegression(max_iter=1000, random_state=1661)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "logisticregression__C": 1.0,
+        "logisticregression__class_weight": null,
+        "logisticregression__dual": false,
+        "logisticregression__fit_intercept": true,
+        "logisticregression__intercept_scaling": 1,
+        "logisticregression__l1_ratio": 0.0,
+        "logisticregression__max_iter": 1000,
+        "logisticregression__n_jobs": null,
+        "logisticregression__penalty": "deprecated",
+        "logisticregression__random_state": 1661,
+        "logisticregression__solver": "lbfgs",
+        "logisticregression__tol": 0.0001,
+        "logisticregression__verbose": 0,
+        "logisticregression__warm_start": false
+      }
+    },
+    "2201": {
+      "k-NN (k=5)": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "cosine",
+        "metric_params": null,
+        "n_jobs": null,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+      },
+      "Random Forest": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 2201,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "SVM (RBF)": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "svc",
+            "SVC(random_state=2201)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "svc": "SVC(random_state=2201)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "svc__C": 1.0,
+        "svc__break_ties": false,
+        "svc__cache_size": 200,
+        "svc__class_weight": null,
+        "svc__coef0": 0.0,
+        "svc__decision_function_shape": "ovr",
+        "svc__degree": 3,
+        "svc__gamma": "scale",
+        "svc__kernel": "rbf",
+        "svc__max_iter": -1,
+        "svc__probability": false,
+        "svc__random_state": 2201,
+        "svc__shrinking": true,
+        "svc__tol": 0.001,
+        "svc__verbose": false
+      },
+      "MLP": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "mlpclassifier",
+            "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=2201)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "mlpclassifier": "MLPClassifier(early_stopping=True, hidden_layer_sizes=(128, 64), max_iter=400,\n              random_state=2201)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "mlpclassifier__activation": "relu",
+        "mlpclassifier__alpha": 0.0001,
+        "mlpclassifier__batch_size": "auto",
+        "mlpclassifier__beta_1": 0.9,
+        "mlpclassifier__beta_2": 0.999,
+        "mlpclassifier__early_stopping": true,
+        "mlpclassifier__epsilon": 1e-08,
+        "mlpclassifier__hidden_layer_sizes": [
+          128,
+          64
+        ],
+        "mlpclassifier__learning_rate": "constant",
+        "mlpclassifier__learning_rate_init": 0.001,
+        "mlpclassifier__max_fun": 15000,
+        "mlpclassifier__max_iter": 400,
+        "mlpclassifier__momentum": 0.9,
+        "mlpclassifier__n_iter_no_change": 10,
+        "mlpclassifier__nesterovs_momentum": true,
+        "mlpclassifier__power_t": 0.5,
+        "mlpclassifier__random_state": 2201,
+        "mlpclassifier__shuffle": true,
+        "mlpclassifier__solver": "adam",
+        "mlpclassifier__tol": 0.0001,
+        "mlpclassifier__validation_fraction": 0.1,
+        "mlpclassifier__verbose": false,
+        "mlpclassifier__warm_start": false
+      },
+      "Nearest Centroid": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "nearestcentroid",
+            "NearestCentroid()"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "nearestcentroid": "NearestCentroid()",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "nearestcentroid__metric": "euclidean",
+        "nearestcentroid__priors": "uniform",
+        "nearestcentroid__shrink_threshold": null
+      },
+      "Logistic Regression": {
+        "memory": null,
+        "steps": [
+          [
+            "standardscaler",
+            "StandardScaler()"
+          ],
+          [
+            "logisticregression",
+            "LogisticRegression(max_iter=1000, random_state=2201)"
+          ]
+        ],
+        "transform_input": null,
+        "verbose": false,
+        "standardscaler": "StandardScaler()",
+        "logisticregression": "LogisticRegression(max_iter=1000, random_state=2201)",
+        "standardscaler__copy": true,
+        "standardscaler__with_mean": true,
+        "standardscaler__with_std": true,
+        "logisticregression__C": 1.0,
+        "logisticregression__class_weight": null,
+        "logisticregression__dual": false,
+        "logisticregression__fit_intercept": true,
+        "logisticregression__intercept_scaling": 1,
+        "logisticregression__l1_ratio": 0.0,
+        "logisticregression__max_iter": 1000,
+        "logisticregression__n_jobs": null,
+        "logisticregression__penalty": "deprecated",
+        "logisticregression__random_state": 2201,
+        "logisticregression__solver": "lbfgs",
+        "logisticregression__tol": 0.0001,
+        "logisticregression__verbose": 0,
+        "logisticregression__warm_start": false
+      }
+    }
+  },
+  "scope": "main90",
+  "query_indices": [
+    10,
+    14,
+    18,
+    21,
+    24,
+    35,
+    36,
+    51,
+    53,
+    54,
+    57,
+    60,
+    73,
+    77,
+    81,
+    92,
+    100,
+    105,
+    110,
+    111,
+    115,
+    124,
+    135,
+    139,
+    148,
+    157,
+    162,
+    167,
+    174,
+    177,
+    181,
+    186,
+    187,
+    189,
+    202,
+    215,
+    219,
+    227,
+    230,
+    233,
+    235,
+    236,
+    253,
+    255,
+    263,
+    264,
+    271,
+    279,
+    289,
+    293,
+    294,
+    297,
+    309,
+    314,
+    325,
+    328,
+    329,
+    338,
+    349,
+    355,
+    364,
+    377,
+    385,
+    387,
+    389,
+    391,
+    396,
+    397,
+    400,
+    407,
+    416,
+    425,
+    434,
+    436,
+    438,
+    440,
+    452,
+    458,
+    473,
+    474,
+    475,
+    483,
+    494,
+    501,
+    506,
+    527,
+    530,
+    531,
+    532,
+    533
+  ],
+  "protocols": [
+    "H0",
+    "H2",
+    "H3",
+    "H4",
+    "H8"
+  ],
+  "worker_count": 8,
+  "task_count": 650
+}

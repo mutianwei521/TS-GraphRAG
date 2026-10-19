@@ -1,0 +1,20 @@
+{
+  "study": "repeated_benchmarks",
+  "profile": "replay",
+  "scope": "main90",
+  "prediction_rows": 18000,
+  "summary_cells": 40,
+  "gnn_summary_cells": 15,
+  "projection_queries_verified": 2250,
+  "projection_prediction_mismatches": 0,
+  "archive_statistics_match": true,
+  "noise_rule": "RandomState(run_seed + original_query_index).normal(0, 0.02, 30)",
+  "seeds": [
+    41,
+    581,
+    1121,
+    1661,
+    2201
+  ],
+  "uncertainty": "sample SD ddof=1 across five complete stochastic repetitions"
+}

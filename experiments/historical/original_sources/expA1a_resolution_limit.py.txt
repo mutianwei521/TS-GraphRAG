@@ -1,0 +1,185 @@
+"""Historical resolution computational source; original input locations are listed in dependencies.json."""
+import os, sys, json, time, copy, pickle, random, warnings, tempfile, uuid
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import wntr
+import networkx as nx
+
+_P = os.path.join(tempfile.mkdtemp(prefix='epanet_'), 'ep_' + uuid.uuid4().hex[:8])
+INP = 'dataset/Exa7.inp'
+PART_PKL, K = 'partition_results_leiden/partitions.pkl', 15
+Q_REF, PER_MULT, SEED = 20.0, 1.0, 5
+MAT_CACHE, OUT = 'exp_sensitivity_matrix.npz', 'expA1a_results.json'
+THRESH = [0.99, 0.999, 0.9999]
+SENSOR_COUNTS = [5, 10, 15, 20, 30, 45, 60, 90]
+
+
+def classes_from_gram(Fs, thr):
+    """Connected components of the graph linking atoms whose cosine exceeds thr."""
+    n = Fs.shape[0]
+    nrm = np.linalg.norm(Fs, axis=1)
+    keep = nrm > 1e-12
+    U = np.zeros_like(Fs)
+    U[keep] = Fs[keep] / nrm[keep, None]
+    Gm = U @ U.T
+    A = (Gm > thr)
+    np.fill_diagonal(A, False)
+    g = nx.from_numpy_array(A.astype(int))
+    comps = list(nx.connected_components(g))
+    dead = int((~keep).sum())
+    return comps, dead
+
+
+def greedy_sensors(S, nodes, budget, seed=0):
+    """Greedily add the measurement node that most reduces mean pairwise atom coherence."""
+    rng = np.random.default_rng(seed)
+    cand = list(range(S.shape[1]))
+    chosen = [int(rng.integers(len(cand)))]
+    for _ in range(budget - 1):
+        best, bestj = np.inf, None
+        sample = rng.choice(cand, size=min(60, len(cand)), replace=False)
+        for j in sample:
+            if j in chosen:
+                continue
+            Fs = S[:, chosen + [j]]
+            nrm = np.linalg.norm(Fs, axis=1)
+            ok = nrm > 1e-12
+            if ok.sum() < 2:
+                continue
+            U = Fs[ok] / nrm[ok, None]
+            Gm = U @ U.T
+            np.fill_diagonal(Gm, 0.0)
+            score = float(Gm.max(axis=1).mean())
+            if score < best:
+                best, bestj = score, int(j)
+        if bestj is None:
+            break
+        chosen.append(bestj)
+    return chosen
+
+
+def main():
+    wn0 = wntr.network.WaterNetworkModel(INP)
+    juncs = list(wn0.junction_name_list)
+    n2c = pickle.load(open(PART_PKL, 'rb'))[K]['node_to_community']
+    G = wn0.to_graph().to_undirected()
+    xy = {n: np.array(wn0.get_node(n).coordinates) for n in juncs}
+
+    print('=' * 88)
+    print('A1a — observability resolution limit of the sensor set')
+    print('=' * 88)
+
+    if os.path.exists(MAT_CACHE):
+        z = np.load(MAT_CACHE, allow_pickle=True)
+        S, nodes, meas = z['S'], [str(x) for x in z['nodes']], [str(x) for x in z['meas']]
+        print(f'sensitivity matrix loaded: {S.shape[0]} leak nodes x {S.shape[1]} measurement nodes')
+    else:
+        t0 = time.time()
+        wn = copy.deepcopy(wn0)
+        for j in juncs:
+            for d in wn.get_node(j).demand_timeseries_list:
+                d.base_value *= PER_MULT
+        bp = wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(
+            file_prefix=_P).node['pressure'].mean(axis=0)
+        meas = juncs
+        S = np.zeros((len(juncs), len(meas)))
+        for i, nd in enumerate(juncs):
+            w = copy.deepcopy(wn)
+            w.get_node(nd).add_demand(Q_REF / 1000.0, '881')
+            lp = wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+            S[i] = [float(lp[s] - bp[s]) for s in meas]
+            if (i + 1) % 100 == 0:
+                print(f'  {i+1}/{len(juncs)} ({time.time()-t0:.0f}s)', flush=True)
+        np.savez_compressed(MAT_CACHE, S=S, nodes=np.array(juncs), meas=np.array(meas))
+        nodes = juncs
+        print(f'sensitivity matrix built: {S.shape} in {time.time()-t0:.0f}s '
+              f'({len(juncs)+1} simulations) -> {MAT_CACHE}')
+
+    nidx = {n: i for i, n in enumerate(nodes)}
+    midx = {n: i for i, n in enumerate(meas)}
+
+    from phase3_query.leak_locator import LeakLocator
+    loc = LeakLocator('knowledge_base', 'sensor_results')
+    deployed = [midx[str(s)] for s in loc.sensor_nodes if str(s) in midx]
+    print(f'deployed sensor set: {len(deployed)} of {len(meas)} possible measurement nodes\n')
+
+    # ---------- 1. equivalence classes under the deployed sensor set ----------
+    print('[1] hydraulically indistinguishable leak nodes, deployed 30-sensor set')
+    print(f'{"cosine threshold":>18}{"resolvable classes":>21}{"largest class":>15}'
+          f'{"median class size":>19}')
+    print('-' * 75)
+    res1 = {}
+    for thr in THRESH:
+        comps, dead = classes_from_gram(S[:, deployed], thr)
+        sizes = sorted((len(c) for c in comps), reverse=True)
+        res1[str(thr)] = dict(n_classes=len(comps), largest=sizes[0],
+                              median=float(np.median(sizes)))
+        print(f'{thr:>18.4f}{len(comps):>21}{sizes[0]:>15}{np.median(sizes):>19.1f}')
+    print(f'  (for reference: {len(nodes)} candidate leak nodes, {K} Leiden partitions)')
+
+    # physical size of a resolution class at the 0.999 threshold
+    comps, _ = classes_from_gram(S[:, deployed], 0.999)
+    spans = []
+    for c in comps:
+        ns = [nodes[i] for i in c]
+        if len(ns) < 2:
+            spans.append(0.0)
+            continue
+        P = np.array([xy[n] for n in ns])
+        spans.append(float(np.max(np.linalg.norm(P[:, None, :] - P[None, :, :], axis=-1))))
+    spans = np.array(spans)
+    print(f'\n  physical diameter of a resolution class (cos > 0.999): '
+          f'median {np.median(spans):.0f} m, 75th pct {np.percentile(spans, 75):.0f} m, '
+          f'max {spans.max():.0f} m')
+    print(f'  singleton (uniquely resolvable) nodes: {int((spans == 0).sum())}/{len(comps)} classes')
+
+    # ---------- 2. resolution vs number of sensors ----------
+    print('\n[2] resolvable classes vs sensor budget (cosine threshold 0.999)')
+    print(f'{"sensors":>9}{"deployed-subset":>18}{"random (mean of 5)":>21}{"greedy":>10}')
+    print('-' * 60)
+    rng = random.Random(SEED)
+    res2 = {}
+    for b in SENSOR_COUNTS:
+        row = {}
+        if b <= len(deployed):
+            sub = deployed[:b]
+            row['deployed'] = len(classes_from_gram(S[:, sub], 0.999)[0])
+        vals = []
+        for t in range(5):
+            sub = rng.sample(range(len(meas)), b)
+            vals.append(len(classes_from_gram(S[:, sub], 0.999)[0]))
+        row['random_mean'] = float(np.mean(vals))
+        row['random_sd'] = float(np.std(vals))
+        gs = greedy_sensors(S, nodes, b, seed=SEED)
+        row['greedy'] = len(classes_from_gram(S[:, gs], 0.999)[0])
+        res2[str(b)] = row
+        print(f'{b:>9}{row.get("deployed", "-"):>18}'
+              f'{row["random_mean"]:>16.1f}±{row["random_sd"]:<4.1f}{row["greedy"]:>10}', flush=True)
+    allc = len(classes_from_gram(S, 0.999)[0])
+    print(f'{"all " + str(len(meas)):>9}{"-":>18}{"-":>21}{allc:>10}   <- upper bound')
+
+    # ---------- 3. do Leiden partitions align with resolution classes? ----------
+    comps, _ = classes_from_gram(S[:, deployed], 0.999)
+    pure = sum(1 for c in comps if len({int(n2c[nodes[i]]) for i in c}) == 1)
+    print(f'\n[3] resolution classes that lie inside a single Leiden partition: '
+          f'{pure}/{len(comps)} ({100*pure/len(comps):.0f}%)')
+    print('    (a class straddling two partitions is a leak that cannot be assigned to a '
+          'partition\n     no matter how good the estimator is)')
+
+    json.dump(dict(n_nodes=len(nodes), n_meas=len(meas), n_deployed=len(deployed),
+                   classes_by_threshold=res1,
+                   class_span_m=dict(median=float(np.median(spans)),
+                                     p75=float(np.percentile(spans, 75)),
+                                     max=float(spans.max()),
+                                     singletons=int((spans == 0).sum())),
+                   resolution_vs_sensors=res2, all_sensors_classes=allc,
+                   classes_within_one_partition=pure, n_classes_0999=len(comps)),
+              open(OUT, 'w'), indent=1)
+    print(f'\nsaved -> {OUT}')
+
+
+if __name__ == '__main__':
+    main()

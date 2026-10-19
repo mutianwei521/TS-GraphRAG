@@ -1,0 +1,70 @@
+{
+  "id": "TableS2c",
+  "source": "0829/supplementary.docx",
+  "table_index": 8,
+  "preceding_paragraph": "c, Implemented baseline configurations.",
+  "rows": [
+    [
+      "Method",
+      "Input preprocessing",
+      "Implemented configuration"
+    ],
+    [
+      "Projection residual",
+      "Stored 30-dimensional fingerprints, without feature standardization",
+      "For each retained nonzero template, fit an unconstrained scalar coefficient and minimize the Euclidean residual; the implementation floors the squared-norm denominator at 10⁻¹⁸ and assigns infinite residuals to zero-norm templates."
+    ],
+    [
+      "Cosine 1-NN",
+      "Stored 30-dimensional fingerprints, without feature standardization",
+      "Select the retained template with maximum cosine similarity; candidate norms ≤ 10⁻¹² are excluded."
+    ],
+    [
+      "Cosine k-NN",
+      "No feature standardization",
+      "KNeighborsClassifier; k = 5; cosine distance; uniform neighbour voting."
+    ],
+    [
+      "Random Forest",
+      "No feature standardization",
+      "100 trees; Gini criterion; bootstrap sampling; max_features = sqrt; no maximum depth; min_samples_split = 2; min_samples_leaf = 1; random_state = run seed."
+    ],
+    [
+      "SVM (RBF)",
+      "StandardScaler fitted to the retained pool",
+      "SVC; RBF kernel; C = 1; gamma = scale; tolerance = 0.001; probability estimation disabled."
+    ],
+    [
+      "MLP",
+      "StandardScaler fitted to the retained pool",
+      "Hidden layers 128 and 64; ReLU; Adam; initial learning rate 0.001; alpha = 0.0001; batch_size = auto; at most 400 iterations; early_stopping = True; validation_fraction = 0.1; n_iter_no_change = 10; tolerance = 0.0001; random_state = run seed."
+    ],
+    [
+      "Nearest Centroid",
+      "StandardScaler fitted to the retained pool",
+      "Euclidean distance; uniform class priors; no centroid shrinkage."
+    ],
+    [
+      "Logistic Regression",
+      "StandardScaler fitted to the retained pool",
+      "lbfgs solver; C = 1; L2 penalty; intercept fitted; max_iter = 1000; tolerance = 0.0001; random_state = run seed."
+    ],
+    [
+      "GCN+",
+      "Raw scalar pressure change per sensor; no input StandardScaler",
+      "Three GCNConv layers of width 128; shared sensor-identity stem and raw-fingerprint readout described below."
+    ],
+    [
+      "GAT+",
+      "Raw scalar pressure change per sensor; no input StandardScaler",
+      "Three GATConv layers; the first two use four heads with 32 channels per head, and the final layer uses one 128-channel head with concat = False; attention dropout 0.3."
+    ],
+    [
+      "GraphSAGE+",
+      "Raw scalar pressure change per sensor; no input StandardScaler",
+      "Three SAGEConv layers of width 128, using the default mean neighbourhood aggregation; shared stem and readout described below."
+    ]
+  ],
+  "merged_cells": [],
+  "rule": "Native table cells in source order; first row is header. Text and within-cell line breaks are preserved; merge semantics are recorded here."
+}

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite this fixed software release when using TS-GraphRAG."
+title: "TS-GraphRAG: hydraulic scenario retrieval for leak localization"
+type: software
+authors:
+  - family-names: Mu
+    given-names: Tianwei
+version: 1.0.0-resubmission
+date-released: 2026-10-19
+url: "https://github.com/mutianwei521/TS-GraphRAG"
+repository-code: "https://github.com/mutianwei521/TS-GraphRAG"
+license: MIT

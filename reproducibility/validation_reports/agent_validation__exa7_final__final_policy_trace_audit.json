@@ -1,0 +1,195 @@
+{
+  "status": "complete",
+  "success_error_code": null,
+  "hydraulic_simulations": 2259,
+  "studies": [
+    {
+      "study": "pressure_dependent",
+      "hydraulic_simulations": 1282,
+      "execution_report_sha256": "9055190200c6bc10e01af776eccaa5582d79469861351fb95885a8baa2dd010b",
+      "trace_sha256": "8bd41dbad82373ed5525a81b0a4b43324ab0e6b4374163f4501610a9992d8eb6",
+      "original_run_input_sha256": {
+        "experiments/historical/exa7_sources/pressure_dependent.py": "a6b6074c40d47a7e405c71827aeaad6a94f44ff03ad6d0905f67c25f3b5756b2",
+        "experiments/historical/exa7.py": "a1884d4053980f2838fe6ab9888c254797f1a66184cc12786b21c5658f53ed3c",
+        "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+        "experiments/reference_corpus.py": "75f507aee3896d9b1ee7697c25714fca951651679ee51eb6975634ca7afb69dc",
+        "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+        "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+        "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+        "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+        "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+        "data/frozen/historical/exp3_results.json": "e613ed3ecc00f1b514aa6a551eb3ecd7e901ca00ecb9205e8980e67b4d3d6fd1",
+        "data/frozen/historical/exp2a_dense_corpus.npz": "394b15b0d49de7a48f72c44619ee339b53ec3fce3ce365b7c75804e477a78c59",
+        "data/frozen/historical/exp1b_results.json": "382cbd527440c96b860cd51176c1d482001241eaa543c126d3e6a2a2fff6da43"
+      },
+      "original_solver_policy": {
+        "success_error_codes": [
+          null,
+          0
+        ],
+        "require_finite_full_pressure_grid": true,
+        "require_exact_report_times_and_node_ids": true,
+        "validated_before_averaging": true,
+        "validated_simulations": 1282
+      },
+      "original_numeric_comparison": {
+        "match": true,
+        "numeric_values_compared": 463,
+        "maximum_absolute_numeric_difference": 0.0,
+        "differences": [],
+        "difference_count": 0
+      }
+    },
+    {
+      "study": "sensor_degradation",
+      "hydraulic_simulations": 175,
+      "execution_report_sha256": "d41b6208fecabf7fe3eed39c6ccad8edd687405b8b8045ce22da51689e1f4588",
+      "trace_sha256": "dc996b3514b853244433121293b299f07dfa36bc8898ee5aa6f87c53c17d6a30",
+      "original_run_input_sha256": {
+        "experiments/historical/exa7_sources/sensor_degradation.py": "dedd297c48327cc548031351e6c2fa89835e95a44d4a805d50f59d5f4c6b800e",
+        "experiments/historical/exa7.py": "a1884d4053980f2838fe6ab9888c254797f1a66184cc12786b21c5658f53ed3c",
+        "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+        "experiments/reference_corpus.py": "75f507aee3896d9b1ee7697c25714fca951651679ee51eb6975634ca7afb69dc",
+        "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+        "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+        "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+        "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+        "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+        "data/frozen/historical/expA2_results.json": "223c94c75953d8170f6e700009bc05a48eaa44fa07981196b732019568e3adac"
+      },
+      "original_solver_policy": {
+        "success_error_codes": [
+          null,
+          0
+        ],
+        "require_finite_full_pressure_grid": true,
+        "require_exact_report_times_and_node_ids": true,
+        "validated_before_averaging": true,
+        "validated_simulations": 175
+      },
+      "original_numeric_comparison": {
+        "match": true,
+        "numeric_values_compared": 127,
+        "maximum_absolute_numeric_difference": 0.0,
+        "differences": [],
+        "difference_count": 0
+      }
+    },
+    {
+      "study": "resolution",
+      "hydraulic_simulations": 0,
+      "execution_report_sha256": "b6facec0f996456efd34228e0a512f76994776d7ed30a76f7b57ea57ccbf68a5",
+      "trace_sha256": "90a067578ce69bd9174ee263aa2a1edd5b845a036e4700d3d33223777a367dde",
+      "original_run_input_sha256": {
+        "experiments/historical/exa7_sources/resolution.py": "8e319ab7d8f8eac88e65045983d1f5a437096446a4931cbf9c7a430f472cd140",
+        "experiments/historical/exa7.py": "a1884d4053980f2838fe6ab9888c254797f1a66184cc12786b21c5658f53ed3c",
+        "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+        "experiments/reference_corpus.py": "75f507aee3896d9b1ee7697c25714fca951651679ee51eb6975634ca7afb69dc",
+        "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+        "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+        "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+        "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+        "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+        "data/frozen/historical/expA1a_results.json": "6c2566677b1267e11f0fe8dd6f06ebb291f80ad8f8f4c9444b6fdebf810557af"
+      },
+      "original_solver_policy": {
+        "success_error_codes": [
+          null,
+          0
+        ],
+        "require_finite_full_pressure_grid": true,
+        "require_exact_report_times_and_node_ids": true,
+        "validated_before_averaging": true,
+        "validated_simulations": 0
+      },
+      "original_numeric_comparison": {
+        "match": true,
+        "numeric_values_compared": 57,
+        "maximum_absolute_numeric_difference": 0.0,
+        "differences": [],
+        "difference_count": 0
+      }
+    },
+    {
+      "study": "multileak_exhaustive",
+      "hydraulic_simulations": 81,
+      "execution_report_sha256": "b784a3f187f79709b38e582fd773f411736bfcd10ed3b677dd6d93014485ac48",
+      "trace_sha256": "33cf79cbdccbe249f8f1a284b5b110d6d394eb5c579a094806272d406b1d01e8",
+      "original_run_input_sha256": {
+        "experiments/historical/exa7_sources/multileak_exhaustive.py": "6417f7633e34a6a0aa80595333754d57eb39721ff71a5c8ecb1df28827759bbe",
+        "experiments/historical/exa7.py": "a1884d4053980f2838fe6ab9888c254797f1a66184cc12786b21c5658f53ed3c",
+        "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+        "experiments/reference_corpus.py": "75f507aee3896d9b1ee7697c25714fca951651679ee51eb6975634ca7afb69dc",
+        "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+        "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+        "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+        "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+        "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+        "data/frozen/historical/expA1b_results.json": "eba1d0a880cbcdb796b03d3b0ec9bb0192edf7e46a96d2eb90f202dd48eeee6f"
+      },
+      "original_solver_policy": {
+        "success_error_codes": [
+          null,
+          0
+        ],
+        "require_finite_full_pressure_grid": true,
+        "require_exact_report_times_and_node_ids": true,
+        "validated_before_averaging": true,
+        "validated_simulations": 81
+      },
+      "original_numeric_comparison": {
+        "match": true,
+        "numeric_values_compared": 30,
+        "maximum_absolute_numeric_difference": 0.0,
+        "differences": [],
+        "difference_count": 0
+      }
+    },
+    {
+      "study": "multileak_sparse",
+      "hydraulic_simulations": 721,
+      "execution_report_sha256": "ac92f2bc41fea9cd4c51f247ed6ea1fe287a5fd92b98bb1d401e6f3c44cab537",
+      "trace_sha256": "4b7ba5d7a18e9975e0a731c3cfaa19db111400e2b20e1df06c3a3ad6714003ab",
+      "original_run_input_sha256": {
+        "experiments/historical/exa7_sources/multileak_sparse.py": "416106698513c76da51ebe8e00f1d48feff3e8c0d27c7138d5a83b7f71757da8",
+        "experiments/historical/exa7.py": "a1884d4053980f2838fe6ab9888c254797f1a66184cc12786b21c5658f53ed3c",
+        "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+        "experiments/reference_corpus.py": "75f507aee3896d9b1ee7697c25714fca951651679ee51eb6975634ca7afb69dc",
+        "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+        "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+        "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+        "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+        "data/reference/sensitivity_matrix.npz": "4a716330ebe901045781fdcf7a8b2f58b357dfde276ae58feb2d4d586de1aa7d",
+        "data/frozen/historical/expA1_v2_results.json": "b2c9459e869da932abba4f1f2ab4a49c588b9786e6f31691dd8655313e53ff40"
+      },
+      "original_solver_policy": {
+        "success_error_codes": [
+          null,
+          0
+        ],
+        "require_finite_full_pressure_grid": true,
+        "require_exact_report_times_and_node_ids": true,
+        "validated_before_averaging": true,
+        "validated_simulations": 721
+      },
+      "original_numeric_comparison": {
+        "match": true,
+        "numeric_values_compared": 111,
+        "maximum_absolute_numeric_difference": 0.0,
+        "differences": [],
+        "difference_count": 0
+      }
+    }
+  ],
+  "errors": [],
+  "final_policy_sources_sha256": {
+    "experiments/historical/audit_exa7_traces.py": "b53d9565cb8bbbb053d240ddaee6429bf08bb7eb1449be4a8e0362413e9bad22",
+    "experiments/reference_corpus.py": "8a4eb0a0e316a632cba44223e2f67688e223abfa53cb610f63ce9b61d715fb76",
+    "experiments/allocation/build_tensor.py": "44cdc4d3f495ce007e96e226a9af7c80f1c59efd4e1014f7b9ae33b1f60e530c",
+    "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1"
+  },
+  "trace_checks": "Every stored solver status is None; report-time/node grids, shapes, finite means, simulation counts and grid-hash format are checked independently",
+  "full_grid_hash_scope": "The original execution validated unaveraged matrices before hashing; this audit verifies hash presence/format, not a recomputation from raw grids, which are not serialized",
+  "isolation": "Per-run scratch cwd; process-lifetime native TMP/TEMP/TMPDIR synchronized with Windows CRTs and restored on context exit",
+  "provenance": "Original execution reports and their source bindings are preserved unchanged; this is a separate audit under the final policy"
+}

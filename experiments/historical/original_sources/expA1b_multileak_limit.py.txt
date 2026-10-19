@@ -1,0 +1,94 @@
+"""Historical S10_limit computational source; original input locations are listed in dependencies.json."""
+import os,sys,json,copy,pickle,random,warnings,tempfile,uuid,itertools,time
+import numpy as np
+warnings.filterwarnings('ignore'); os.environ.setdefault('KMP_DUPLICATE_LIB_OK','TRUE')
+sys.path.insert(0,'.'); sys.stdout.reconfigure(encoding='utf-8')
+import wntr
+from scipy.optimize import nnls
+from scipy.cluster.hierarchy import linkage, fcluster
+from scipy.spatial.distance import squareform
+_P=os.path.join(tempfile.mkdtemp(prefix='epanet_'),'ep_'+uuid.uuid4().hex[:8])
+INP='dataset/Exa7.inp'; NOISE=0.02; SEED=11; Q_REF=20.0; COS=0.999; N_SCEN=40
+z=np.load('exp_sensitivity_matrix.npz',allow_pickle=True)
+Sf=z['S']; nodes=[str(x) for x in z['nodes']]; meas=[str(x) for x in z['meas']]
+midx={n:i for i,n in enumerate(meas)}
+from phase3_query.leak_locator import LeakLocator
+loc=LeakLocator('knowledge_base','sensor_results'); sensors=sorted(loc.sensor_nodes,key=lambda x:int(x))
+cols=[midx[str(s)] for s in sensors]; m=len(cols)
+wn0=wntr.network.WaterNetworkModel(INP); juncs=list(wn0.junction_name_list)
+n2c=pickle.load(open('partition_results_leiden/partitions.pkl','rb'))[15]['node_to_community']
+
+def classes(F,thr):
+    nr=np.linalg.norm(F,axis=1); ok=nr>1e-12
+    U=np.zeros_like(F); U[ok]=F[ok]/nr[ok,None]
+    C=np.clip(U@U.T,-1,1); D=1-C; np.fill_diagonal(D,0); D=(D+D.T)/2
+    return fcluster(linkage(squareform(D,checks=False),method='complete'),t=1-thr,criterion='distance')
+
+F=Sf[:,cols]; lab=classes(F,COS); ncls=int(lab.max())
+node_cls={nodes[i]:int(lab[i]) for i in range(len(nodes))}
+D=np.zeros((ncls,m)); cn={}
+for c in range(1,ncls+1):
+    ii=np.where(lab==c)[0]; cn[c]=[nodes[i] for i in ii]; D[c-1]=F[ii].mean(axis=0)
+Dn=np.linalg.norm(D,axis=1); U=D/np.maximum(Dn[:,None],1e-18)
+Gm=U@U.T; np.fill_diagonal(Gm,-1); mu=float(Gm.max())
+print('='*88); print('A1b — is it the algorithm or the information?'); print('='*88)
+print(f'class dictionary: {ncls} atoms, mutual coherence mu = {mu:.5f}')
+print(f'  OMP exact-recovery bound k < (1+1/mu)/2 = {(1+1/mu)/2:.2f}  -> only k=1 is guaranteed')
+
+wn=copy.deepcopy(wn0)
+bp=wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+nsim=1
+def md(nds,qs):
+    global nsim
+    w=copy.deepcopy(wn)
+    for nd,q in zip(nds,qs): w.get_node(nd).add_demand(q/1000.0,'881')
+    lp=wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0); nsim+=1
+    return np.array([float(lp[s]-bp[s]) for s in sensors])
+
+rng=random.Random(SEED); npr=np.random.default_rng(SEED); np.random.seed(SEED)
+pool=[n for n in juncs if n not in set(map(str,loc.sensor_nodes))]
+print(f'\n[D1] EXHAUSTIVE search (oracle k) vs greedy NNOMP, {N_SCEN} scenarios each')
+print(f'{"k":>2}{"pairs/triples":>15}{"exhaustive recall":>20}{"greedy recall":>16}{"exh. residual":>15}')
+print('-'*70)
+d1={}
+for k in [2,3]:
+    combos=list(itertools.combinations(range(ncls),k))
+    exh=grd=tot=0; resids=[]
+    for _ in range(N_SCEN):
+        while True:
+            nds=rng.sample(pool,k)
+            if len({node_cls[n] for n in nds})==k: break
+        qs=[float(npr.uniform(5,20)) for _ in range(k)]
+        y=md(nds,qs)+np.random.normal(0,NOISE,m); tc={node_cls[n]-1 for n in nds}; tot+=k
+        best=(np.inf,None)
+        for cb in combos:
+            b,_=nnls(D[list(cb)].T,y); r=float(np.linalg.norm(y-D[list(cb)].T@b))
+            if r<best[0]: best=(r,cb)
+        exh+=len(tc & set(best[1])); resids.append(best[0])
+        S=[]; rr=y.copy()
+        for _ in range(k):
+            c=(D@rr)/np.maximum(Dn,1e-18)
+            if S: c[S]=-np.inf
+            j=int(np.argmax(c)); S.append(j); b,_=nnls(D[S].T,y); rr=y-D[S].T@b
+        grd+=len(tc & set(S))
+    d1[k]=dict(exhaustive=exh/tot,greedy=grd/tot,median_resid=float(np.median(resids)))
+    print(f'{k:>2}{len(combos):>15}{100*exh/tot:>19.1f}%{100*grd/tot:>15.1f}%{np.median(resids):>15.4f}')
+print('  (if exhaustive ~= greedy and both are low, the limit is information, not the solver)')
+
+print(f'\n[D2] coherence and the implied multi-leak capacity vs sensor budget')
+print(f'{"sensors":>9}{"classes":>9}{"mu":>10}{"k_max bound":>13}')
+print('-'*45)
+d2={}
+r2=random.Random(3)
+for b in [30,45,60,90,150,250,381]:
+    cs = cols if b==30 else r2.sample(range(len(meas)),b)
+    Fb=Sf[:,cs]; lb=classes(Fb,COS); nc=int(lb.max())
+    Db=np.zeros((nc,len(cs)))
+    for c in range(1,nc+1): Db[c-1]=Fb[np.where(lb==c)[0]].mean(axis=0)
+    Un=Db/np.maximum(np.linalg.norm(Db,axis=1)[:,None],1e-18)
+    Gb=Un@Un.T; np.fill_diagonal(Gb,-1); mb=float(Gb.max())
+    d2[str(b)]=dict(classes=nc,mu=mb,k_bound=float((1+1/mb)/2))
+    print(f'{b:>9}{nc:>9}{mb:>10.5f}{(1+1/mb)/2:>13.2f}')
+json.dump(dict(mu_deployed=mu,k_bound_deployed=float((1+1/mu)/2),D1=d1,D2=d2,n_sims=nsim),
+          open('expA1b_results.json','w'),indent=1)
+print(f'\ntotal simulations {nsim} | saved -> expA1b_results.json')

@@ -1,0 +1,206 @@
+"""Historical S9 computational source; original input locations are listed in dependencies.json."""
+import os, sys, json, time, copy, pickle, random, warnings, tempfile, uuid
+import numpy as np
+
+warnings.filterwarnings('ignore')
+os.environ.setdefault('KMP_DUPLICATE_LIB_OK', 'TRUE')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import wntr
+from wds_verify import G, complete_link_classes
+
+_P = os.path.join(tempfile.mkdtemp(prefix='epanet_'), 'ep_' + uuid.uuid4().hex[:8])
+INP = 'dataset/Exa7.inp'
+NOISE, SEED, COS = 0.02, 31, 0.999
+MAGS = [5.0, 20.0]
+N_QUERY = 100
+TRIM = 0.20
+OUT = 'expA2_results.json'
+
+
+def fit_residual(y, D, mask, trim=0.0):
+    """Projection residual restricted to `mask` sensors; optionally trimming the worst terms."""
+    Dm = D[:, mask]
+    ym = y[mask]
+    dn2 = np.maximum((Dm ** 2).sum(axis=1), 1e-18)
+    b = (Dm @ ym) / dn2
+    R = ym[None, :] - b[:, None] * Dm                       # per-atom, per-sensor residual
+    if trim > 0 and Dm.shape[1] > 4:
+        keep = int(round(Dm.shape[1] * (1 - trim)))
+        R2 = np.sort(R ** 2, axis=1)[:, :keep]              # drop the worst terms per atom
+        return np.sqrt(R2.sum(axis=1))
+    return np.linalg.norm(R, axis=1)
+
+
+def main():
+    from phase3_query.leak_locator import LeakLocator
+    print('=' * 100)
+    print('A2 — sensor degradation and the robust estimator')
+    print('=' * 100)
+
+    loc = LeakLocator('knowledge_base', 'sensor_results')
+    deployed = sorted(loc.sensor_nodes, key=lambda x: int(x))
+    wn0 = wntr.network.WaterNetworkModel(INP)
+    juncs = list(wn0.junction_name_list)
+    xy = {n: np.array(wn0.get_node(n).coordinates) for n in juncs}
+
+    z = np.load('exp_sensitivity_matrix.npz', allow_pickle=True)
+    S, nodes, meas = z['S'], [str(x) for x in z['nodes']], [str(x) for x in z['meas']]
+    midx = {n: i for i, n in enumerate(meas)}
+
+    def make_dict(sensor_nodes):
+        cols = [midx[str(s)] for s in sensor_nodes]
+        F = S[:, cols]
+        lab = complete_link_classes(F, COS)
+        nc = int(lab.max())
+        D = np.zeros((nc, len(cols)))
+        cxy = {}
+        for c in range(nc):
+            ii = np.where(lab == c + 1)[0]
+            D[c] = F[ii].mean(axis=0)
+            cxy[c] = np.mean([xy[nodes[i]] for i in ii], axis=0)
+        return D, {nodes[i]: int(lab[i]) - 1 for i in range(len(nodes))}, nc, cxy
+
+    wn = copy.deepcopy(wn0)
+    n_sims = 0
+    bp = wntr.sim.EpanetSimulator(copy.deepcopy(wn)).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+    n_sims += 1
+
+    sim_cache = {}
+
+    def dp(nd, q, sensor_nodes):
+        nonlocal n_sims
+        key = (nd, q)
+        if key not in sim_cache:
+            w = copy.deepcopy(wn)
+            w.get_node(nd).add_demand(q / 1000.0, '881')
+            lp = wntr.sim.EpanetSimulator(w).run_sim(file_prefix=_P).node['pressure'].mean(axis=0)
+            n_sims += 1
+            sim_cache[key] = {s: float(lp[s] - bp[s]) for s in meas}
+        d = sim_cache[key]
+        return np.array([d[str(s)] for s in sensor_nodes])
+
+    rng = random.Random(SEED)
+    pool = [n for n in juncs if n not in set(map(str, deployed))]
+    queries = [(rng.choice(pool), q) for _ in range(N_QUERY) for q in MAGS]
+    print(f'{len(queries)} queries ({N_QUERY} nodes x {len(MAGS)} magnitudes)\n')
+
+    def run(sensor_nodes, corrupt, label):
+        D, ncl, nc, cxy = make_dict(sensor_nodes)
+        m = len(sensor_nodes)
+        out = {}
+        for tag, trim in (('L2', 0.0), ('trimmed', TRIM)):
+            npr = np.random.default_rng(SEED)
+            hit, dist = 0, []
+            for nd, q in queries:
+                y = dp(nd, q, sensor_nodes) + npr.normal(0, NOISE, m)
+                mask = np.ones(m, bool)
+                y, mask = corrupt(y, mask, npr, m)
+                if mask.sum() < 3:
+                    continue
+                r = fit_residual(y, D, mask, trim)
+                c = int(np.argmin(r))
+                hit += int(c == ncl[nd])
+                dist.append(float(np.linalg.norm(cxy[c] - xy[nd])))
+            n = len(dist)
+            G.prob(hit / max(n, 1), f'{label}/{tag} recall')
+            out[tag] = dict(recall=hit / max(n, 1), med_m=float(np.median(dist)), n=n)
+        return out, nc
+
+    def none(y, mask, npr, m):
+        return y, mask
+
+    def drift(sd):
+        def f(y, mask, npr, m):
+            return y + npr.normal(0, sd, m), mask
+        return f
+
+    def missing(p):
+        def f(y, mask, npr, m):
+            mask = mask & (npr.random(m) > p)
+            return y, mask
+        return f
+
+    def stuck(k):
+        def f(y, mask, npr, m):
+            idx = npr.choice(m, size=min(k, m), replace=False)
+            y = y.copy()
+            y[idx] = 0.0                      # reports no change at all
+            return y, mask
+        return f
+
+    def spikes(p, amp=1.0):
+        def f(y, mask, npr, m):
+            y = y.copy()
+            hit = npr.random(m) < p
+            y[hit] += npr.choice([-1, 1], size=hit.sum()) * amp
+            return y, mask
+        return f
+
+    def bias_control(sd):
+        """A constant per-sensor bias present in BOTH baseline and event: must cancel."""
+        def f(y, mask, npr, m):
+            return y, mask                    # differential already cancels it, by construction
+        return f
+
+    results = {}
+    print(f'{"condition":<34}{"classes":>8} | {"L2 recall":>10}{"L2 med m":>10} | '
+          f'{"trim recall":>12}{"trim med m":>11} | {"delta":>7}')
+    print('-' * 100)
+
+    scenarios = [('baseline, 30 deployed sensors', deployed, none),
+                 ('drift sd=0.05 m', deployed, drift(0.05)),
+                 ('drift sd=0.15 m', deployed, drift(0.15)),
+                 ('drift sd=0.30 m', deployed, drift(0.30)),
+                 ('constant bias (control: cancels)', deployed, bias_control(0.30)),
+                 ('missing 10%', deployed, missing(0.10)),
+                 ('missing 30%', deployed, missing(0.30)),
+                 ('1 sensor stuck', deployed, stuck(1)),
+                 ('3 sensors stuck', deployed, stuck(3)),
+                 ('5% impulsive spikes (1 m)', deployed, spikes(0.05)),
+                 ('bad day: drift .15 + 10% miss + 2 stuck + spikes',
+                  deployed, lambda y, mk, npr, m: spikes(0.05)(
+                      *stuck(2)(*missing(0.10)(*drift(0.15)(y, mk, npr, m), npr, m), npr, m), npr, m))]
+    for label, sn, corrupt in scenarios:
+        r, nc = run(sn, corrupt, label)
+        results[label] = r
+        d = 100 * (r['trimmed']['recall'] - r['L2']['recall'])
+        print(f'{label:<34}{nc:>8} | {100*r["L2"]["recall"]:>9.1f}%{r["L2"]["med_m"]:>9.0f}m | '
+              f'{100*r["trimmed"]["recall"]:>11.1f}%{r["trimmed"]["med_m"]:>10.0f}m | {d:>+6.1f}pp',
+              flush=True)
+
+    print()
+    print('sensor budget — RECALL IS NOT COMPARABLE ACROSS THESE ROWS (each has its own class')
+    print('count, so a smaller sensor set is scored against an easier label space). Only the')
+    print('median distance in metres is resolution-independent, so only it is reported.')
+    print(f'{"sensor set":<34}{"classes":>8} | {"L2 med m":>10} | {"trim med m":>12}')
+    print('-' * 70)
+    counts = []
+    r0, nc0 = run(deployed, none, '30 deployed')
+    results['30 deployed sensors'] = r0
+    counts.append(nc0)
+    print(f'{"30 (deployed)":<34}{nc0:>8} | {r0["L2"]["med_m"]:>9.0f}m | {r0["trimmed"]["med_m"]:>11.0f}m')
+    for k in [20, 15, 10, 5]:
+        r, nc = run(deployed[:k], none, f'{k} deployed')
+        results[f'{k} deployed sensors'] = r
+        rnd = [meas[i] for i in random.Random(100 + k).sample(range(len(meas)), k)]
+        r2, nc2 = run(rnd, none, f'{k} random')
+        results[f'{k} random sensors'] = r2
+        counts += [nc, nc2]
+        print(f'{f"{k} (deployed subset)":<34}{nc:>8} | {r["L2"]["med_m"]:>9.0f}m | '
+              f'{r["trimmed"]["med_m"]:>11.0f}m')
+        print(f'{f"{k} (random placement)":<34}{nc2:>8} | {r2["L2"]["med_m"]:>9.0f}m | '
+              f'{r2["trimmed"]["med_m"]:>11.0f}m', flush=True)
+    # the guard that should have been called the first time: these rows are NOT comparable on recall
+    G.strict = False
+    G.comparable(counts, 'class recall across sensor budgets')
+    G.strict = True
+    print('  (the guard above fires by design: it is the reason the recall column is absent)')
+
+    json.dump(dict(results=results, trim=TRIM, n_queries=len(queries),
+                   mags=MAGS, noise=NOISE, seed=SEED, n_simulations=n_sims),
+              open(OUT, 'w'), indent=1)
+    print(f'\ntotal simulations {n_sims} | saved -> {OUT}')
+
+
+if __name__ == '__main__':
+    main()

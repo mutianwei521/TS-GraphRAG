@@ -1,0 +1,65 @@
+{
+  "planned_templates": 1053,
+  "eligible_templates": 1041,
+  "inadmissible_templates": 12,
+  "zero_response_eligible_templates": 0,
+  "query_node_overlap": 0,
+  "partitions_retained": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "baseline_status": [
+    {
+      "label": "corpus_night_low_baseline",
+      "success": true,
+      "converged": true,
+      "error_code": null,
+      "pressure_min_m": 0.9099904298782349,
+      "pressure_max_m": 29.730098724365234,
+      "negative_pressure": false,
+      "admissible": true,
+      "report_warnings": [],
+      "python_warnings": [],
+      "elapsed_s": 0.09921789169311523
+    },
+    {
+      "label": "corpus_day_normal_baseline",
+      "success": true,
+      "converged": true,
+      "error_code": null,
+      "pressure_min_m": 0.9078738689422607,
+      "pressure_max_m": 28.13075828552246,
+      "negative_pressure": false,
+      "admissible": true,
+      "report_warnings": [],
+      "python_warnings": [],
+      "elapsed_s": 0.13725948333740234
+    },
+    {
+      "label": "corpus_evening_peak_baseline",
+      "success": true,
+      "converged": true,
+      "error_code": null,
+      "pressure_min_m": 0.9057387113571167,
+      "pressure_max_m": 26.686412811279297,
+      "negative_pressure": false,
+      "admissible": true,
+      "report_warnings": [],
+      "python_warnings": [],
+      "elapsed_s": 0.13886165618896484
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "name": "TableS8a_direction",
+  "max_row": 5,
+  "max_column": 4,
+  "rows": [
+    [
+      "Leak model",
+      "Minimum cosine",
+      "Median cosine",
+      "Mean cosine"
+    ],
+    [
+      "Prescribed demand (reference)",
+      0.787,
+      0.99994,
+      0.9903
+    ],
+    [
+      "Emitter α = 0.5",
+      0.852,
+      0.99996,
+      0.9928
+    ],
+    [
+      "Emitter α = 1.0",
+      0.877,
+      0.99996,
+      0.9939
+    ],
+    [
+      "Emitter α = 1.5",
+      0.896,
+      0.99995,
+      0.9947
+    ]
+  ],
+  "cell_types": [
+    [
+      "s",
+      "s",
+      "s",
+      "s"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n"
+    ],
+    [
+      "s",
+      "n",
+      "n",
+      "n"
+    ]
+  ],
+  "number_formats": {},
+  "merged_ranges": [],
+  "sheet_state": "visible",
+  "freeze_panes": null,
+  "header_rows": [
+    1
+  ],
+  "row_policy": "All rows within worksheet dimensions, including blank and note rows, are retained.",
+  "column_widths": {},
+  "row_heights": {}
+}

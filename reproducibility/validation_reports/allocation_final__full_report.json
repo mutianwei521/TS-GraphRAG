@@ -1,0 +1,12 @@
+{
+  "study": "allocation",
+  "profile": "full",
+  "run_count": 1500,
+  "query_count": 270000,
+  "max_absolute_metric_difference": 0.0,
+  "archive_metrics_match": true,
+  "distance_units": "native_network_coordinate_units",
+  "archive_metric_aliases": {
+    "median_coordinate_distance": "med_m"
+  }
+}
