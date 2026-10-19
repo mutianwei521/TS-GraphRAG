@@ -12,6 +12,16 @@
   ],
   "partition_key": "15",
   "physical_nodes": 383,
+  "presentation": {
+    "panel_faces": "unfilled; white page",
+    "ranking_rows": "outline only",
+    "interstage_icons": [
+      "pressure_wave",
+      "search",
+      "localize"
+    ],
+    "icon_style": "white medallions, consistent outline strokes; no connector arrows"
+  },
   "physical_links": 472,
   "sensors": [
     "34",

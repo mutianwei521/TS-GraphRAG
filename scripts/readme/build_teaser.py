@@ -17,7 +17,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 from matplotlib.colors import LinearSegmentedColormap
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch, PathPatch
+from matplotlib.path import Path as DrawingPath
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -27,7 +28,7 @@ from src.phase3_query.numerical_retrieval import NumericalRetriever, read_observ
 
 NAVY = "#172B4D"
 MUTED = "#65758D"
-STROKE = "#E1E7F0"
+STROKE = "#CCD4DD"
 ACCENTS = ["#3274D9", "#20A58F", "#D99C32", "#8766C5"]
 PARTITION_COLORS = [
     "#3274D9", "#67A6D9", "#287F9B", "#27A58E", "#6CBD99",
@@ -104,6 +105,32 @@ def add_axes(fig, box):
     return ax
 
 
+def transition_icon(fig, x, kind, color):
+    """Compact outline pictograms bridge stages without directional arrowheads."""
+    ax = add_axes(fig, [x-.011, .470-.034, .022, .068])
+    ax.set_xlim(0, 24); ax.set_ylim(0, 24); ax.set_aspect("equal")
+    ax.set_zorder(10)
+    ax.add_patch(Circle((12, 12), 10.8, facecolor="white", edgecolor=STROKE, linewidth=.9))
+    stroke = dict(color=color, linewidth=1.35, solid_capstyle="round", solid_joinstyle="round")
+    if kind == "pressure_wave":
+        ax.plot([4.8, 7.4, 9.4, 11.5, 13.7, 16, 19.2],
+                [12, 12, 7.6, 16.8, 9.9, 12, 12], **stroke)
+    elif kind == "search":
+        ax.add_patch(Circle((10.5, 13.5), 4.8, facecolor="none", edgecolor=color, linewidth=1.35))
+        ax.plot([14.1, 18.5], [9.9, 5.5], **stroke)
+        ax.plot([8.1, 9.8, 11.2, 13], [12.8, 12.8, 15, 15], **stroke)
+    elif kind == "localize":
+        vertices = [(12, 20), (6.6, 20), (4.6, 16.1), (7.1, 12),
+                    (12, 4.4), (16.9, 12), (19.4, 16.1), (17.4, 20), (12, 20)]
+        codes = [DrawingPath.MOVETO, DrawingPath.CURVE4, DrawingPath.CURVE4, DrawingPath.CURVE4,
+                 DrawingPath.LINETO, DrawingPath.LINETO, DrawingPath.CURVE4, DrawingPath.CURVE4, DrawingPath.CURVE4]
+        ax.add_patch(PathPatch(DrawingPath(vertices, codes), facecolor="none", edgecolor=color,
+                               linewidth=1.35, capstyle="round", joinstyle="round"))
+        ax.add_patch(Circle((12, 15.2), 2, facecolor="none", edgecolor=color, linewidth=1.2))
+    else:
+        raise ValueError(f"Unknown transition icon: {kind}")
+
+
 def build(output):
     plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": ["Arial", "DejaVu Sans"],
                          "font.size": 12, "text.color": NAVY, "mathtext.fontset": "dejavusans",
@@ -129,16 +156,13 @@ def build(output):
     y0, y1 = .062, .878
     for i, x in enumerate(card_lefts):
         canvas.add_patch(FancyBboxPatch((x, y0), width, y1-y0,
-            boxstyle="round,pad=0.008,rounding_size=0.017", facecolor="#FBFCFE",
+            boxstyle="round,pad=0.008,rounding_size=0.017", facecolor="none",
             edgecolor=STROKE, linewidth=1))
         canvas.add_patch(FancyBboxPatch((x+.010, .780), .029, .058,
             boxstyle="round,pad=0.002,rounding_size=0.012", facecolor=ACCENTS[i], edgecolor="none"))
         canvas.text(x+.0245, .809, str(i+1), ha="center", va="center", color="white", weight="bold", fontsize=14)
         canvas.text(x+.051, .810, ["Hydraulic graph", "Pressure library", "Projection match", "Partition ranking"][i],
                     va="center", fontsize=16, weight="bold")
-        if i < 3:
-            canvas.add_patch(FancyArrowPatch((x+width+.006, .470), (card_lefts[i+1]-.010, .470),
-                arrowstyle="-|>", mutation_scale=14, linewidth=1.3, color="#94A4BA"))
     # Phase bars pair the two structural operations and the two online operations.
     for x0, x1, label, color in [(card_lefts[0], card_lefts[1]+width, "OFFLINE  /  MODEL + LIBRARY", ACCENTS[0]),
                                (card_lefts[2], card_lefts[3]+width, "ONLINE  /  OBSERVE + RETRIEVE", ACCENTS[3])]:
@@ -195,9 +219,9 @@ def build(output):
                   "projection_residual": float(prepared["projection_residuals"][best])}
         top3_records.append(record)
         yy = .289-idx*.065
-        rowcolor = "#E9F0FC" if idx == 0 else "#F0F3F8"
+        rowedge = "#B6CBEB" if idx == 0 else "#D9DFE7"
         canvas.add_patch(FancyBboxPatch((card_lefts[3]+.016, yy-.024), width-.032, .048,
-            boxstyle="round,pad=.002,rounding_size=.008", fc=rowcolor, ec="none"))
+            boxstyle="round,pad=.002,rounding_size=.008", fc="none", ec=rowedge, linewidth=.8))
         canvas.text(card_lefts[3]+.030, yy, f"{idx+1:02d}", va="center", fontsize=10.5,
                     color=MUTED, fontfamily="DejaVu Sans Mono")
         canvas.text(card_lefts[3]+.067, yy, f"Partition {partition}", va="center", fontsize=12,
@@ -207,6 +231,9 @@ def build(output):
             canvas.text(card_lefts[3]+width-.028, yy, "●", va="center", ha="right", fontsize=10,
                         color=PARTITION_COLORS[partition])
     canvas.text(card_lefts[3]+width/2, .101, "Released example observation", fontsize=10.5, ha="center", color=MUTED)
+    for i, kind in enumerate(["pressure_wave", "search", "localize"]):
+        midpoint = (card_lefts[i]+width+card_lefts[i+1])/2
+        transition_icon(fig, midpoint, kind, ACCENTS[i+1])
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     fig.savefig(output / "teaser.png", dpi=100, facecolor="white")
@@ -219,6 +246,9 @@ def build(output):
         "source_sha256": {path.relative_to(ROOT).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
                           for path in paths.values()},
         "canvas_pixels": [2000, 650], "partition_key": "15", "physical_nodes": len(coordinates),
+        "presentation": {"panel_faces": "unfilled; white page", "ranking_rows": "outline only",
+                         "interstage_icons": ["pressure_wave", "search", "localize"],
+                         "icon_style": "white medallions, consistent outline strokes; no connector arrows"},
         "physical_links": len(links), "sensors": corpus.sensor_nodes,
         "matrix_shape": list(corpus.D.shape),
         "matrix_display": "All rows/channels in original order; -D divided by row-wise max(abs(D)); zero rows displayed as zero. Display normalization is never used for inference.",

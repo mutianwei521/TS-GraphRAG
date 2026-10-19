@@ -10,8 +10,8 @@
 
 [Overview](#overview) · [Method](#method) · [Quick start](#quick-start) · [Results](#results) · [Reproduction](#reproduction) · [Citation](#citation)
 
-<a href="docs/assets/teaser.pdf">
-  <img src="docs/assets/teaser.png" width="100%" alt="TS-GraphRAG workflow: hydraulic network, pressure fingerprint library, projection-residual matching, and ranked leak regions." />
+<a href="docs/assets/teaser.pdf?v=2">
+  <img src="docs/assets/teaser.png?v=2" width="100%" alt="TS-GraphRAG workflow: hydraulic network, pressure fingerprint library, projection-residual matching, and ranked leak regions." />
 </a>
 
 *Hydraulic structure → scenario fingerprints → amplitude fitting → region ranking.*
