@@ -1,0 +1,20 @@
+[
+  {
+    "path": "docs/assets/methodology.png",
+    "sha256": "bd56239a55d298d205e303ea299f9ceaf9d3f49f4694158051ed350e822bccbc",
+    "source": "Approved paper export, unchanged bytes",
+    "command": "python scripts/figures/replay.py 2"
+  },
+  {
+    "path": "docs/assets/allocation.png",
+    "sha256": "c298542c8f98d4c30f6d969cdea9f9f8188c94d98316a2270f84c9b0bff0b807",
+    "source": "Approved paper export, unchanged bytes",
+    "command": "python scripts/figures/replay.py 5"
+  },
+  {
+    "path": "docs/assets/baselines.png",
+    "sha256": "1230409316307377f688cf6a2d2e56b0683b1782b201b0cf50377ec10c78fcd3",
+    "source": "Approved paper export, unchanged bytes",
+    "command": "python scripts/figures/replay.py 4"
+  }
+]

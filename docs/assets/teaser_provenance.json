@@ -1,0 +1,92 @@
+{
+  "builder": "scripts/readme/build_teaser.py",
+  "source_sha256": {
+    "data/Exa7.inp": "d2ed48e6722b65120dca6f391a655477d55ccadb277a40fc65b76c22e5cc72c1",
+    "data/reference/partition_summary.json": "2863a0dca201069757ea7dad88a79876e2c8eac88d5fdcdc5b76118985bd19f5",
+    "data/reference/sensor_fingerprints.json": "2fd68fc0c8a7394e72decbc7dc7bf85bad69297ec54f8905b512121ca4de68e2",
+    "data/example_observation.csv": "32e37be4a8ba8b689e0633d3adadc5ff9a9227950f16fbfdc4fb4300d7b5fa11"
+  },
+  "canvas_pixels": [
+    2000,
+    650
+  ],
+  "partition_key": "15",
+  "physical_nodes": 383,
+  "physical_links": 472,
+  "sensors": [
+    "34",
+    "35",
+    "36",
+    "38",
+    "41",
+    "45",
+    "49",
+    "51",
+    "56",
+    "59",
+    "62",
+    "64",
+    "80",
+    "86",
+    "87",
+    "89",
+    "92",
+    "95",
+    "115",
+    "169",
+    "212",
+    "254",
+    "284",
+    "297",
+    "318",
+    "332",
+    "336",
+    "343",
+    "365",
+    "404"
+  ],
+  "matrix_shape": [
+    540,
+    30
+  ],
+  "matrix_display": "All rows/channels in original order; -D divided by row-wise max(abs(D)); zero rows displayed as zero. Display normalization is never used for inference.",
+  "geometry": {
+    "schematic": true,
+    "illustrated_vectors": "A two-dimensional orthogonal projection illustrates the released unconstrained least-squares amplitude in the original 30-channel sensor space.",
+    "formula": "a_j = (f_j.T @ y) / (f_j.T @ f_j); r_j = ||y - a_j f_j||_2"
+  },
+  "actual_example": {
+    "method": "projection",
+    "predicted_partition": 0,
+    "n_retained": 540,
+    "top3_distinct_partitions": [
+      {
+        "rank": 1,
+        "partition": 0,
+        "best_scenario_id": "leak_P0_N258_10Ls_day_normal",
+        "projection_residual": 8.08254562088053e-16
+      },
+      {
+        "rank": 2,
+        "partition": 5,
+        "best_scenario_id": "leak_P5_N243_2Ls_day_normal",
+        "projection_residual": 0.20699881727053782
+      },
+      {
+        "rank": 3,
+        "partition": 11,
+        "best_scenario_id": "leak_P11_N332_20Ls_day_normal",
+        "projection_residual": 0.21539700720406035
+      }
+    ]
+  },
+  "fonts": [
+    "Arial (DejaVu Sans fallback)",
+    "DejaVu Sans Mono",
+    "DejaVu mathtext"
+  ],
+  "software": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.3.5"
+  }
+}
