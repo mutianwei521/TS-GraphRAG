@@ -511,6 +511,35 @@
       "archive_metric_aliases": {
         "median_coordinate_distance": "med_m"
       }
+    },
+    "independent_checkout": {
+      "status": "passed",
+      "tested_commit": "24678a522bf5c3088da93eb2cdb9911544562313",
+      "test_result_summary": {
+        "passed_tests": 132,
+        "elapsed_seconds": 34.37
+      },
+      "elapsed_seconds": 295.6716546000007,
+      "application_caches": "new empty directories inside the independent clone",
+      "pythonpath": "unset",
+      "tested_tree_objects": {
+        "src": "ab52c5b93779a14294dfe24b9539ed3b6af10c9a",
+        "scripts": "4a656285f6fd03abaa875566ae2b477242c073a4",
+        "experiments": "bb53392a550e2eaabb0b6db9454cf11c73e0b0b4",
+        "tests": "7f936cbdd9193b245b6758f0702292283dc781cd",
+        "main.py": "d021462a588c21d70fbec576c3886e7d4fdaa1d7",
+        "config.yaml": "667a7bad423c9d5712b95368af58844c3dcdfd85",
+        "requirements-core.lock.txt": "b6b77e103b97edb26db410279519a4c881c1a210"
+      },
+      "executed_checks": [
+        "packages",
+        "assets",
+        "tests",
+        "smoke",
+        "smoke_verification",
+        "paper_replay",
+        "replay_verification"
+      ]
     }
   },
   "pending_evidence": [],
@@ -734,6 +763,12 @@
       "sha256": "7e3fcfc40537a4f3f989e6d6db8953010700bf5e6d20278fdf91048ce16de496",
       "executed_source": "outputs/allocation_final/full_report.json",
       "executed_source_sha256": "a6bc10c4817e832ce5433b7adbe6b32071854b92ffdaef458c7e06d916faf558"
+    },
+    {
+      "path": "reproducibility/validation_reports/independent_checkout.json",
+      "sha256": "222e3622110234bab8a289b52cbc58e33e3fa7451e06b732422065ecc1cf08f9",
+      "executed_source": "independent clone / clean_checkout_validation.json",
+      "executed_source_sha256": "aa2bb5930743940cfeb23d762f4009a8602fbc85bef8e17e7762f26e8eb83445"
     }
   ]
 }

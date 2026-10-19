@@ -1,0 +1,215 @@
+{
+  "started_utc": "2026-10-19T08:33:44.073205+00:00",
+  "tested_commit": "24678a522bf5c3088da93eb2cdb9911544562313",
+  "status": "passed",
+  "environment": "clean-installed requirements-core.lock.txt",
+  "application_caches": "new empty directories inside the independent clone",
+  "pythonpath": "unset",
+  "steps": [
+    {
+      "name": "packages",
+      "command": [
+        "python",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.7551748000005318,
+      "log_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf"
+    },
+    {
+      "name": "assets",
+      "command": [
+        "python",
+        "scripts/verify_outputs.py",
+        "--assets-only"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 5.3078652000003785,
+      "log_sha256": "d2ea8d710b5fe19c0f88af80c8c126abadde39e007b54a29a799e6b636ecc162"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 35.171511599999576,
+      "log_sha256": "ff6436fb3c54320571d84c17432851778cd96fea6828d0d8bfa98dd6bf213981"
+    },
+    {
+      "name": "smoke",
+      "command": [
+        "python",
+        "scripts/reproduce.py",
+        "--profile",
+        "smoke",
+        "--output-dir",
+        "outputs/fresh_smoke"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 10.98279410000032,
+      "log_sha256": "9ffaec04a627eabf9f52bd207e784a3eec65f1541c0baa76ac3348c12874e43b"
+    },
+    {
+      "name": "smoke_verification",
+      "command": [
+        "python",
+        "scripts/verify_outputs.py",
+        "--run-dir",
+        "outputs/fresh_smoke"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.21164329999919573,
+      "log_sha256": "9182503a20aa0dc443d4c40783ae16c177621c55e995cfa74222c458dd5d515c"
+    },
+    {
+      "name": "paper_replay",
+      "command": [
+        "python",
+        "scripts/reproduce.py",
+        "--profile",
+        "replay",
+        "--study",
+        "all",
+        "--output-dir",
+        "outputs/fresh_replay"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 242.89825160000146,
+      "log_sha256": "87b713c4be72889dbf0f4018fa2c4bc52e0552652f11b1c37e78d11eba576756"
+    },
+    {
+      "name": "replay_verification",
+      "command": [
+        "python",
+        "scripts/verify_outputs.py",
+        "--run-dir",
+        "outputs/fresh_replay"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.34441399999923306,
+      "log_sha256": "f38ace270f5bd81888fe9cc79ceba33b43838fd2214313c46fb9264a2514ed1a"
+    }
+  ],
+  "implementation_sha256": {
+    "src/configuration.py": "11a2b967f5c5bfffad2ed7ce80d61796035ba3c4b2d315e5b0080a28038cfce7",
+    "src/__init__.py": "d2c1c4812357b9bf111bfe4f150203ea75adeb928c42159e5835387d785aef4c",
+    "src/evaluation/metrics.py": "8388d2f213be3da54d01f4b31b6b631605c8049a01b306456cc6e6e0b2ed896f",
+    "src/evaluation/protocols.py": "209c113d2eeccbdcfbf43b385a93daa09e7973389ef9560601f06127ec02c210",
+    "src/evaluation/runner.py": "75e0a8ceb1689966f6794b5e53bede12fcb9acaa4da980b976508ef323e6f537",
+    "src/evaluation/__init__.py": "a8b6cbd9bf008b6c3b9deb4c82ae4261288d2ca6b47265ffe2aca8294c856904",
+    "src/phase1_partition/hydraulic.py": "2f039cbe8e4f525d1bc398869607b947f9433d9af281b0a7cbbb5d9b26f4382c",
+    "src/phase1_partition/partitioning_leiden.py": "dcb15f56b0f9497dfe3e29702db4428e82d2d2e9542c2035287b7c856643011d",
+    "src/phase1_partition/similarity.py": "4034796fe1fb93b596d0e3e663dcef117d39f4dfa12b793911ff189700e72a5d",
+    "src/phase1_partition/visualization.py": "ad0dea3dc229a9d7957037542bc47a3d07d005e95e2520698ec538e20490c0e4",
+    "src/phase1_partition/__init__.py": "03b4b1f9661375c4f790f613d08adbc8c369f80b6ac973ad252d3430252a8ef3",
+    "src/phase2_knowledge_base/batch_simulation.py": "0f24bdec79c1d47a2992e7e56acfb9a7610e6682f6c4cd1403df77bb1c98f54a",
+    "src/phase2_knowledge_base/graph_rag.py": "d6c479f2e3569975f0111f264bdcde1f9e1fb9c359f9c71aca086a5d0a0e4c6b",
+    "src/phase2_knowledge_base/scenario_summary_generator.py": "7cdda41c74438ff70e41e744e11254aa5855d75e4749c4fd67a3fdb8f1314723",
+    "src/phase2_knowledge_base/semantic_mapping.py": "aba0f53503524518e76506425b1f68f93becdf48b0bf865a347dcd2aab0dfe5f",
+    "src/phase2_knowledge_base/sensor_fingerprint.py": "0d536c41101bdbbaa6798e67b32827df3990f88a8b4ffa4a6dfd18d0b4fb3d6e",
+    "src/phase2_knowledge_base/vector_store.py": "4438ca1f64e74c18a576ea09f0bf6e762784caf8aa06aadb27e651a7b7ddcd9a",
+    "src/phase2_knowledge_base/__init__.py": "ee776f0b2f97ba8aa55ff5d202d5c5aa15bc27a56c1c66194f8ab8c67c03267e",
+    "src/phase3_query/eval_comprehensive.py": "ecbb55c72c1b768f60202b4e7b99282c0d2c39e74b8f24af1fbfbe28110c1d62",
+    "src/phase3_query/leak_locator.py": "3315e9412b66f0abfa921d950486224ea69f54f80c0c207f2729eb3aa9863e39",
+    "src/phase3_query/numerical_retrieval.py": "17da79200bb0d74ce69e403db1663d4787a5744166b4a849ff2d2e1c61ced9f9",
+    "src/phase3_query/validate.py": "344a4d53668af6960efaa591e9462b8d90d1b8643b3d7f2848b79a05763b14d1",
+    "src/phase3_query/__init__.py": "448103d471fd1ad8199363289bfc1eeb1198f041dbbc6265474047fc0c1d1ce7",
+    "scripts/build_source_data.py": "9660853544448288cc53ca7d7ddb43065a96d650abbea59582834cf60e03b617",
+    "scripts/reproduce.py": "7b19e053a698e95705f9780dc3a67d49eaf8aaa1033b9ca9eb6ce5edf2fa5216",
+    "scripts/verify_outputs.py": "8a97117917b6cf5799b952578f2436d230bed5b61dd3d2908f559182148706e3",
+    "scripts/figures/allocation_data.py": "0f32fdddc1a23a08ad0e11b2f3c771da276d0f657c1e91e49fc1a1eb89827361",
+    "scripts/figures/compose_fig2.py": "ecfea743ee71a915a1fb24fdbb88a18d0f6ed5b5e52483cf06f574b8b2c8c4f4",
+    "scripts/figures/fig_style.py": "15444c009876f21434461758bfb11518b40adfa8ceee324a65a66f68ade6e206",
+    "scripts/figures/make_fig1_infographic.py": "e54702ae3d4415fdc523b9540c3a11e08265335f69b3eaa64c0d6e26e3cd117c",
+    "scripts/figures/make_fig3_maps.py": "af521d65e3a985d9208c71dbd1736ac1b0c99efc30ae33e021a5b4bee26f8238",
+    "scripts/figures/make_fig4_holdout.py": "4a275920f01aa8650253419328087ea6a8b4dceffbb46781bee59f84a61dd7ad",
+    "scripts/figures/make_fig5_allocation.py": "e1f35a398719ec48a02f16d84b9d27fea224ecd39b41a1d0c5ecfbb0bf7a165d",
+    "scripts/figures/make_fig6_components.py": "aa330378b125e5f331fdaaba141c2c37314a8beeb7afb5bd3a602735619c5f9b",
+    "scripts/figures/make_fig7_robustness.py": "7429d3e73339135b17a13a3a713cdebdf86313821b0cb2e57d0a5dfbfcc5b25b",
+    "scripts/figures/make_figS1_drawlevel.py": "b52c56474eee6a01d0f439e41b030eb9f5531328e25df7ab1711c60d745c6728",
+    "scripts/figures/make_figS2_confusion.py": "91ee207feab456027c650fea86c6b0fdaaaf3a19a4e30268b4449fdbd37d4798",
+    "scripts/figures/make_figS3.py": "1df4457db4135a897225dcf201b6109116a2d47073d33e98477480581316f038",
+    "scripts/figures/make_figS4_S5.py": "d6b81458a3d10ab411d7754ba6cd51f216577f21d421e9da00b095401b5efe26",
+    "scripts/figures/make_figS6_current.py": "6b05ffa452a6f9f1bb5972bdadd61c0f01cb310d6aef64ea94752a24ea7c2c2e",
+    "scripts/figures/make_figS6_standalone.py": "d4e2a49cdb2f850ec60b8f49d5946c2652f14287aed3d0a748132a61624221f3",
+    "scripts/figures/nature_style.py": "f2c3f124fc460c9da5ac64292624a936bf4ece72ce175e70781437c6b68b168d",
+    "scripts/figures/pastel_style.py": "385d689604c00c0c8815d23bc8d11db8e55081c4633edf23011a3d8a3ec6fc69",
+    "scripts/figures/replay.py": "69de39ed0e4740335622f0137fbff7393b5226d5f998cfb49c0a445cd5cba016",
+    "scripts/figures/_paths.py": "0b845cad59396a06faa21e18f80cfb02e24f5ab7fbd8f4b5c4649d5b59518030",
+    "experiments/reference_corpus.py": "8a4eb0a0e316a632cba44223e2f67688e223abfa53cb610f63ce9b61d715fb76",
+    "experiments/__init__.py": "2c93537f872f55a3cc203b6fca86817db8018741eac2c3881e5e9c3181c43773",
+    "experiments/allocation/build_tensor.py": "0928a5bb2f42291c1c8456943ae41b066a1004f1d454d586c4bdff43fcac3149",
+    "experiments/allocation/run.py": "d99c5fc05277102de15ff147a29756fd50c0de6430c891589f7228156804dad8",
+    "experiments/allocation/__init__.py": "0ae47d321bf1395255e8413c8edf1b20fff150eb60a8bd611d3782c86b494714",
+    "experiments/historical/audit_exa7_traces.py": "b53d9565cb8bbbb053d240ddaee6429bf08bb7eb1449be4a8e0362413e9bad22",
+    "experiments/historical/exa7.py": "40f94fa753fa294503d3ae5476388382904dc37678411614aac15552ebc1202e",
+    "experiments/historical/exa7_support.py": "f466249953e9e93e95c369fabdaed5bb4644fe485b5f9ea0884930be43fc54da",
+    "experiments/historical/physics.py": "edea909bffaeb8856fba29131941fae446ba65f6349b12c48eca782658c60b5c",
+    "experiments/historical/run.py": "671d4bb87743b76a428ce0bd4f0f449f88cd9bf1f360eb411b09d8a90ac72520",
+    "experiments/historical/__init__.py": "cdf682ffcaa48aa34dcaadf386ba32232e1446e5cbb2c28e950107524cba900c",
+    "experiments/historical/exa7_sources/multileak_exhaustive.py": "65161426b210cb5bbceedb7cbd6f5fdac8bd1c1af564b2e61d548be12a6b80d7",
+    "experiments/historical/exa7_sources/multileak_sparse.py": "053ccbd2828fcfa896c7e49aa56aa0a2b750975084ce28bcb2c94e3950098126",
+    "experiments/historical/exa7_sources/pressure_dependent.py": "e34aac309085d40573fa9ae21de880372481a69c19ac1f9eed55726cd9c47f76",
+    "experiments/historical/exa7_sources/resolution.py": "a51956c5ced0573c283e924de9df220a265ed15f895e108b87bd307c72f0d57c",
+    "experiments/historical/exa7_sources/sensor_degradation.py": "c93ac831db7cbec1ecd4362c324e33bafbc75e52c1793e4f42d7b1815bb8256f",
+    "experiments/hydraulic_robustness/audit.py": "af872c4474b07bf2bad8fa28d694db83d2d043e8429891131f448c0fbc9571b1",
+    "experiments/hydraulic_robustness/model.py": "6b38711df632186db7ef4ac0a68cc8c7d535d239d565944a0fb54c8af3fe5cb7",
+    "experiments/hydraulic_robustness/replay.py": "03c05f6f591763af59d5e628f416e5d6dea64f19dcde6e08733368f8e0ecb5bd",
+    "experiments/hydraulic_robustness/run.py": "593bcb5b8a1ccfda1431df4fd232c03aab05c70feb6b3de155af43d7387df1cc",
+    "experiments/hydraulic_robustness/__init__.py": "4049a042f944d6bdac0865960e90f94afc67d986736158ab3967fb451522ca8f",
+    "experiments/node_selection/run.py": "f6517d8085f9cda6d92a15e4e50fcbfc513ba503cace763bb03fc35af3fce2c9",
+    "experiments/node_selection/__init__.py": "32f5276e037188eefc6afb5bd53db1b3235da4651b8178d20315d17f7079e253",
+    "experiments/partition_sensor/audit.py": "ddbbc552649fb793855f00e2d092bd385c5de27a7e01f98d898390fa07cda8c4",
+    "experiments/partition_sensor/model.py": "44876aee53cb54355168d0f314404ab0072b117fb1a4f7c2617e329c1726afd2",
+    "experiments/partition_sensor/run.py": "bbbcd443999a8c133c9828e650fa9e7eb218ac5bdb907146a85d550dc73d7901",
+    "experiments/partition_sensor/validity.py": "887e7f3a3b40364f89f0d655e5f7ffc104d1520d53961f2ee7a72696d946c1d0",
+    "experiments/partition_sensor/__init__.py": "6243bb28c9fa42e014150e3363232aab83e30cba0ecad6b977596ff463469542",
+    "experiments/repeated_benchmarks/architecture.py": "531e5421cb97d7e9dd6c2f72eddfa20aeea55f4646ddce1c25c5f3209a6265a5",
+    "experiments/repeated_benchmarks/classical.py": "bb0c998fc27e05db7b6d1b95f7e79d084ec56b9550bf6a8246ec27ac2df0b961",
+    "experiments/repeated_benchmarks/gnn.py": "9c7e99ac76f3b33876e3d9563b433362d177d0af971fae8db9dbbb09108574e2",
+    "experiments/repeated_benchmarks/primitives.py": "ea1cabf8cea44ef6b772d15ca2114b9dd1ee307fd8f136b30c1b0856fc188a87",
+    "experiments/repeated_benchmarks/run.py": "916a7ade829fbfb77bcf0c0e20df0f1a4bec04585bdcd72281c9ec8d3f38deaa",
+    "experiments/repeated_benchmarks/__init__.py": "e0a224fac54f37e522110d9b50f7eea19c5d7299bd8df0a8368b6f05bf4d5e75",
+    "experiments/strict_engine/engine.py": "c5cb0be7f8d704d0098792f127848d6bb13dedef14d2b1facb51636029da27ad",
+    "experiments/strict_engine/run.py": "7ce3feb4858919edefcaa67c9d3fd94e38c56667371714a416e28f2c7a66b731",
+    "experiments/strict_engine/verify.py": "7109cb1b83b2367a08df5fd42dfea4762cb2f6f770c560c9f8494d86cf72fdf7",
+    "experiments/strict_engine/__init__.py": "955925396403bc811ec77e2cc526be2aa8f5ebff8ab32cfe8ebd9b0ef1d4e597"
+  },
+  "completed_utc": "2026-10-19T08:38:40.285947+00:00",
+  "elapsed_seconds": 295.6716546000007,
+  "test_result_summary": {
+    "passed_tests": 132,
+    "elapsed_seconds": 34.37
+  },
+  "source_text_provenance": "Git normalizes executable source text to LF; earlier study reports retain execution-time byte hashes.",
+  "additional_figure_check": {
+    "command": [
+      "python",
+      "scripts/figures/replay.py",
+      "S6-standalone",
+      "--output",
+      "outputs/fresh_s6"
+    ],
+    "exit_code": 0,
+    "expected_seed_level_records": 680,
+    "audit_files": {
+      "outputs/fresh_s6/figS6_standalone_20261017/plot_integrity_checks.json": "d880fdf1bb0df3e3b66d82992c329486244e6c1e50ed0d09a95d2ea1b7760242"
+    }
+  },
+  "tested_tree_objects": {
+    "src": "ab52c5b93779a14294dfe24b9539ed3b6af10c9a",
+    "scripts": "4a656285f6fd03abaa875566ae2b477242c073a4",
+    "experiments": "bb53392a550e2eaabb0b6db9454cf11c73e0b0b4",
+    "tests": "7f936cbdd9193b245b6758f0702292283dc781cd",
+    "main.py": "d021462a588c21d70fbec576c3886e7d4fdaa1d7",
+    "config.yaml": "667a7bad423c9d5712b95368af58844c3dcdfd85",
+    "requirements-core.lock.txt": "b6b77e103b97edb26db410279519a4c881c1a210"
+  }
+}
