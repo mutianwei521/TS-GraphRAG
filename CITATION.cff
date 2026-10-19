@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Mu
     given-names: Tianwei
-version: 1.0.0-resubmission
+version: 1.0.1-resubmission
 date-released: 2026-10-19
 url: "https://github.com/mutianwei521/TS-GraphRAG"
 repository-code: "https://github.com/mutianwei521/TS-GraphRAG"

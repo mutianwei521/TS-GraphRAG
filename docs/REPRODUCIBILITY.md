@@ -2,7 +2,9 @@
 
 ## Fixed version and environment
 
-Use tag `v1.0.0-resubmission` and Python 3.11.15. `requirements-core.lock.txt` is the complete clean-installed Windows x64 numerical/hydraulic/plotting environment. `environment.yml` defines its conda equivalent. The validation records identify the interpreter, package versions, inputs, command and output hashes for each executed study.
+Use tag `v1.0.1-resubmission` and Python 3.11.15. `requirements-core.lock.txt` is the complete clean-installed Windows x64 numerical/hydraulic/plotting environment. Create the exact interpreter and packages with `conda env create -f environment.yml` and activate `ts-graphrag-repro`. The validation records identify the interpreter, package versions, inputs, command and output hashes for each executed study.
+
+GitHub-hosted Windows checks use the official CPython 3.11.9 Windows build and the same pinned packages. This separately specified compatibility check runs the complete test suite and hydraulic smoke workflow. The full-study and independent-clone execution records use the clean Python 3.11.15 environment.
 
 Each optional lock file is a complete profile. Install it in a separate Python 3.11.15 environment:
 

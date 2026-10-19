@@ -1,5 +1,11 @@
 # Changes
 
+## 1.0.1-resubmission
+
+- Pin hosted Windows checks to the official CPython 3.11.9 Windows build with the same core package lock.
+- Supply the exact Python 3.11.15 reproduction environment through `environment.yml` and record the interpreter for each validation.
+- Preserve the numerical implementation, frozen scientific inputs and study results from 1.0.0-resubmission.
+
 ## 1.0.0-resubmission
 
 - Direct, offline projection-residual inference and cosine comparison through the main CLI.

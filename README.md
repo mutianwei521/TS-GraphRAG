@@ -32,6 +32,8 @@ python scripts/verify_outputs.py --run-dir outputs/smoke
 
 The example contains pressure changes in metres, in the released sensor order. Inference returns the complete partition ranking and scenario matches. Each reproduction run records its effective inputs, execution commands, outputs and elapsed time.
 
+For the exact Python 3.11.15 interpreter and pinned packages, use `conda env create -f environment.yml`, then `conda activate ts-graphrag-repro`. Automated Windows checks use the official CPython 3.11.9 Windows build with the same package lock; the execution reports identify the interpreter used for each validation.
+
 ## Reproduce the study
 
 | Workflow | Starting inputs | Command |
@@ -104,6 +106,6 @@ Additional historical query outcomes, LLM statistics and network comparisons hav
 
 ## Release and citation
 
-Use the fixed [resubmission release](https://github.com/mutianwei521/TS-GraphRAG/releases/tag/v1.0.0-resubmission) when reproducing the revised paper. The release includes checksums, source data and execution records. Machine-readable software citation is provided in [CITATION.cff](CITATION.cff).
+Use the fixed [resubmission release](https://github.com/mutianwei521/TS-GraphRAG/releases/tag/v1.0.1-resubmission) when reproducing the revised paper. The release includes checksums, source data and execution records. Machine-readable software citation is provided in [CITATION.cff](CITATION.cff).
 
 Code is distributed under the [MIT License](LICENSE). Model and data provenance are recorded with their corresponding assets.
